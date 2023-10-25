@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 const GetStartedSection = () => {
     return ( 
     <section className="relative h-[60vh] w-full bg-get-started-background bg-cover">
@@ -6,8 +8,8 @@ const GetStartedSection = () => {
           <span>Master difficult subjects easily with flashcards and practice tests</span>
         </div>
         <div>
-        <a href="#login"><button className="bg-main-green text-2xl font-medium px-[25px] py-[10px] mt-[60px] border-[none] cursor-pointer duration-500
-        hover:bg-green-700">Get started</button></a>
+        <Link to="/login"><button className="bg-main-green text-2xl font-medium px-[25px] py-[10px] mt-[60px] border-[none] cursor-pointer duration-500
+        hover:bg-green-700">Get started</button></Link>
         </div>
        
       </div>

@@ -9,7 +9,10 @@ module.exports = {
       colors: {
         'main-green': '#63B175',
         'main-yellow-hover': '#dbbb2c',
-        'body-background-grey': '#525E74'
+        'body-background-grey': '#525E74',
+        'form-background-grey': '#333',
+        'form-link-antiquewhite': '#faebd7',
+        'form-background-darkened': 'rgba(0, 0, 0, 0.4)'
       }
     },
   },
