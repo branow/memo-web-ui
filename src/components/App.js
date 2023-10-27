@@ -7,9 +7,8 @@ import RegistrationForm from "./constant-components/RegistrationForm";
 import ResetForm from "./constant-components/ResetForm";
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import '../input.css';
-import BlogDetails from "../BlogDetails";
-import Create from "../Create";
-import NotFound from "../NotFound";
+
+import NotFound from "./learning/NotFound";
 
 function App() {
   return (

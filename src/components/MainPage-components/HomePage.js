@@ -1,7 +1,6 @@
 import GetStartedSection from "./GetStartedSection";
 import MemorizeSection from "./MemorizeSection";
-import BlogList from "../../BlogList";
-import useFetch from "../../useFetch";
+
 
 
 const HomePage = () => {

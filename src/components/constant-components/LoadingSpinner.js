@@ -1,4 +1,4 @@
-const LoadingSpinner = () => {
+const LoadingSpinner = ({loadingMessage}) => {
     return ( 
         <div className="justify-center flex">
             <div>
@@ -8,7 +8,7 @@ const LoadingSpinner = () => {
                 </svg>
             </div>
             
-            <div className="text-[16px] my-[5px] text-white  font-medium"><span >Loading...</span></div>
+            <div className="text-[16px] my-[5px] text-white  font-medium"><span >{loadingMessage}</span></div>
             
         </div>
      );

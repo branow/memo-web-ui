@@ -29,3 +29,10 @@ src/input.css
 src/input.css
 src/NotFound.js
 src/components/MainPage.js
+src/components/learning/BlogDetails.js
+src/components/learning/BlogList.js
+src/components/learning/Create.js
+src/components/learning/NotFound.js
+src/components/learning/patterns.txt
+src/components/learning/useFetch.js
+src/components/learning/data/db.json
