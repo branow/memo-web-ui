@@ -1,7 +1,7 @@
-import { useState } from 'react';
+
 import { Link } from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = ({user}) => {
     return ( 
     <nav className="bg-main-green ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -18,9 +18,9 @@ const Navbar = () => {
             <li>
               <Link to="/about" className="block py-2 pl-3 pr-4 text-gray-100 rounded hover:bg-main-yellow-hover hover:text-gray-700 md:p-2">About us</Link>
             </li>
-            <li>
+            {!user && <li>
               <Link to="/login" className="block py-2 pl-3 pr-4 text-gray-100 rounded hover:bg-main-yellow-hover hover:text-gray-700 md:p-2 border-2">Log in</Link>
-            </li>
+            </li>}
           </ul>
         </div>
       </div>

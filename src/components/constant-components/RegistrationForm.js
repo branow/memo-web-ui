@@ -9,12 +9,45 @@ import EmailInput from './FormInputComponents/EmailInput';
 import PasswordInput from './FormInputComponents/PasswordInput';
 import FormSubmitButton from './FormInputComponents/FormSubmitButton';
 import sendRegister from '../../form-functions/sendRegister';
+import { useEffect } from 'react';
+import AuthenticationRequester from '../../request/authentication';
+import EmailRequester from '../../request/email';
+import { createVerificationEmail } from '../../util/email-templates';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const RegistrationForm = () => {
     const [registerUsername, setRegisterUsername] = useState("");
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
     const [registerConfirmPassword, setRegisterConfirmPassword] = useState("");
+    const history = useHistory();
+
+    const handleSubmit = () => {
+        const user = {
+            username:registerUsername,
+            email:registerEmail,
+            password:registerPassword,
+        };
+        const success = (response) => {
+            const token = response.data.token;
+
+            const emailDto = createVerificationEmail(user.email, token);
+            const success = () => {
+                history.push("/");
+            };
+            const fail = () => {
+
+            };
+            new EmailRequester().post(emailDto, success, fail);
+        };
+        const fail = () => {
+
+        }
+        new AuthenticationRequester().requester(user, success, fail);
+    };
+
+
+
     return ( 
         <div className="w-[450px] p-[50px]">
             <h2 className="text-[40px] text-white text-center font-semibold">Registration</h2>
@@ -35,8 +68,7 @@ const RegistrationForm = () => {
                 inputIcon={<RiLockPasswordLine className='mt-[7px]' size='20px'/>} inputName={'Confirm password'}
                 />
 
-                <FormSubmitButton actionName={'Register'} onClickAction={() => {sendRegister(registerUsername, registerEmail,
-                    registerPassword, registerConfirmPassword)}}/>
+                <FormSubmitButton actionName={'Register'} onClickAction={handleSubmit}/>
 
                 <div className="text-[1em] text-white text-center font-medium inline" >
                     <p className="my-[16px]">Already have an account?

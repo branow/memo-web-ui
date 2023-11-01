@@ -9,12 +9,34 @@ import EmailInput from './FormInputComponents/EmailInput';
 import PasswordInput from './FormInputComponents/PasswordInput';
 import FormSubmitButton from './FormInputComponents/FormSubmitButton';
 import sendLogin from '../../form-functions/sendLogin';
-import axios from 'axios';
+import { useEffect } from 'react';
+import AuthenticationRequester from '../../request/authentication';
+import { UserCookies } from '../../util/user-cookie';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom';
 
 
-const LoginForm = () => {
+const LoginForm = ({setUser}) => {
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
+    const history = useHistory();
+
+    const handleSubmit = () => {
+        const user = {
+            email: loginEmail,
+            password: loginPassword,
+        };
+        const success = (response) => {
+            const jwt = response.data.jwt;
+            const user = response.data.user;
+            new UserCookies().authorizationJwt.set(jwt);
+            setUser(user);
+            history.push('/');
+        };
+        const fail = () => {
+
+        };
+        new AuthenticationRequester().login(user, success, fail);
+    }
 
     return (
         <div className="w-[450px] p-[50px]">
@@ -26,7 +48,7 @@ const LoginForm = () => {
                 <FormInputWrapper childrenInput={<PasswordInput onChangeAction={(e) => setLoginPassword(e.target.value)}/>}
                 inputName={'Password'} inputIcon={<RiLockPasswordLine className='mt-[7px]' size='20px'/>}/>
                 
-                <FormSubmitButton actionName={'Login'} onClickAction={() => {sendLogin(loginEmail, loginPassword)}}/>
+                <FormSubmitButton actionName={'Login'} onClickAction={handleSubmit}/>
 
                 <div className="text-[1em] text-white font-medium mt-[45px] mb-[15px] flex justify-between">
                     <Link to="/register" className="cursor-pointer hover:underline"><span>Create an account?</span></Link>
