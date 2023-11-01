@@ -2,6 +2,7 @@ import axios from 'axios';
 import requestError from './request-error';
 
 function request(config) {
+  console.log(config);
   axios({
     url: config.url,
     method: config.method,
@@ -23,7 +24,7 @@ const baseUrl = 'http://localhost:8080';
 function Requester(relativeUrl) {
   this.get = (config) => {
     request({
-      url: joinUrl([baseUrl, relativeUrl, config.utl, config.param]),
+      url: joinUrl(baseUrl, relativeUrl, config.url, config.param),
       method: 'GET',
       headers: {
         'Access-Control-Allow-Origin': '*',
@@ -36,7 +37,7 @@ function Requester(relativeUrl) {
   };
   this.post = (config) => {
     request({
-      url: joinUrl([baseUrl, relativeUrl, config.utl, config.param]),
+      url: joinUrl(baseUrl, relativeUrl, config.url, config.param),
       method: 'POST',
       headers: {
         'Content-Type' : 'application/json',
@@ -51,7 +52,7 @@ function Requester(relativeUrl) {
   };
   this.delete = (config) => {
     request({
-      url: joinUrl([baseUrl, relativeUrl, config.utl, config.param]),
+      url: joinUrl(baseUrl, relativeUrl, config.url, config.param),
       method: 'DELETE',
       headers: {
         'Access-Control-Allow-Origin': '*',
@@ -64,8 +65,18 @@ function Requester(relativeUrl) {
   }
 }
 
-function joinUrl(urlPars) {
-  return urlPars.join('/');
+function joinUrl(base, relative, spec, param) {
+  let url = base;
+  if (relative) {
+    url += '/' + relative;
+  }
+  if (spec) {
+    url += '/' + spec;
+  }
+  if (param) {
+    url += '?' + param;
+  }
+  return url;
 }
 
 export {request, Requester};
