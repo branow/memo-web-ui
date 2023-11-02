@@ -8,14 +8,14 @@ import FormInputWrapper from './FormInputComponents/FormInputWrapper';
 import EmailInput from './FormInputComponents/EmailInput';
 import PasswordInput from './FormInputComponents/PasswordInput';
 import FormSubmitButton from './FormInputComponents/FormSubmitButton';
-import sendLogin from '../../form-functions/sendLogin';
-import { useEffect } from 'react';
-import AuthenticationRequester from '../../request/authentication';
-import { UserCookies } from '../../util/user-cookie';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom';
+import login from '../../service/authentication/login';
+import { State } from '../../service/service';
 
 
 const LoginForm = ({setUser}) => {
+    const [error, setError] = useState(null);
+    const [pending, setPending] = useState(false);
     const [loginEmail, setLoginEmail] = useState("");
     const [loginPassword, setLoginPassword] = useState("");
     const history = useHistory();
@@ -25,17 +25,10 @@ const LoginForm = ({setUser}) => {
             email: loginEmail,
             password: loginPassword,
         };
-        const success = (response) => {
-            const jwt = response.data.jwt;
-            const user = response.data.user;
-            new UserCookies().authorizationJwt.set(jwt);
-            setUser(user);
+        const doSuccess = () => {
             history.push('/');
-        };
-        const fail = () => {
-
-        };
-        new AuthenticationRequester().login(user, success, fail);
+        }
+        login(user, setUser, new State(setPending, setError), doSuccess);
     }
 
     return (

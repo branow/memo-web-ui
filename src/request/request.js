@@ -21,28 +21,31 @@ function request(config) {
 
 const baseUrl = 'http://localhost:8080';
 
-function Requester(relativeUrl) {
-  this.get = (config) => {
+class Requester {
+  constructor(relativeUrl) {
+    this.relativeUrl = relativeUrl;
+  }
+  get(config) {
     request({
-      url: joinUrl(baseUrl, relativeUrl, config.url, config.param),
+      url: joinUrl(baseUrl, this.relativeUrl, config.url, config.param),
       method: 'GET',
       headers: {
         'Access-Control-Allow-Origin': '*',
-        'Authorization' : 'bearer ' + config.jwt,
+        'Authorization': 'bearer ' + config.jwt,
       },
       success: config.success,
       fail: config.fail,
       error: requestError,
     });
   };
-  this.post = (config) => {
+  post(config) {
     request({
-      url: joinUrl(baseUrl, relativeUrl, config.url, config.param),
+      url: joinUrl(baseUrl, this.relativeUrl, config.url, config.param),
       method: 'POST',
       headers: {
-        'Content-Type' : 'application/json',
+        'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
-        'Authorization' : 'bearer ' + config.jwt,
+        'Authorization': 'bearer ' + config.jwt,
       },
       body: JSON.stringify(config.body),
       success: config.success,
@@ -50,19 +53,19 @@ function Requester(relativeUrl) {
       error: requestError,
     });
   };
-  this.delete = (config) => {
+  delete(config){
     request({
-      url: joinUrl(baseUrl, relativeUrl, config.url, config.param),
+      url: joinUrl(baseUrl, this.relativeUrl, config.url, config.param),
       method: 'DELETE',
       headers: {
         'Access-Control-Allow-Origin': '*',
-        'Authorization' : 'bearer ' + config.jwt,
+        'Authorization': 'bearer ' + config.jwt,
       },
       success: config.success,
       fail: config.fail,
       error: requestError,
     });
-  }
+  };
 }
 
 function joinUrl(base, relative, spec, param) {

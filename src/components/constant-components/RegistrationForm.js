@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { HiOutlineMail } from 'react-icons/hi';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { AiOutlineUser } from 'react-icons/ai';
@@ -8,14 +8,12 @@ import UserNameInput from './FormInputComponents/UsernameInput';
 import EmailInput from './FormInputComponents/EmailInput';
 import PasswordInput from './FormInputComponents/PasswordInput';
 import FormSubmitButton from './FormInputComponents/FormSubmitButton';
-import sendRegister from '../../form-functions/sendRegister';
-import { useEffect } from 'react';
-import AuthenticationRequester from '../../request/authentication';
-import EmailRequester from '../../request/email';
-import { createVerificationEmail } from '../../util/email-templates';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import register from '../../service/authentication/register';
+import { State } from '../../service/service';
 
 const RegistrationForm = () => {
+    const [pending, setPending] = useState(false);
+    const [error, setError] = useState(null);
     const [registerUsername, setRegisterUsername] = useState("");
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
@@ -27,23 +25,12 @@ const RegistrationForm = () => {
             username:registerUsername,
             email:registerEmail,
             password:registerPassword,
+            confirmPassword:registerConfirmPassword,
         };
-        const success = (response) => {
-            const token = response.data.token;
-
-            const emailDto = createVerificationEmail(user.email, token);
-            const success = () => {
-                history.push("/");
-            };
-            const fail = () => {
-
-            };
-            new EmailRequester().post(emailDto, success, fail);
+        const doSuccess = (response) => {
+            history.push("/");
         };
-        const fail = () => {
-
-        }
-        new AuthenticationRequester().requester(user, success, fail);
+        register(user, new State(setPending, setError, doSuccess));
     };
 
 
