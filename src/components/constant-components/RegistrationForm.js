@@ -9,6 +9,8 @@ import EmailInput from './FormInputComponents/EmailInput';
 import PasswordInput from './FormInputComponents/PasswordInput';
 import FormSubmitButton from './FormInputComponents/FormSubmitButton';
 import sendRegister from '../../form-functions/sendRegister';
+import WarningAlert from './WarningAlert';
+import PasswordValidationTracker from './PasswordValidationTracker';
 
 const RegistrationForm = () => {
     const [registerUsername, setRegisterUsername] = useState("");
@@ -18,6 +20,7 @@ const RegistrationForm = () => {
     return ( 
         <div className="w-[450px] p-[50px]">
             <h2 className="text-[40px] text-white text-center font-semibold">Registration</h2>
+            
             <form>
                 <FormInputWrapper childrenInput={<UserNameInput onChangeAction={(e) => setRegisterUsername(e.target.value)}/>}
                 inputIcon={<AiOutlineUser className='mt-[7px]' size='20px'/>} inputName={'Username'}
@@ -30,6 +33,7 @@ const RegistrationForm = () => {
                 <FormInputWrapper childrenInput={<PasswordInput onChangeAction={(e) => setRegisterPassword(e.target.value)}/>}
                 inputIcon={<RiLockPasswordLine className='mt-[7px]' size='20px'/>} inputName={'Password'}
                 />
+                <PasswordValidationTracker/>
 
                 <FormInputWrapper childrenInput={<PasswordInput onChangeAction={(e) => setRegisterConfirmPassword(e.target.value)}/>}
                 inputIcon={<RiLockPasswordLine className='mt-[7px]' size='20px'/>} inputName={'Confirm password'}
