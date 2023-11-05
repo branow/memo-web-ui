@@ -1,18 +1,16 @@
-
 import Navbar from "./constant-components/Navbar";
-import HomePage from "./MainPage-components/HomePage";
-import HomeComponentWrapper from "./constant-components/FormComponentWrapper"
+import HomePage from "./MainPage/HomePage";
+import HomeComponentWrapper from "./constant-components/FormComponentWrapper";
 import LoginForm from "./constant-components/LoginForm";
 import RegistrationForm from "./constant-components/RegistrationForm";
 import ResetForm from "./constant-components/ResetForm";
+import ConfirmForm from "./constant-components/ConfirmForm";
 import AuthenticationRequester from "../request/authentication";
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { UserCookies } from "../util/user-cookie";
 
-import '../input.css';
-
-// import NotFound from "./learning/NotFound";
+import "../input.css";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -26,9 +24,9 @@ function App() {
       const fail = () => {
         setUser(null);
       };
-      new AuthenticationRequester().getUser(jwt, success, fail)
+      new AuthenticationRequester().getUser(jwt, success, fail);
     }
-  }, [])
+  }, []);
 
   return (
     <Router>
@@ -37,26 +35,34 @@ function App() {
         <div className="content">
           <Switch>
             <Route exact path="/">
-              <HomePage></HomePage>
+              <HomePage />
             </Route>
             <Route path="/login">
-              <HomePage></HomePage>
-              <HomeComponentWrapper><LoginForm setUser={setUser}></LoginForm></HomeComponentWrapper>
+              <HomePage />
+              <HomeComponentWrapper>
+                <LoginForm setUser={setUser} />
+              </HomeComponentWrapper>
             </Route>
             <Route path="/register">
-              <HomePage></HomePage>
-              <HomeComponentWrapper><RegistrationForm setUser={setUser}></RegistrationForm></HomeComponentWrapper>
+              <HomePage />
+              <HomeComponentWrapper>
+                <RegistrationForm setUser={setUser} />
+              </HomeComponentWrapper>
             </Route>
             <Route path="/reset">
-              <HomePage></HomePage>
-              <HomeComponentWrapper><ResetForm></ResetForm></HomeComponentWrapper>
+              <HomePage />
+              <HomeComponentWrapper>
+                <ResetForm />
+              </HomeComponentWrapper>
             </Route>
-            <Route path="*">
-              {/* <NotFound/> */}
+            <Route path="/confirm">
+              <HomePage />
+              <HomeComponentWrapper>
+                <ConfirmForm/>
+              </HomeComponentWrapper>
             </Route>
           </Switch>
         </div>
-        
       </div>
     </Router>
   );

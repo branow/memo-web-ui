@@ -1,8 +1,6 @@
 import GetStartedSection from "./GetStartedSection";
 import MemorizeSection from "./MemorizeSection";
 
-
-
 const HomePage = () => {
     return (  
         <div>
@@ -10,8 +8,6 @@ const HomePage = () => {
             <MemorizeSection></MemorizeSection>
         </div>
     );
-
-   
 }
  
 export default HomePage;

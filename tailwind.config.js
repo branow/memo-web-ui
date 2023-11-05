@@ -12,7 +12,7 @@ module.exports = {
         'body-background-grey': '#525E74',
         'form-background-grey': '#333',
         'form-link-antiquewhite': '#faebd7',
-        'form-background-darkened': 'rgba(0, 0, 0, 0.4)'
+        'form-background-darkened': 'rgba(0, 0, 0, 0.6)'
       }
     },
   },
