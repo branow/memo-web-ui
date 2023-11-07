@@ -7,7 +7,7 @@ function UserCookies() {
 function UserCookie(name) {
   this.cookies = new Cookies();
   this.get = () => {
-    this.cookies.get(name);
+    return this.cookies.get(name);
   };
   this.set = (value) => {
     this.cookies.set(name, value);

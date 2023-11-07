@@ -39,7 +39,6 @@ const LoginForm = ({ setUser }) => {
       {error && (
         <ErrorBox errorTitle="Authentication Error" errorMessage={error} />
       )}
-      {/* <ErrorBox errorTitle={"AbobaError"} errorMessage={"AbobaErrorMessagffffffffffffffffffff dddddddd dddddddddddddd dddddddddfffffffffffff ffffffffffffffffffffffffe"}/> */}
       <div>
         <FormInputWrapper
           childrenInput={

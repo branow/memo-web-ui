@@ -1,5 +1,5 @@
 
-import { ValidationResult, Validator } from "../validator/validator";
+import { ValidationResult } from "../validator/validator";
 
 function serve(validator, doTask, state, doFinally) {
   const res = validate(validator);
@@ -10,7 +10,7 @@ function serve(validator, doTask, state, doFinally) {
 
   doFinally.success.addBefore(() => state.setError(null));
   doFinally.fail.addBefore((response) => state.setError(response));
-  doFinally.error.addBefore((error) => state.setError(error.message));
+  doFinally.error.addBefore((error) => state.setError(error));
 
   doFinally.success.addAfter(() => state.setPending(false));
   doFinally.fail.addAfter(() => state.setPending(false));
@@ -27,17 +27,6 @@ function validate(validator) {
   return new ValidationResult(true);
 }
 
-function callFunctionSequence(array, response) {
-  for (let i in array) {
-    callFunctionIfNotNull(array[i], response);
-  }
-}
-
-function callFunctionIfNotNull(funct, param) {
-  if (funct != null) {
-    funct(param);
-  }
-}
 
 class State {
   constructor(setPending, setError) {

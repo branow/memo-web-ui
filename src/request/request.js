@@ -13,8 +13,13 @@ function request(config) {
     } else {
       config.doFinally.fail.do(response);
     }
-  }).catch(e => {
-    config.doFinally.error.do(e);
+  }).catch(error => {
+    console.log(error);
+    if (error.response && error.response.data) {
+      config.doFinally.error.do(error.response.data);
+    } else {
+      config.doFinally.error.do(error.message);
+    }
   });
 }
 
@@ -28,10 +33,7 @@ class Requester {
     request({
       url: joinUrl(baseUrl, this.relativeUrl, config.url, config.param),
       method: 'GET',
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Authorization': 'bearer ' + config.jwt,
-      },
+      headers: buildHeaders(null, config.jwt),
       doFinally: config.doFinally,
     });
   };
@@ -39,11 +41,7 @@ class Requester {
     request({
       url: joinUrl(baseUrl, this.relativeUrl, config.url, config.param),
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Authorization': 'bearer ' + config.jwt,
-      },
+      headers: buildHeaders('application/json', config.jwt),
       body: JSON.stringify(config.body),
       doFinally: config.doFinally,
     });
@@ -52,13 +50,23 @@ class Requester {
     request({
       url: joinUrl(baseUrl, this.relativeUrl, config.url, config.param),
       method: 'DELETE',
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Authorization': 'bearer ' + config.jwt,
-      },
+      headers: buildHeaders(null, config.jwt),
       doFinally: config.doFinally,
     });
   };
+}
+
+
+function buildHeaders(contentType, jwt) {
+  const headers = {};
+  headers['Access-Control-Allow-Origin'] = '*';
+  if (contentType && contentType !== undefined) {
+    headers['Content-Type'] = contentType;
+  }
+  if (jwt && jwt !== undefined) {
+    headers['Authorization'] = 'bearer ' + jwt;
+  }
+  return headers;
 }
 
 function joinUrl(base, relative, spec, param) {

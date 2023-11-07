@@ -8,7 +8,7 @@ import { serve } from "../service";
 function login(user, setUser, state, doFinally) {
   const validator = new MultiValidator([
     getEmailValidator(user.email),
-    // getPasswordValidator(user.password),
+    getPasswordValidator(user.password),
   ]);
 
   const addUser = (response) => {
@@ -19,7 +19,7 @@ function login(user, setUser, state, doFinally) {
   };
 
   doFinally.success.addBefore(addUser);
-  
+
   const doTask = (doFinally) => {
     new AuthenticationRequester().login(user, doFinally);
   }
