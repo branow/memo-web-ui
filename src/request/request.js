@@ -1,5 +1,4 @@
 import axios from 'axios';
-import requestError from './request-error';
 
 function request(config) {
   console.log(config);
@@ -10,12 +9,12 @@ function request(config) {
     data: config.body,
   }).then(response => {
     if (response.status > 199 && response.status < 300) {
-      config.success(response);
+      config.doFinally.success.do(response);
     } else {
-      config.fail(response);
+      config.doFinally.fail.do(response);
     }
   }).catch(e => {
-    config.error(e);
+    config.doFinally.error.do(e);
   });
 }
 
@@ -33,9 +32,7 @@ class Requester {
         'Access-Control-Allow-Origin': '*',
         'Authorization': 'bearer ' + config.jwt,
       },
-      success: config.success,
-      fail: config.fail,
-      error: requestError,
+      doFinally: config.doFinally,
     });
   };
   post(config) {
@@ -48,9 +45,7 @@ class Requester {
         'Authorization': 'bearer ' + config.jwt,
       },
       body: JSON.stringify(config.body),
-      success: config.success,
-      fail: config.fail,
-      error: requestError,
+      doFinally: config.doFinally,
     });
   };
   delete(config){
@@ -61,9 +56,7 @@ class Requester {
         'Access-Control-Allow-Origin': '*',
         'Authorization': 'bearer ' + config.jwt,
       },
-      success: config.success,
-      fail: config.fail,
-      error: requestError,
+      doFinally: config.doFinally,
     });
   };
 }

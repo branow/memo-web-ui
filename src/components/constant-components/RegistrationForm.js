@@ -12,6 +12,7 @@ import register from "../../service/authentication/register";
 import LoadingScreen from "./LoadingScreen";
 import { State } from "../../service/service";
 import ErrorBox from "./ErrorBox";
+import DoFinally from "../../util/do-finally";
 
 const RegistrationForm = () => {
   const [pending, setPending] = useState(false);
@@ -29,10 +30,9 @@ const RegistrationForm = () => {
       password: password,
       confirmPassword: confirmPassword,
     };
-    const doSuccess = (response) => {
-      history.push("/");
-    };
-    register(user, new State(setPending, setError, doSuccess));
+    const doFinally = new DoFinally();
+    doFinally.success.addAfter(() =>  history.push("/"));
+    register(user, new State(setPending, setError), doFinally);
   };
 
   return (

@@ -1,23 +1,23 @@
+
 import { ValidationResult, Validator } from "../validator/validator";
 
-function serve(validator, doTask, state, doSuccessArray, doFailArray) {
+function serve(validator, doTask, state, doFinally) {
   const res = validate(validator);
   if (!res.isValid) {
     state.setError(res.description);
     return;
   }
-  const success = (response) => {
-    state.setError(null);
-    callFunctionSequence(doSuccessArray, response);
-    state.setPending(false);
-  };
-  const fail = (response) => {
-    state.setError(response);
-    callFunctionSequence(doFailArray, response);
-    state.setPending(false);
-  };
+
+  doFinally.success.addBefore(() => state.setError(null));
+  doFinally.fail.addBefore((response) => state.setError(response));
+  doFinally.error.addBefore((error) => state.setError(error.message));
+
+  doFinally.success.addAfter(() => state.setPending(false));
+  doFinally.fail.addAfter(() => state.setPending(false));
+  doFinally.error.addAfter(() => state.setPending(false));
+
   state.setPending(true);
-  doTask(success, fail);
+  doTask(doFinally);
 }
 
 function validate(validator) {

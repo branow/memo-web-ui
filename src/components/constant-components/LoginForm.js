@@ -11,6 +11,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import login from "../../service/authentication/login";
 import { State } from "../../service/service";
 import ErrorBox from "./ErrorBox";
+import DoFinally from "../../util/do-finally";
 
 const LoginForm = ({ setUser }) => {
   const [error, setError] = useState(null);
@@ -24,10 +25,9 @@ const LoginForm = ({ setUser }) => {
       email: email,
       password: password,
     };
-    const doSuccess = () => {
-      history.push("/");
-    };
-    login(user, setUser, new State(setPending, setError), doSuccess);
+    const doFinally = new DoFinally();
+    doFinally.success.addAfter(() =>  history.push("/"));
+    login(user, setUser, new State(setPending, setError), doFinally);
   };
 
   return (
@@ -36,8 +36,11 @@ const LoginForm = ({ setUser }) => {
         Log in
       </h2>
 
+      {error && (
+        <ErrorBox errorTitle="Authentication Error" errorMessage={error} />
+      )}
       {/* <ErrorBox errorTitle={"AbobaError"} errorMessage={"AbobaErrorMessagffffffffffffffffffff dddddddd dddddddddddddd dddddddddfffffffffffff ffffffffffffffffffffffffe"}/> */}
-      <form>
+      <div>
         <FormInputWrapper
           childrenInput={
             <EmailInput onChangeAction={(e) => setEmail(e.target.value)} />
@@ -66,7 +69,7 @@ const LoginForm = ({ setUser }) => {
             <span>Forgot password?</span>
           </Link>
         </div>
-      </form>
+      </div>
       {pending && <LoadingScreen />}
     </div>
   );

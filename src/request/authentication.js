@@ -2,36 +2,32 @@ import { Requester } from "./request";
 
 function AuthenticationRequester() {
   this.requester = new Requester('');
-  this.register = (user, success, fail) => {
+  this.register = (user, doFinally) => {
     this.requester.post({
       url: 'register',
       body: user,
-      success: success,
-      fail: fail,
+      doFinally: doFinally,
     });
   };
-  this.login = (user, success, fail) => {
+  this.login = (user, doFinally) => {
     this.requester.post({
       url: 'login',
       body: user,
-      success: success,
-      fail: fail,
+      doFinally: doFinally,
     });
   };
-  this.enable = (token, success, fail) => {
+  this.enable = (token, doFinally) => {
     this.requester.post({
       url: 'enable',
       body: token,
-      success: success,
-      fail: fail,
+      doFinally: doFinally,
     });
   };
-  this.getUser = (jwt, success, fail) => {
+  this.getUser = (jwt, doFinally) => {
     this.requester.get({
       url: 'user',
       jwt: jwt,
-      success: success,
-      fail: fail,
+      doFinally: doFinally,
     });
   };
 }

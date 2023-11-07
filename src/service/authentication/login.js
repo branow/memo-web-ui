@@ -5,21 +5,25 @@ import { getEmailValidator, getPasswordValidator } from "../../validator/validat
 import { serve } from "../service";
 
 
-function login(user, setUser, state, doSuccessCustom, doFailCustom) {
+function login(user, setUser, state, doFinally) {
   const validator = new MultiValidator([
     getEmailValidator(user.email),
-    getPasswordValidator(user.password),
+    // getPasswordValidator(user.password),
   ]);
-  const doSuccess = (response) => {
+
+  const addUser = (response) => {
     const jwt = response.data.jwt;
     new UserCookies().authorizationJwt.set(jwt);
     const user = response.data.user;
     setUser(user);
   };
-  const request = (success, fail) => {
-    new AuthenticationRequester().login(user, success, fail);
+
+  doFinally.success.addBefore(addUser);
+  
+  const doTask = (doFinally) => {
+    new AuthenticationRequester().login(user, doFinally);
   }
-  serve(validator, request, state, [doSuccess, doSuccessCustom], [doFailCustom]);
+  serve(validator, doTask, state, doFinally);
 }
 
 
