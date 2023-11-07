@@ -3,12 +3,12 @@ import { createVerificationEmail } from "../../util/email-templates";
 import { serve } from "../service";
 
 
-function sendVerificationEmail(receiver, token, state, doSuccessCustom, doFailCustom) {
+function sendVerificationEmail(receiver, token, state, doFinally) {
   const emailDto = createVerificationEmail(receiver, token);
-  const doTask = (success, fail) => {
-    new EmailRequester().post(emailDto, success, fail);
+  const doTask = (doFinally) => {
+    new EmailRequester().post(emailDto, doFinally);
   }
-  serve(null, doTask, state, [doSuccessCustom], [doFailCustom]);
+  serve(null, doTask, state, doFinally);
 }
 
 

@@ -31,7 +31,7 @@ const RegistrationForm = () => {
       confirmPassword: confirmPassword,
     };
     const doFinally = new DoFinally();
-    doFinally.success.addAfter(() =>  history.push("/"));
+    doFinally.success.addAfter(() => history.push("/"));
     register(user, new State(setPending, setError), doFinally);
   };
 
@@ -41,7 +41,10 @@ const RegistrationForm = () => {
         Registration
       </h2>
 
-      <form>
+      {error && (
+        <ErrorBox errorTitle="Authentication Error" errorMessage={error} />
+      )}
+      <div>
         <FormInputWrapper
           childrenInput={
             <UserNameInput
@@ -54,9 +57,7 @@ const RegistrationForm = () => {
 
         <FormInputWrapper
           childrenInput={
-            <EmailInput
-              onChangeAction={(e) => setEmail(e.target.value)}
-            />
+            <EmailInput onChangeAction={(e) => setEmail(e.target.value)} />
           }
           inputIcon={<HiOutlineMail className="mt-[7px]" size="20px" />}
           inputName={"Email"}
@@ -98,7 +99,7 @@ const RegistrationForm = () => {
             </Link>
           </p>
         </div>
-      </form>
+      </div>
       {pending && <LoadingScreen />}
     </div>
   );

@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { UserCookies } from "../util/user-cookie";
 
 import "../input.css";
+import DoFinally from "../util/do-finally";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -18,13 +19,11 @@ function App() {
   useEffect(() => {
     const jwt = new UserCookies().authorizationJwt.get();
     if (jwt) {
-      const success = (response) => {
-        setUser(response.data);
-      };
-      const fail = () => {
-        setUser(null);
-      };
-      new AuthenticationRequester().getUser(jwt, success, fail);
+      const doFinally = new DoFinally();
+      doFinally.success.addAfter((response) => setUser(response.data));
+      doFinally.fail.addAfter(() => setUser(null));
+      doFinally.error.addAfter(() => setUser(null));
+      new AuthenticationRequester().getUser(jwt, doFinally);
     }
   }, []);
 
@@ -58,7 +57,7 @@ function App() {
             <Route path="/confirm">
               <HomePage />
               <HomeComponentWrapper>
-                <ConfirmForm/>
+                <ConfirmForm setUser={setUser} />
               </HomeComponentWrapper>
             </Route>
           </Switch>
