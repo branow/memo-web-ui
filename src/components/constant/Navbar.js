@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import NavButton from "./NavButton";
+import NavButtonUser from "./NavButtonUser";
 
 const Navbar = ({ user }) => {
+  user = {
+    name: "Billy",
+    description: "I'm only a lab rat",
+  };
   return (
     <nav className="bg-main-green ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -15,16 +20,12 @@ const Navbar = ({ user }) => {
           <ul className="text-lg font-medium flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
             <NavButton linkName={"Find Flashcards"} linkDestination={"#"} />
             <NavButton linkName={"About us"} linkDestination={"/about"} />
-            {(!user && (
+            {user ? (
+              <NavButtonUser username={user.name} />
+            ) : (
               <NavButton
                 linkName={"Log in"}
                 linkDestination={"/login"}
-                logLink={true}
-              />
-            )) || (
-              <NavButton
-                linkName={"Username"}
-                linkDestination={"/profile"}
                 logLink={true}
               />
             )}

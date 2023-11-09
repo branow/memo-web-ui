@@ -1,11 +1,11 @@
 import Sidebar from "./SideBar";
-import ProfileInfo from "./ProfileInfo";
-import ProfileSettings from "./ProfileSettings";
+import PrivateUserInfo from "./PrivateUserInfo";
+import UserSettings from "./UserSettings";
 
 const UserPage = ({ user, activeTab }) => {
   let activePage;
-  if (activeTab === "info") activePage = <ProfileInfo />;
-  else if (activeTab === "settings") activePage = <ProfileSettings />;
+  if (activeTab === "info") activePage = <PrivateUserInfo />;
+  else if (activeTab === "settings") activePage = <UserSettings />;
   return (
     <div className="flex">
       <Sidebar tab={activeTab} />

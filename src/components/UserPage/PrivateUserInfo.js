@@ -3,7 +3,7 @@ import FormInputWrapper from "../constant/FormInput/FormInputWrapper";
 import UserNameInput from "../constant/FormInput/UsernameInput";
 import FormSubmitButton from "../constant/FormInput/FormSubmitButton";
 
-const ProfileInfo = () => {
+const PrivateUserInfo = () => {
   return (
     <div className="relative w-screen h-screen bg-form-background-grey text-white border-l-2 border-left-solid border-main-green flex flex-row">
       <div>
@@ -41,4 +41,4 @@ const ProfileInfo = () => {
   );
 };
 
-export default ProfileInfo;
+export default PrivateUserInfo;

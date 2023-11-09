@@ -1,11 +1,12 @@
 import Navbar from "./constant/Navbar";
 import HomePage from "./MainPage/HomePage";
-import UserPage from "./UserPage/UserPage";
+import PrivateUserPage from "./UserPage/PrivateUserPage";
 import FormComponentWrapper from "./constant/FormComponentWrapper";
 import LoginForm from "./constant/LoginForm";
 import RegistrationForm from "./constant/RegistrationForm";
 import ResetForm from "./constant/ResetForm";
 import ConfirmForm from "./constant/ConfirmForm";
+import PublicUserInfo from "./UserPage/PublicUserInfo";
 import AuthenticationRequester from "../request/authentication";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -62,12 +63,19 @@ function App() {
               </FormComponentWrapper>
             </Route>
             <Route path="/profile/info">
-              <UserPage activeTab={"info"}/>
+              <PrivateUserPage activeTab={"info"}/>
             </Route>
             <Route path="/profile/settings">
-              <UserPage activeTab={"settings"}/>
+              <PrivateUserPage activeTab={"settings"}/>
+            </Route>
+            <Route path="/profile/public/modules">
+              <PublicUserInfo tab={"modules"}/>
+            </Route>
+            <Route path="/profile/public/achievements">
+              <PublicUserInfo tab={"achievements"}/>
             </Route>
           </Switch>
+          
         </div>
       </div>
     </Router>
