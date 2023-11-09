@@ -1,10 +1,10 @@
 import GetStartedSection from "./GetStartedSection";
 import MemorizeSection from "./MemorizeSection";
 
-const HomePage = () => {
+const HomePage = ({user}) => {
     return (  
         <div>
-            <GetStartedSection></GetStartedSection>
+            <GetStartedSection user={user}></GetStartedSection>
             <MemorizeSection></MemorizeSection>
         </div>
     );

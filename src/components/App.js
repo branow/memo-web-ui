@@ -1,10 +1,11 @@
-import Navbar from "./constant-components/Navbar";
+import Navbar from "./constant/Navbar";
 import HomePage from "./MainPage/HomePage";
-import HomeComponentWrapper from "./constant-components/FormComponentWrapper";
-import LoginForm from "./constant-components/LoginForm";
-import RegistrationForm from "./constant-components/RegistrationForm";
-import ResetForm from "./constant-components/ResetForm";
-import ConfirmForm from "./constant-components/ConfirmForm";
+import UserPage from "./UserPage/UserPage";
+import FormComponentWrapper from "./constant/FormComponentWrapper";
+import LoginForm from "./constant/LoginForm";
+import RegistrationForm from "./constant/RegistrationForm";
+import ResetForm from "./constant/ResetForm";
+import ConfirmForm from "./constant/ConfirmForm";
 import AuthenticationRequester from "../request/authentication";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -37,28 +38,34 @@ function App() {
               <HomePage />
             </Route>
             <Route path="/login">
-              <HomePage />
-              <HomeComponentWrapper>
+              <HomePage user={user}/>
+              <FormComponentWrapper>
                 <LoginForm setUser={setUser} />
-              </HomeComponentWrapper>
+              </FormComponentWrapper>
             </Route>
             <Route path="/register">
               <HomePage />
-              <HomeComponentWrapper>
+              <FormComponentWrapper>
                 <RegistrationForm setUser={setUser} />
-              </HomeComponentWrapper>
+              </FormComponentWrapper>
             </Route>
             <Route path="/reset">
               <HomePage />
-              <HomeComponentWrapper>
+              <FormComponentWrapper>
                 <ResetForm />
-              </HomeComponentWrapper>
+              </FormComponentWrapper>
             </Route>
             <Route path="/confirm">
               <HomePage />
-              <HomeComponentWrapper>
+              <FormComponentWrapper>
                 <ConfirmForm setUser={setUser} />
-              </HomeComponentWrapper>
+              </FormComponentWrapper>
+            </Route>
+            <Route path="/profile/info">
+              <UserPage activeTab={"info"}/>
+            </Route>
+            <Route path="/profile/settings">
+              <UserPage activeTab={"settings"}/>
             </Route>
           </Switch>
         </div>
