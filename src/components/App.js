@@ -6,7 +6,7 @@ import LoginForm from "./constant/LoginForm";
 import RegistrationForm from "./constant/RegistrationForm";
 import ResetForm from "./constant/ResetForm";
 import ConfirmForm from "./constant/ConfirmForm";
-import PublicUserInfo from "./UserPage/PublicUserInfo";
+import PublicUserInfo from "./UserPage/PublicUser/PublicUserInfo";
 import AuthenticationRequester from "../request/authentication";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -33,13 +33,13 @@ function App() {
     <Router>
       <div className="bg-body-background-grey">
         <Navbar user={user}></Navbar>
-        <div className="content">
+        <div>
           <Switch>
             <Route exact path="/">
               <HomePage />
             </Route>
             <Route path="/login">
-              <HomePage user={user}/>
+              <HomePage user={user} />
               <FormComponentWrapper>
                 <LoginForm setUser={setUser} />
               </FormComponentWrapper>
@@ -63,19 +63,18 @@ function App() {
               </FormComponentWrapper>
             </Route>
             <Route path="/profile/info">
-              <PrivateUserPage activeTab={"info"}/>
+              <PrivateUserPage activeTab={"info"} />
             </Route>
             <Route path="/profile/settings">
-              <PrivateUserPage activeTab={"settings"}/>
+              <PrivateUserPage activeTab={"settings"} />
             </Route>
             <Route path="/profile/public/modules">
-              <PublicUserInfo tab={"modules"}/>
+              <PublicUserInfo tab={"modules"} />
             </Route>
             <Route path="/profile/public/achievements">
-              <PublicUserInfo tab={"achievements"}/>
+              <PublicUserInfo tab={"achievements"} />
             </Route>
           </Switch>
-          
         </div>
       </div>
     </Router>
