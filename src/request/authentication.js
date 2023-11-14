@@ -25,13 +25,6 @@ class AuthenticationRequester {
       doFinally: doFinally,
     });
   };
-  getUser(jwt, doFinally) {
-    this.requester.get({
-      url: 'user',
-      jwt: jwt,
-      doFinally: doFinally,
-    });
-  };
   regenerateToken(email, oldToken, doFinally) {
     this.requester.post({
       url: 'regenerate-token',
