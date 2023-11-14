@@ -2,7 +2,8 @@ export const modules = [
   {
     moduleId: "1",
     moduleName: "first Module",
-    shortDescription: "Some module",
+    shortDescription: "Some module descriptiond asd asda asdasd asdas dasdsa asdasdas asdas d awdwad awd",
+    access: "public",
     collections: [
       {
         collectionId: "1",
@@ -20,12 +21,13 @@ export const modules = [
         size: "24",
       },
     ], //CollectionShortDetailsDto
-    scores: [], //ScoreAggregatedDto
+    scores: [75, 96], //ScoreAggregatedDto
   },
   {
     moduleId: "2",
     moduleName: "second Module",
-    shortDescription: "Some other module",
+    shortDescription: "Some other module description",
+    access: "private",
     collections: [
       {
         collectionId: "1",
@@ -43,6 +45,6 @@ export const modules = [
         size: "47",
       },
     ], //CollectionShortDetailsDto
-    scores: [], //ScoreAggregatedDto
+    scores: [35, 81], //ScoreAggregatedDto
   },
 ];
