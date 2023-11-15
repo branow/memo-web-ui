@@ -3,7 +3,7 @@ const DeleteButton = ({ actionName, onClickAction }) => {
       <div>
         <button
           type="submit"
-          className="h-[45px] bg-red-500 cursor-pointer text-[18px] text-white font-medium m-auto px-[15px] duration-500
+          className="w-fit h-fit bg-red-500 cursor-pointer text-[18px] text-white font-medium px-[2vw] py-[0.5vh] duration-500
                   hover:bg-red-700 active:bg-red-900"
           onClick={onClickAction}
         >

@@ -1,9 +1,9 @@
 const FormSubmitButton = ({ actionName, onClickAction }) => {
   return (
-    <div className="relative m-auto flex">
+    <div>
       <button
         type="submit"
-        className="w-1/2 h-[45px] bg-main-green cursor-pointer text-[1.5em] text-white font-medium m-auto p-0 duration-500
+        className="w-fit h-fit bg-main-green cursor-pointer text-[1.5em] text-white font-medium px-[2vw] py-[0.5vh] duration-500
                 hover:bg-green-700 active:bg-green-900"
         onClick={onClickAction}
       >

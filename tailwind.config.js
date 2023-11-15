@@ -12,7 +12,9 @@ module.exports = {
         'body-background-grey': '#525E74',
         'form-background-grey': '#333',
         'form-link-antiquewhite': '#faebd7',
-        'form-background-darkened': 'rgba(0, 0, 0, 0.6)'
+        'form-background-darkened': 'rgba(0, 0, 0, 0.6)',
+        'collection-grey': '#394151',
+        'collection-underline-grey': '#888D96'
       }
     },
   },
