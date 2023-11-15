@@ -1,17 +1,24 @@
-import {Cookies} from 'react-cookie';
+import { Cookies } from "react-cookie";
 
-function UserCookies() {
-  this.authorizationJwt = new UserCookie('AuthorizationJwt');
+class UserCookies {
+  constructor() {
+    this.authorizationJwt = new UserCookie("AuthorizationJwt");
+  }
 }
 
-function UserCookie(name) {
-  this.cookies = new Cookies();
-  this.get = () => {
-    return this.cookies.get(name);
-  };
-  this.set = (value) => {
-    this.cookies.set(name, value);
-  };
+class UserCookie {
+  constructor(name) {
+    this.cookies = new Cookies();
+    this.get = () => {
+      return this.cookies.get(name);
+    };
+    this.set = (value) => {
+      this.cookies.set(name, value);
+    };
+    this.remove = () => {
+      this.cookies.remove(name);
+    }
+  }
 }
 
-export {UserCookie, UserCookies};
+export { UserCookie, UserCookies };
