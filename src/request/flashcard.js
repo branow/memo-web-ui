@@ -4,25 +4,28 @@ class FlashcardRequester {
   constructor() {
     this.requester = new Requester('flashcard');
   }
-  getFlashcardDetails(flashcardId, doFinally) {
+  getFlashcardDetails(flashcardId, doFinally, signal) {
     this.requester.get({
       url: 'details/' + flashcardId,
       doFinally: doFinally,
+      signal: signal,
     });
   };
-  save(jwt, collectionId, flashcard, doFinally) {
+  save(jwt, collectionId, flashcard, doFinally, signal) {
     this.requester.post({
       url: '' + collectionId,
       jwt: jwt,
       body: flashcard,
       doFinally: doFinally,
+      signal: signal,
     });
   };
-  delete(jwt, flashcardId, doFinally) {
+  delete(jwt, flashcardId, doFinally, signal) {
     this.requester.delete({
       url: '' + flashcardId,
       jwt: jwt,
       doFinally: doFinally,
+      signal: signal,
     });
   };
 }

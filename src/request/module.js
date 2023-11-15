@@ -4,31 +4,35 @@ class ModuleRequester {
   constructor() {
     this.requester = new Requester('module');
   }
-  getModuleGeneralDetails(moduleId, doFinally) {
+  getModuleGeneralDetails(moduleId, doFinally, signal) {
     this.requester.get({
       url: 'general-details/' + moduleId,
       doFinally: doFinally,
+      signal: signal,
     });
   };
-  getModuleDetails(modueId, doFinally) {
+  getModuleDetails(modueId, doFinally, signal) {
     this.requester.get({
       url: 'details/' + modueId,
       doFinally: doFinally,
+      signal: signal,
     });
   };
-  save(jwt, module, doFinally) {
+  save(jwt, module, doFinally, signal) {
     this.requester.post({
       url: '',
       jwt: jwt,
       body: module,
       doFinally: doFinally,
+      signal: signal,
     });
   };
-  delete(jwt, moduleId, doFinally) {
+  delete(jwt, moduleId, doFinally, signal) {
     this.requester.delete({
       url: '' + moduleId,
       jwt: jwt,
       doFinally: doFinally,
+      signal: signal,
     });
   };
 }
