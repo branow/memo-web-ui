@@ -2,9 +2,12 @@ import FormSubmitButton from "./FormInput/FormSubmitButton";
 import LoadingScreen from "./LoadingScreen";
 import ErrorBox from "./ErrorBox";
 import { useLogout } from "../../hooks/request/authentication";
+import { useContext } from "react";
+import { UserContext } from "../App";
 
-const LogoutForm = ({ setUser }) => {
-  const { state } = useLogout(setUser);
+const LogoutForm = () => {
+  const userState = useContext(UserContext);
+  const { state } = useLogout(userState.setUser);
 
   const handleSubmit = () => {
     state.run();

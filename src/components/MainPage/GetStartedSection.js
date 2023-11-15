@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../App";
 
-const GetStartedSection = ({ user }) => {
+const GetStartedSection = () => {
+  const userState = useContext(UserContext);
+
   return (
     <section className="relative h-[60vh] w-full bg-get-started-background bg-cover">
       <div className="relative w-[50vw] top-[20vh] left-[20vw] text-white text-4xl font-semibold flex flex-col">
@@ -10,7 +14,7 @@ const GetStartedSection = ({ user }) => {
           </span>
         </div>
         <div>
-          {!user && (
+          {!userState.user && (
             <Link to="/login">
               <button className="bg-main-green text-2xl font-medium px-[25px] py-[10px] mt-[60px] border-[none] cursor-pointer duration-500 
               hover:bg-green-700 active:bg-green-900">

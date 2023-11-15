@@ -1,12 +1,16 @@
 import { Link } from "react-router-dom";
 import NavButton from "./NavButton";
 import NavButtonUser from "./NavButtonUser";
+import { useContext } from "react";
+import { UserContext } from "../App";
 
-const Navbar = ({ user }) => {
+const Navbar = () => {
   // user = {
   //   name: "Billy",
   //   description: "I'm only a lab rat",
   // };
+  const userState = useContext(UserContext);
+  
   return (
     <nav className="bg-main-green ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -20,8 +24,8 @@ const Navbar = ({ user }) => {
           <ul className="text-lg font-medium flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
             <NavButton linkName={"Find Flashcards"} linkDestination={"#"} />
             <NavButton linkName={"About us"} linkDestination={"/about"} />
-            {user ? (
-              <NavButtonUser username={user.name} />
+            {userState.user ? (
+              <NavButtonUser username={userState.user.username} />
             ) : (
               <NavButton
                 linkName={"Log in"}

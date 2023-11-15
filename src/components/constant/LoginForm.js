@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { HiOutlineMail } from "react-icons/hi";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import FormInputWrapper from "./FormInput/FormInputWrapper";
 import EmailInput from "./FormInput/EmailInput";
 import PasswordInput from "./FormInput/PasswordInput";
@@ -9,9 +9,11 @@ import FormSubmitButton from "./FormInput/FormSubmitButton";
 import LoadingScreen from "./LoadingScreen";
 import ErrorBox from "./ErrorBox";
 import { useLogin } from "../../hooks/request/authentication";
+import { UserContext } from "../App";
 
-const LoginForm = ({ setUser }) => {
-  const { state } = useLogin(setUser);
+const LoginForm = () => {
+  const userState = useContext(UserContext);
+  const { state } = useLogin(userState.setUser);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

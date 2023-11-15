@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import GetStartedSection from "./GetStartedSection";
 import MemorizeSection from "./MemorizeSection";
+import { UserContext } from "../App";
 
-const HomePage = ({user}) => {
+const HomePage = () => {
+    const userState = useContext(UserContext);
+
     return (  
         <div>
-            <GetStartedSection user={user}></GetStartedSection>
+            <GetStartedSection></GetStartedSection>
             <MemorizeSection></MemorizeSection>
         </div>
     );
