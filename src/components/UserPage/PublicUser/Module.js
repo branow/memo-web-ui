@@ -1,8 +1,8 @@
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { RiGitRepositoryPrivateLine } from "react-icons/ri";
-import FormSubmitButton from "../../constant/FormInput/FormSubmitButton";
+import FormSubmitButton from "../../constant/SubmitButton";
 import Score from "./Score";
-import Collection from "./Collection";
+import CollectionList from "./CollectionList";
 
 const Module = ({ module }) => {
   let accesIcon;
@@ -40,14 +40,7 @@ const Module = ({ module }) => {
           <Score score={module.scores[0]} mode={1} />
           <Score score={module.scores[1]} mode={2} />
         </div>
-        {module.collections.map((curCollection) => {
-          return (
-            <Collection
-              collection={curCollection}
-              key={curCollection.collectionId}
-            />
-          );
-        })}
+        <CollectionList collections={module.collections}/>
         <div className="mt-[2vw] mr-[6vh]">
           <div className="float-right">
             <FormSubmitButton actionName={"Learn"} />

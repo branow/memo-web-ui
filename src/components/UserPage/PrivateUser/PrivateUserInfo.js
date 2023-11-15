@@ -1,7 +1,7 @@
 import { RxAvatar } from "react-icons/rx";
-import FormInputWrapper from "../constant/FormInput/FormInputWrapper";
-import UserNameInput from "../constant/FormInput/UsernameInput";
-import FormSubmitButton from "../constant/FormInput/FormSubmitButton";
+import UsernameInputField from "../../constant/FormInput/UsernameInputField";
+import EmailInputField from "../../constant/FormInput/EmailInputField";
+import SubmitButton from "../../constant/SubmitButton";
 
 const PrivateUserInfo = () => {
   return (
@@ -13,20 +13,14 @@ const PrivateUserInfo = () => {
         </div>
         <div className="ml-[7vw] mt-[5vh] w-[20vw]">
           <div className="my-[8vh]">
-            <FormInputWrapper
-              childrenInput={<UserNameInput />}
-              inputName={"Username"}
-            />
+          <UsernameInputField/>
           </div>
           <div className="my-[8vh]">
-            <FormInputWrapper
-              childrenInput={<UserNameInput />}
-              inputName={"Email"}
-            />
+          <EmailInputField/>
           </div>
         </div>
         <div className="ml-[7vw]">
-          <FormSubmitButton actionName={"Save"} />
+          <SubmitButton actionName={"Save"} />
         </div>
       </div>
       <div className="text-xl font-medium ml-[15vw] mt-[20vh] flex flex-col w-[25vw]">

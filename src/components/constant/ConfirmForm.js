@@ -1,10 +1,8 @@
-import { HiOutlineMail } from "react-icons/hi";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { State } from "../../service/service";
-import FormInputWrapper from "./FormInput/FormInputWrapper";
-import EmailInput from "./FormInput/EmailInput";
-import FormSubmitButton from "./FormInput/FormSubmitButton";
+import EmailInputField from "./FormInput/EmailInputField";
+import FormSubmitButton from "./SubmitButton";
 import LoadingScreen from "./LoadingScreen";
 import ErrorBox from "./ErrorBox";
 import regenerateToken from "../../service/authentication/regenerate-token";
@@ -27,11 +25,11 @@ const ConfirmForm = ({ setUser }) => {
   }, []);
 
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     const doFinally = new DoFinally();
     doFinally.success.addAfter(() => history.push("/"));
     regenerateToken(email, token, new State(setPending, setError), doFinally);
-  };
+  },[]);
 
   return (
     <div className="w-[450px] p-[50px]">
@@ -43,14 +41,12 @@ const ConfirmForm = ({ setUser }) => {
       </h2>
       {error && <ErrorBox errorTitle="Email Error" errorMessage={error} />}
       <div>
-        <FormInputWrapper
-          childrenInput={
-            <EmailInput onChangeAction={(e) => setEmail(e.target.value)} />
-          }
-          inputIcon={<HiOutlineMail className="mt-[7px]" size="20px" />}
-          inputName={"Email"}
+        <EmailInputField
+          onChangeAction={useCallback((e) => setEmail(e.target.value), [])}
         />
-        <FormSubmitButton actionName={"Send"} onClickAction={handleSubmit} />
+        <div className="w-fit m-auto">
+          <FormSubmitButton actionName={"Send"} onClickAction={handleSubmit} />
+        </div>
       </div>
       {pending && <LoadingScreen />}
     </div>

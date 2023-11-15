@@ -1,13 +1,9 @@
 import { Link, useHistory } from "react-router-dom";
-import { HiOutlineMail } from "react-icons/hi";
-import { RiLockPasswordLine } from "react-icons/ri";
-import { AiOutlineUser } from "react-icons/ai";
-import { useState } from "react";
-import FormInputWrapper from "./FormInput/FormInputWrapper";
-import UserNameInput from "./FormInput/UsernameInput";
-import EmailInput from "./FormInput/EmailInput";
-import PasswordInput from "./FormInput/PasswordInput";
-import FormSubmitButton from "./FormInput/FormSubmitButton";
+import { useState, useCallback } from "react";
+import UsernameInputField from "./FormInput/UsernameInputField";
+import EmailInputField from "./FormInput/EmailInputField";
+import PasswordInputField from "./FormInput/PasswordInputField";
+import FormSubmitButton from "./SubmitButton";
 import register from "../../service/authentication/register";
 import LoadingScreen from "./LoadingScreen";
 import { State } from "../../service/service";
@@ -23,7 +19,7 @@ const RegistrationForm = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const history = useHistory();
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     const user = {
       username: username,
       email: email,
@@ -33,7 +29,7 @@ const RegistrationForm = () => {
     const doFinally = new DoFinally();
     doFinally.success.addAfter(() => history.push("/"));
     register(user, new State(setPending, setError), doFinally);
-  };
+  },[]);
 
   return (
     <div className="w-[450px] p-[50px]">
@@ -45,48 +41,25 @@ const RegistrationForm = () => {
         <ErrorBox errorTitle="Authentication Error" errorMessage={error} />
       )}
       <div>
-        <FormInputWrapper
-          childrenInput={
-            <UserNameInput
-              onChangeAction={(e) => setUsername(e.target.value)}
-            />
-          }
-          inputIcon={<AiOutlineUser className="mt-[7px]" size="20px" />}
-          inputName={"Username"}
+        <UsernameInputField
+          onChangeAction={useCallback((e) => setUsername(e.target.value),[])}
         />
-
-        <FormInputWrapper
-          childrenInput={
-            <EmailInput onChangeAction={(e) => setEmail(e.target.value)} />
-          }
-          inputIcon={<HiOutlineMail className="mt-[7px]" size="20px" />}
-          inputName={"Email"}
+        <EmailInputField onChangeAction={useCallback((e) => setEmail(e.target.value),[])} />
+        <PasswordInputField
+          onChangeAction={useCallback((e) => setPassword(e.target.value),[])}
+          label={"Password"}
         />
-
-        <FormInputWrapper
-          childrenInput={
-            <PasswordInput
-              onChangeAction={(e) => setPassword(e.target.value)}
-            />
-          }
-          inputIcon={<RiLockPasswordLine className="mt-[7px]" size="20px" />}
-          inputName={"Password"}
+        <PasswordInputField
+          onChangeAction={useCallback((e) => setConfirmPassword(e.target.value),[])}
+          label={"Confirm password"}
         />
-
-        <FormInputWrapper
-          childrenInput={
-            <PasswordInput
-              onChangeAction={(e) => setConfirmPassword(e.target.value)}
-            />
-          }
-          inputIcon={<RiLockPasswordLine className="mt-[7px]" size="20px" />}
-          inputName={"Confirm password"}
-        />
-
+        <div className="w-fit m-auto">
         <FormSubmitButton
           actionName={"Register"}
           onClickAction={handleSubmit}
         />
+        </div>
+        
 
         <div className="text-[1em] text-white text-center font-medium inline">
           <p className="my-[16px]">

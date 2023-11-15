@@ -1,4 +1,6 @@
-const FormSubmitButton = ({ actionName, onClickAction }) => {
+import { memo } from "react";
+
+const SubmitButton = memo(({ actionName, onClickAction }) => {
   return (
     <div>
       <button
@@ -11,6 +13,6 @@ const FormSubmitButton = ({ actionName, onClickAction }) => {
       </button>
     </div>
   );
-};
+});
 
-export default FormSubmitButton;
+export default SubmitButton;

@@ -6,7 +6,7 @@ const NavButtonUser = ({ username }) => {
     <div>
       <li>
         <Link
-          to="profile/public"
+          to="/profile/public/modules"
           className={
             "block py-2 pl-3 pr-4 text-gray-100 rounded hover:bg-main-yellow-hover md:p-2 active:bg-yellow-700 border-2"
           }

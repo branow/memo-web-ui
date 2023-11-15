@@ -1,7 +1,6 @@
-import FormInputWrapper from "../constant/FormInput/FormInputWrapper";
-import PasswordInput from "../constant/FormInput/PasswordInput";
-import FormSubmitButton from "../constant/FormInput/FormSubmitButton";
-import DeleteButton from "../constant/DeleteButton";
+import PasswordInputField from "../../constant/FormInput/PasswordInputField";
+import SubmitButton from "../../constant/SubmitButton";
+import DeleteButton from "../../constant/DeleteButton";
 
 const ProfileSettings = () => {
   return (
@@ -13,26 +12,23 @@ const ProfileSettings = () => {
         </div>
         <div className="ml-[7vw] mt-[5vh] w-[20vw]">
           <div className="my-[8vh]">
-            <FormInputWrapper
-              childrenInput={<PasswordInput />}
-              inputName={"Current password"}
+            <PasswordInputField
+            label={"Current password"}
             />
           </div>
           <div className="my-[8vh]">
-            <FormInputWrapper
-              childrenInput={<PasswordInput />}
-              inputName={"New password"}
+            <PasswordInputField
+            label={"Current password"}
             />
           </div>
           <div className="my-[8vh]">
-            <FormInputWrapper
-              childrenInput={<PasswordInput />}
-              inputName={"Confirm new password"}
+             <PasswordInputField
+            label={"Confirm new password"}
             />
           </div>
         </div>
         <div className="ml-[7vw]">
-          <FormSubmitButton actionName={"Save"} />
+          <SubmitButton actionName={"Save"} />
         </div>
       </div>
       <div className="ml-[20vw] mt-[12vh] flex flex-col w-[25vw]">

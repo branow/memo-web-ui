@@ -1,12 +1,13 @@
 import Navbar from "./constant/Navbar";
 import HomePage from "./MainPage/HomePage";
-import PrivateUserPage from "./UserPage/PrivateUserPage";
+import PrivateUserPage from "./UserPage/PrivateUser/PrivateUserPage";
 import FormComponentWrapper from "./constant/FormComponentWrapper";
 import LoginForm from "./constant/LoginForm";
 import RegistrationForm from "./constant/RegistrationForm";
 import ResetForm from "./constant/ResetForm";
 import ConfirmForm from "./constant/ConfirmForm";
 import PublicUserInfo from "./UserPage/PublicUser/PublicUserInfo";
+import ModulePage from "./ModulePage/ModulePage";
 import AuthenticationRequester from "../request/authentication";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -73,6 +74,9 @@ function App() {
             </Route>
             <Route path="/profile/public/achievements">
               <PublicUserInfo tab={"achievements"} />
+            </Route>
+            <Route path="/profile/public/modules/:id">
+              <ModulePage/>
             </Route>
           </Switch>
         </div>

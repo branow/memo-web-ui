@@ -1,7 +1,7 @@
 const MemorizeSection = () => {
     return (
-      <section className="relative h-[60vh] w-full text-center">
-        <div className="relative inline-block w-[40vw] text-white bottom-[20vh] text-left">
+      <div className="relative h-fit w-screen p-[3vw] text-center flex">
+        <div className="relative w-[40vw] p-[2vw] text-white  text-left">
           <span className="text-4xl font-semibold">
             Memorize anything with free digital flashcards
           </span>
@@ -13,10 +13,10 @@ const MemorizeSection = () => {
             </span>
           </div>
         </div>
-        <div className="inline-block max-w-[50vw] h-auto mt-[10vh] ml-[10vh]">
+        <div className="max-w-[50vw] h-auto m-auto">
           <img src="img/memorize_section_img.jpg" alt="" />
         </div>
-      </section>
+      </div>
     );
 }
  
