@@ -3,10 +3,10 @@ import NavButton from "./NavButton";
 import NavButtonUser from "./NavButtonUser";
 
 const Navbar = ({ user }) => {
-  user = {
-    name: "Billy",
-    description: "I'm only a lab rat",
-  };
+  // user = {
+  //   name: "Billy",
+  //   description: "I'm only a lab rat",
+  // };
   return (
     <nav className="bg-main-green ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">

@@ -7,27 +7,19 @@ import EmailInput from "./FormInput/EmailInput";
 import PasswordInput from "./FormInput/PasswordInput";
 import FormSubmitButton from "./FormInput/FormSubmitButton";
 import LoadingScreen from "./LoadingScreen";
-import { useHistory } from "react-router-dom/cjs/react-router-dom";
-import login from "../../service/authentication/login";
-import { State } from "../../service/service";
 import ErrorBox from "./ErrorBox";
-import DoFinally from "../../util/do-finally";
+import { useLogin } from "../../hooks/request/authentication";
 
 const LoginForm = ({ setUser }) => {
-  const [error, setError] = useState(null);
-  const [pending, setPending] = useState(false);
+  const { state } = useLogin(setUser);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const history = useHistory();
 
   const handleSubmit = () => {
-    const user = {
+    state.run({
       email: email,
       password: password,
-    };
-    const doFinally = new DoFinally();
-    doFinally.success.addAfter(() =>  history.push("/"));
-    login(user, setUser, new State(setPending, setError), doFinally);
+    });
   };
 
   return (
@@ -36,8 +28,11 @@ const LoginForm = ({ setUser }) => {
         Log in
       </h2>
 
-      {error && (
-        <ErrorBox errorTitle="Authentication Error" errorMessage={error} />
+      {state.error && (
+        <ErrorBox
+          errorTitle="Authentication Error"
+          errorMessage={state.error}
+        />
       )}
       <div>
         <FormInputWrapper
@@ -69,7 +64,7 @@ const LoginForm = ({ setUser }) => {
           </Link>
         </div>
       </div>
-      {pending && <LoadingScreen />}
+      {state.pending && <LoadingScreen />}
     </div>
   );
 };

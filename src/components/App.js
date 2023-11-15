@@ -7,47 +7,46 @@ import RegistrationForm from "./constant/RegistrationForm";
 import ResetForm from "./constant/ResetForm";
 import ConfirmForm from "./constant/ConfirmForm";
 import PublicUserInfo from "./UserPage/PublicUserInfo";
-import AuthenticationRequester from "../request/authentication";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { UserCookies } from "../util/user-cookie";
-
 import "../input.css";
-import DoFinally from "../util/do-finally";
+import { useGetUserPrivateShortDetails } from "../hooks/request/user";
+import LogoutForm from "./constant/LogoutForm";
+import VerificationEmailForm from "./constant/VerificationEmailForm";
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const jwt = new UserCookies().authorizationJwt.get();
-    if (jwt) {
-      const doFinally = new DoFinally();
-      doFinally.success.addAfter((response) => setUser(response.data));
-      doFinally.fail.addAfter(() => setUser(null));
-      doFinally.error.addAfter(() => setUser(null));
-      new AuthenticationRequester().getUser(jwt, doFinally);
-    }
-  }, []);
+  const { userState, state } = useGetUserPrivateShortDetails();
 
   return (
     <Router>
       <div className="bg-body-background-grey">
-        <Navbar user={user}></Navbar>
+        <Navbar user={userState.user}></Navbar>
         <div className="content">
           <Switch>
             <Route exact path="/">
               <HomePage />
             </Route>
             <Route path="/login">
-              <HomePage user={user}/>
+              <HomePage user={userState.user} />
               <FormComponentWrapper>
-                <LoginForm setUser={setUser} />
+                <LoginForm setUser={userState.setUser} />
+              </FormComponentWrapper>
+            </Route>
+            <Route path="/logout">
+              <HomePage user={userState.user} />
+              <FormComponentWrapper>
+                <LogoutForm setUser={userState.setUser} />
               </FormComponentWrapper>
             </Route>
             <Route path="/register">
               <HomePage />
               <FormComponentWrapper>
-                <RegistrationForm setUser={setUser} />
+                <RegistrationForm setUser={userState.setUser} />
+              </FormComponentWrapper>
+            </Route>
+            <Route path="/send-verification-token">
+              <HomePage />
+              <FormComponentWrapper>
+                <VerificationEmailForm />
               </FormComponentWrapper>
             </Route>
             <Route path="/reset">
@@ -59,23 +58,22 @@ function App() {
             <Route path="/confirm">
               <HomePage />
               <FormComponentWrapper>
-                <ConfirmForm setUser={setUser} />
+                <ConfirmForm setUser={userState.setUser} />
               </FormComponentWrapper>
             </Route>
             <Route path="/profile/info">
-              <PrivateUserPage activeTab={"info"}/>
+              <PrivateUserPage activeTab={"info"} />
             </Route>
             <Route path="/profile/settings">
-              <PrivateUserPage activeTab={"settings"}/>
+              <PrivateUserPage activeTab={"settings"} />
             </Route>
             <Route path="/profile/public/modules">
-              <PublicUserInfo tab={"modules"}/>
+              <PublicUserInfo tab={"modules"} />
             </Route>
             <Route path="/profile/public/achievements">
-              <PublicUserInfo tab={"achievements"}/>
+              <PublicUserInfo tab={"achievements"} />
             </Route>
           </Switch>
-          
         </div>
       </div>
     </Router>
