@@ -6,7 +6,7 @@ import LoginForm from "./constant/LoginForm";
 import RegistrationForm from "./constant/RegistrationForm";
 import ResetForm from "./constant/ResetForm";
 import ConfirmForm from "./constant/ConfirmForm";
-import PublicUserInfo from "./UserPage/PublicUserInfo";
+import PublicUserInfo from "./UserPage/PublicUser/PublicUserInfo"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "../input.css";
 import { useGetUserPrivateShortDetails } from "../hooks/request/user";
