@@ -1,13 +1,13 @@
-import Callback from "../../util/callback";
+import Callback from "../../utils/callback";
 import UserRequester from "../../request/user";
-import { UserCookies } from "../../util/user-cookie";
+import { UserCookies } from "../../utils/user-cookie";
 import useGetRequest from "./useGetRequest";
 import usePostRequest from "./usePostRequest";
-import { MultiValidator } from "../../validator/validator";
+import { MultiValidator } from "../../utils/validator/validator";
 import {
   getEmailValidator,
   getUsernameValidator,
-} from "../../validator/validator-impl";
+} from "../../utils/validator/validator-impl";
 import useDeleteRequest from "./useDeleteRequest";
 
 export {

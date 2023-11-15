@@ -1,5 +1,5 @@
 
-import { ValidatorFunctionWrapper } from "../../util/function-wrapper";
+import { ValidatorFunctionWrapper } from "../../utils/function-wrapper";
 import useRequest from "./useRequest";
 
 function usePostRequest(setData, request, callback, buildValidator) {

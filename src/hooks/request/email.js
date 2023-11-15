@@ -1,7 +1,7 @@
 import { useLocation } from "react-router-dom";
 import EmailRequester from "../../request/email";
-import Callback from "../../util/callback";
-import { createVerificationEmail } from "../../util/email-templates";
+import Callback from "../../utils/callback";
+import { createVerificationEmail } from "../../utils/email-templates";
 import useRequest from "./useRequest";
 
 export { useVerificationEmail };

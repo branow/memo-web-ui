@@ -1,17 +1,17 @@
-import Callback from "../../util/callback";
+import Callback from "../../utils/callback";
 import useRequest from "./useRequest";
-import { MultiValidator } from "../../validator/validator";
+import { MultiValidator } from "../../utils/validator/validator";
 import {
   getEmailValidator,
   getPasswordValidator,
   getUsernameValidator,
   getPasswordsEqualValidator,
-} from "../../validator/validator-impl";
-import { UserCookies } from "../../util/user-cookie";
+} from "../../utils/validator/validator-impl";
+import { UserCookies } from "../../utils/user-cookie";
 import {
   ValidatorFunctionWrapper,
   CallbackFunctionWrapper,
-} from "../../util/function-wrapper";
+} from "../../utils/function-wrapper";
 import { useHistory } from "react-router-dom";
 import AuthenticationRequester from "../../request/authentication";
 
