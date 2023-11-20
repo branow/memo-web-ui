@@ -27,7 +27,7 @@ const RegistrationForm = () => {
       confirmPassword: confirmPassword,
     };
     state.run(user);
-  };
+  },[]);
 
   return (
     <div className="w-[450px] p-[50px]">

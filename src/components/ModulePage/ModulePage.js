@@ -7,7 +7,7 @@ const ModulePage = ({ module }) => {
     return ( 
         <div className="relative w-screen h-fit pb-[50px] bg-form-background-grey text-white">
             {/* <ModuleInfo module={module}/> */}
-            id
+            {console.log(id)}
         </div>
      );
 }
