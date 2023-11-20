@@ -1,11 +1,8 @@
 import { Link } from "react-router-dom";
-import { HiOutlineMail } from "react-icons/hi";
-import { RiLockPasswordLine } from "react-icons/ri";
-import { useContext, useState } from "react";
-import FormInputWrapper from "./FormInput/FormInputWrapper";
-import EmailInput from "./FormInput/EmailInput";
-import PasswordInput from "./FormInput/PasswordInput";
-import FormSubmitButton from "./FormInput/FormSubmitButton";
+import { useContext, useState, useCallback } from "react";
+import EmailInputField from "./FormInput/EmailInputField";
+import PasswordInputField from "./FormInput/PasswordInputField";
+import SubmitButton from "./SubmitButton";
 import LoadingScreen from "./LoadingScreen";
 import ErrorBox from "./ErrorBox";
 import { useLogin } from "../../hooks/request/authentication";
@@ -17,12 +14,12 @@ const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     state.run({
       email: email,
       password: password,
     });
-  };
+  },[]);
 
   return (
     <div className="w-[450px] p-[50px]">
@@ -46,7 +43,7 @@ const LoginForm = () => {
         />
 
         <div className="m-auto w-fit">
-          <FormSubmitButton actionName={"Login"} onClickAction={handleSubmit} />
+          <SubmitButton actionName={"Login"} onClickAction={handleSubmit} />
         </div>
 
         <div className="text-[1em] text-white font-medium mt-[45px] mb-[15px] flex justify-between">

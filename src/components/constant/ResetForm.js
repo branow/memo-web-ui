@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
-import { HiOutlineMail } from "react-icons/hi";
-import { useContext, useState } from "react";
+import { useContext, useState, useCallback } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
-import FormInputWrapper from "./FormInput/FormInputWrapper";
-import EmailInput from "./FormInput/EmailInput";
-import FormSubmitButton from "./FormInput/FormSubmitButton";
+import EmailInputField from "./FormInput/EmailInputField";
+import SubmitButton from "./SubmitButton";
 import LoadingScreen from "./LoadingScreen";
 import ErrorBox from "./ErrorBox";
 import { UserContext } from "../App";
@@ -16,14 +14,14 @@ const ResetForm = () => {
   const [email, setEmail] = useState("");
   const history = useHistory();
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     const user = {
       email: email,
     };
     const doSuccess = () => {
       history.push("/");
     };
-  };
+  },[]);
 
   return (
     <div className="w-[450px] p-[50px]">
@@ -35,14 +33,13 @@ const ResetForm = () => {
       </h2>
 
       <form>
-        <FormInputWrapper
-          childrenInput={
-            <EmailInput onChangeAction={(e) => setEmail(e.target.value)} />
-          }
-          inputIcon={<HiOutlineMail className="mt-[7px]" size="20px" />}
-          inputName={"Email"}
+        <EmailInputField
+          onChangeAction={useCallback((e) => setEmail(e.target.value), [])}
         />
-        <FormSubmitButton actionName={"Send"} onClickAction={handleSubmit} />
+        <div className="w-fit m-auto">
+          <SubmitButton actionName={"Send"} onClickAction={handleSubmit} />
+        </div>
+
         <div className="text-[1em] text-white font-medium mt-[45px] mb-[15px] flex justify-between">
           <Link to="/register" className="cursor-pointer hover:underline">
             <span>Create an account?</span>

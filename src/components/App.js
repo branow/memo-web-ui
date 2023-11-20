@@ -20,54 +20,68 @@ function App() {
   const { userState, state } = useGetUserPrivateShortDetails();
 
   return (
-    <Router>
-      <div className="bg-body-background-grey">
-        <Navbar user={user}></Navbar>
-        <div>
-          <Switch>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
-            <Route path="/login">
-              <HomePage user={user} />
-              <FormComponentWrapper>
-                <LoginForm setUser={setUser} />
-              </FormComponentWrapper>
-            </Route>
-            <Route path="/register">
-              <HomePage />
-              <FormComponentWrapper>
-                <RegistrationForm setUser={setUser} />
-              </FormComponentWrapper>
-            </Route>
-            <Route path="/reset">
-              <HomePage />
-              <FormComponentWrapper>
-                <ResetForm />
-              </FormComponentWrapper>
-            </Route>
-            <Route path="/confirm">
-              <HomePage />
-              <FormComponentWrapper>
-                <ConfirmForm setUser={setUser} />
-              </FormComponentWrapper>
-            </Route>
-            <Route path="/profile/info">
-              <PrivateUserPage activeTab={"info"} />
-            </Route>
-            <Route path="/profile/settings">
-              <PrivateUserPage activeTab={"settings"} />
-            </Route>
-            <Route path="/profile/public/modules">
-              <PublicUserInfo tab={"modules"} />
-            </Route>
-            <Route path="/profile/public/achievements">
-              <PublicUserInfo tab={"achievements"} />
-            </Route>
-          </Switch>
+    <UserContext.Provider value={userState}>
+      <Router>
+        <div className="bg-body-background-grey">
+          <Navbar></Navbar>
+          <div>
+            <Switch>
+              <Route exact path="/">
+                <HomePage/>
+              </Route>
+              <Route path="/login">
+                <HomePage/>
+                <FormComponentWrapper>
+                  <LoginForm />
+                </FormComponentWrapper>
+              </Route>
+              <Route path="/register">
+                <HomePage/>
+                <FormComponentWrapper>
+                  <RegistrationForm/>
+                </FormComponentWrapper>
+              </Route>
+              <Route path="/reset">
+                <HomePage/>
+                <FormComponentWrapper>
+                  <ResetForm/>
+                </FormComponentWrapper>
+              </Route>
+              <Route path="/confirm">
+                <HomePage/>
+                <FormComponentWrapper>
+                  <ConfirmForm/>
+                </FormComponentWrapper>
+              </Route>
+              <Route path="/verificate">
+                <HomePage/>
+                <FormComponentWrapper>
+                  <VerificationEmailForm/>
+                </FormComponentWrapper>
+              </Route>
+              <Route path="/logout">
+                <HomePage/>
+                <FormComponentWrapper>
+                  <LogoutForm/>
+                </FormComponentWrapper>
+              </Route>
+              <Route path="/profile/info">
+                <PrivateUserPage activeTab={"info"} />
+              </Route>
+              <Route path="/profile/settings">
+                <PrivateUserPage activeTab={"settings"} />
+              </Route>
+              <Route path="/profile/public/modules">
+                <PublicUserInfo tab={"modules"} />
+              </Route>
+              <Route path="/profile/public/achievements">
+                <PublicUserInfo tab={"achievements"} />
+              </Route>
+            </Switch>
+          </div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </UserContext.Provider>
   );
 }
 

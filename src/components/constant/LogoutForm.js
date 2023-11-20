@@ -1,4 +1,4 @@
-import FormSubmitButton from "./FormInput/FormSubmitButton";
+import DeleteButton from "./DeleteButton";
 import LoadingScreen from "./LoadingScreen";
 import ErrorBox from "./ErrorBox";
 import { useLogout } from "../../hooks/request/authentication";
@@ -26,7 +26,9 @@ const LogoutForm = () => {
         />
       )}
 
-      <FormSubmitButton actionName={"Logout"} onClickAction={handleSubmit} />
+      <div className="w-fit m-auto mt-[2vh]">
+        <DeleteButton actionName={"Logout"} onClickAction={handleSubmit} />
+      </div>
 
       {state.pending && <LoadingScreen />}
     </div>

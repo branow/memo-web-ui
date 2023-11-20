@@ -1,13 +1,9 @@
 import { Link } from "react-router-dom";
-import { HiOutlineMail } from "react-icons/hi";
-import { RiLockPasswordLine } from "react-icons/ri";
-import { AiOutlineUser } from "react-icons/ai";
-import { useState } from "react";
-import FormInputWrapper from "./FormInput/FormInputWrapper";
-import UserNameInput from "./FormInput/UsernameInput";
-import EmailInput from "./FormInput/EmailInput";
-import PasswordInput from "./FormInput/PasswordInput";
-import FormSubmitButton from "./FormInput/FormSubmitButton";
+import { useState, useCallback } from "react";
+import EmailInputField from "./FormInput/EmailInputField";
+import PasswordInputField from "./FormInput/PasswordInputField";
+import UsernameInputField from "./FormInput/UsernameInputField";
+import SubmitButton from "./SubmitButton";
 import LoadingScreen from "./LoadingScreen";
 import ErrorBox from "./ErrorBox";
 import { useRegister } from "../../hooks/request/authentication";
@@ -52,7 +48,7 @@ const RegistrationForm = () => {
           label={"Confirm password"}
         />
         <div className="w-fit m-auto">
-        <FormSubmitButton
+        <SubmitButton
           actionName={"Register"}
           onClickAction={handleSubmit}
         />

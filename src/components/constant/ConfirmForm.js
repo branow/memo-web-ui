@@ -1,8 +1,6 @@
-import { HiOutlineMail } from "react-icons/hi";
-import { useEffect, useState } from "react";
-import FormInputWrapper from "./FormInput/FormInputWrapper";
-import EmailInput from "./FormInput/EmailInput";
-import FormSubmitButton from "./FormInput/FormSubmitButton";
+import { useEffect, useState, useCallback } from "react";
+import SubmitButton from "./SubmitButton";
+import EmailInputField from "./FormInput/EmailInputField";
 import LoadingScreen from "./LoadingScreen";
 import ErrorBox from "./ErrorBox";
 
@@ -20,11 +18,9 @@ const ConfirmForm = ({ setUser }) => {
     enable.state.run();
   }, []);
 
-  const handleSubmit = () => {
-    const doFinally = new DoFinally();
-    doFinally.success.addAfter(() => history.push("/"));
-    regenerateToken(email, token, new State(setPending, setError), doFinally);
-  };
+  const handleSubmit = useCallback(() => {
+    regenerate.state.run(email);
+  },[]);
 
   return (
     <div className="w-[450px] p-[50px]">
@@ -47,9 +43,7 @@ const ConfirmForm = ({ setUser }) => {
         <EmailInputField
           onChangeAction={useCallback((e) => setEmail(e.target.value), [])}
         />
-        <div className="w-fit m-auto">
-          <FormSubmitButton actionName={"Send"} onClickAction={handleSubmit} />
-        </div>
+        <SubmitButton actionName={"Send"} onClickAction={handleSubmit} />
       </div>
       {(enable.state.pending || regenerate.state.pending) && <LoadingScreen />}
     </div>
