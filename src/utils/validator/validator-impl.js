@@ -6,7 +6,8 @@ export {
   getEmailValidator,
   getPasswordsEqualValidator,
   getPasswordValidator,
-  getModuleNmaeValidator,
+  getModuleNameValidator,
+  getCollectionNameValidator,
 };
 
 function getPasswordValidator(value) {
@@ -40,7 +41,7 @@ function getEmailValidator(value) {
   ]);
 }
 
-function getModuleNmaeValidator(value) {
+function getModuleNameValidator(value) {
   return new Validator('Name of the module', value, [
     getNotEmptyStringCondition(), 
     getNotBlankStringCondition(), 
@@ -48,3 +49,10 @@ function getModuleNmaeValidator(value) {
   ]);
 }
 
+function getCollectionNameValidator(value) {
+  return new Validator('Name of the collection', value, [
+    getNotEmptyStringCondition(), 
+    getNotBlankStringCondition(), 
+    getStringLengthLessEqualsThanCondition(100),
+  ]);
+}
