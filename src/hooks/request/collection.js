@@ -2,12 +2,11 @@ import { useHistory } from "react-router-dom";
 import Callback from "../../utils/callback";
 import { getCollectionNameValidator } from "../../utils/validator/validator-impl";
 import CollectionRequester from "../../request/collection";
+import usePostRequest from "./usePostRequest";
+import useGetRequest from "./useGetRequest";
+import useDeleteRequest from "./useDeleteRequest";
 
-export {
-  useGetCollectionDetails,
-  useSaveCollection,
-  useDeleteCollection,
-};
+export { useGetCollectionDetails, useSaveCollection, useDeleteCollection };
 
 function useGetCollectionDetails() {
   const request = ({ data, callback, signal }) => {
@@ -23,10 +22,17 @@ function useGetCollectionDetails() {
 function useSaveCollection(setCollection) {
   const request = ({ data, callback }) => {
     const jwt = new UserCookies().authorizationJwt.get;
-    new CollectionRequester().save(jwt, data.moduleId, data.collection, callback);
+    new CollectionRequester().save(
+      jwt,
+      data.moduleId,
+      data.collection,
+      callback
+    );
   };
   const buildValidator = (data) =>
-    new MultiValidator([getCollectionNameValidator(data.collection.moduleName)]);
+    new MultiValidator([
+      getCollectionNameValidator(data.collection.moduleName),
+    ]);
   return usePostRequest(setCollection, request, new Callback(), buildValidator);
 }
 
@@ -38,5 +44,5 @@ function useDeleteCollection(setCollection) {
     const jwt = new UserCookies().authorizationJwt.get;
     new CollectionRequester().delete(jwt, data, callback);
   };
-  return useDeleteRequest(setCollection, request, new Callback());
+  return useDeleteRequest(setCollection, request, callback);
 }

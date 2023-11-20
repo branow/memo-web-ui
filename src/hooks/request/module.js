@@ -2,6 +2,9 @@ import { useHistory } from "react-router-dom";
 import ModuleRequester from "../../request/module";
 import Callback from "../../utils/callback";
 import { getModuleNameValidator } from "../../utils/validator/validator-impl";
+import usePostRequest from "./usePostRequest";
+import useGetRequest from "./useGetRequest";
+import useDeleteRequest from "./useDeleteRequest";
 
 export {
   useGetModlueGeneralDetails,
@@ -50,5 +53,5 @@ function useDeleteModule(setModule) {
     const jwt = new UserCookies().authorizationJwt.get;
     new ModuleRequester().delete(jwt, data, callback);
   };
-  return useDeleteRequest(setModule, request, new Callback());
+  return useDeleteRequest(setModule, request, callback);
 }
