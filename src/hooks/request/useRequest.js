@@ -18,8 +18,6 @@ function useRequest(request, callback) {
       request({ data, callback, signal })
     } catch (error) {
       setPending(false);
-      console.log(error);
-      console.log(error.message);
       setError(error.message);
     }
   };
