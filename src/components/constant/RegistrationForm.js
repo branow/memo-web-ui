@@ -1,23 +1,23 @@
-import { Link, useHistory } from "react-router-dom";
-import { useState, useCallback } from "react";
-import UsernameInputField from "./FormInput/UsernameInputField";
-import EmailInputField from "./FormInput/EmailInputField";
-import PasswordInputField from "./FormInput/PasswordInputField";
-import FormSubmitButton from "./SubmitButton";
-import register from "../../service/authentication/register";
+import { Link } from "react-router-dom";
+import { HiOutlineMail } from "react-icons/hi";
+import { RiLockPasswordLine } from "react-icons/ri";
+import { AiOutlineUser } from "react-icons/ai";
+import { useState } from "react";
+import FormInputWrapper from "./FormInput/FormInputWrapper";
+import UserNameInput from "./FormInput/UsernameInput";
+import EmailInput from "./FormInput/EmailInput";
+import PasswordInput from "./FormInput/PasswordInput";
+import FormSubmitButton from "./FormInput/FormSubmitButton";
 import LoadingScreen from "./LoadingScreen";
-import { State } from "../../service/service";
 import ErrorBox from "./ErrorBox";
-import DoFinally from "../../util/do-finally";
+import { useRegister } from "../../hooks/request/authentication";
 
 const RegistrationForm = () => {
-  const [pending, setPending] = useState(false);
-  const [error, setError] = useState(null);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const history = useHistory();
+  const { state } = useRegister();
 
   const handleSubmit = useCallback(() => {
     const user = {
@@ -26,10 +26,8 @@ const RegistrationForm = () => {
       password: password,
       confirmPassword: confirmPassword,
     };
-    const doFinally = new DoFinally();
-    doFinally.success.addAfter(() => history.push("/"));
-    register(user, new State(setPending, setError), doFinally);
-  },[]);
+    state.run(user);
+  };
 
   return (
     <div className="w-[450px] p-[50px]">
@@ -37,8 +35,8 @@ const RegistrationForm = () => {
         Registration
       </h2>
 
-      {error && (
-        <ErrorBox errorTitle="Authentication Error" errorMessage={error} />
+      {state.error && (
+        <ErrorBox errorTitle="Authentication Error" errorMessage={state.error} />
       )}
       <div>
         <UsernameInputField
@@ -73,7 +71,7 @@ const RegistrationForm = () => {
           </p>
         </div>
       </div>
-      {pending && <LoadingScreen />}
+      {state.pending && <LoadingScreen />}
     </div>
   );
 };

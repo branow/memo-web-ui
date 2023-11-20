@@ -7,6 +7,7 @@ function request(config) {
     method: config.method,
     headers: config.headers,
     data: config.body,
+    signal: config.signal,
   }).then(response => {
     if (response.status > 199 && response.status < 300) {
       config.doFinally.success.do(response);
@@ -35,6 +36,7 @@ class Requester {
       method: 'GET',
       headers: buildHeaders(null, config.jwt),
       doFinally: config.doFinally,
+      signal: config.signal,
     });
   };
   post(config) {
@@ -44,6 +46,7 @@ class Requester {
       headers: buildHeaders('application/json', config.jwt),
       body: JSON.stringify(config.body),
       doFinally: config.doFinally,
+      signal: config.signal,
     });
   };
   delete(config){
@@ -52,6 +55,7 @@ class Requester {
       method: 'DELETE',
       headers: buildHeaders(null, config.jwt),
       doFinally: config.doFinally,
+      signal: config.signal,
     });
   };
 }

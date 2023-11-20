@@ -1,31 +1,28 @@
 import { Link } from "react-router-dom";
-import { useState, useCallback } from "react";
-import EmailInputField from "./FormInput/EmailInputField";
-import PasswordInputField from "./FormInput/PasswordInputField";
-import FormSubmitButton from "./SubmitButton";
+import { HiOutlineMail } from "react-icons/hi";
+import { RiLockPasswordLine } from "react-icons/ri";
+import { useContext, useState } from "react";
+import FormInputWrapper from "./FormInput/FormInputWrapper";
+import EmailInput from "./FormInput/EmailInput";
+import PasswordInput from "./FormInput/PasswordInput";
+import FormSubmitButton from "./FormInput/FormSubmitButton";
 import LoadingScreen from "./LoadingScreen";
-import { useHistory } from "react-router-dom/cjs/react-router-dom";
-import login from "../../service/authentication/login";
-import { State } from "../../service/service";
 import ErrorBox from "./ErrorBox";
-import DoFinally from "../../util/do-finally";
+import { useLogin } from "../../hooks/request/authentication";
+import { UserContext } from "../App";
 
-const LoginForm =({ setUser }) => {
-  const [error, setError] = useState(null);
-  const [pending, setPending] = useState(false);
+const LoginForm = () => {
+  const userState = useContext(UserContext);
+  const { state } = useLogin(userState.setUser);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const history = useHistory();
-  
-  const handleSubmit = useCallback(() => {
-    const user = {
+
+  const handleSubmit = () => {
+    state.run({
       email: email,
       password: password,
-    };
-    const doFinally = new DoFinally();
-    doFinally.success.addAfter(() =>  history.push("/"));
-    login(user, setUser, new State(setPending, setError), doFinally);
-  },[]);
+    });
+  };
 
   return (
     <div className="w-[450px] p-[50px]">
@@ -33,8 +30,11 @@ const LoginForm =({ setUser }) => {
         Log in
       </h2>
 
-      {error && (
-        <ErrorBox errorTitle="Authentication Error" errorMessage={error} />
+      {state.error && (
+        <ErrorBox
+          errorTitle="Authentication Error"
+          errorMessage={state.error}
+        />
       )}
       <div>
         <EmailInputField
@@ -58,7 +58,7 @@ const LoginForm =({ setUser }) => {
           </Link>
         </div>
       </div>
-      {pending && <LoadingScreen />}
+      {state.pending && <LoadingScreen />}
     </div>
   );
 };

@@ -5,10 +5,11 @@ class EmailRequester {
   constructor() {
     this.requester = new Requester('email');
   }
-  post(email, doFinally) {
+  post(email, doFinally, signal) {
     this.requester.post({
       body: email,
       doFinally: doFinally,
+      signal: signal,
     });
   }
 }

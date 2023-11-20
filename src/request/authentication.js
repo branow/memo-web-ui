@@ -4,35 +4,31 @@ class AuthenticationRequester {
   constructor() {
     this.requester = new Requester('');
   }
-  register(user, doFinally) {
+  register(user, doFinally, signal) {
     this.requester.post({
       url: 'register',
       body: user,
       doFinally: doFinally,
+      signal: signal,
     });
   };
-  login(user, doFinally) {
+  login(user, doFinally, signal) {
     this.requester.post({
       url: 'login',
       body: user,
       doFinally: doFinally,
+      signal: signal,
     });
   };
-  enable(token, doFinally) {
+  enable(token, doFinally, signal) {
     this.requester.post({
       url: 'enable',
       body: token,
       doFinally: doFinally,
+      signal: signal,
     });
   };
-  getUser(jwt, doFinally) {
-    this.requester.get({
-      url: 'user',
-      jwt: jwt,
-      doFinally: doFinally,
-    });
-  };
-  regenerateToken(email, oldToken, doFinally) {
+  regenerateToken(email, oldToken, doFinally, signal) {
     this.requester.post({
       url: 'regenerate-token',
       body: {
@@ -40,6 +36,7 @@ class AuthenticationRequester {
         token: oldToken,
       },
       doFinally: doFinally,
+      signal: signal,
     });
   };
 }

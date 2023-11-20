@@ -6,29 +6,18 @@ import LoginForm from "./constant/LoginForm";
 import RegistrationForm from "./constant/RegistrationForm";
 import ResetForm from "./constant/ResetForm";
 import ConfirmForm from "./constant/ConfirmForm";
-import PublicUserInfo from "./UserPage/PublicUser/PublicUserInfo";
-import ModulePage from "./ModulePage/ModulePage";
-import AuthenticationRequester from "../request/authentication";
+import PublicUserInfo from "./UserPage/PublicUser/PublicUserInfo"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { UserCookies } from "../util/user-cookie";
-
 import "../input.css";
-import DoFinally from "../util/do-finally";
+import { useGetUserPrivateShortDetails } from "../hooks/request/user";
+import LogoutForm from "./constant/LogoutForm";
+import VerificationEmailForm from "./constant/VerificationEmailForm";
+import { createContext } from "react";
+
+export const UserContext = createContext();
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const jwt = new UserCookies().authorizationJwt.get();
-    if (jwt) {
-      const doFinally = new DoFinally();
-      doFinally.success.addAfter((response) => setUser(response.data));
-      doFinally.fail.addAfter(() => setUser(null));
-      doFinally.error.addAfter(() => setUser(null));
-      new AuthenticationRequester().getUser(jwt, doFinally);
-    }
-  }, []);
+  const { userState, state } = useGetUserPrivateShortDetails();
 
   return (
     <Router>
@@ -74,9 +63,6 @@ function App() {
             </Route>
             <Route path="/profile/public/achievements">
               <PublicUserInfo tab={"achievements"} />
-            </Route>
-            <Route path="/profile/public/modules/:id">
-              <ModulePage/>
             </Route>
           </Switch>
         </div>
