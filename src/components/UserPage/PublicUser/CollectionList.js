@@ -6,9 +6,9 @@ const CollectionList = ({ collections }) => {
       <>
         {collections.map((curCollection) => (
           <div key={curCollection.collectionId}>
-            <Link to={`/modules/${curCollection.moduleId}`}>
+            {/* <Link to={`/modules/${curCollection.moduleId}`}> */}
               <Collection collection={curCollection} />
-            </Link>
+            {/* </Link> */}
           </div>
         ))}
       </>

@@ -6,9 +6,9 @@ const ModuleList = ({ modules }) => {
       <>
         {modules.map((curModule) => (
           <div key={curModule.moduleId}>
-            <Link to={`/modules/${curModule.moduleId}`}>
+            {/* <Link to={`/modules/${curModule.moduleId}`}> */}
               <Module module={curModule} />
-            </Link>
+            {/* </Link> */}
           </div>
         ))}
       </>

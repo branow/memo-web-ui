@@ -1,6 +1,6 @@
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { RiGitRepositoryPrivateLine } from "react-icons/ri";
-import FormSubmitButton from "../../constant/SubmitButton";
+import LearnList from "./LearnList";
 import Score from "./Score";
 import CollectionList from "./CollectionList";
 
@@ -40,11 +40,9 @@ const Module = ({ module }) => {
           <Score score={module.scores[0]} mode={1} />
           <Score score={module.scores[1]} mode={2} />
         </div>
-        <CollectionList collections={module.collections}/>
+        <CollectionList collections={module.collections} />
         <div className="mt-[2vw] mr-[6vh]">
-          <div className="float-right">
-            <FormSubmitButton actionName={"Learn"} />
-          </div>
+          <LearnList />
         </div>
       </div>
     </div>

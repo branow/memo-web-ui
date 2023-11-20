@@ -8,6 +8,7 @@ module.exports = {
       },
       colors: {
         'main-green': '#63B175',
+        'main-green-light': '#82c090',
         'main-yellow-hover': '#dbbb2c',
         'body-background-grey': '#525E74',
         'form-background-grey': '#333',
