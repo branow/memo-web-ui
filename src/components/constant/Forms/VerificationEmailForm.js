@@ -1,6 +1,6 @@
-import LoadingScreen from "./LoadingScreen";
-import ErrorBox from "./ErrorBox";
-import { useVerificationEmail } from "../../hooks/request/email";
+import LoadingScreen from "../LoadingScreen";
+import ErrorBox from "../ErrorBox";
+import { useVerificationEmail } from "../../../hooks/request/email";
 import { useEffect } from "react";
 
 const VerificationEmailForm = () => {

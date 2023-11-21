@@ -1,7 +1,7 @@
 import { RxAvatar } from "react-icons/rx";
 import UsernameInputField from "../../constant/FormInput/UsernameInputField";
 import EmailInputField from "../../constant/FormInput/EmailInputField";
-import SubmitButton from "../../constant/SubmitButton";
+import SubmitButton from "../../constant/Buttons/SubmitButton";
 
 const PrivateUserInfo = () => {
   return (

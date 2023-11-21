@@ -1,17 +1,17 @@
-import Navbar from "./constant/Navbar";
+import Navbar from "./constant/Navigation/Navbar";
 import HomePage from "./MainPage/HomePage";
 import PrivateUserPage from "./UserPage/PrivateUser/PrivateUserPage";
-import FormComponentWrapper from "./constant/FormComponentWrapper";
-import LoginForm from "./constant/LoginForm";
-import RegistrationForm from "./constant/RegistrationForm";
-import ResetForm from "./constant/ResetForm";
-import ConfirmForm from "./constant/ConfirmForm";
+import FormComponentWrapper from "./constant/Forms/FormComponentWrapper";
+import LoginForm from "./constant/Forms/LoginForm";
+import RegistrationForm from "./constant/Forms/RegistrationForm";
+import ResetForm from "./constant/Forms/ResetForm";
+import ConfirmForm from "./constant/Forms/ConfirmForm";
 import PublicUserInfo from "./UserPage/PublicUser/PublicUserInfo"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "../input.css";
 import { useGetUserPrivateShortDetails } from "../hooks/request/user";
-import LogoutForm from "./constant/LogoutForm";
-import VerificationEmailForm from "./constant/VerificationEmailForm";
+import LogoutForm from "./constant/Forms/LogoutForm";
+import VerificationEmailForm from "./constant/Forms/VerificationEmailForm";
 import { createContext } from "react";
 
 export const UserContext = createContext();

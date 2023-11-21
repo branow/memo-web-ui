@@ -1,6 +1,6 @@
 import PasswordInputField from "../../constant/FormInput/PasswordInputField";
-import SubmitButton from "../../constant/SubmitButton";
-import DeleteButton from "../../constant/DeleteButton";
+import SubmitButton from "../../constant/Buttons/SubmitButton";
+import DeleteButton from "../../constant/Buttons/DeleteButton";
 
 const ProfileSettings = () => {
   return (

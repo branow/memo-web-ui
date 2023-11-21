@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { useContext, useState, useCallback } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
-import EmailInputField from "./FormInput/EmailInputField";
-import SubmitButton from "./SubmitButton";
-import LoadingScreen from "./LoadingScreen";
-import ErrorBox from "./ErrorBox";
-import { UserContext } from "../App";
+import EmailInputField from "../FormInput/EmailInputField";
+import SubmitButton from "../Buttons/SubmitButton";
+import LoadingScreen from "../LoadingScreen";
+import ErrorBox from "../ErrorBox";
+import { UserContext } from "../../App";
 
 const ResetForm = () => {
   const userState = useContext(UserContext);

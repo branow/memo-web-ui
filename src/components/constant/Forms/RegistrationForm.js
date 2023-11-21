@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import { useState, useCallback } from "react";
-import EmailInputField from "./FormInput/EmailInputField";
-import PasswordInputField from "./FormInput/PasswordInputField";
-import UsernameInputField from "./FormInput/UsernameInputField";
-import SubmitButton from "./SubmitButton";
-import LoadingScreen from "./LoadingScreen";
-import ErrorBox from "./ErrorBox";
-import { useRegister } from "../../hooks/request/authentication";
+import EmailInputField from "../FormInput/EmailInputField";
+import PasswordInputField from "../FormInput/PasswordInputField";
+import UsernameInputField from "../FormInput/UsernameInputField";
+import SubmitButton from "../Buttons/SubmitButton";
+import LoadingScreen from "../LoadingScreen";
+import ErrorBox from "../ErrorBox";
+import { useRegister } from "../../../hooks/request/authentication";
 
 const RegistrationForm = () => {
   const [username, setUsername] = useState("");

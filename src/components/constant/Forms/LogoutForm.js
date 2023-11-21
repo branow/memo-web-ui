@@ -1,9 +1,9 @@
-import DeleteButton from "./DeleteButton";
-import LoadingScreen from "./LoadingScreen";
-import ErrorBox from "./ErrorBox";
-import { useLogout } from "../../hooks/request/authentication";
+import DeleteButton from "../Buttons/DeleteButton";
+import LoadingScreen from "../LoadingScreen";
+import ErrorBox from "../ErrorBox";
+import { useLogout } from "../../../hooks/request/authentication";
 import { useContext } from "react";
-import { UserContext } from "../App";
+import { UserContext } from "../../App";
 
 const LogoutForm = () => {
   const userState = useContext(UserContext);
