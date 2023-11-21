@@ -1,8 +1,7 @@
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const ScoreBar = (props) => {
-    const { score } = props;
+const ScoreBar = ({ score }) => {
     const calcColor = (percent, start, end) => {
         let a = percent / 100,
           b = (end - start) * a,
@@ -11,30 +10,13 @@ const ScoreBar = (props) => {
       };
     return (
       <CircularProgressbar
-        className="w-[40px] h-[40px]"
-        value={score}
-        text={`${score}`}
-        textSize
-        
-        
+        className="w-[110px] h-[80px]"
         styles={{
-          trail: {
-            strokeLinecap: "butt",
-            transform: "rotate(-126deg)",
-            transformOrigin: "center center",
-          },
           path: {
-            strokeLinecap: "butt",
-            transform: "rotate(-126deg)",
-            transformOrigin: "center center",
             stroke: calcColor(score, 0, 120),
           },
-          text: {
-            fill: "#ddd",
-            fontSize: '36px',
-          },
         }}
-        strokeWidth={10}
+        strokeWidth={6}
       />
     );
 }

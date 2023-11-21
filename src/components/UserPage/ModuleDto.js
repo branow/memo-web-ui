@@ -1,7 +1,7 @@
 export const modules = [
   {
     moduleId: "1",
-    moduleName: "first Module",
+    moduleName: "First Module",
     shortDescription: "Some module descriptiond asd asda asdasd asdas dasdsa asdasdas asdas d awdwad awd",
     access: "public",
     collections: [
@@ -21,11 +21,28 @@ export const modules = [
         size: "24",
       },
     ], //CollectionShortDetailsDto
-    scores: [75, 96], //ScoreAggregatedDto
+    scores: [
+      {
+        studyType: {
+          studyId: '1',
+          studyName: "memorization",
+        }, //StudyTypeDto
+        score:'67',
+        resetTime:'1d 1h',
+      },
+      {
+        studyType: {
+          studyId: '2',
+          studyName: "writing",
+        }, //StudyTypeDto
+        score:'83',
+        resetTime:'2d 12h',
+      }
+    ], //ScoreAggregatedDto
   },
   {
     moduleId: "2",
-    moduleName: "second Module",
+    moduleName: "Second Module",
     shortDescription: "Some other module description",
     access: "private",
     collections: [
@@ -44,7 +61,29 @@ export const modules = [
         collectionName: "collection3",
         size: "47",
       },
+      {
+        collectionId: "4",
+        collectionName: "collection4",
+        size: "21",
+      },
     ], //CollectionShortDetailsDto
-    scores: [35, 81], //ScoreAggregatedDto
+    scores: [
+      {
+        studyType: {
+          studyId: '1',
+          studyName: "memorization",
+        }, //StudyTypeDto
+        score:'35',
+        resetTime:'4d 2h',
+      },
+      {
+        studyType: {
+          studyId: '2',
+          studyName: "writing",
+        }, //StudyTypeDto
+        score:'83',
+        resetTime:'21h',
+      }
+    ], //ScoreAggregatedDto
   },
 ];
