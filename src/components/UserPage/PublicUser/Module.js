@@ -1,5 +1,6 @@
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { RiGitRepositoryPrivateLine } from "react-icons/ri";
+import { RxCross1 } from "react-icons/rx";
 import LearnList from "./LearnList";
 import Score from "./Score";
 import CollectionList from "./CollectionList";
@@ -8,11 +9,11 @@ const Module = ({ module }) => {
   let accesIcon;
   let accessName;
   if (module.access === "public") {
-    accesIcon = <MdOutlinePeopleAlt size={"25px"}/>;
-    accessName = "public"
+    accesIcon = <MdOutlinePeopleAlt className="text-main-green" size={"25px"} />;
+    accessName = <span className="pl-[7px] text-lg text-main-green">PUBLIC</span>;
   } else {
-    accesIcon = <RiGitRepositoryPrivateLine size={"25px"}/>;
-    accessName = "private";
+    accesIcon = <RiGitRepositoryPrivateLine className="text-red-700" size={"25px"}/>;
+    accessName = <span className="pl-[7px] text-lg text-red-700">PRIVATE</span>;
   }
   return (
     <div
@@ -20,10 +21,17 @@ const Module = ({ module }) => {
       border-body-background-grey cursor-pointer hover:border-solid 
       hover:border-collection-underline-grey"
     >
-      <div className="pt-[1vh] pr-[1vh] flex float-right">
-        <div>{accesIcon}</div>
-        <div className="pl-[7px] text-lg">{accessName}</div>
+      <div className="float-right p-[0.5vh] cursor-pointer">
+        <RxCross1 size={"20px"} />
       </div>
+      <div className="flex flex-row my-[2vh] mx-[4vw]">
+        <div className="flex flex-row">
+          {accesIcon}
+          {accessName}
+        </div>
+        <div></div>
+      </div>
+
       <div className="flex flex-col px-[3vw] pb-[2vh]">
         <div className="flex justify-between h-fit text-2xl font-normal pl-[6vh] pt-[2vh] ">
           <div className="w-fit flex">
