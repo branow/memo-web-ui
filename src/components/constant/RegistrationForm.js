@@ -36,7 +36,7 @@ const RegistrationForm = () => {
       </h2>
 
       {state.error && (
-        <ErrorBox errorTitle="Authentication Error" errorMessage={state.error} />
+        <ErrorBox title="Authentication Error" message={state.error} />
       )}
       <div>
         <FormInputWrapper

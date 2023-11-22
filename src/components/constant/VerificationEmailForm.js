@@ -17,8 +17,8 @@ const VerificationEmailForm = () => {
 
       {state.error && (
         <ErrorBox
-          errorTitle="Email Sending Error"
-          errorMessage={state.error}
+          title="Email Sending Error"
+          message={state.error}
         />
       )}
 

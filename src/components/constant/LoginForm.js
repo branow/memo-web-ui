@@ -32,8 +32,8 @@ const LoginForm = () => {
 
       {state.error && (
         <ErrorBox
-          errorTitle="Authentication Error"
-          errorMessage={state.error}
+          title="Authentication Error"
+          message={state.error}
         />
       )}
       <div>

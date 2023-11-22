@@ -33,12 +33,12 @@ const ConfirmForm = ({ setUser }) => {
         Registration confirmation timed out, send your email again
       </h2>
       {enable.state.error && (
-        <ErrorBox errorTitle="Email Error" errorMessage={enable.state.error} />
+        <ErrorBox title="Email Error" message={enable.state.error} />
       )}
       {regenerate.state.error && (
         <ErrorBox
-          errorTitle="Email Error"
-          errorMessage={regenerate.state.error}
+          title="Email Error"
+          message={regenerate.state.error}
         />
       )}
       <div>
