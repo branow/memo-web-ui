@@ -39,7 +39,7 @@ function useGetModuдeDetails() {
 
 function useSaveModule(setModule) {
   const request = ({ data, callback }) => {
-    const jwt = new UserCookies().authorizationJwt.get;
+    const jwt = new UserCookies().authorizationJwt.get();
     new ModuleRequester().save(jwt, data, callback);
   };
   const buildValidator = (module) =>

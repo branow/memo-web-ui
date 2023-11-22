@@ -21,7 +21,7 @@ function useGetFlashcardDetails() {
 
 function useSaveFlashcard(setFlashcard) {
   const request = ({ data, callback }) => {
-    const jwt = new UserCookies().authorizationJwt.get;
+    const jwt = new UserCookies().authorizationJwt.get();
     new FlashcardRequester().save(
       jwt,
       data.collectionId,
@@ -35,7 +35,7 @@ function useSaveFlashcard(setFlashcard) {
 
 function useDeleteFlashcard(setFlashcard) {
   const request = ({ data, callback }) => {
-    const jwt = new UserCookies().authorizationJwt.get;
+    const jwt = new UserCookies().authorizationJwt.get();
     new FlashcardRequester().delete(jwt, data, callback);
   };
   return useDeleteRequest(setFlashcard, request, new Callback());

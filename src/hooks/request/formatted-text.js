@@ -8,7 +8,7 @@ export { useSaveFormattedText };
 
 function useSaveFormattedText(setFormattedText) {
   const request = ({ data, callback }) => {
-    const jwt = new UserCookies().authorizationJwt.get;
+    const jwt = new UserCookies().authorizationJwt.get();
     new FormattedTextRequester().save(jwt, data, callback);
   };
   const buildValidator = () => new MultiValidator([]);

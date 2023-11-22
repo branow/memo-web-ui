@@ -75,7 +75,7 @@ function useGetUserPublicGeneralDetails() {
 
 function useSaveUser(setUser) {
   const request = ({ data, callback }) => {
-    const jwt = new UserCookies().authorizationJwt.get;
+    const jwt = new UserCookies().authorizationJwt.get();
     const user = data;
     new UserRequester().save(jwt, user, callback);
   };
@@ -91,7 +91,7 @@ function useDeleteUser(setUser) {
   const callback = new Callback();
   callback.success.addAtMiddle(() => new UserCookies().authorizationJwt.remove);
   const request = ({ callback }) => {
-    const jwt = new UserCookies().authorizationJwt.get;
+    const jwt = new UserCookies().authorizationJwt.get();
     new UserRequester().delete(jwt, callback);
   };
   return useDeleteRequest(setUser, request, callback);

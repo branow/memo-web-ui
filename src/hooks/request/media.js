@@ -8,7 +8,7 @@ export { useSaveMedia };
 
 function useSaveMedia(setMedia) {
   const request = ({ data, callback }) => {
-    const jwt = new UserCookies().authorizationJwt.get;
+    const jwt = new UserCookies().authorizationJwt.get();
     new MediaRequester().save(jwt, data, callback);
   };
   const buildValidator = () => new MultiValidator([]);

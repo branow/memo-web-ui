@@ -23,7 +23,7 @@ function useGetCollectionDetails() {
 
 function useSaveCollection(setCollection) {
   const request = ({ data, callback }) => {
-    const jwt = new UserCookies().authorizationJwt.get;
+    const jwt = new UserCookies().authorizationJwt.get();
     new CollectionRequester().save(
       jwt,
       data.moduleId,

@@ -6,7 +6,7 @@ function usePostRequest(setData, request, callback, buildValidator) {
   callback.success.addAtMiddle((response) => setData(response.data));
   const wrappedRequest = ({ data, callback }) => {
     const wrapper = new ValidatorFunctionWrapper(
-      () => request(data, callback),
+      () => request({ data, callback }),
       buildValidator(data),
     );
     wrapper.wrap().apply();
