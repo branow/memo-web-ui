@@ -111,6 +111,8 @@ function useEnable(setUser) {
   const request = ({ callback }) => {
     if (token) {
       new AuthenticationRequester().enable(token, callback);
+    } else {
+      throw new Error("There is not a verification token!");
     }
   };
 

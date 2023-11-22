@@ -8,7 +8,8 @@ class UserCookies {
 
 class UserCookie {
   constructor(name) {
-    this.cookies = new Cookies();
+    this.config = { path: "/" };
+    this.cookies = new Cookies(null, this.config);
     this.get = () => {
       return this.cookies.get(name);
     };
@@ -16,8 +17,8 @@ class UserCookie {
       this.cookies.set(name, value);
     };
     this.remove = () => {
-      this.cookies.remove(name);
-    }
+      this.cookies.remove(name, this.config);
+    };
   }
 }
 

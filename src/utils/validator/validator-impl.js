@@ -6,10 +6,12 @@ export {
   getEmailValidator,
   getPasswordsEqualValidator,
   getPasswordValidator,
+  getModuleNameValidator,
+  getCollectionNameValidator,
 };
 
 function getPasswordValidator(value) {
-  return new Validator('passowrd', value, [
+  return new Validator('Password', value, [
     getStringLengthLongerEqualsThanCondition(8),
     getNotBlankStringCondition(),
     getStringLengthLessEqualsThanCondition(20),
@@ -17,13 +19,13 @@ function getPasswordValidator(value) {
 }
 
 function getPasswordsEqualValidator(value) {
-  return new Validator('passowrds', value, [
+  return new Validator('Passwords', value, [
     getAllArrayElementsEqualCondition()
   ]);
 }
 
 function getUsernameValidator(value) {
-  return new Validator('username', value, [
+  return new Validator('Username', value, [
     getNotEmptyStringCondition(),
     getNotBlankStringCondition(), 
     getStringLengthLessEqualsThanCondition(50),
@@ -31,7 +33,7 @@ function getUsernameValidator(value) {
 }
 
 function getEmailValidator(value) {
-  return new Validator('email', value, [
+  return new Validator('Email', value, [
     getNotEmptyStringCondition(), 
     getNotBlankStringCondition(), 
     getStringMustContainsCondition('@'),
@@ -39,5 +41,18 @@ function getEmailValidator(value) {
   ]);
 }
 
+function getModuleNameValidator(value) {
+  return new Validator('Name of the module', value, [
+    getNotEmptyStringCondition(), 
+    getNotBlankStringCondition(), 
+    getStringLengthLessEqualsThanCondition(100),
+  ]);
+}
 
-
+function getCollectionNameValidator(value) {
+  return new Validator('Name of the collection', value, [
+    getNotEmptyStringCondition(), 
+    getNotBlankStringCondition(), 
+    getStringLengthLessEqualsThanCondition(100),
+  ]);
+}

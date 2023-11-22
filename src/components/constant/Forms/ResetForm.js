@@ -1,27 +1,19 @@
 import { Link } from "react-router-dom";
-import { useContext, useState, useCallback } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import { useState, useCallback } from "react";
 import EmailInputField from "../FormInput/EmailInputField";
 import SubmitButton from "../Buttons/SubmitButton";
 import LoadingScreen from "../LoadingScreen";
 import ErrorBox from "../ErrorBox";
-import { UserContext } from "../../App";
+import { useNewPasswordEmail } from "../../../hooks/request/email";
+import { generate } from "../../../utils/password-generator";
 
 const ResetForm = () => {
-  const userState = useContext(UserContext);
-  const [error, setError] = useState(null);
-  const [pending, setPending] = useState(false);
+  const { state } = useNewPasswordEmail(generate());
   const [email, setEmail] = useState("");
-  const history = useHistory();
 
-  const handleSubmit = useCallback(() => {
-    const user = {
-      email: email,
-    };
-    const doSuccess = () => {
-      history.push("/");
-    };
-  },[]);
+  const handleSubmit = () => {
+    state.run(email);
+  };
 
   return (
     <div className="w-[450px] p-[50px]">
@@ -29,8 +21,12 @@ const ResetForm = () => {
         Reset password
       </h2>
       <h2 className="text-[16px] my-[20px] text-white text-center font-medium">
-        Send us your email and then check your email
+        Type your email to send verification letter
       </h2>
+
+      {state.error && (
+        <ErrorBox title="Email Sending Error" message={state.error} />
+      )}
 
       <form>
         <EmailInputField
@@ -49,7 +45,7 @@ const ResetForm = () => {
           </Link>
         </div>
       </form>
-      {pending && <LoadingScreen />}
+      {state.pending && <LoadingScreen />}
     </div>
   );
 };

@@ -19,7 +19,7 @@ const LoginForm = () => {
       email: email,
       password: password,
     });
-  },[]);
+  }, [state, email, password]);
 
   return (
     <div className="w-[450px] p-[50px]">
@@ -28,10 +28,7 @@ const LoginForm = () => {
       </h2>
 
       {state.error && (
-        <ErrorBox
-          errorTitle="Authentication Error"
-          errorMessage={state.error}
-        />
+        <ErrorBox title="Authentication Error" message={state.error} />
       )}
       <div>
         <EmailInputField

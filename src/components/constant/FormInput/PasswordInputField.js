@@ -3,12 +3,13 @@ import FormInputWrapper from "./FormInputWrapper";
 import PasswordInput from "./PasswordInput";
 import { memo } from "react";
 
-const PasswordInputField = memo(({ onChangeAction, label }) => {
+const PasswordInputField = memo(({ onChangeAction, label, value }) => {
     return (
       <FormInputWrapper
         childrenInput={
           <PasswordInput
             onChangeAction={onChangeAction}
+            value={value}
           />
         }
         inputName={label}

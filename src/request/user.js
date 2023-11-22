@@ -44,6 +44,14 @@ class UserRequester {
       signal: signal,
     });
   };
+  changePassword(jwt, changePasswordDto, doFinally) {
+    this.requester.post({
+      url: 'change-password',
+      jwt: jwt,
+      body: changePasswordDto,
+      doFinally: doFinally,
+    });
+  }
   delete(jwt, doFinally, signal) {
     this.requester.delete({
       url: '',

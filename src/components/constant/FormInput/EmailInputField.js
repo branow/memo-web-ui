@@ -3,12 +3,13 @@ import FormInputWrapper from "./FormInputWrapper";
 import EmailInput from "./EmailInput";
 import { memo } from "react";
 
-const EmailInputField = memo(({ onChangeAction }) => {
+const EmailInputField = memo(({ onChangeAction, value }) => {
     return (
       <FormInputWrapper
         childrenInput={
           <EmailInput
             onChangeAction={onChangeAction}
+            value={value}
           />
         }
         inputName={"Email"}

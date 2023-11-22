@@ -13,7 +13,7 @@ function useGetRequest(request, callback) {
 
   useEffect(() => {
     const abort = new AbortController();
-    state.run(abort.signal);
+    state.run(null, abort.signal);
     return () => abort.abort();
   }, [])
 

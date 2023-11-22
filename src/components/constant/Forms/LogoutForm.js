@@ -18,15 +18,15 @@ const LogoutForm = () => {
       <h2 className="text-[40px] text-white text-center font-semibold">
         Log out
       </h2>
+      <h2 className="text-[16px] my-[5px] text-white text-center font-medium">
+        Push the buttong to logout!
+      </h2>
 
       {state.error && (
-        <ErrorBox
-          errorTitle="Authentication Error"
-          errorMessage={state.error}
-        />
+        <ErrorBox title="Authentication Error" message={state.error} />
       )}
 
-      <div className="w-fit m-auto mt-[2vh]">
+      <div className="flex flex-col items-center my-[30px]">
         <DeleteButton actionName={"Logout"} onClickAction={handleSubmit} />
       </div>
 

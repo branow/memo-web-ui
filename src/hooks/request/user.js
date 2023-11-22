@@ -6,9 +6,12 @@ import usePostRequest from "./usePostRequest";
 import { MultiValidator } from "../../utils/validator/validator";
 import {
   getEmailValidator,
+  getPasswordValidator,
+  getPasswordsEqualValidator,
   getUsernameValidator,
 } from "../../utils/validator/validator-impl";
 import useDeleteRequest from "./useDeleteRequest";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 export {
   useGetUserPrivateShortDetails,
@@ -16,6 +19,7 @@ export {
   useGetUserDetails,
   useGetUserPublicGeneralDetails,
   useSaveUser,
+  useChangePassword,
   useDeleteUser,
 };
 
@@ -75,7 +79,7 @@ function useGetUserPublicGeneralDetails() {
 
 function useSaveUser(setUser) {
   const request = ({ data, callback }) => {
-    const jwt = new UserCookies().authorizationJwt.get;
+    const jwt = new UserCookies().authorizationJwt.get();
     const user = data;
     new UserRequester().save(jwt, user, callback);
   };
@@ -87,11 +91,30 @@ function useSaveUser(setUser) {
   return usePostRequest(setUser, request, new Callback(), buildValidator);
 }
 
+function useChangePassword() {
+  const request = ({ data, callback }) => {
+    const jwt = new UserCookies().authorizationJwt.get();
+    const changePasswordDto = {
+      currentPassword: data.currentPassword,
+      newPassword: data.newPassword,
+    } 
+    new UserRequester().changePassword(jwt, changePasswordDto, callback);
+  };
+  const buildValidator = (changePasswordDto) =>
+    new MultiValidator([
+      getPasswordValidator(changePasswordDto.newPassword),
+      getPasswordsEqualValidator([changePasswordDto.newPassword, changePasswordDto.confirmPassword])      
+    ]);
+  return usePostRequest(() => {}, request, new Callback(), buildValidator);
+}
+
 function useDeleteUser(setUser) {
+  const history = useHistory();
   const callback = new Callback();
-  callback.success.addAtMiddle(() => new UserCookies().authorizationJwt.remove);
+  callback.success.addAtMiddle(() => new UserCookies().authorizationJwt.remove());
+  callback.success.addAtEnd(() => history.push("/"))
   const request = ({ callback }) => {
-    const jwt = new UserCookies().authorizationJwt.get;
+    const jwt = new UserCookies().authorizationJwt.get();
     new UserRequester().delete(jwt, callback);
   };
   return useDeleteRequest(setUser, request, callback);
