@@ -15,18 +15,20 @@ const LogoutForm = () => {
 
   return (
     <div className="w-[450px] p-[50px]">
-      <h2 className="text-[40px] text-white text-center font-semibold">
+      <h2 className="text-[40px] my-[5px] text-white text-center font-semibold">
         Log out
+      </h2>
+      <h2 className="text-[16px] my-[5px] text-white text-center font-medium">
+        Push the buttong to logout!
       </h2>
 
       {state.error && (
-        <ErrorBox
-          title="Authentication Error"
-          message={state.error}
-        />
+        <ErrorBox title="Authentication Error" message={state.error} />
       )}
 
-      <FormSubmitButton actionName={"Logout"} onClickAction={handleSubmit} />
+      <div className="flex flex-col items-center my-[30px]">
+        <FormSubmitButton actionName={"Logout"} onClickAction={handleSubmit} />
+      </div>
 
       {state.pending && <LoadingScreen />}
     </div>

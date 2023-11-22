@@ -26,18 +26,21 @@ const ConfirmForm = ({ setUser }) => {
 
   return (
     <div className="w-[450px] p-[50px]">
-      <h2 className="text-[40px] text-white text-center font-semibold">
+      {enable.state.error && (
+        <ErrorBox
+          title="Reading Verification Token Error"
+          message={enable.state.error}
+        />
+      )}
+      <h2 className="text-[40px] mt-[20px] mb-[10px] text-white text-center font-semibold">
         Send email
       </h2>
-      <h2 className="text-[16px] my-[20px] text-white text-center font-medium">
-        Registration confirmation timed out, send your email again
+      <h2 className="text-[16px] my-[10px] text-white text-center font-medium">
+        Send new verification letter to your email again?
       </h2>
-      {enable.state.error && (
-        <ErrorBox title="Email Error" message={enable.state.error} />
-      )}
       {regenerate.state.error && (
         <ErrorBox
-          title="Email Error"
+          title="Email Sending Error"
           message={regenerate.state.error}
         />
       )}
@@ -49,7 +52,9 @@ const ConfirmForm = ({ setUser }) => {
           inputIcon={<HiOutlineMail className="mt-[7px]" size="20px" />}
           inputName={"Email"}
         />
-        <FormSubmitButton actionName={"Send"} onClickAction={handleSubmit} />
+        <div className="flex flex-col items-center">
+          <FormSubmitButton actionName={"Send"} onClickAction={handleSubmit} />
+        </div>
       </div>
       {(enable.state.pending || regenerate.state.pending) && <LoadingScreen />}
     </div>

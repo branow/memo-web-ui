@@ -38,7 +38,7 @@ const Sidebar = ({ tab }) => {
 
         <SideButton
           linkName={"Log out"}
-          linkDestination={"out"}
+          linkDestination={"/logout"}
           linkImage={<BiExit color="white" size="20px" />}
         />
       </ul>
