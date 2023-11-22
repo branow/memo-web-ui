@@ -11,6 +11,7 @@ import {
   getUsernameValidator,
 } from "../../utils/validator/validator-impl";
 import useDeleteRequest from "./useDeleteRequest";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 export {
   useGetUserPrivateShortDetails,
@@ -108,8 +109,10 @@ function useChangePassword() {
 }
 
 function useDeleteUser(setUser) {
+  const history = useHistory();
   const callback = new Callback();
-  callback.success.addAtMiddle(() => new UserCookies().authorizationJwt.remove);
+  callback.success.addAtMiddle(() => new UserCookies().authorizationJwt.remove());
+  callback.success.addAtEnd(() => history.push("/"))
   const request = ({ callback }) => {
     const jwt = new UserCookies().authorizationJwt.get();
     new UserRequester().delete(jwt, callback);

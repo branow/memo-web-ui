@@ -2,9 +2,12 @@ import { RxAvatar } from "react-icons/rx";
 import { modules } from "../ModuleDto";
 import PublicTabButton from "./PublicTabButton";
 import Module from "../UserPageModule/Module";
+import { useContext } from "react";
+import { UserContext } from "../../App";
 
-const PublicUserInfo = ({ user, tab }) => {
-  user = {
+const PublicUserInfo = ({ tab }) => {
+  const userState = useContext(UserContext);
+  const user = {
     name: "Billy",
     description: "I'm only a lab rat",
   };
