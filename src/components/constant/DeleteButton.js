@@ -1,4 +1,6 @@
-const DeleteButton = ({ actionName, onClickAction }) => {
+import { memo } from "react";
+
+const DeleteButton = memo(({ actionName, onClickAction }) => {
     return (
       <div>
         <button
@@ -11,6 +13,6 @@ const DeleteButton = ({ actionName, onClickAction }) => {
         </button>
       </div>
     );
-  };
+  });
   
   export default DeleteButton;
