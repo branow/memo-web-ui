@@ -31,10 +31,7 @@ const LoginForm = () => {
       </h2>
 
       {state.error && (
-        <ErrorBox
-          title="Authentication Error"
-          message={state.error}
-        />
+        <ErrorBox title="Authentication Error" message={state.error} />
       )}
       <div>
         <FormInputWrapper
@@ -55,7 +52,9 @@ const LoginForm = () => {
           inputIcon={<RiLockPasswordLine className="mt-[7px]" size="20px" />}
         />
 
-        <FormSubmitButton actionName={"Login"} onClickAction={handleSubmit} />
+        <div className="flex flex-col items-center">
+          <FormSubmitButton actionName={"Login"} onClickAction={handleSubmit} />
+        </div>
 
         <div className="text-[1em] text-white font-medium mt-[45px] mb-[15px] flex justify-between">
           <Link to="/register" className="cursor-pointer hover:underline">

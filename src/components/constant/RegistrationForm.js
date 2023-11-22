@@ -77,10 +77,12 @@ const RegistrationForm = () => {
           inputName={"Confirm password"}
         />
 
-        <FormSubmitButton
-          actionName={"Register"}
-          onClickAction={handleSubmit}
-        />
+        <div className="flex flex-col items-center">
+          <FormSubmitButton
+            actionName={"Register"}
+            onClickAction={handleSubmit}
+          />
+        </div>
 
         <div className="text-[1em] text-white text-center font-medium inline">
           <p className="my-[16px]">

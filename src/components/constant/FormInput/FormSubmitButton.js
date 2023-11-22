@@ -2,7 +2,7 @@ import { memo } from "react";
 
 const FormSubmitButton = memo(({ actionName, onClickAction }) => {
   return (
-    <div>
+    <div className="w-fit">
       <button
         type="submit"
         className="w-fit h-fit bg-main-green cursor-pointer text-[1.5em] text-white font-medium px-[2vw] py-[0.5vh] duration-500
