@@ -16,7 +16,7 @@ const MemorizeSection = memo(() => {
           </div>
         </div>
         <div className="max-w-[50vw] h-auto m-auto">
-          <img src="img/memorize_section_img.jpg" alt="" />
+          <img src="img/memorize_section_img_2.jpg" alt="" />
         </div>
       </div>
     );

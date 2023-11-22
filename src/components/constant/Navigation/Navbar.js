@@ -3,21 +3,18 @@ import NavButton from "./NavButton";
 import NavButtonUser from "./NavButtonUser";
 import { useContext } from "react";
 import { UserContext } from "../../App";
+import { TbCardsFilled } from "react-icons/tb";
 
 const Navbar = () => {
-  // user = {
-  //   name: "Billy",
-  //   description: "I'm only a lab rat",
-  // };
   const userState = useContext(UserContext);
   
   return (
     <nav className="bg-main-green ">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <div className="flex flex-wrap items-center justify-between mx-auto py-2 px-4">
         <Link to="/" className="flex ">
-          <img src="img/logo.png" className="h-12 mr-3" alt="" />
-          <span className="self-center text-3xl font-semibold whitespace-nowrap text-gray-100">
-            Flashlearn
+          <TbCardsFilled color="#394151" size="60px"/>
+          <span className="self-center mx-[15px] text-5xl font-bold font-mono whitespace-nowrap text-collection-grey">
+            Memo
           </span>
         </Link>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">

@@ -22,7 +22,7 @@ function App() {
   return (
     <UserContext.Provider value={userState}>
       <Router>
-        <div className="bg-body-background-grey">
+        <div className="bg-body-background-grey overflow-hidden w-full">
           <Navbar></Navbar>
           <div>
             <Switch>
