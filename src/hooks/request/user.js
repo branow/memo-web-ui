@@ -6,6 +6,8 @@ import usePostRequest from "./usePostRequest";
 import { MultiValidator } from "../../utils/validator/validator";
 import {
   getEmailValidator,
+  getPasswordValidator,
+  getPasswordsEqualValidator,
   getUsernameValidator,
 } from "../../utils/validator/validator-impl";
 import useDeleteRequest from "./useDeleteRequest";
@@ -16,6 +18,7 @@ export {
   useGetUserDetails,
   useGetUserPublicGeneralDetails,
   useSaveUser,
+  useChangePassword,
   useDeleteUser,
 };
 
@@ -85,6 +88,23 @@ function useSaveUser(setUser) {
       getEmailValidator(user.email),
     ]);
   return usePostRequest(setUser, request, new Callback(), buildValidator);
+}
+
+function useChangePassword() {
+  const request = ({ data, callback }) => {
+    const jwt = new UserCookies().authorizationJwt.get();
+    const changePasswordDto = {
+      currentPassword: data.currentPassword,
+      newPassword: data.newPassword,
+    } 
+    new UserRequester().changePassword(jwt, changePasswordDto, callback);
+  };
+  const buildValidator = (changePasswordDto) =>
+    new MultiValidator([
+      getPasswordValidator(changePasswordDto.newPassword),
+      getPasswordsEqualValidator([changePasswordDto.newPassword, changePasswordDto.confirmPassword])      
+    ]);
+  return usePostRequest(() => {}, request, new Callback(), buildValidator);
 }
 
 function useDeleteUser(setUser) {
