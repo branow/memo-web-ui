@@ -31,7 +31,7 @@ const Sidebar = ({ tab }) => {
 
         <SideButton
           linkName={"View modules"}
-          linkDestination={"modules"}
+          linkDestination={"/profile/public/modules"}
           linkImage={<BsCollection color="white" size="20px" />}
           active={tab === "modules" && true}
         />

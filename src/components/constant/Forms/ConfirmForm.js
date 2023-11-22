@@ -1,15 +1,13 @@
-import { HiOutlineMail } from "react-icons/hi";
-import { useEffect, useState } from "react";
-import FormInputWrapper from "./FormInput/FormInputWrapper";
-import EmailInput from "./FormInput/EmailInput";
-import FormSubmitButton from "./FormInput/FormSubmitButton";
-import LoadingScreen from "./LoadingScreen";
-import ErrorBox from "./ErrorBox";
+import { useEffect, useState, useCallback } from "react";
+import SubmitButton from "../Buttons/SubmitButton";
+import EmailInputField from "../FormInput/EmailInputField";
+import LoadingScreen from "../LoadingScreen";
+import ErrorBox from "../ErrorBox";
 
 import {
   useEnable,
   useRegenerateToken,
-} from "../../hooks/request/authentication";
+} from "../../../hooks/request/authentication";
 
 const ConfirmForm = ({ setUser }) => {
   const enable = useEnable(setUser);
@@ -20,9 +18,9 @@ const ConfirmForm = ({ setUser }) => {
     enable.state.run();
   }, []);
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     regenerate.state.run(email);
-  };
+  },[]);
 
   return (
     <div className="w-[450px] p-[50px]">
@@ -45,15 +43,11 @@ const ConfirmForm = ({ setUser }) => {
         />
       )}
       <div>
-        <FormInputWrapper
-          childrenInput={
-            <EmailInput onChangeAction={(e) => setEmail(e.target.value)} />
-          }
-          inputIcon={<HiOutlineMail className="mt-[7px]" size="20px" />}
-          inputName={"Email"}
+        <EmailInputField
+          onChangeAction={useCallback((e) => setEmail(e.target.value), [])}
         />
         <div className="flex flex-col items-center">
-          <FormSubmitButton actionName={"Send"} onClickAction={handleSubmit} />
+        <SubmitButton actionName={"Send"} onClickAction={handleSubmit} />
         </div>
       </div>
       {(enable.state.pending || regenerate.state.pending) && <LoadingScreen />}

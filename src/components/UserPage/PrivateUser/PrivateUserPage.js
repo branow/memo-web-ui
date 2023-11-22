@@ -2,8 +2,8 @@ import Sidebar from "./SideBar";
 import PrivateUserInfo from "./PrivateUserInfo";
 import UserSettings from "./UserSettings";
 import { useContext } from "react";
-import { UserContext } from "../App";
-import ErrorBox from "../constant/ErrorBox";
+import { UserContext } from "../../App";
+import ErrorBox from "../../constant/ErrorBox";
 
 const UserPage = ({ activeTab }) => {
   const userState = useContext(UserContext);

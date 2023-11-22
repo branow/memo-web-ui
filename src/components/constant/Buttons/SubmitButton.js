@@ -1,8 +1,8 @@
 import { memo } from "react";
 
-const FormSubmitButton = memo(({ actionName, onClickAction }) => {
+const SubmitButton = memo(({ actionName, onClickAction }) => {
   return (
-    <div className="w-fit">
+    <div>
       <button
         type="submit"
         className="w-fit h-fit bg-main-green cursor-pointer text-[1.5em] text-white font-medium px-[2vw] py-[0.5vh] duration-500
@@ -15,4 +15,4 @@ const FormSubmitButton = memo(({ actionName, onClickAction }) => {
   );
 });
 
-export default FormSubmitButton;
+export default SubmitButton;

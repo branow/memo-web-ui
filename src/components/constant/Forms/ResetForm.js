@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
-import { HiOutlineMail } from "react-icons/hi";
-import { useState } from "react";
-import FormInputWrapper from "./FormInput/FormInputWrapper";
-import EmailInput from "./FormInput/EmailInput";
-import FormSubmitButton from "./FormInput/FormSubmitButton";
-import LoadingScreen from "./LoadingScreen";
-import ErrorBox from "./ErrorBox";
-import { useNewPasswordEmail } from "../../hooks/request/email";
-import { generate } from "../../utils/password-generator";
+import { useState, useCallback } from "react";
+import EmailInputField from "../FormInput/EmailInputField";
+import SubmitButton from "../Buttons/SubmitButton";
+import LoadingScreen from "../LoadingScreen";
+import ErrorBox from "../ErrorBox";
+import { useNewPasswordEmail } from "../../../hooks/request/email";
+import { generate } from "../../../utils/password-generator";
 
 const ResetForm = () => {
   const { state } = useNewPasswordEmail(generate());
@@ -26,19 +24,16 @@ const ResetForm = () => {
         Type your email to send verification letter
       </h2>
 
-      {state.error && (<ErrorBox title="Email Sending Error" message={state.error}/>)}
+      {state.error && (
+        <ErrorBox title="Email Sending Error" message={state.error} />
+      )}
 
-      <div>
-        <FormInputWrapper
-          childrenInput={
-            <EmailInput onChangeAction={(e) => setEmail(e.target.value)} />
-          }
-          inputIcon={<HiOutlineMail className="mt-[7px]" size="20px" />}
-          inputName={"Email"}
+      <form>
+        <EmailInputField
+          onChangeAction={useCallback((e) => setEmail(e.target.value), [])}
         />
-
-        <div className="flex flex-col items-center">
-          <FormSubmitButton actionName={"Send"} onClickAction={handleSubmit} />
+        <div className="w-fit m-auto">
+          <SubmitButton actionName={"Send"} onClickAction={handleSubmit} />
         </div>
 
         <div className="text-[1em] text-white font-medium mt-[45px] mb-[15px] flex justify-between">
@@ -49,7 +44,7 @@ const ResetForm = () => {
             <span>Login</span>
           </Link>
         </div>
-      </div>
+      </form>
       {state.pending && <LoadingScreen />}
     </div>
   );

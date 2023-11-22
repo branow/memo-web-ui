@@ -1,12 +1,11 @@
-import FormInputWrapper from "../constant/FormInput/FormInputWrapper";
-import PasswordInput from "../constant/FormInput/PasswordInput";
-import FormSubmitButton from "../constant/FormInput/FormSubmitButton";
-import DeleteButton from "../constant/DeleteButton";
 import { useCallback, useContext, useState } from "react";
-import { useChangePassword, useDeleteUser } from "../../hooks/request/user";
-import { UserContext } from "../App";
-import ErrorBox from "../constant/ErrorBox";
-import LoadingScreen from "../constant/LoadingScreen";
+import { useChangePassword, useDeleteUser } from "../../../hooks/request/user";
+import { UserContext } from "../../App";
+import ErrorBox from "../../constant/ErrorBox";
+import LoadingScreen from "../../constant/LoadingScreen";
+import PasswordInputField from "../../constant/FormInput/PasswordInputField";
+import SubmitButton from "../../constant/Buttons/SubmitButton";
+import DeleteButton from "../../constant/Buttons/DeleteButton";
 
 const ProfileSettings = () => {
   const userState = useContext(UserContext);
@@ -44,38 +43,23 @@ const ProfileSettings = () => {
         {useChange.state.pending && <LoadingScreen />}
         <div className="">
           <div className="my-[5vh]">
-            <FormInputWrapper
-              childrenInput={
-                <PasswordInput
+                <PasswordInputField
                   onChangeAction={useCallback((e) => setCurrentPassword(e.target.value), [])}
                 />
-              }
-              inputName={"Current password"}
-            />
           </div>
           <div className="my-[5vh]">
-            <FormInputWrapper
-              childrenInput={
-                <PasswordInput
+                <PasswordInputField
                   onChangeAction={useCallback((e) => setNewPassword(e.target.value), [])}
                 />
-              }
-              inputName={"New password"}
-            />
           </div>
           <div className="my-[5vh]">
-            <FormInputWrapper
-              childrenInput={
-                <PasswordInput
+                <PasswordInputField
                   onChangeAction={useCallback((e) => setConfirmPassword(e.target.value), [])}
                 />
-              }
-              inputName={"Confirm new password"}
-            />
           </div>
         </div>
         <div className="">
-          <FormSubmitButton actionName={"Save"} onClickAction={handleSumbit} />
+          <SubmitButton actionName={"Save"} onClickAction={handleSumbit} />
         </div>
       </div>
       <div className="w-[25vw] flex flex-col items-center">

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import NavButton from "./NavButton";
 import NavButtonUser from "./NavButtonUser";
 import { useContext } from "react";
-import { UserContext } from "../App";
+import { UserContext } from "../../App";
 
 const Navbar = () => {
   // user = {

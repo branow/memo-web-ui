@@ -1,13 +1,12 @@
 import { RxAvatar } from "react-icons/rx";
-import FormInputWrapper from "../constant/FormInput/FormInputWrapper";
-import UserNameInput from "../constant/FormInput/UsernameInput";
-import FormSubmitButton from "../constant/FormInput/FormSubmitButton";
-import { UserContext } from "../App";
+import { UserContext } from "../../App";
 import { useContext } from "react";
-import EmailInput from "../constant/FormInput/EmailInput";
-import ErrorBox from "../constant/ErrorBox";
-import { useGetUserDetails, useSaveUser } from "../../hooks/request/user";
-import LoadingScreen from "../constant/LoadingScreen";
+import ErrorBox from "../../constant/ErrorBox";
+import { useGetUserDetails, useSaveUser } from "../../../hooks/request/user";
+import LoadingScreen from "../../constant/LoadingScreen";
+import EmailInputField from "../../constant/FormInput/EmailInputField";
+import UserNameInputField from "../../constant/FormInput/UsernameInputField";
+import SubmitButton from "../../constant/Buttons/SubmitButton";
 
 const PrivateUserInfo = () => {
   const appUserState = useContext(UserContext);
@@ -89,32 +88,23 @@ const PrivateUserInfo = () => {
           <>
             <div className="ml-[7vw] mt-[5vh] w-[20vw]">
               <div className="my-[8vh]">
-                <FormInputWrapper
-                  childrenInput={
-                    <UserNameInput
+              <UserNameInputField
                       onChangeAction={(e) =>
                         setUsername(e.target.value)
                       }
                       value={useGet.userState.user.username}
                     />
-                  }
-                  inputName={"Username"}
-                />
               </div>
               <div className="my-[8vh]">
-                <FormInputWrapper
-                  childrenInput={
-                    <EmailInput
+
+                    <EmailInputField
                       onChangeAction={(e) => setEmail(e.target.value)}
                       value={useGet.userState.user.email}
                     />
-                  }
-                  inputName={"Email"}
-                />
               </div>
             </div>
             <div className="ml-[7vw]">
-              <FormSubmitButton onClickAction={handleSumbit} actionName={"Save"} />
+              <SubmitButton onClickAction={handleSumbit} actionName={"Save"} />
             </div>
           </>
         )}
