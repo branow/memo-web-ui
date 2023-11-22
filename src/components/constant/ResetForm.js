@@ -1,28 +1,20 @@
 import { Link } from "react-router-dom";
 import { HiOutlineMail } from "react-icons/hi";
-import { useContext, useState } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import { useState } from "react";
 import FormInputWrapper from "./FormInput/FormInputWrapper";
 import EmailInput from "./FormInput/EmailInput";
 import FormSubmitButton from "./FormInput/FormSubmitButton";
 import LoadingScreen from "./LoadingScreen";
 import ErrorBox from "./ErrorBox";
-import { UserContext } from "../App";
+import { useNewPasswordEmail } from "../../hooks/request/email";
+import { generate } from "../../utils/password-generator";
 
 const ResetForm = () => {
-  const userState = useContext(UserContext);
-  const [error, setError] = useState(null);
-  const [pending, setPending] = useState(false);
+  const { state } = useNewPasswordEmail(generate());
   const [email, setEmail] = useState("");
-  const history = useHistory();
 
   const handleSubmit = () => {
-    const user = {
-      email: email,
-    };
-    const doSuccess = () => {
-      history.push("/");
-    };
+    state.run(email);
   };
 
   return (
@@ -31,10 +23,12 @@ const ResetForm = () => {
         Reset password
       </h2>
       <h2 className="text-[16px] my-[20px] text-white text-center font-medium">
-        Send us your email and then check your email
+        Type your email to send verification letter
       </h2>
 
-      <form>
+      {state.error && (<ErrorBox title="Email Sending Error" message={state.error}/>)}
+
+      <div>
         <FormInputWrapper
           childrenInput={
             <EmailInput onChangeAction={(e) => setEmail(e.target.value)} />
@@ -42,7 +36,11 @@ const ResetForm = () => {
           inputIcon={<HiOutlineMail className="mt-[7px]" size="20px" />}
           inputName={"Email"}
         />
-        <FormSubmitButton actionName={"Send"} onClickAction={handleSubmit} />
+
+        <div className="flex flex-col items-center">
+          <FormSubmitButton actionName={"Send"} onClickAction={handleSubmit} />
+        </div>
+
         <div className="text-[1em] text-white font-medium mt-[45px] mb-[15px] flex justify-between">
           <Link to="/register" className="cursor-pointer hover:underline">
             <span>Create an account?</span>
@@ -51,8 +49,8 @@ const ResetForm = () => {
             <span>Login</span>
           </Link>
         </div>
-      </form>
-      {pending && <LoadingScreen />}
+      </div>
+      {state.pending && <LoadingScreen />}
     </div>
   );
 };
