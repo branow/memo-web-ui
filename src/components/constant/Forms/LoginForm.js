@@ -32,10 +32,10 @@ const LoginForm = () => {
       )}
       <div>
         <EmailInputField
-          onChangeAction={useCallback((e) => setEmail(e.target.value),[])}
+          onChangeAction={useCallback((e) => setEmail(e.target.value), [])}
         />
         <PasswordInputField
-          onChangeAction={useCallback((e) => setPassword(e.target.value),[])}
+          onChangeAction={useCallback((e) => setPassword(e.target.value), [])}
           label={"Password"}
         />
 

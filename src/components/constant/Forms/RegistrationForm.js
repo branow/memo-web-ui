@@ -23,7 +23,7 @@ const RegistrationForm = () => {
       confirmPassword: confirmPassword,
     };
     state.run(user);
-  },[]);
+  }, [state, username, email, password, confirmPassword]);
 
   return (
     <div className="w-[450px] p-[50px]">
@@ -36,24 +36,25 @@ const RegistrationForm = () => {
       )}
       <div>
         <UsernameInputField
-          onChangeAction={useCallback((e) => setUsername(e.target.value),[])}
+          onChangeAction={useCallback((e) => setUsername(e.target.value), [])}
         />
-        <EmailInputField onChangeAction={useCallback((e) => setEmail(e.target.value),[])} />
+        <EmailInputField
+          onChangeAction={useCallback((e) => setEmail(e.target.value), [])}
+        />
         <PasswordInputField
-          onChangeAction={useCallback((e) => setPassword(e.target.value),[])}
+          onChangeAction={useCallback((e) => setPassword(e.target.value), [])}
           label={"Password"}
         />
         <PasswordInputField
-          onChangeAction={useCallback((e) => setConfirmPassword(e.target.value),[])}
+          onChangeAction={useCallback(
+            (e) => setConfirmPassword(e.target.value),
+            [confirmPassword]
+          )}
           label={"Confirm password"}
         />
         <div className="w-fit m-auto">
-        <SubmitButton
-          actionName={"Register"}
-          onClickAction={handleSubmit}
-        />
+          <SubmitButton actionName={"Register"} onClickAction={handleSubmit} />
         </div>
-        
 
         <div className="text-[1em] text-white text-center font-medium inline">
           <p className="my-[16px]">

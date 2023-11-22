@@ -10,9 +10,9 @@ const ResetForm = () => {
   const useReset = useResetPassword();
   const [email, setEmail] = useState("");
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     useReset.state.run(email);
-  };
+  }, [useReset, email]);
 
   return (
     <div className="w-[450px] p-[50px]">

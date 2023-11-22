@@ -1,16 +1,17 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useContext } from "react";
 import SubmitButton from "../Buttons/SubmitButton";
 import EmailInputField from "../FormInput/EmailInputField";
 import LoadingScreen from "../LoadingScreen";
 import ErrorBox from "../ErrorBox";
-
 import {
   useEnable,
   useRegenerateToken,
 } from "../../../hooks/request/authentication";
+import { UserContext } from "../../App";
 
-const ConfirmForm = ({ setUser }) => {
-  const enable = useEnable(setUser);
+const ConfirmForm = () => {
+  const userState = useContext(UserContext);
+  const enable = useEnable(userState.setUser);
   const regenerate = useRegenerateToken();
   const [email, setEmail] = useState("");
 
