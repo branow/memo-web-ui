@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const PublicTabButton = ({ destination, name, active }) => {
+const TabButton = ({ destination, name, active }) => {
   return (
     <div
       className={
@@ -22,4 +22,4 @@ const PublicTabButton = ({ destination, name, active }) => {
   );
 };
 
-export default PublicTabButton;
+export default TabButton;

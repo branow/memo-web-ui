@@ -1,15 +1,16 @@
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { RiGitRepositoryPrivateLine } from "react-icons/ri";
 import { RxCross1 } from "react-icons/rx";
+import { IoDownloadOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 import StudyTypeDescription from "./StudyTypeDescription";
-import LearnList from "./LearnList";
-import Score from "./Score";
-import CollectionList from "./CollectionList";
-import ScoreWrapper from "./ScoreWrapper";
+import CollectionList from "../Collection/CollectionList";
+import ScoreWrapper from "../ScoreWrapper";
 
-const Module = ({ module }) => {
+const Module = ({ module, thisUser }) => {
   let accesIcon;
   let accessName;
+  let closeIcon = thisUser ? <RxCross1 size={"20px"} /> :  <IoDownloadOutline size={"20px"} />;
   if (module.access === "public") {
     accesIcon = <MdOutlinePeopleAlt className="text-main-green" size={"25px"} />;
     accessName = <span className="pl-[7px] text-lg text-main-green">PUBLIC</span>;
@@ -23,8 +24,8 @@ const Module = ({ module }) => {
       border-body-background-grey cursor-pointer hover:border-solid 
       hover:border-collection-underline-grey"
     >
-      <div className="float-right p-[0.5vh] cursor-pointer">
-        <RxCross1 size={"20px"} />
+      <div className="float-right p-[0.5vh]">
+        <Link to={"#"}> {closeIcon}</Link>
       </div>
       <div className="flex flex-row my-[2vh] mx-[4vw]">
         <div className="w-[40vw] flex flex-col">
@@ -50,13 +51,12 @@ const Module = ({ module }) => {
           <ScoreWrapper scores={module.scores} />
         </div>
       </div>
-      <StudyTypeDescription/>
+      {thisUser && (
+        <StudyTypeDescription memoDestination={"#"} writingDestination={"#"} />
+      )}
 
       <div className="flex flex-row flex-wrap justify-between mt-[2vh]">
-       
-
-        <CollectionList collections={module.collections} />
-        
+        <CollectionList thisUser={thisUser} collections={module.collections} />
       </div>
     </div>
   );
