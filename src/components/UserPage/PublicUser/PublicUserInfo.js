@@ -2,14 +2,15 @@ import { RxAvatar } from "react-icons/rx";
 import { modules } from "../ModuleDto";
 import { Link } from "react-router-dom";
 import SearchBar from "../../constant/SearchBar";
-import PublicTabButton from "./PublicTabButton";
-import ModuleList from "./ModuleList";
-import { useContext } from "react";
-import { UserContext } from "../../App";
+import TabButton from "./TabButton";
+import ModuleList from "./Module/ModuleList";
+import EmptyModules from "./Module/EmptyModules";
 
-const PublicUserInfo = ({ tab }) => {
-  const userState = useContext(UserContext);
-  const user = {
+
+const PublicUserInfo = ({ user, tab }) => {
+  let modules = null;
+  let thisUser = true;
+  user = {
     name: "Billy",
     description: "I'm only a lab rat",
   };
@@ -28,25 +29,33 @@ const PublicUserInfo = ({ tab }) => {
         <div className="ml-[40vw] pt-[8vh] w-fit h-fit flex flex-col"></div>
       </div>
       <div className="w-screen h-fit flex flex-row text-xl font-normal pt-[5vh]">
-        <PublicTabButton
+        <TabButton
           destination={"modules"}
           name={"Modules"}
           active={tab === "modules" && true}
         />
-        <PublicTabButton
+        <TabButton
           destination={"achievements"}
           name={"Achievements"}
           active={tab === "achievements" && true}
         />
       </div>
-      <div className="w-[30vw] h-[10vh] pt-[5vh] ml-[12vw]">
-        <SearchBar />
-      </div>
-      {tab === "modules" ? (
-        <ModuleList modules={modules} />
-      ) : (
-        "There are no achievements yet("
+      {modules && (
+        <div className="w-[30vw] h-[10vh] pt-[5vh] ml-[12vw]">
+          <SearchBar />
+        </div>
       )}
+      <div>
+        {tab === "modules" ? (
+          modules !== null ? (
+            <ModuleList thisUser={thisUser} modules={modules} />
+          ) : (
+            <EmptyModules thisUser={thisUser} />
+          )
+        ) : (
+          "There are no achievements yet("
+        )}
+      </div>
     </div>
   );
 };

@@ -2,19 +2,20 @@ import { Link } from "react-router-dom";
 import MemoStudyButton from "./MemoStudyButton";
 import WritingStudyButton from "./WritingStudyButton";
 
-const StudyTypeDescription = () => {
+const StudyTypeDescription = ({ memoDestination, writingDestination }) => {
     return (
       <div className="w-full flex flex-row p-[10px] border-y-[3px] border-solid border-white">
-        <Link className="peer/memo ml-[4vw]" to={"#"}>
-          <div >
+        <div className="peer/memo ml-[4vw]">
+          <Link  to={memoDestination}>
             <MemoStudyButton />
-          </div>
-        </Link>
-        <Link className="peer/write mx-[3vw]" to={"#"}>
-          <div >
+          </Link>
+        </div>
+        <div className="peer/write mx-[3vw]">
+          <Link to={writingDestination}>
             <WritingStudyButton />
-          </div>
-        </Link>
+          </Link>
+        </div>
+
         <div className="border-r-[3px] border-solid border-main-green"></div>
         <div className="my-auto px-[3vw] text-lg text-main-green hidden peer-hover/memo:block">
           <span>
