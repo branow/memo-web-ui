@@ -8,7 +8,8 @@ import EmptyModules from "./Module/EmptyModules";
 
 
 const PublicUserInfo = ({ user, tab }) => {
-  let thisUser = false;
+  let modules = null;
+  let thisUser = true;
   user = {
     name: "Billy",
     description: "I'm only a lab rat",
@@ -39,9 +40,11 @@ const PublicUserInfo = ({ user, tab }) => {
           active={tab === "achievements" && true}
         />
       </div>
-      <div className="w-[30vw] h-[10vh] pt-[5vh] ml-[12vw]">
-        <SearchBar />
-      </div>
+      {modules && (
+        <div className="w-[30vw] h-[10vh] pt-[5vh] ml-[12vw]">
+          <SearchBar />
+        </div>
+      )}
       <div>
         {tab === "modules" ? (
           modules !== null ? (
