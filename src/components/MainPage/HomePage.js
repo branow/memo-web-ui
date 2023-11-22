@@ -2,8 +2,9 @@ import { useContext } from "react";
 import GetStartedSection from "./GetStartedSection";
 import MemorizeSection from "./MemorizeSection";
 import { UserContext } from "../App";
+import { memo } from "react";
 
-const HomePage = () => {
+const HomePage = memo(() => {
     const userState = useContext(UserContext);
 
     return (  
@@ -12,7 +13,7 @@ const HomePage = () => {
             <MemorizeSection></MemorizeSection>
         </div>
     );
-}
+});
  
 export default HomePage;
 

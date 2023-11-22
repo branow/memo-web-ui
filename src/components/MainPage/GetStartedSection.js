@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../App";
+import { memo } from "react";
 
-const GetStartedSection = () => {
+const GetStartedSection = memo(() => {
   const userState = useContext(UserContext);
 
   return (
@@ -26,6 +27,6 @@ const GetStartedSection = () => {
       </div>
     </section>
   );
-};
+});
 
 export default GetStartedSection;

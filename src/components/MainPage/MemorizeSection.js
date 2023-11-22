@@ -1,4 +1,6 @@
-const MemorizeSection = () => {
+import { memo } from "react";
+
+const MemorizeSection = memo(() => {
     return (
       <div className="relative h-fit w-screen p-[3vw] text-center flex">
         <div className="relative w-[40vw] p-[2vw] text-white  text-left">
@@ -18,6 +20,6 @@ const MemorizeSection = () => {
         </div>
       </div>
     );
-}
+});
  
 export default MemorizeSection;
