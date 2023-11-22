@@ -14,8 +14,17 @@ import {
 } from "../../utils/function-wrapper";
 import { useHistory } from "react-router-dom";
 import AuthenticationRequester from "../../request/authentication";
+import { createNewPasswordEmail } from "../../utils/email-templates";
+import usePostRequest from "./usePostRequest";
 
-export { useLogin, useLogout, useRegister, useRegenerateToken, useEnable };
+export {
+  useLogin,
+  useLogout,
+  useRegister,
+  useRegenerateToken,
+  useEnable,
+  useResetPassword,
+};
 
 function useLogin(setUser) {
   const history = new useHistory();
@@ -73,7 +82,7 @@ function useRegister() {
 
     callback.success.addAtEnd((response) => {
       console.log(response.data.token);
-      history.push("/send-verification-token", {
+      history.push("/verificate", {
         token: response.data.token,
         receiver: user.email,
       });
@@ -150,4 +159,17 @@ function useRegenerateToken() {
   return {
     state: useRequest(request, callback),
   };
+}
+
+function useResetPassword() {
+  const history = useHistory();
+  const callback = new Callback();
+  callback.success.addAtEnd(() => history.push("/"));
+  const request = ({ data, callback }) => {
+    const emailDto = createNewPasswordEmail(data, "{PASSWORD}");
+    new AuthenticationRequester().resetPassword(emailDto, callback);
+  };
+  const buildValidator = (email) =>
+    new MultiValidator([getEmailValidator(email)]);
+  return usePostRequest(() => {}, request, callback, buildValidator);
 }

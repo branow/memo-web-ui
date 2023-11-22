@@ -39,6 +39,14 @@ class AuthenticationRequester {
       signal: signal,
     });
   };
+  resetPassword(emailDto, doFinally, signal) {
+    this.requester.post({
+      url: 'reset',
+      body: emailDto,
+      doFinally: doFinally,
+      signal: signal,
+    });
+  }
 }
 
 export default AuthenticationRequester;

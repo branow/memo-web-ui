@@ -4,15 +4,14 @@ import EmailInputField from "../FormInput/EmailInputField";
 import SubmitButton from "../Buttons/SubmitButton";
 import LoadingScreen from "../LoadingScreen";
 import ErrorBox from "../ErrorBox";
-import { useNewPasswordEmail } from "../../../hooks/request/email";
-import { generate } from "../../../utils/password-generator";
+import { useResetPassword } from "../../../hooks/request/authentication";
 
 const ResetForm = () => {
-  const { state } = useNewPasswordEmail(generate());
+  const useReset = useResetPassword();
   const [email, setEmail] = useState("");
 
   const handleSubmit = () => {
-    state.run(email);
+    useReset.state.run(email);
   };
 
   return (
@@ -24,11 +23,11 @@ const ResetForm = () => {
         Type your email to send verification letter
       </h2>
 
-      {state.error && (
-        <ErrorBox title="Email Sending Error" message={state.error} />
+      {useReset.state.error && (
+        <ErrorBox title="Email Sending Error" message={useReset.state.error} />
       )}
 
-      <form>
+      <div>
         <EmailInputField
           onChangeAction={useCallback((e) => setEmail(e.target.value), [])}
         />
@@ -44,8 +43,8 @@ const ResetForm = () => {
             <span>Login</span>
           </Link>
         </div>
-      </form>
-      {state.pending && <LoadingScreen />}
+      </div>
+      {useReset.state.pending && <LoadingScreen />}
     </div>
   );
 };
