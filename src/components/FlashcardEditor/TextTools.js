@@ -5,7 +5,7 @@ import ColorIcon from "./ColorIcon";
 const TextTools = () => {
   return (
     <>
-      <div className="bg-form-background-grey rounded-full p-[5px] m-[20px]">
+      <div className="bg-form-background-grey rounded-full p-[5px] h-fit">
         <div className="flex flex-col">
           <TextToolItemWrapper Icon={MdTextIncrease}/>
           <TextToolItemWrapper Icon={MdTextDecrease}/>
