@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { FaSearch } from "react-icons/fa";
 import SearchCircleButton from "./Buttons/SearchCircleButton";
 
 const SearchBar = () => {

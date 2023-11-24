@@ -21,7 +21,7 @@ const Module = ({ module, thisUser }) => {
   return (
     <div
       className="relative w-[80vw] h-fit bg-body-background-grey mx-auto mt-[5vh] rounded-sm  border-[2px] 
-      border-body-background-grey cursor-pointer hover:border-solid 
+      border-body-background-grey hover:border-solid 
       hover:border-collection-underline-grey"
     >
       <Link to={"/profile/modules/" + module.moduleId}>

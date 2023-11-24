@@ -2,7 +2,7 @@ export const modules = [
   {
     moduleId: "1",
     moduleName: "First Module",
-    shortDescription: "Some module descriptiond asd asda asdasd asdas dasdsa asdasdas asdas d awdwad awd",
+    shortDescription: "Some module descriptiond asd asda asdasd asdas dasdsa asdasdas asdas d awdwad aw dssas asdasdaasdasd asdasd asdasdsd asdasdasd sadasd",
     access: "public",
     collections: [
       {
