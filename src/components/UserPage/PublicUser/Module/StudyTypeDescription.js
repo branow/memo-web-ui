@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import MemoStudyButton from "./MemoStudyButton";
 import WritingStudyButton from "./WritingStudyButton";
+import DeleteCircleButton from "../../../constant/Buttons/DeleteCircleButton";
+import SearchCircleButton from "../../../constant/Buttons/SearchCircleButton";
 
 const StudyTypeDescription = ({ memoDestination, writingDestination }) => {
     return (

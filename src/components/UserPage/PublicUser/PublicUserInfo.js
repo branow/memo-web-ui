@@ -8,7 +8,6 @@ import EmptyModules from "./Module/EmptyModules";
 
 
 const PublicUserInfo = ({ user, tab }) => {
-  let modules = null;
   let thisUser = true;
   user = {
     name: "Billy",

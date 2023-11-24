@@ -12,7 +12,7 @@ const ModuleList = ({ modules, thisUser }) => {
         ))}
         {thisUser && (
           <div className="mt-[-3vh]">
-            <div className="w-fit h-fit m-auto mr-[5vw] pb-[4vh]">
+            <div className="relative w-fit h-fit m-auto mr-[5vw] pb-[4vh] z-10">
               <Link to={"#"}>
                 <AddModuleButton />
               </Link>
