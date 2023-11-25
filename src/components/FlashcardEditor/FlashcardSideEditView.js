@@ -3,6 +3,7 @@ import DeleteCircleButton from "../constant/Buttons/DeleteCircleButton";
 import SearchCircleButton from "../constant/Buttons/SearchCircleButton";
 import { GiSoundWaves } from "react-icons/gi";
 import { IoMdImages } from "react-icons/io";
+import TextEditor from "./TextEditor";
 
 const FlashcardSideEditView = ({ title, side }) => {
   return (
@@ -12,10 +13,8 @@ const FlashcardSideEditView = ({ title, side }) => {
           {title}
         </div>
         <div className="flex content-around p-[10px] max-h-[40vh] min-h-[25vh]">
-          <div className="w-[70%] min-h-full p-[0px]">
-            <div className="bg-collection-grey p-[15px] rounded-xl  overflow-y-auto text-gray-200 font-sans h-full">
-              {side.text}
-            </div>
+          <div className="w-[70%] min-h-full">
+            <TextEditor format={side.format} text={side.text}/>
           </div>
           <div className="w-[30%] flex flex-col content-around items-center p-[10px]">
             <div className="relative w-full">
