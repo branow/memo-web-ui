@@ -1,4 +1,4 @@
-import { Format } from "./Format";
+import { Format } from "./format";
 
 class TextNode {
   constructor(start, end) {
@@ -11,7 +11,7 @@ class TextNode {
   addFormat(format) {
     this.format.merge(format);
     for (let i in this.children) {
-      children[i].format.subtract(this.format);
+      this.children[i].format.subtract(this.format);
     }
   }
 
@@ -64,12 +64,12 @@ class TextNode {
         const child = this.children[i];
         if (isEqual(child, node)) {
           const res = child.clone();
-          res.addFormat(format);
+          res.addFormat(this.format);
           return res;
         }
         if (isEmbedded(child, node)) {
           const res = child.sub(start, end);
-          res.addFormat(format);
+          res.addFormat(this.format);
           return res;
         } else if (isCrossed(node, child)) {
           node.addChild(child.sub(child.start, node.end));

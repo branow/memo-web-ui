@@ -1,28 +1,31 @@
 import TextNode from "./text-node";
-import { Format } from "./Format";
+import { Format } from "./format";
 
-class TextFormatter {
-  constructor(text) {
+export default class TextFormatter {
+  constructor(text, root) {
     this.text = text;
-    this.root = new TextNode(0, text.length);
+    this.root = root ? root : new TextNode(0, text.length);
   }
 
-  setStyle(start, end, style) {
-    const format = new Format();
-    format.styles.push(style);
-    setFormat(start, end, format);
-  }
-
-  setSize(start, end, size) {
-    const format = new Format();
-    format.size = size;
-    setFormat(start, end, format);
-  }
-
-  setColor(start, end, color) {
-    const format = new Format();
-    format.color = color;
-    setFormat(start, end, format);
+  setText(text) {
+    const shift = text.length - this.text.length;
+    if (shift != 0) {
+      let index = -1;
+      for (let i = 0; i < this.text.length && i < text.length; i++) {
+        if (this.text.charAt(i) != text.charAt(i)) {
+          index = i;
+          break;
+        }
+      }
+      if (index == -1) {
+        index = Math.min(this.text.length, text.length);
+      }
+      if (shift > 0) {
+        this.insert(index, text.substring(index, index + shift));
+      } else {
+        this.remove(index, -shift);
+      }
+    }
   }
 
   setFormat(start, end, format) {
@@ -31,21 +34,48 @@ class TextFormatter {
     this.root.addChild(node);
   }
 
+  setStyle(start, end, style) {
+    const format = new Format();
+    format.styles.push(style);
+    this.setFormat(start, end, format);
+  }
+
+  setSize(start, end, size) {
+    const format = new Format();
+    format.size = size;
+    this.setFormat(start, end, format);
+  }
+
+  setColor(start, end, color) {
+    const format = new Format();
+    format.color = color;
+    this.setFormat(start, end, format);
+  }
+
   insert(index, text) {
-    this.text.insert(index, text);
-    shiftInsert(index, text.length(), this.root);
+    this.text = this.text.substring(0, index) + text + this.text.substring(index);
+    shiftInsert(index, text.length, this.root);
   }
 
   remove(index, length) {
-    this.text.replace(index, index + length, "");
-    shiftRemove(index, length, this.root);
+    if (index === 0 && this.text.length == length) {
+      this.children = [];
+    } else {
+      this.text = this.text.substring(0, index) + this.text.substring(index + length);
+      shiftRemove(index, length, this.root);
+    }
   }
 
   clear() {
     this.root.children = [];
     this.root.format.clear();
   }
+
+  clone() {
+    return new TextFormatter(this.text, this.root.clone())
+  }
 }
+
 
 function shiftInsert(index, shift, node) {
   if (index <= node.end) {
@@ -54,7 +84,7 @@ function shiftInsert(index, shift, node) {
       node.start = Math.max(node.start + shift, 0);
     }
     for (let i in node.children) {
-      shiftInsert(index, shift, children[i]);
+      shiftInsert(index, shift, node.children[i]);
     }
   }
 }
@@ -72,14 +102,13 @@ function shiftRemove(index, shift, node) {
   } else {
     const toRemove = [];
     for (let i in node.children) {
-      const child = children[i];
+      const child = node.children[i];
       shiftRemove(index, shift, child);
       if (child.end - child.start <= 0) {
         toRemove.push(child);
       }
     }
-    node.children = children.filter((e) => toRemove.indexOf(e) === -1);
+    node.children = node.children.filter((e) => toRemove.indexOf(e) === -1);
   }
 }
 
-export default TextFormatter;

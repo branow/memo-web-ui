@@ -28,13 +28,13 @@ class Format {
   }
   
   merge(format) {
-    if (format.getSize() != null) {
-      this.size = format.getSize();
+    if (format.size != null) {
+      this.size = format.size;
     }
-    if (format.getColor() != null) {
-      this.color = format.getColor();
+    if (format.color != null) {
+      this.color = format.color;
     }
-    this.styles.addAll(format.getStyle());
+    format.styles.forEach(e => this.styles.add(e));
   }
 
   subtruct(format) {
@@ -44,20 +44,20 @@ class Format {
     if (this.color === format.color) {
       this.color = null;
     }
-    this.styles.removeAll(format.getStyle());
+    format.styles.forEach((e) => this.styles.delete(e));
   }
 
   clear() {
     this.size = null;
     this.color = null;
-    this.styles.clear;
+    this.styles.clear();
   }
 
   clone() {
     const format = new Format();
     format.color = this.color;
     format.size = this.size;
-    format.styles.addAll(this.styles);
+    this.styles.forEach(e => format.styles.add(e));
     return format;
   }
 }
