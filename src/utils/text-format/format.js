@@ -26,7 +26,17 @@ class Format {
     this.color = null;
     this.styles = new Set();
   }
-  
+
+  add(format) {
+    if (this.size == null) {
+      this.size = format.size;
+    }
+    if (this.color == null) {
+      this.color = format.color;
+    }
+    format.styles.forEach((e) => this.styles.add(e));
+  }
+
   merge(format) {
     if (format.size != null) {
       this.size = format.size;
@@ -34,10 +44,10 @@ class Format {
     if (format.color != null) {
       this.color = format.color;
     }
-    format.styles.forEach(e => this.styles.add(e));
+    format.styles.forEach((e) => this.styles.add(e));
   }
 
-  subtruct(format) {
+  subtract(format) {
     if (this.size === format.size) {
       this.size = null;
     }
@@ -57,7 +67,15 @@ class Format {
     const format = new Format();
     format.color = this.color;
     format.size = this.size;
-    this.styles.forEach(e => format.styles.add(e));
+    this.styles.forEach((e) => format.styles.add(e));
     return format;
+  }
+
+  equals(format) {
+    return (
+      this.color === format.color &&
+      this.size === format.size &&
+      this.styles === format.styles
+    );
   }
 }

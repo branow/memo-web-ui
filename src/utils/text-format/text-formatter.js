@@ -9,15 +9,15 @@ export default class TextFormatter {
 
   setText(text) {
     const shift = text.length - this.text.length;
-    if (shift != 0) {
+    if (shift !== 0) {
       let index = -1;
       for (let i = 0; i < this.text.length && i < text.length; i++) {
-        if (this.text.charAt(i) != text.charAt(i)) {
+        if (this.text.charAt(i) !== text.charAt(i)) {
           index = i;
           break;
         }
       }
-      if (index == -1) {
+      if (index === -1) {
         index = Math.min(this.text.length, text.length);
       }
       if (shift > 0) {
@@ -36,7 +36,7 @@ export default class TextFormatter {
 
   setStyle(start, end, style) {
     const format = new Format();
-    format.styles.push(style);
+    format.styles.add(style);
     this.setFormat(start, end, format);
   }
 
@@ -58,7 +58,7 @@ export default class TextFormatter {
   }
 
   remove(index, length) {
-    if (index === 0 && this.text.length == length) {
+    if (index === 0 && this.text.length === length) {
       this.children = [];
     } else {
       this.text = this.text.substring(0, index) + this.text.substring(index + length);
@@ -66,9 +66,8 @@ export default class TextFormatter {
     }
   }
 
-  clear() {
-    this.root.children = [];
-    this.root.format.clear();
+  clear(start, end) {
+    this.root.clear(start, end);
   }
 
   clone() {
