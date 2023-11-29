@@ -146,6 +146,7 @@ const FlashcardSideTextEdit = ({ format, text }) => {
         ref={container}
         onPaste={onPaste}
         onBlur={onBlur}
+        onDrop={(e) => e.preventDefault()}
       >
         <TextFormat
           textnode={editor.formatter.root}
