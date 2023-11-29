@@ -1,6 +1,7 @@
 const TextFormat = ({ textnode, text }) => {
   let start = textnode.start;
   let end = 0;
+  //children wrap
   let inner = (
     <>
       {textnode.children.map((e) => {
@@ -19,14 +20,19 @@ const TextFormat = ({ textnode, text }) => {
     </>
   );
 
-  return (
-    <>
-      <TextFormatTeg
-        format={textnode.format.size}
-        inner={<TextFormatTeg format={textnode.format.color} inner={inner} />}
-      />
-    </>
-  );
+  //Styles wrap
+  for (let style of textnode.format.styles) {
+    inner = (
+      <TextFormatTeg format={style} inner={inner} />
+    );
+  }
+
+  //Color wrap
+  inner = <TextFormatTeg format={textnode.format.color} inner={inner} />;
+
+  //Font size wrap
+  inner = <TextFormatTeg format={textnode.format.size} inner={inner} />;
+  return <>{inner}</>;
 };
 
 const TextFormatTeg = ({ format, inner }) => {
