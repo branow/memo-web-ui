@@ -1,12 +1,11 @@
 import ScoreWrapper from "../UserPage/PublicUser/ScoreWrapper";
 import DeleteCircleButton from "../constant/Buttons/DeleteCircleButton";
 import StudyTypeDescription from "../UserPage/PublicUser/Module/StudyTypeDescription";
-import { IoDownloadOutline } from "react-icons/io5";
+import DownloadCircleButton from "../constant/Buttons/DownloadCircleButton";
 import { Link } from "react-router-dom";
 
 const ModuleCollection = ({ collection, thisUser }) => {
-    thisUser = true;
-    let removeIcon = thisUser ? <DeleteCircleButton size={"25px"}/> :  <IoDownloadOutline size={"25px"} />;
+    let removeIcon = thisUser ? <DeleteCircleButton size={"25px"}/> :  <DownloadCircleButton size={"25px"} />;
     return (
       <div
         className="relative w-[62vw] h-fit  mx-auto my-[2vh] bg-collection-grey mt-[2vh] rounded-t-lg border-b-[4px] 
@@ -28,13 +27,15 @@ const ModuleCollection = ({ collection, thisUser }) => {
             <ScoreWrapper scores={collection.scores} />
           </div>
         </div>
-        <div className="border-t-[4px] border-solid border-body-background-grey">
-          <StudyTypeDescription
-            memoDestination={"#"}
-            writingDestination={"#"}
-            buttonsClassname={"text-dim-grey"}
-          />
-        </div>
+        {thisUser && (
+          <div className="border-t-[4px] border-solid border-body-background-grey">
+            <StudyTypeDescription
+              memoDestination={"#"}
+              writingDestination={"#"}
+              buttonsClassname={"text-dim-grey"}
+            />
+          </div>
+        )}
       </div>
     );
 }

@@ -1,6 +1,7 @@
 import { MdOutlinePeopleAlt } from "react-icons/md";
 import { RiGitRepositoryPrivateLine } from "react-icons/ri";
 import ChangeCircleButton from "../constant/Buttons/ChangeCircleButton";
+import DownloadCircleButton from "../constant/Buttons/DownloadCircleButton";
 import ScoreWrapper from "../UserPage/PublicUser/ScoreWrapper";
 import StudyTypeDescription from "../UserPage/PublicUser/Module/StudyTypeDescription";
 import SearchBar from "../constant/SearchBar";
@@ -30,10 +31,11 @@ const ModuleInfo = ({module, thisUser}) => {
             <div className="flex flex-col">
               <div className="text-4xl">
                 <span className="font-normal">{module.moduleName}</span>
-                <span className="ml-[0.5vw]">
-                  <ChangeCircleButton size={"25px"} />
-                </span>
-
+                {thisUser && (
+                  <span className="ml-[0.5vw]">
+                    <ChangeCircleButton size={"25px"} />
+                  </span>
+                )}
                 <span className="pr-[1vw] font-semibold text-main-green float-right border-r-[3px] border-solid border-white">
                   {module.collections.length}
                 </span>
@@ -41,18 +43,27 @@ const ModuleInfo = ({module, thisUser}) => {
               <div className="flex flex-row mt-[1vh]">
                 {accesIcon}
                 {accessName}
-                <span className="ml-[0.5vw]">
-                  <ChangeCircleButton size={"20px"} />
-                </span>
+                {thisUser && (
+                  <span className="ml-[0.5vw]">
+                    <ChangeCircleButton size={"20px"} />
+                  </span>
+                )}
               </div>
             </div>
-            <div className="mt-[2vh] w-[70vw] flex flex-row">
+            <div className="relative mt-[5vh] w-[70vw] flex flex-row">
               <div className="text-xl text-gray-300 mr-[1vw]">
                 {module.description}
               </div>
-              <div className="absolute right-[1vw]">
-                <ChangeCircleButton size={"20px"} />
-              </div>
+
+              {thisUser ? (
+                <div className="absolute top-[-3vh] right-[3vw]">
+                  <ChangeCircleButton size={"20px"} />
+                </div>
+              ) : (
+                <div className="absolute top-[-6vh] right-[1.8vw]">
+                  <DownloadCircleButton size={"50px"} />
+                </div>
+              )}
             </div>
           </div>
 
@@ -64,7 +75,14 @@ const ModuleInfo = ({module, thisUser}) => {
             <div className="w-fit m-auto text-lg">Author</div>
           </div>
         </div>
-        <div className="relative z-10 border-y-[3px] border-solid border-white">
+
+        <div
+          className={
+            thisUser
+              ? "relative z-10 border-solid border-white border-y-[3px]"
+              : "relative z-10 border-solid border-white border-b-[3px]"
+          }
+        >
           {thisUser && (
             <StudyTypeDescription
               memoDestination={"#"}
@@ -72,7 +90,7 @@ const ModuleInfo = ({module, thisUser}) => {
             />
           )}
         </div>
-        <div className="w-[30vw] h-[5vh] mt-[5vh] ml-[9vw] border-[2.5px] border-solid rounded-md border-charcoal shadow-xl">
+        <div className="w-[30vw] h-[5vh] mt-[5vh] ml-[6.2vw] border-[2.5px] border-solid rounded-md border-charcoal shadow-xl">
           <SearchBar />
         </div>
 
