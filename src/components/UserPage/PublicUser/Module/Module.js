@@ -10,7 +10,7 @@ import DeleteCircleButton from "../../../constant/Buttons/DeleteCircleButton";
 const Module = ({ module, thisUser }) => {
   let accesIcon;
   let accessName;
-  let closeIcon = thisUser ? <DeleteCircleButton size={"20px"}/> :  <IoDownloadOutline size={"20px"} />;
+  let removeIcon = thisUser ? <DeleteCircleButton size={"20px"}/> :  <IoDownloadOutline size={"20px"} />;
   if (module.access === "public") {
     accesIcon = <MdOutlinePeopleAlt className="text-main-green" size={"25px"} />;
     accessName = <span className="pl-[7px] text-lg text-main-green">PUBLIC</span>;
@@ -28,7 +28,7 @@ const Module = ({ module, thisUser }) => {
         <div className="absolute w-full h-full z-[1]"></div>
       </Link>
       <div className="relative float-right p-[0.5vh] z-10">
-        <Link to={"#"}> {closeIcon}</Link>
+        <Link to={"#"}> {removeIcon}</Link>
       </div>
       <div className="flex flex-row my-[2vh] mx-[4vw] z-10">
         <div className="w-[40vw] flex flex-col">
@@ -54,7 +54,7 @@ const Module = ({ module, thisUser }) => {
           <ScoreWrapper scores={module.scores} />
         </div>
       </div>
-      <div className="relative z-10">
+      <div className="relative z-10 border-y-[3px] border-solid border-white">
         {thisUser && (
           <StudyTypeDescription
             memoDestination={"#"}

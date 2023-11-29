@@ -1,18 +1,16 @@
 import { Link } from "react-router-dom";
 import MemoStudyButton from "./MemoStudyButton";
 import WritingStudyButton from "./WritingStudyButton";
-import DeleteCircleButton from "../../../constant/Buttons/DeleteCircleButton";
-import SearchCircleButton from "../../../constant/Buttons/SearchCircleButton";
 
-const StudyTypeDescription = ({ memoDestination, writingDestination }) => {
+const StudyTypeDescription = ({ memoDestination, writingDestination, buttonsClassname }) => {
     return (
-      <div className="w-full flex flex-row p-[10px] border-y-[3px] border-solid border-white">
-        <div className="peer/memo ml-[4vw]">
-          <Link  to={memoDestination}>
+      <div className="w-full flex flex-row p-[10px]">
+        <div className={"peer/memo ml-[4vw] " + buttonsClassname}>
+          <Link to={memoDestination}>
             <MemoStudyButton />
           </Link>
         </div>
-        <div className="peer/write mx-[3vw]">
+        <div className={"peer/write mx-[3vw] " + buttonsClassname}>
           <Link to={writingDestination}>
             <WritingStudyButton />
           </Link>
