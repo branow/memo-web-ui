@@ -19,9 +19,10 @@ const TextFormat = ({ textnode, text }) => {
       {text.substring(start, textnode.end)}
     </>
   );
-
+  
   //Styles wrap
-  for (let style of textnode.format.styles) {
+  const styles = Array.from(textnode.format.styles);
+  for (let style of styles) {
     inner = (
       <TextFormatTeg format={style} inner={inner} />
     );
