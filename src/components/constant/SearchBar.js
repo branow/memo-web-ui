@@ -1,8 +1,18 @@
 import { useState } from "react";
 import SearchCircleButton from "./Buttons/SearchCircleButton";
 
-const SearchBar = () => {
+const SearchBar = ({ search }) => {
     const [input, setInput] = useState("");
+
+    const handleOnClickAction = () => {
+        search(input);
+    }
+
+    const handleOnKeyUp = (e) => {
+        if (e.key === "Enter") {
+            search(input);
+        }
+    }
 
     return ( 
         <div className="flex h-full w-full  px-[1vw] items-center text-main-green">
@@ -10,8 +20,9 @@ const SearchBar = () => {
             placeholder="Search..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
+            onKeyUp={handleOnKeyUp}
             />
-            <SearchCircleButton size={"35px"}/>
+            <SearchCircleButton size="35px" color="white" onClickAction={handleOnClickAction}/>
         </div>
      );
 }

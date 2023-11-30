@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useRequest from "./useRequest";
 
 
-function useGetRequest(request, callback) {
+function useGetRequest(request, callback, dependencies) {
   const [data, setData] = useState(null);
 
   callback.error.addAtMiddle(() => setData(null));
@@ -15,7 +15,7 @@ function useGetRequest(request, callback) {
     const abort = new AbortController();
     state.run(null, abort.signal);
     return () => abort.abort();
-  }, [])
+  }, dependencies ? dependencies : [])
 
   return {
     dataState: { data: data, setData: setData },
