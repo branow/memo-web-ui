@@ -1,5 +1,5 @@
 import { RxAvatar } from "react-icons/rx";
-import { modules } from "../ModuleDto";
+import { modules } from "../UserModuleDto";
 import { Link } from "react-router-dom";
 import SearchBar from "../../constant/SearchBar";
 import TabButton from "./TabButton";
@@ -8,7 +8,6 @@ import EmptyModules from "./Module/EmptyModules";
 
 
 const PublicUserInfo = ({ user, tab }) => {
-  let modules = null;
   let thisUser = true;
   user = {
     name: "Billy",
@@ -41,7 +40,7 @@ const PublicUserInfo = ({ user, tab }) => {
         />
       </div>
       {modules && (
-        <div className="w-[30vw] h-[10vh] pt-[5vh] ml-[12vw]">
+        <div className="w-[30vw] h-[5.5vh] mt-[6vh] mb-[8vh] ml-[12vw] border-[2.5px] border-solid rounded-md border-body-background-grey shadow-xl">
           <SearchBar />
         </div>
       )}

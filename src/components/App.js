@@ -6,6 +6,7 @@ import LoginForm from "./constant/Forms/LoginForm";
 import RegistrationForm from "./constant/Forms/RegistrationForm";
 import ResetForm from "./constant/Forms/ResetForm";
 import ConfirmForm from "./constant/Forms/ConfirmForm";
+import ModulePage from "./ModulePage/ModulePage";
 import PublicUserInfo from "./UserPage/PublicUser/PublicUserInfo"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "../input.css";
@@ -76,6 +77,9 @@ function App() {
               </Route>
               <Route path="/profile/public/achievements">
                 <PublicUserInfo tab={"achievements"} />
+              </Route>
+              <Route path="/profile/modules/:id">
+                <ModulePage/>
               </Route>
             </Switch>
           </div>

@@ -16,6 +16,8 @@ module.exports = {
         'form-background-darkened': 'rgba(0, 0, 0, 0.6)',
         'collection-grey': '#394151',
         'collection-underline-grey': '#888D96',
+        'charcoal': '#3B4455',
+        'dim-grey': '#616774',
 
         'soft-red': 'rgba(245, 42, 0, 0.3)',
         'bold-red': 'rgba(245, 42, 0, 0.7)',
