@@ -13,7 +13,7 @@ const Navbar = () => {
       <div className="flex flex-wrap items-center justify-between mx-auto py-2 px-4">
         <Link to="/" className="flex ">
           <TbCardsFilled color="#394151" size="60px"/>
-          <span className="self-center mx-[15px] text-5xl font-bold font-mono whitespace-nowrap text-bright-grey">
+          <span className="self-center mx-[15px] text-5xl font-bold font-mono whitespace-nowrap text-charcoal">
             Memo
           </span>
         </Link>

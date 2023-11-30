@@ -31,7 +31,7 @@ const AudioEditView = ({ audio }) => {
     <>
       <div className="relative w-full">
         <div className="flex w-full" onDragOver={handleOnDragOver} onDrop={handleOnDrop}>
-          <div className="w-full  border-b-4 border-bright-grey border-solid">
+          <div className="w-full  border-b-4 border-charcoal border-solid">
             {src && (
               <div className="flex w-full">
                 <div className="absolute">

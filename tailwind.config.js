@@ -13,7 +13,6 @@ module.exports = {
         'antiquewhite': '#faebd7',
         'dark-grey': '#333',
         'glassy-grey': 'rgba(0, 0, 0, 0.6)',
-        'bright-grey': '#394151',
         'regent-grey': '#888D96',
         'dim-grey': '#616774',
         'charcoal': '#3B4455',
