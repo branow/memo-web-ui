@@ -63,7 +63,7 @@ const PrivateUserInfo = () => {
   };
 
   return (
-    <div className="relative w-screen h-screen bg-form-background-grey text-white border-l-2 border-left-solid border-main-green flex flex-col items-center">
+    <div className="relative w-screen h-screen bg-dark-grey text-white border-l-2 border-left-solid border-main-green flex flex-col items-center">
       <div className="mt-[3vh] text-3xl font-semibold flex flex-col items-center">
         <div className="m-[20px]">Profile Info</div>
         <RxAvatar className="m-[10px]" color="white" size="70px" />
@@ -110,7 +110,7 @@ const PrivateUserInfo = () => {
           <div>Description</div>
           {useGet.userState.user && (
             <textarea
-              className="text-sm mt-[20px] bg-form-background-grey text-white border-[1px] border-left-solid border-gray-300 rounded-lg p-5"
+              className="text-sm mt-[20px] bg-dark-grey text-white border-[1px] border-left-solid border-gray-300 rounded-lg p-5"
               cols="40"
               rows="10"
               defaultValue={useGet.userState.user.description}

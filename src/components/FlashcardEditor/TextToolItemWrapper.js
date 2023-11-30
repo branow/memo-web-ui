@@ -2,7 +2,7 @@ const TextToolItemWrapper = ({ Icon, onClickAction }) => {
   return (
     <>
       <button
-        className="text-tool-button bg-form-background-grey rounded-full cursor-pointer p-[5px] hover:bg-soft-green
+        className="text-tool-button bg-dark-grey rounded-full cursor-pointer p-[5px] hover:bg-soft-green
       [&:hover>*]:fill-white active:bg-bold-green"
         onClick={onClickAction}
       >

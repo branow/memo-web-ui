@@ -35,7 +35,7 @@ const ProfileSettings = () => {
   }, [useDelete]);
 
   return (
-    <div className="relative w-screen h-screen bg-form-background-grey text-white border-l-2 border-left-solid border-main-green">
+    <div className="relative w-screen h-screen bg-dark-grey text-white border-l-2 border-left-solid border-main-green">
       <div className="mt-[10vh] flex flex-wrap justify-around">
         <div className="flex flex-col items-center">
           <div className="w-fit">

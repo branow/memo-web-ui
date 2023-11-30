@@ -29,7 +29,7 @@ const TextTools = ({ setFormat }) => {
 
   return (
     <>
-      <div className="bg-form-background-grey rounded-full p-[5px] h-fit w-fit" >
+      <div className="bg-dark-grey rounded-full p-[5px] h-fit w-fit" >
         <div className="flex flex-col">
           <TextToolItemWrapper
             Icon={MdTextIncrease}

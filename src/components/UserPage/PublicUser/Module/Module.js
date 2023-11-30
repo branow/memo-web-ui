@@ -20,9 +20,9 @@ const Module = ({ module, thisUser }) => {
   }
   return (
     <div
-      className="relative w-[80vw] h-fit bg-body-background-grey mx-auto mt-[5vh] rounded-sm  border-[2px] 
-      border-body-background-grey hover:border-solid 
-      hover:border-collection-underline-grey"
+      className="relative w-[80vw] h-fit bg-tealish-blue mx-auto mt-[5vh] rounded-sm  border-[2px] 
+      border-tealish-blue hover:border-solid 
+      hover:border-regent-grey"
     >
       <Link to={"/profile/modules/" + module.moduleId}>
         <div className="absolute w-full h-full z-[1]"></div>

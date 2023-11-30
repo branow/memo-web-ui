@@ -4,8 +4,8 @@ const TabButton = ({ destination, name, active }) => {
   return (
     <div
       className={
-        "w-[50%] p-[4px] border-b-2 border-solid hover:border-body-background-grey pointer-events-none" +
-        (active ? " border-body-background-grey" : "")
+        "w-[50%] p-[4px] border-b-2 border-solid hover:border-tealish-blue pointer-events-none" +
+        (active ? " border-tealish-blue" : "")
       }
     >
       <Link to={destination}>

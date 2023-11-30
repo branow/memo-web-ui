@@ -7,7 +7,7 @@ const ModulePage = ({ currentModule }) => {
     const { id } = useParams();
 
     return (
-      <div className="relative w-screen h-fit bg-form-background-grey text-white">
+      <div className="relative w-screen h-fit bg-dark-grey text-white">
         <ModuleInfo module={currentModule} />
         {console.log(id)}
       </div>

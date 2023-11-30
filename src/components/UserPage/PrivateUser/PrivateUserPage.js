@@ -14,7 +14,7 @@ const UserPage = ({ activeTab }) => {
   return (
     <>
       {!userState.user && (
-        <div className="h-screen bg-form-background-grey flex flex-col items-center">
+        <div className="h-screen bg-dark-grey flex flex-col items-center">
           <div className="mt-[10vh] w-[50vw] min-w-500px">
             <ErrorBox
               title="Authentication error"

@@ -7,7 +7,7 @@ import SideButton from "./SideButton";
 
 const Sidebar = ({ tab }) => {
   return (
-    <div className="relative w-[30vw] h-screen px-3 py-4 overflow-y-auto bg-form-background-grey text-white">
+    <div className="relative w-[30vw] h-screen px-3 py-4 overflow-y-auto bg-dark-grey text-white">
       <div className="flex m-5">
         <RxAvatar color="white" size="70px" />
         <span className="ml-[15px] self-center text-3xl font-semibold ">

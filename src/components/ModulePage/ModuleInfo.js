@@ -22,9 +22,9 @@ const ModuleInfo = ({module, thisUser}) => {
   }
     return (
       <div
-        className="relative h-fit w-[75vw] pb-[15vh] bg-body-background-grey mx-auto border-[2px] 
-      border-body-background-grey hover:border-solid 
-      hover:border-collection-underline-grey"
+        className="relative h-fit w-[75vw] pb-[15vh] bg-tealish-blue mx-auto border-[2px] 
+      border-tealish-blue hover:border-solid 
+      hover:border-regent-grey"
       >
         <div className="flex flex-row mt-[6vh] mb-[4vh] mx-[4vw] z-10">
           <div className="w-[45vw] flex flex-col">

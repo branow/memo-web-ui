@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 const Collection = ({ collection, thisUser }) => {
   return (
     <div
-      className="relative w-[20vw] h-fit px-[2vw] py-[2vh] mx-[3vw] my-[2vh] bg-collection-grey mt-[2vh] rounded-xl border-b-[4px] 
-    border-collection-grey hover:border-solid hover:border-collection-underline-grey cursor-pointer "
+      className="relative w-[20vw] h-fit px-[2vw] py-[2vh] mx-[3vw] my-[2vh] bg-bright-grey mt-[2vh] rounded-xl border-b-[4px] 
+    border-bright-grey hover:border-solid hover:border-regent-grey cursor-pointer "
     >
       <Link className="peer" to={"/profile/collections/" + collection.collectionId}>
         <div className="absolute top-0 left-0 w-full h-full z-10"></div>

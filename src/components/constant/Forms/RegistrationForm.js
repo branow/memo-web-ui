@@ -61,7 +61,7 @@ const RegistrationForm = () => {
             Already have an account?
             <Link
               to="/login"
-              className="text-form-link-antiquewhite hover:underline ml-[3px]"
+              className="text-antiquewhite hover:underline ml-[3px]"
             >
               Login
             </Link>

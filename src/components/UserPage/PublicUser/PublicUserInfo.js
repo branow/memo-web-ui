@@ -14,7 +14,7 @@ const PublicUserInfo = ({ user, tab }) => {
     description: "I'm only a lab rat",
   };
   return (
-    <div className="relative w-screen h-fit pb-[50px] bg-form-background-grey text-white">
+    <div className="relative w-screen h-fit pb-[50px] bg-dark-grey text-white">
       <div className="flex h-[vh] w-screen">
         <div className="text-3xl font-medium ml-[12vw] pt-[5vh] w-fit h-fit flex">
           <Link to={"/profile/info"}>
@@ -40,7 +40,7 @@ const PublicUserInfo = ({ user, tab }) => {
         />
       </div>
       {modules && (
-        <div className="w-[30vw] h-[5.5vh] mt-[6vh] mb-[8vh] ml-[12vw] border-[2.5px] border-solid rounded-md border-body-background-grey shadow-xl">
+        <div className="w-[30vw] h-[5.5vh] mt-[6vh] mb-[8vh] ml-[12vw] border-[2.5px] border-solid rounded-md border-tealish-blue shadow-xl">
           <SearchBar />
         </div>
       )}

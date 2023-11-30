@@ -133,9 +133,9 @@ const FlashcardSideTextEdit = ({ format, text }) => {
   return (
     <div className="w-full h-full">
       <div
-        className="w-full bg-collection-grey p-[15px] rounded-xl overflow-y-auto 
+        className="w-full bg-bright-grey p-[15px] rounded-xl overflow-y-auto 
             text-gray-200 font-sans h-full outline-none hover:bg-soft-green
-            focus-visible:bg-collection-grey focus-visible:border-b-4 focus-visible:border-form-background-grey 
+            focus-visible:bg-bright-grey focus-visible:border-b-4 focus-visible:border-dark-grey 
             [&:focus-visible~div.hidden]:flex
             whitespace-pre-wrap"
         suppressContentEditableWarning={true}
