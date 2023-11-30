@@ -8,22 +8,28 @@ export {
   useSearchImages,
 };
 
-function useSearchImages() {
-  const request = ({ data, callback, signal }) => {
-    const phrase = data.toLowerCase().replaseAll(' ', '-');
+function useSearchImages(input) {
+  const request = ({ callback, signal }) => {
+    if (!input) {
+      throw new Error("Search field is empty");
+    }
+    const phrase = input.toLowerCase().replaceAll(' ', '-');
     const jwt = new UserCookies().authorizationJwt.get();
     new SearchRequester().searchImages(jwt, phrase, callback, signal);
   };
-  const { dataState, state } = useGetRequest(request, new Callback());
+  const { dataState, state } = useGetRequest(request, new Callback(), [input]);
   return {
     imagesState: { images: dataState.data, setImages: dataState.setData },
     state: state,
   };
 }
 
-function useSearchAudios() {
-  const request = ({ data, callback, signal }) => {
-    const phrase = data.toLowerCase().replaseAll(' ', '-');
+function useSearchAudios(input) {
+  const request = ({ callback, signal }) => {
+    if (!input) {
+      throw new Error("Search field is empty");
+    }
+    const phrase = input.toLowerCase().replaceAll(' ', '-');
     const jwt = new UserCookies().authorizationJwt.get();
     new SearchRequester().searchAudios(jwt, phrase, callback, signal);
   };
