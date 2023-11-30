@@ -55,7 +55,6 @@ const FlashcardSideTextEdit = ({ format, text }) => {
   };
 
   const insertText = (text, { anchor, focus }) => {
-    console.log(anchor + " " + focus);
     if (anchor != focus) {
       deleteText({ anchor, focus });
     }
@@ -165,7 +164,6 @@ class Caret {
     this.target = target;
   }
   getPosition() {
-    console.log(window.getSelection());
     let anchorNode = window.getSelection().anchorNode;
     let focusNode =  window.getSelection().focusNode;
     let anchor = window.getSelection().anchorOffset;
@@ -176,8 +174,6 @@ class Caret {
     };
   }
   setPosition(pos) {
-    console.log("set"); ////
-    console.log(pos); ////
     setCaretRecursion(this.target, { value: pos, isSet: false });
   }
 }
