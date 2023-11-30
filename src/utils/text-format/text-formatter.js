@@ -36,7 +36,7 @@ export default class TextFormatter {
 
   setStyle(start, end, style) {
     const format = new Format();
-    format.styles.add(style);
+    format.styles.push(style);
     this.setFormat(start, end, format);
   }
 

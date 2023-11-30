@@ -1,5 +1,3 @@
-export { FontSize, TextColor, TextStyle, Format };
-
 const FontSize = Object.freeze({
   Small: "small",
   Large: "large",
@@ -24,7 +22,7 @@ class Format {
   constructor() {
     this.size = null;
     this.color = null;
-    this.styles = new Set();
+    this.styles = [];
   }
 
   add(format) {
@@ -34,7 +32,8 @@ class Format {
     if (this.color == null) {
       this.color = format.color;
     }
-    format.styles.forEach((e) => this.styles.add(e));
+    format.styles.forEach((e) => this.styles.push(e));
+    this.styles = [...new Set(this.styles)];
   }
 
   merge(format) {
@@ -44,7 +43,8 @@ class Format {
     if (format.color != null) {
       this.color = format.color;
     }
-    format.styles.forEach((e) => this.styles.add(e));
+    format.styles.forEach((e) => this.styles.push(e));
+    this.styles = [...new Set(this.styles)];
   }
 
   subtract(format) {
@@ -54,20 +54,20 @@ class Format {
     if (this.color === format.color) {
       this.color = null;
     }
-    format.styles.forEach((e) => this.styles.delete(e));
+    this.styles = this.styles.filter(e => format.styles.indexOf(e) === -1);
   }
 
   clear() {
     this.size = null;
     this.color = null;
-    this.styles.clear();
+    this.styles = [];
   }
 
   clone() {
     const format = new Format();
     format.color = this.color;
     format.size = this.size;
-    this.styles.forEach((e) => format.styles.add(e));
+    this.styles.forEach((e) => format.styles.push(e));
     return format;
   }
 
@@ -79,3 +79,5 @@ class Format {
     );
   }
 }
+
+export { FontSize, TextColor, TextStyle, Format };

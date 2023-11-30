@@ -46,7 +46,7 @@ class TextNode {
   }
 
   addChild(node) {
-    if (node.start - node.end == 0) {
+    if (node.start - node.end === 0) {
       return;
     }
     if (isEqual(this, node)) {
@@ -67,6 +67,7 @@ class TextNode {
             temp.addChild(node);
             return;
           } else if (isEmbedded(node, temp)) {
+            temp.format.merge(node.format);
             node.addChild(temp);
           } else if (isCrossed(temp, node)) {
             const n1 = temp.sub(temp.start, node.start);
@@ -87,7 +88,7 @@ class TextNode {
         }
       }
       this.children = this.children.filter(
-        (e) => node.children.indexOf(e) === -1 && toRemove.indexOf(e) === -1
+        (e) => !isEmbedded(node, e)
       );
       this.children.push(node);
       this.children.sort((a, b) => a.start - b.start);
