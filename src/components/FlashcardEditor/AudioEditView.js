@@ -5,7 +5,7 @@ import DeleteCircleButton from "../constant/Buttons/DeleteCircleButton";
 import { useState } from "react";
 import SoundWaves from "../constant/Icons/SoundWaves";
 
-const AudioEditView = ({ audio }) => {
+const AudioEditView = ({ audio, setAudio }) => {
   const [src, setSrc] = useState(audio != null ? audio.mediaUrl : null);
 
   const handleDeleteSubmit = (e) => {

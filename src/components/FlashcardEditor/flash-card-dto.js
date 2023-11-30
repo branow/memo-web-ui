@@ -14,7 +14,7 @@ const flashcardDto = {
   },
   backSide:  {
     textId: 4517,
-    text: "comperative",
+    text: "comparative",
     format: "",
     image: null,
     audio: {

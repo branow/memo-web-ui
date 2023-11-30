@@ -1,8 +1,8 @@
 import { useState } from "react";
 import SearchCircleButton from "./Buttons/SearchCircleButton";
 
-const SearchBar = ({ search }) => {
-    const [input, setInput] = useState("");
+const SearchBar = ({ query, search }) => {
+    const [input, setInput] = useState(query);
 
     const handleOnClickAction = () => {
         search(input);

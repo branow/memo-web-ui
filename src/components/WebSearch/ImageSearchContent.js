@@ -7,8 +7,8 @@ import { useState } from "react";
 
 const PAGE_SIZE = 12;
 
-const ImageSearchContent = ({ phrase, choose }) => {
-  const { imagesState, state } = useSearchImages(phrase);
+const ImageSearchContent = ({ query, choose }) => {
+  const { imagesState, state } = useSearchImages(query);
   const [page, setPage] = useState(1);
 
   const images = [];
@@ -21,7 +21,7 @@ const ImageSearchContent = ({ phrase, choose }) => {
       images[i] = (
         <SearchedImage
           image={imagesState.images[i]}
-          onDoubleClick={() => choose(images[i].data)}
+          onDoubleClick={() => choose(imagesState.images[i].data)}
         />
       );
     }
@@ -33,10 +33,10 @@ const ImageSearchContent = ({ phrase, choose }) => {
       {state.error && (
         <ErrorBox title="Image search error" message={state.error} />
       )}
-      {!state.error && !images && (
-        <div className="text-xl text-center">
-          No images found for this request. Please change the request in search
-          bar
+      {!state.error && images && images.length === 0 && (
+        <div className="text-xl text-center text-white">
+          No images found for this request. Please change your request in the search
+          bar.
         </div>
       )}
       {imagesState.images && (

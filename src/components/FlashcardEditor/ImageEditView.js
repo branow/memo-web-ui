@@ -1,37 +1,63 @@
-import { useState } from "react";
 import SearchCircleButton from "../constant/Buttons/SearchCircleButton";
 import DeleteCircleButton from "../constant/Buttons/DeleteCircleButton";
 import { IoMdImages } from "react-icons/io";
+import { useState } from "react";
+import WindowWrapper from "../constant/WindowWrapper";
+import WebSearchWrapper from "../WebSearch/WebSearchWrapper";
+import ImageSearchContent from "../WebSearch/ImageSearchContent";
 
-const ImageEditView = ({ image }) => {
-  const [src, setSrc] = useState(image != null ? image.mediaUrl : null);
+const ImageEditView = ({ query, image, setImage }) => {
+  const [isSearching, setIsSearching] = useState(false);
 
   const handleDeleteSubmit = (e) => {
-    setSrc(null);
+    setImage(null);
   };
 
   const handleOnDrop = (e) => {
     const imageSrc = e.dataTransfer.getData("imageSrc");
-    if (imageSrc && imageSrc !== src) {
-      setSrc(imageSrc);
+    if (imageSrc && imageSrc !== image) {
+      setImage(imageSrc);
     }
   };
 
   const handleOnDragStart = (e) => {
-    e.dataTransfer.setData("imageSrc", src);
+    e.dataTransfer.setData("imageSrc", image);
   };
 
   const handleOnDragOver = (e) => {
     e.preventDefault();
   };
 
+  const handeOnSearch = (e) => {
+    setIsSearching(true);
+  };
+
+  const choose = (newImage) => {
+    setImage(newImage);
+    setIsSearching(false);
+  };
+
+  const close = () => {
+    setIsSearching(false)
+  }
+
   return (
     <>
-      <div className="relative w-full h-fit flex flex-col">
+      {isSearching && (
+        <WindowWrapper close={close}>
+          <WebSearchWrapper Content={ImageSearchContent} defaultQuery={query} choose={choose} close={close}/>
+        </WindowWrapper>
+      )}
+
+      <div className="relative h-[180px] w-[180px] flex flex-col">
         <div className="absolute w-full p-[5px]">
           <div className="w-full flex justify-between">
-            <SearchCircleButton size="25px" color="white" />
-            {src && (
+            <SearchCircleButton
+              size="25px"
+              color="white"
+              onClickAction={handeOnSearch}
+            />
+            {image && (
               <DeleteCircleButton
                 size="15px"
                 color="white"
@@ -45,19 +71,19 @@ const ImageEditView = ({ image }) => {
           onDragOver={handleOnDragOver}
           onDrop={handleOnDrop}
         >
-          {src && (
-            <div className="h-full overflow-hidden rounded-lg">
+          {image && (
+            <div className="h-[180px] w-[180px] overflow-hidden rounded-lg">
               <img
-                className="z-[1] w-full h-full"
-                src={src}
+                className="z-[1] h-full w-fit object-cover"
+                src={image}
                 draggable="true"
                 onDragStart={handleOnDragStart}
               />
             </div>
           )}
-          {!src && (
+          {!image && (
             <div>
-              <IoMdImages size="100px" color="white" />
+              <IoMdImages size="150px" color="white" />
             </div>
           )}
         </div>
