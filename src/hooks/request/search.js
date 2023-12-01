@@ -31,11 +31,11 @@ function useSearchAudios(input) {
     }
     const phrase = input.toLowerCase().replaceAll(' ', '-');
     const jwt = new UserCookies().authorizationJwt.get();
-    new SearchRequester().searchAudios(jwt, phrase, callback, signal);
+    new SearchRequester().searchAudios(jwt, phrase, callback, signal, [input]);
   };
   const { dataState, state } = useGetRequest(request, new Callback());
   return {
-    audiousState: { audious: dataState.data, setAudious: dataState.setData },
+    audiosState: { audios: dataState.data, setAudios: dataState.setData },
     state: state,
   };
 }

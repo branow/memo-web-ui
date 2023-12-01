@@ -4,17 +4,12 @@ import SearchedAudio from "./SearchedAudio";
 import LoadingScreen from "../constant/LoadingScreen";
 import ErrorBox from "../constant/ErrorBox";
 import SubmitButton from "../constant/Buttons/SubmitButton";
+import { useSearchAudios } from "../../hooks/request/search";
 
 const PAGE_SIZE = 12;
 
 const AudioSearchContent = ({ query, choose }) => {
-  const { audiosState, state } = {
-    audiosState: {
-      audios: audio,
-      setAudious: () => {}
-    },
-    state: {}
-  }
+  const { audiosState, state } = useSearchAudios(query);
   const [page, setPage] = useState(1);
 
   const audios = [];
