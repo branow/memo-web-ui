@@ -32,25 +32,30 @@ const ImageEditView = ({ query, image, setImage }) => {
     setIsSearching(true);
   };
 
-  const choose = (newImage) => {
-    setImage(newImage);
+  const close = () => {
     setIsSearching(false);
   };
 
-  const close = () => {
-    setIsSearching(false)
-  }
+  const choose = (newImage) => {
+    setImage(newImage);
+    close();
+  };
 
   return (
     <>
       {isSearching && (
         <WindowWrapper close={close}>
-          <WebSearchWrapper Content={ImageSearchContent} defaultQuery={query} choose={choose} close={close}/>
+          <WebSearchWrapper
+            Content={ImageSearchContent}
+            defaultQuery={query}
+            choose={choose}
+            close={close}
+          />
         </WindowWrapper>
       )}
 
-      <div className="relative h-[180px] w-[180px] flex flex-col">
-        <div className="absolute w-full p-[5px]">
+      <div className="relative h-[180px] w-[180px] flex flex-col [&:hover>div.hidden]:block">
+        <div className="hidden absolute w-full p-[5px]">
           <div className="w-full flex justify-between">
             <SearchCircleButton
               size="25px"

@@ -56,9 +56,9 @@ const AudioEditView = ({ query, audio, setAudio }) => {
         </WindowWrapper>
       )}
 
-      <div className="relative w-full">
+      <div className="relative w-full ">
         <div
-          className="flex w-full"
+          className="flex w-full [&:hover>div.hidden]:block"
           onDragOver={handleOnDragOver}
           onDrop={handleOnDrop}
         >
@@ -83,8 +83,8 @@ const AudioEditView = ({ query, audio, setAudio }) => {
               </div>
             )}
           </div>
-          <div className="realtive">
-            <div className="absolute flex right-0">
+          <div className="hidden realtive">
+            <div className="absolute right-0 flex">
               <div className="h-fit">
                 <SearchCircleButton
                   size="25px"
