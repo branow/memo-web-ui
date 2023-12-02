@@ -1,4 +1,3 @@
-import { audio } from "./dto";
 import { useState } from "react";
 import SearchedAudio from "./SearchedAudio";
 import LoadingScreen from "../constant/LoadingScreen";
