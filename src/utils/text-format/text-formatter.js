@@ -85,6 +85,7 @@ export default class TextFormatter {
 
   remove(index, length) {
     if (index === 0 && this.text.length === length) {
+      this.text = "";
       this.children = [];
     } else {
       this.text = this.text.substring(0, index) + this.text.substring(index + length);

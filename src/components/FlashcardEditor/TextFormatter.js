@@ -65,6 +65,9 @@ const TextFormatter = ({ formatter, setFormatter, caret, back }) => {
     } else if (e.code === "Enter") {
       e.preventDefault();
       insertText("\n", position);
+    } else if (e.code === "Backspace" || e.code === "Delete" || (e.ctrlKey && e.key == "x")) {
+      e.preventDefault();
+      deleteText(position);
     }
   };
 
@@ -102,7 +105,7 @@ const TextFormatter = ({ formatter, setFormatter, caret, back }) => {
             text-gray-200 font-sans h-full outline-none hover:bg-soft-green
             focus-visible:bg-charcoal focus-visible:border-b-4 focus-visible:border-dark-grey 
             [&:focus-visible~div.hidden]:flex
-            whitespace-pre-wrap"
+            whitespace-break-spaces"
         suppressContentEditableWarning={true}
         contentEditable="true"
         onInput={onInputAction}
@@ -117,7 +120,7 @@ const TextFormatter = ({ formatter, setFormatter, caret, back }) => {
           text={formatter.text}
         />
       </div>
-      <div className="absolute hidden left-[20px] top-[25vh] [&:focus-visible] [&:hover]:flex">
+      <div className="absolute hidden top-[-45px] left-[-40px] [&:focus-visible] [&:hover]:flex">
         <TextTools setFormat={setFormatToText} />
       </div>
     </div>

@@ -38,10 +38,14 @@ const TextEditor = ({ format, text, setFormat, setText }) => {
   const formatter = toTextFormatter(text, format);
 
   const setFormatter = (caret, oldFormatter, newFormatter) => {
-    history.push(new EditorState(oldFormatter, caret));
-    setCaret(caret);
-    setFormat(toFormatDto(newFormatter));
-    setText(newFormatter.text);
+    const newFormat = toFormatDto(newFormatter);
+    const newText = newFormatter.text;
+    if (newFormat !== format || newText !== text) {
+      setCaret(caret);
+      history.push(new EditorState(oldFormatter, caret));
+      setFormat(newFormat);
+      setText(newText);
+    }
   };
 
   const back = () => {

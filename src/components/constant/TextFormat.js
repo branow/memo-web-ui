@@ -1,6 +1,6 @@
 const TextFormat = ({ textnode, text }) => {
   if (!text) {
-    return;
+    return "";
   }
 
   let start = textnode.start;
@@ -10,7 +10,7 @@ const TextFormat = ({ textnode, text }) => {
     <>
       {textnode.children.map((e) => {
         end = e.start;
-        var t1 = text.substring(start, end);
+        var t1 = prepare(text.substring(start, end));
         var child = (
           <>
             {t1}
@@ -20,7 +20,7 @@ const TextFormat = ({ textnode, text }) => {
         start = e.end;
         return child;
       })}
-      {text.substring(start, textnode.end)}
+      {prepare(text.substring(start, textnode.end))}
     </>
   );
   
@@ -60,5 +60,10 @@ const TextFormatTeg = ({ format, inner }) => {
     </>
   );
 };
+
+function prepare(text) {
+  // text = text.replace("\n", "\n\r");
+  return text;
+}
 
 export default TextFormat;
