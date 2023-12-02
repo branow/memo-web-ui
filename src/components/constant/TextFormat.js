@@ -1,4 +1,8 @@
 const TextFormat = ({ textnode, text }) => {
+  if (!text) {
+    return;
+  }
+
   let start = textnode.start;
   let end = 0;
   //children wrap
