@@ -28,6 +28,23 @@ export default class TextFormatter {
     }
   }
 
+  merge(formatter) {
+    if (formatter.text.length === 0) {
+      return;
+    }
+    if (this.text.length === 0) {
+      this.text = formatter.text;
+      this.root = formatter.root;
+    } else {
+      shift(this.text.length, formatter.root);
+      this.text += formatter.text;
+      const root = new TextNode(0, this.text.length)
+      root.children.push(this.root)
+      root.children.push(formatter.root);
+      this.root = root;
+    }
+  }
+
   setFormat(start, end, format) {
     const node = new TextNode(start, end);
     node.addFormat(format);
@@ -50,6 +67,15 @@ export default class TextFormatter {
     const format = new Format();
     format.color = color;
     this.setFormat(start, end, format);
+  }
+
+  append(text, format) {
+    const start = this.text.length;
+    this.insert(start, text);
+    const end = start + text.length;
+    if (format) {
+      this.setFormat(start, end, format);
+    }
   }
 
   insert(index, text) {
@@ -108,6 +134,14 @@ function shiftRemove(index, shift, node) {
       }
     }
     node.children = node.children.filter((e) => toRemove.indexOf(e) === -1);
+  }
+}
+
+function shift(sh, node) {
+  node.start += sh;
+  node.end += sh;
+  for (let child of node.children) {
+    shift(sh, child);
   }
 }
 

@@ -5,6 +5,9 @@ import TextNode from "./text-node";
 export { toTextFormatter, toFormatDto };
 
 function toTextFormatter(text, formatDto) {
+  if (!text) {
+    text = "";
+  }
   const root = formatDto ? toTextNode(JSON.parse(formatDto)) : new TextNode(0, text.length);
   return new TextFormatter(text, root);
 }
