@@ -20,4 +20,20 @@ export default class SearchRequester {
       signal: signal,
     });
   };
+  searchEnglishWordSenses(jwt, phrase, doFinally, signal) {
+    this.requester.get({
+      url: 'english-word-senses/' + phrase,
+      jwt: jwt,
+      doFinally: doFinally,
+      signal: signal,
+    });
+  };
+  searchEnglishWord(jwt, phrase, doFinally, signal) {
+    this.requester.get({
+      url: 'english-word/' + phrase,
+      jwt: jwt,
+      doFinally: doFinally,
+      signal: signal,
+    });
+  };
 }
