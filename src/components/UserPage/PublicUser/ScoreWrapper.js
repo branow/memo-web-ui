@@ -11,7 +11,7 @@ const ScoreWrapper = ({ scores }) => {
         otherScore = scores[0];
     }
     return (
-      <div className="h-[11vh] flex flex-row bg-charcoal p-[10px] rounded-[30px] opacity-[0.8]">
+      <div className="h-fit flex flex-row bg-charcoal p-[10px] rounded-[30px] opacity-[0.8]">
         <div className="peer z-10">
           <Score score={mainScore} />
         </div>

@@ -1,4 +1,4 @@
-import { RxAvatar } from "react-icons/rx";
+import Avatar from "../../constant/Icons/Avatar";
 import { UserContext } from "../../App";
 import { useContext } from "react";
 import ErrorBox from "../../constant/ErrorBox";
@@ -66,7 +66,7 @@ const PrivateUserInfo = () => {
     <div className="relative w-screen h-screen bg-dark-grey text-white border-l-2 border-left-solid border-main-green flex flex-col items-center">
       <div className="mt-[3vh] text-3xl font-semibold flex flex-col items-center">
         <div className="m-[20px]">Profile Info</div>
-        <RxAvatar className="m-[10px]" color="white" size="70px" />
+        <Avatar className="m-[10px]" color="white" size="70px" />
       </div>
       <div className="flex items-center justify-around py-[4vh] px-[2vw] w-[85%]">
         <div className="flex flex-col items-center px-[2wh]">

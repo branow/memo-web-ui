@@ -1,5 +1,5 @@
 import ModuleCollection from "./ModuleCollection";
-import AddModuleButton from "../UserPage/PublicUser/Module/AddModuleButton";
+import AddButton from "../constant/Buttons/AddButton";
 import { Link } from "react-router-dom";
 
 const ModuleCollectionList = ({ collections, thisUser }) => {
@@ -13,7 +13,7 @@ const ModuleCollectionList = ({ collections, thisUser }) => {
         {thisUser && (
           <div className="absolute w-fit h-fit right-0 mt-[-8vh] mr-[-3vw] z-10">
             <Link to={"#"}>
-              <AddModuleButton />
+              <AddButton />
             </Link>
           </div>
         )}

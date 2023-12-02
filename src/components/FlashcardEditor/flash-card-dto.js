@@ -21,7 +21,25 @@ const flashcardDto = {
       mediaId: '561665',
       mediaUrl: 'https://www.oxfordlearnersdictionaries.com/media/english/uk_pron/c/com/compa/comparative__gb_1.mp3',
     }
-  }
+  },
+  scores: [
+    {
+      studyType: {
+        studyId: "1",
+        studyName: "memorization",
+      }, //StudyTypeDto
+      score: "35",
+      resetTime: "4d 2h",
+    },
+    {
+      studyType: {
+        studyId: "2",
+        studyName: "writing",
+      }, //StudyTypeDto
+      score: "83",
+      resetTime: "21h",
+    },
+  ], //ScoreAggregatedDto
 }
 
 export default flashcardDto;

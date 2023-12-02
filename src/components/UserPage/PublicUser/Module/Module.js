@@ -10,7 +10,7 @@ import DeleteCircleButton from "../../../constant/Buttons/DeleteCircleButton";
 const Module = ({ module, thisUser }) => {
   let accesIcon;
   let accessName;
-  let removeIcon = thisUser ? <DeleteCircleButton size={"20px"}/> :  <IoDownloadOutline size={"20px"} />;
+  let removeIcon = thisUser ? <DeleteCircleButton size={"25px"}/> :  <IoDownloadOutline size={"25px"} />;
   if (module.access === "public") {
     accesIcon = <MdOutlinePeopleAlt className="text-main-green" size={"25px"} />;
     accessName = <span className="pl-[7px] text-lg text-main-green">PUBLIC</span>;

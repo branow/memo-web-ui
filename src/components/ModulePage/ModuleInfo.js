@@ -6,10 +6,10 @@ import ScoreWrapper from "../UserPage/PublicUser/ScoreWrapper";
 import StudyTypeDescription from "../UserPage/PublicUser/Module/StudyTypeDescription";
 import SearchBar from "../constant/SearchBar";
 import ModuleCollectionList from "./ModuleCollectionList";
-import { RxAvatar } from "react-icons/rx";
+import Avatar from "../constant/Icons/Avatar";
 import { Link } from "react-router-dom";
 
-const ModuleInfo = ({module, thisUser}) => {
+const ModuleInfo = ({ module, thisUser }) => {
   thisUser = true;
   let accesIcon;
   let accessName;
@@ -22,7 +22,7 @@ const ModuleInfo = ({module, thisUser}) => {
   }
     return (
       <div
-        className="relative h-fit w-[75vw] pb-[15vh] bg-tealish-blue mx-auto border-[2px] 
+        className="relative h-fit w-[80vw] pb-[15vh] bg-tealish-blue mx-auto border-[2px] 
       border-tealish-blue hover:border-solid 
       hover:border-regent-grey"
       >
@@ -36,7 +36,7 @@ const ModuleInfo = ({module, thisUser}) => {
                     <ChangeCircleButton size={"25px"} />
                   </span>
                 )}
-                <span className="pr-[1vw] font-semibold text-main-green float-right border-r-[3px] border-solid border-white">
+                <span className="pr-[1vw] font-semibold text-main-green float-right border-r-[4px] border-solid border-white">
                   {module.collections.length}
                 </span>
               </div>
@@ -50,20 +50,19 @@ const ModuleInfo = ({module, thisUser}) => {
                 )}
               </div>
             </div>
-            <div className="relative mt-[5vh] w-[70vw] flex flex-row">
-              <div className="text-xl text-gray-300 mr-[1vw]">
-                {module.description}
-              </div>
-
-              {thisUser ? (
-                <div className="absolute top-[-3vh] right-[3vw]">
+            <div className="mt-[5vh]"></div>
+            {thisUser && (
+              <div className="w-[70vw]">
+                <div className="w-fit float-right">
                   <ChangeCircleButton size={"20px"} />
                 </div>
-              ) : (
-                <div className="absolute top-[-6vh] right-[1.8vw]">
-                  <DownloadCircleButton size={"50px"} />
-                </div>
-              )}
+              </div>
+            )}
+
+            <div className="w-[70vw]">
+              <div className="text-xl text-gray-300 mr-[1vw] w-full">
+                {module.description}
+              </div>
             </div>
           </div>
 
@@ -71,8 +70,9 @@ const ModuleInfo = ({module, thisUser}) => {
             <ScoreWrapper scores={module.scores} />
           </div>
           <div className="absolute top-0 right-0 mt-[2vh] mr-[2vw]">
-            <RxAvatar size={"75px"}></RxAvatar>
+            <Avatar size={"75px"} />
             <div className="w-fit m-auto text-lg">Author</div>
+            <div className="w-fit m-auto">{!thisUser && <DownloadCircleButton size={"50px"} />}</div>
           </div>
         </div>
 
@@ -90,8 +90,8 @@ const ModuleInfo = ({module, thisUser}) => {
             />
           )}
         </div>
-        <div className="w-[30vw] h-[5vh] mt-[5vh] ml-[6.2vw] border-[2.5px] border-solid rounded-md border-charcoal shadow-xl">
-          <SearchBar />
+        <div className="w-[30vw] h-[5vh] mt-[5vh] ml-[6.2vw]">
+          <SearchBar borderColor={"charcoal"} />
         </div>
 
         <div className="flex-wrap justify-between mt-[7vh] z-10">

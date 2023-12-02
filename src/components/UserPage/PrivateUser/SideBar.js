@@ -1,4 +1,4 @@
-import { RxAvatar } from "react-icons/rx";
+import Avatar from "../../constant/Icons/Avatar";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";
 import { BsCollection } from "react-icons/bs";
@@ -9,7 +9,7 @@ const Sidebar = ({ tab }) => {
   return (
     <div className="relative w-[30vw] h-screen px-3 py-4 overflow-y-auto bg-dark-grey text-white">
       <div className="flex m-5">
-        <RxAvatar color="white" size="70px" />
+        <Avatar color="white" size="70px" />
         <span className="ml-[15px] self-center text-3xl font-semibold ">
           Hi, User
         </span>
