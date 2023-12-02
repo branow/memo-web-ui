@@ -13,7 +13,7 @@ const FlashcardEditor = () => {
     <>
       <div className="relative w-[1000px] bg-tealish-blue">
         <EditorHeader />
-        <div className="flex p-[20px] pl-[40px]">
+        <div className="p-[20px] pl-[40px] w-full">
           <div className="flex flex-col items-center">
             <div className="flex flex-col items-center justify-center w-full">
               <FlashcardSideEditView

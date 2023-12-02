@@ -1,4 +1,4 @@
-import { FontSize, Format, TextStyle } from "./format";
+import { FontSize, TextStyle } from "./format";
 import TextFormatter from "./text-formatter";
 import { toFormatDto } from "./text-formatter-converter";
 
@@ -31,7 +31,7 @@ function formatWordSense(sense) {
   }
   if (sense.examples) {
     let start = formatter.text.length;
-    formatter.append(sense.examples.join("\n") + "\n");
+    formatter.append(sense.examples.join("\n"));
     let end = formatter.text.length;
     italic.push(new Scope(start, end));
   }

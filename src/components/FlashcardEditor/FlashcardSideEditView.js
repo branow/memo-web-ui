@@ -1,9 +1,15 @@
 import TextEditor from "./TextEditor";
 import ImageEditView from "./ImageEditView";
 import AudioEditView from "./AudioEditView";
-import { memo } from "react";
+import { memo, useState } from "react";
+import WindowWrapper from "../constant/WindowWrapper";
+import WordSenseWebSearch from "../WebSearch/WordSenseWebSearch";
+import SearchCircleButton from "../constant/Buttons/SearchCircleButton";
 
 const FlashcardSideEditView = memo(({ query, title, side, setSide }) => {
+  const [isSearching, setIsSearching] = useState(false);
+  const isFrontSide = query !== side.text;
+
   const setAudio = (audio) => {
     setSide((pr) => {
       pr.audio = {
@@ -36,14 +42,37 @@ const FlashcardSideEditView = memo(({ query, title, side, setSide }) => {
     });
   };
 
+  const close = () => {
+    setIsSearching(false);
+  };
+
   return (
     <>
+      {isSearching && (
+        <WindowWrapper close={close}>
+          <WordSenseWebSearch
+            close={close}
+            query={query}
+            format={side.format}
+            setFormat={setFormat}
+            text={side.text}
+            setText={setText}
+          />
+        </WindowWrapper>
+      )}
+
       <div className="w-full">
         <div className="text-soft-green text-center text-2xl font-sans font-bold">
           {title}
         </div>
         <div className="flex content-around p-[20px] max-h-[40vh] min-h-[25vh]">
-          <div className="w-[70%] min-h-full">
+          <div className="relative w-[70%] min-h-full [&:hover>div.hidden]:block">
+            {isFrontSide && (
+              <div className="hidden absolute right-0">
+                <SearchCircleButton color="white" size="30px" onClickAction={() => setIsSearching(true)}/>
+              </div>
+            )}
+
             <TextEditor
               format={side.format}
               setFormat={setFormat}
