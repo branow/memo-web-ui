@@ -9,7 +9,8 @@ import UserNameInputField from "../../constant/FormInput/UsernameInputField";
 import SubmitButton from "../../constant/Buttons/SubmitButton";
 
 const PrivateUserInfo = () => {
-  const appUserState = useContext(UserContext);
+  const appUserContext = useContext(UserContext);
+  const appUserState = appUserContext.userState;
   const useGet = useGetUserDetails();
   const useSave = useSaveUser((savedUser) => {
     appUserState.setUser((p) => {

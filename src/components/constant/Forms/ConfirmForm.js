@@ -10,7 +10,7 @@ import {
 import { UserContext } from "../../App";
 
 const ConfirmForm = () => {
-  const userState = useContext(UserContext);
+  const { userState, state } = useContext(UserContext);
   const enable = useEnable(userState.setUser);
   const regenerate = useRegenerateToken();
   const [email, setEmail] = useState("");

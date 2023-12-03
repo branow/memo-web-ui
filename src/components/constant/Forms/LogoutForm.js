@@ -6,7 +6,7 @@ import { useContext } from "react";
 import { UserContext } from "../../App";
 
 const LogoutForm = () => {
-  const userState = useContext(UserContext);
+  const { userState } = useContext(UserContext);
   const { state } = useLogout(userState.setUser);
 
   const handleSubmit = () => {

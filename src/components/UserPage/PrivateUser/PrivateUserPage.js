@@ -6,7 +6,7 @@ import { UserContext } from "../../App";
 import ErrorBox from "../../constant/ErrorBox";
 
 const UserPage = ({ activeTab }) => {
-  const userState = useContext(UserContext);
+  const { userState } = useContext(UserContext);
 
   let activePage;
   if (activeTab === "info") activePage = <PrivateUserInfo />;

@@ -40,7 +40,7 @@ function useGetUserGeneralDetails(userId) {
   const request = ({ callback, signal }) => {
     const jwt = new UserCookies().authorizationJwt.get();
     if (jwt) {
-      new UserRequester().getUserPrivateGeneralDetails(jwt, userId, callback, signal);
+      new UserRequester().getUserGeneralDetails(jwt, userId, callback, signal);
     }
   };
   const { dataState, state } = useGetRequest(request, new Callback());

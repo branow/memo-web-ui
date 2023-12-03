@@ -6,7 +6,7 @@ import { UserContext } from "../../App";
 import { TbCardsFilled } from "react-icons/tb";
 
 const Navbar = () => {
-  const userState = useContext(UserContext);
+  const { userState } = useContext(UserContext);
   
   return (
     <nav className="bg-main-green ">
