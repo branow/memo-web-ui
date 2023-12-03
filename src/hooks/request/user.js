@@ -25,11 +25,11 @@ export {
 function useGetUserPrivateShortDetails() {
   const request = ({ callback, signal }) => {
     const jwt = new UserCookies().authorizationJwt.get();
-    if (jwt) {
-      new UserRequester().getUserPrivateShortDetails(jwt, callback, signal);
-    }
+    new UserRequester().getUserPrivateShortDetails(jwt, callback, signal);
   };
-  const { dataState, state } = useGetRequest(request, new Callback());
+  const callback = new Callback();
+  callback.error.addAtEnd(() => new UserCookies().authorizationJwt.remove());
+  const { dataState, state } = useGetRequest(request, callback);
   return {
     userState: { user: dataState.data, setUser: dataState.setData },
     state: state,
@@ -39,9 +39,7 @@ function useGetUserPrivateShortDetails() {
 function useGetUserGeneralDetails(userId) {
   const request = ({ callback, signal }) => {
     const jwt = new UserCookies().authorizationJwt.get();
-    if (jwt) {
-      new UserRequester().getUserGeneralDetails(jwt, userId, callback, signal);
-    }
+    new UserRequester().getUserGeneralDetails(jwt, userId, callback, signal);
   };
   const { dataState, state } = useGetRequest(request, new Callback());
   return {
@@ -53,9 +51,7 @@ function useGetUserGeneralDetails(userId) {
 function useGetUserDetails() {
   const request = ({ callback, signal }) => {
     const jwt = new UserCookies().authorizationJwt.get();
-    if (jwt) {
-      new UserRequester().getUserDetails(jwt, callback, signal);
-    }
+    new UserRequester().getUserDetails(jwt, callback, signal);
   };
   const { dataState, state } = useGetRequest(request, new Callback());
   return {
@@ -84,13 +80,16 @@ function useChangePassword() {
     const changePasswordDto = {
       currentPassword: data.currentPassword,
       newPassword: data.newPassword,
-    } 
+    };
     new UserRequester().changePassword(jwt, changePasswordDto, callback);
   };
   const buildValidator = (changePasswordDto) =>
     new MultiValidator([
       getPasswordValidator(changePasswordDto.newPassword),
-      getPasswordsEqualValidator([changePasswordDto.newPassword, changePasswordDto.confirmPassword])      
+      getPasswordsEqualValidator([
+        changePasswordDto.newPassword,
+        changePasswordDto.confirmPassword,
+      ]),
     ]);
   return usePostRequest(() => {}, request, new Callback(), buildValidator);
 }
@@ -98,8 +97,10 @@ function useChangePassword() {
 function useDeleteUser(setUser) {
   const history = useHistory();
   const callback = new Callback();
-  callback.success.addAtMiddle(() => new UserCookies().authorizationJwt.remove());
-  callback.success.addAtEnd(() => history.push("/"))
+  callback.success.addAtMiddle(() =>
+    new UserCookies().authorizationJwt.remove()
+  );
+  callback.success.addAtEnd(() => history.push("/"));
   const request = ({ callback }) => {
     const jwt = new UserCookies().authorizationJwt.get();
     new UserRequester().delete(jwt, callback);

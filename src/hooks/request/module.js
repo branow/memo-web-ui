@@ -9,30 +9,30 @@ import { UserCookies } from "../../utils/user-cookie";
 import { MultiValidator } from "../../utils/validator/validator";
 
 export {
-  useGetModlueGeneralDetails,
-  useGetModuдeDetails,
+  useGetModuleGeneralDetails,
+  useGetModuleDetails,
   useSaveModule,
   useDeleteModule,
 };
 
-function useGetModlueGeneralDetails() {
-  const request = ({ data, callback, signal }) => {
-    new ModuleRequester().getModuleGeneralDetails(data, callback, signal);
+function useGetModuleGeneralDetails(moduleId) {
+  const request = ({ callback, signal }) => {
+    new ModuleRequester().getModuleGeneralDetails(moduleId, callback, signal);
   };
   const { dataState, state } = useGetRequest(request, new Callback());
   return {
-    userState: { module: dataState.data, setModule: dataState.setData },
+    moduleState: { module: dataState.data, setModule: dataState.setData },
     state: state,
   };
 }
 
-function useGetModuдeDetails() {
-  const request = ({ data, callback, signal }) => {
-    new ModuleRequester().getModuleDetails(data, callback, signal);
+function useGetModuleDetails(moduleId) {
+  const request = ({ callback, signal }) => {
+    new ModuleRequester().getModuleDetails(moduleId, callback, signal);
   };
   const { dataState, state } = useGetRequest(request, new Callback());
   return {
-    userState: { module: dataState.data, setModule: dataState.setData },
+    moduleState: { module: dataState.data, setModule: dataState.setData },
     state: state,
   };
 }
@@ -50,9 +50,9 @@ function useSaveModule(setModule) {
 function useDeleteModule(setModule) {
   const callback = new Callback();
   const history = useHistory();
-  callback.success.addAtEnd(() => history.push("/profile/public/modules"));
   const request = ({ data, callback }) => {
-    const jwt = new UserCookies().authorizationJwt.get;
+    callback.success.addAtEnd(() => history.push("/profile/" + data + "/modules"));
+    const jwt = new UserCookies().authorizationJwt.get();
     new ModuleRequester().delete(jwt, data, callback);
   };
   return useDeleteRequest(setModule, request, callback);
