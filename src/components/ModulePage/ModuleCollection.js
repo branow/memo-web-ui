@@ -23,7 +23,7 @@ const ModuleCollection = ({ collection, thisUser }) => {
               {collection.size}
             </span>
           </div>
-          <div className="mt-[-2vh] ml-[5vw] z-10">
+          <div className="h-[8vh] mt-[-2vh] ml-[5vw] z-10">
             <ScoreWrapper scores={collection.scores} />
           </div>
         </div>

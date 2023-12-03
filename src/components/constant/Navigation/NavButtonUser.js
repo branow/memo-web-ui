@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { RxAvatar } from "react-icons/rx";
+import Avatar from "../Icons/Avatar";
 
 const NavButtonUser = ({ username }) => {
   return (
@@ -12,7 +12,7 @@ const NavButtonUser = ({ username }) => {
           }
         >
           <div className="flex px-[10px]">
-            <RxAvatar className="mr-[5px]" color="white" size="30px" />
+            <Avatar className="mr-[5px]" color="white" size="30px" />
             {username}
           </div>
         </Link>

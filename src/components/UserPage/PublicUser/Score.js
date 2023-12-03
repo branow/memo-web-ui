@@ -7,7 +7,7 @@ const Score = ({ score }) => {
     modeIcon = score.studyType.studyName === "memorization" ? modeIcon = <BsPersonWorkspace className="absolute inset-0 m-auto" size={"4vh"}/> 
     : <TbWriting className="absolute inset-0 m-auto" size={"4vh"}/>;
     return (
-      <div className="relative h-[7vh]">
+      <div className="relative h-fit">
         <div className="peer relative opacity-[0.9] hover:opacity-[0.3] z-20 transition duration-300">
           <div>
             <ScoreBar score={score.score} />
@@ -24,7 +24,7 @@ const Score = ({ score }) => {
 
         {score.resetTime && (
           <div
-            className="w-[100%] h-[30%] top-[120%] absolute inset-0 mx-auto z-20 bg-gray-300 
+            className="w-[100%] h-[30%] top-[100%] inset-0 mx-auto z-20 bg-gray-300 
         rounded-xl text-gray-800 text-xs font-semibold hidden items-center justify-center peer-hover:flex"
           >
             {score.resetTime}

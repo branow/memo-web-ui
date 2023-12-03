@@ -1,4 +1,4 @@
-import { RxAvatar } from "react-icons/rx";
+import Avatar from "../../constant/Icons/Avatar";
 import { modules } from "../UserModuleDto";
 import { Link } from "react-router-dom";
 import SearchBar from "../../constant/SearchBar";
@@ -18,7 +18,7 @@ const PublicUserInfo = ({ user, tab }) => {
       <div className="flex h-[vh] w-screen">
         <div className="text-3xl font-medium ml-[12vw] pt-[5vh] w-fit h-fit flex">
           <Link to={"/profile/info"}>
-            <RxAvatar className="mx-auto" color="white" size="100px" />
+            <Avatar className="mx-auto" color="white" size="100px" />
           </Link>
           <div className="flex flex-col ml-[2vw] my-auto">
             <span>{user.name}</span>
@@ -40,7 +40,7 @@ const PublicUserInfo = ({ user, tab }) => {
         />
       </div>
       {modules && (
-        <div className="w-[30vw] h-[5.5vh] mt-[6vh] mb-[8vh] ml-[12vw] border-[2.5px] border-solid rounded-md border-tealish-blue shadow-xl">
+        <div className="w-[30vw] h-[5.5vh] mt-[6vh] mb-[8vh] ml-[12vw]">
           <SearchBar />
         </div>
       )}
