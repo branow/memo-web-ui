@@ -10,6 +10,13 @@ const CardList = ({ flashcards, thisUser }) => {
             <Flashcard thisUser={thisUser} flashCard={flashcard} />
           </div>
         ))}
+        {thisUser && (
+          <div className="absolute w-fit h-fit right-0 mt-[-8vh] mr-[-3vw] z-10">
+            <Link to={"#"}>
+              <AddButton />
+            </Link>
+          </div>
+        )}
       </>
     );
 }

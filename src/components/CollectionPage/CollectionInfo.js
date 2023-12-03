@@ -72,7 +72,7 @@ const CollectionInfo = ({ collection, thisUser }) => {
         </div>
 
         <div className="relative">
-          <CardList flashcards={[flashcardDto, flashcardDto, flashcardDto]} thisUser={thisUser} />
+          <CardList flashcards={[flashcardDto]} thisUser={thisUser} />
         </div>
       </div>
     );
