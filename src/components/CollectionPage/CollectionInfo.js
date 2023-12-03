@@ -10,7 +10,7 @@ import CardList from "./CardList";
 
 
 const CollectionInfo = ({ collection, thisUser }) => {
-    thisUser = false;
+    thisUser = true;
     return (
       <div
         className="relative h-fit w-[80vw] pb-[10vh] bg-tealish-blue mx-auto border-[2px] 

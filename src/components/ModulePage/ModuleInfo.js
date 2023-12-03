@@ -14,10 +14,10 @@ const ModuleInfo = ({ module, thisUser }) => {
   let accesIcon;
   let accessName;
   if (module.access === "public") {
-    accesIcon = <MdOutlinePeopleAlt className="text-main-green" size={"25px"} />;
+    accesIcon = <MdOutlinePeopleAlt className="text-main-green" size="25px" />;
     accessName = <span className="pl-[7px] text-xl text-main-green">PUBLIC</span>;
   } else {
-    accesIcon = <RiGitRepositoryPrivateLine className="text-red-700" size={"25px"}/>;
+    accesIcon = <RiGitRepositoryPrivateLine className="text-red-700" size="25px"/>;
     accessName = <span className="pl-[7px] text-xl text-red-700">PRIVATE</span>;
   }
     return (

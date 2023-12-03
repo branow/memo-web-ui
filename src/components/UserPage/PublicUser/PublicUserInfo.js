@@ -40,7 +40,7 @@ const PublicUserInfo = ({ user, tab }) => {
         />
       </div>
       {modules && (
-        <div className="w-[30vw] h-[5.5vh] mt-[6vh] mb-[8vh] ml-[12vw] border-[2.5px] border-solid rounded-md border-tealish-blue shadow-xl">
+        <div className="w-[30vw] h-[5.5vh] mt-[6vh] mb-[8vh] ml-[12vw]">
           <SearchBar />
         </div>
       )}
