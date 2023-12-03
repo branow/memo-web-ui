@@ -1,7 +1,7 @@
 import TextFormat from "./TextFormat";
 import { toTextFormatter } from "../../utils/text-format/text-formatter-converter";
 
-const FlashcardSide = ({ text, format, formatter }) => {
+const FlashcardTextSide = ({ text, format, formatter }) => {
   const currentFormatter = formatter ? formatter.clone() : toTextFormatter(text, format);
   return (
     <div
@@ -12,4 +12,4 @@ const FlashcardSide = ({ text, format, formatter }) => {
   );
 };
 
-export default FlashcardSide;
+export default FlashcardTextSide;

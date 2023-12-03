@@ -1,5 +1,5 @@
 import { formatWordSense } from "../../utils/text-format/flashcard-styles";
-import FlashcardSide from "../constant/FlashcardSide";
+import FlashcardTextSide from "../constant/FlashcardTextSide";
 
 const SearchedSense = ({ sense }) => {
   const { text, format } = formatWordSense(sense.data);
@@ -21,7 +21,7 @@ const SearchedSense = ({ sense }) => {
       <div className="hidden absolute z-[20] bottom-1 px-[10px] rounded-xl text-center text-white text-base font-sans bg-glassy-grey">
         {sense.name}
       </div>
-      <FlashcardSide text={text} format={format} />
+      <FlashcardTextSide text={text} format={format} />
     </div>
   );
 };
