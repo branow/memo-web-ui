@@ -11,13 +11,12 @@ import {
   getUsernameValidator,
 } from "../../utils/validator/validator-impl";
 import useDeleteRequest from "./useDeleteRequest";
-import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export {
   useGetUserPrivateShortDetails,
-  useGetUserPrivateGeneralDetails,
+  useGetUserGeneralDetails,
   useGetUserDetails,
-  useGetUserPublicGeneralDetails,
   useSaveUser,
   useChangePassword,
   useDeleteUser,
@@ -37,11 +36,11 @@ function useGetUserPrivateShortDetails() {
   };
 }
 
-function useGetUserPrivateGeneralDetails() {
+function useGetUserGeneralDetails(userId) {
   const request = ({ callback, signal }) => {
     const jwt = new UserCookies().authorizationJwt.get();
     if (jwt) {
-      new UserRequester().getUserPrivateGeneralDetails(jwt, callback, signal);
+      new UserRequester().getUserPrivateGeneralDetails(jwt, userId, callback, signal);
     }
   };
   const { dataState, state } = useGetRequest(request, new Callback());
@@ -57,18 +56,6 @@ function useGetUserDetails() {
     if (jwt) {
       new UserRequester().getUserDetails(jwt, callback, signal);
     }
-  };
-  const { dataState, state } = useGetRequest(request, new Callback());
-  return {
-    userState: { user: dataState.data, setUser: dataState.setData },
-    state: state,
-  };
-}
-
-function useGetUserPublicGeneralDetails() {
-  const request = ({ data, callback }) => {
-    const userId = data;
-    new UserRequester().getUserPublicGeneralDetails(userId, callback);
   };
   const { dataState, state } = useGetRequest(request, new Callback());
   return {

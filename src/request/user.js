@@ -4,21 +4,14 @@ class UserRequester {
   constructor() {
     this.requester = new Requester('user');
   }
-  getUserPrivateGeneralDetails(jwt, doFinally, signal) {
+  getUserGeneralDetails(jwt, userId, doFinally, signal) {
     this.requester.get({
-      url: 'private-general-details',
+      url: 'general-details/' + userId,
       jwt: jwt,
       doFinally: doFinally,
       signal: signal,
     });
-  };
-  getUserPublicGeneralDetails(userId, doFinally, signal) {
-    this.requester.get({
-      url: 'public-general-details/' + userId,
-      doFinally: doFinally,
-      signal: signal,
-    });
-  };
+  }
   getUserPrivateShortDetails(jwt, doFinally, signal) {
     this.requester.get({
       url: 'private-short-details',
