@@ -8,11 +8,16 @@ const FlashcardEditor = () => {
   const flashcard = flashcardDto;
   const [frontSide, setFrontSide] = useState(flashcard.frontSide);
   const [backSide, setBackSide] = useState(flashcard.backSide);
-  
+  const query = backSide.text;
+
+  const onSaveAction = () => {
+
+  }
+
   return (
     <>
       <div className="relative w-[1000px] bg-tealish-blue">
-        <EditorHeader />
+        <EditorHeader defaultQuery={query} setFront={setFrontSide} setBack={setBackSide}/>
         <div className="p-[20px] pl-[40px] w-full">
           <div className="flex flex-col items-center">
             <div className="flex flex-col items-center justify-center w-full">
@@ -20,19 +25,16 @@ const FlashcardEditor = () => {
                 side={frontSide}
                 setSide={setFrontSide}
                 title="Title Side (Question)"
-                query={backSide.text}
+                query={query}
               />
               <FlashcardSideEditView
                 side={backSide}
                 setSide={setBackSide}
                 title="Back Side (Answer)"
-                query={backSide.text}
+                query={query}
               />
             </div>
-            <SubmitButton actionName="Save" />
-          </div>
-          <div>
-            
+            <SubmitButton actionName="Save" onClickAction={onSaveAction}/>
           </div>
         </div>
       </div>
