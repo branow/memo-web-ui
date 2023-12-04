@@ -21,10 +21,10 @@ import { createContext } from "react";
 export const UserContext = createContext();
 
 function App() {
-  const { userState, state } = useGetUserPrivateShortDetails();
+  const appUserContext = useGetUserPrivateShortDetails();
 
   return (
-    <UserContext.Provider value={userState}>
+    <UserContext.Provider value={appUserContext}>
       <Router>
         <div className="bg-tealish-blue overflow-hidden w-full">
           <Navbar></Navbar>
@@ -63,13 +63,13 @@ function App() {
               <Route path="/profile/settings">
                 <PrivateUserPage activeTab={"settings"} />
               </Route>
-              <Route path="/profile/public/modules">
+              <Route path="/profile/:userId/modules">
                 <PublicUserInfo tab={"modules"} />
               </Route>
-              <Route path="/profile/public/achievements">
+              <Route path="/profile/:userId/achievements">
                 <PublicUserInfo tab={"achievements"} />
               </Route>
-              <Route path="/profile/modules/:id">
+              <Route path="/module/:id">
                 <ModulePage />
               </Route>
               <Route path="/profile/collections/:id">

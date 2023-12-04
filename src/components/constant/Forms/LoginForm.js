@@ -10,7 +10,7 @@ import { useLogin } from "../../../hooks/request/authentication";
 import { UserContext } from "../../App";
 
 const LoginForm = () => {
-  const userState = useContext(UserContext);
+  const { userState } = useContext(UserContext);
   const { state } = useLogin(userState.setUser);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

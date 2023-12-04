@@ -8,7 +8,7 @@ import SubmitButton from "../../constant/Buttons/SubmitButton";
 import DeleteButton from "../../constant/Buttons/DeleteButton";
 
 const ProfileSettings = () => {
-  const userState = useContext(UserContext);
+  const { userState } = useContext(UserContext);
   const useChange = useChangePassword();
   const useDelete = useDeleteUser(userState.setUser);
   const [currentPassword, setCurrentPassword] = useState(null);
