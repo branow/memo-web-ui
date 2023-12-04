@@ -5,6 +5,7 @@ import PasswordInputField from "../FormInput/PasswordInputField";
 import SubmitButton from "../Buttons/SubmitButton";
 import LoadingScreen from "../LoadingScreen";
 import ErrorBox from "../ErrorBox";
+import FormWrapperComponent from "./FormComponentWrapper";
 import { useLogin } from "../../../hooks/request/authentication";
 import { UserContext } from "../../App";
 
@@ -22,7 +23,9 @@ const LoginForm = () => {
   }, [state, email, password]);
 
   return (
+    <FormWrapperComponent exitDestination={"/"}>
     <div className="w-[450px] p-[50px]">
+      
       <h2 className="text-[40px] text-white text-center font-semibold">
         Log in
       </h2>
@@ -54,6 +57,7 @@ const LoginForm = () => {
       </div>
       {state.pending && <LoadingScreen />}
     </div>
+    </FormWrapperComponent>
   );
 };
 

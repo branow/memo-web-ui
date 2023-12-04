@@ -4,6 +4,7 @@ import EmailInputField from "../FormInput/EmailInputField";
 import SubmitButton from "../Buttons/SubmitButton";
 import LoadingScreen from "../LoadingScreen";
 import ErrorBox from "../ErrorBox";
+import FormWrapperComponent from "./FormComponentWrapper";
 import { useResetPassword } from "../../../hooks/request/authentication";
 
 const ResetForm = () => {
@@ -15,37 +16,42 @@ const ResetForm = () => {
   }, [useReset, email]);
 
   return (
-    <div className="w-[450px] p-[50px]">
-      <h2 className="text-[40px] text-white text-center font-semibold">
-        Reset password
-      </h2>
-      <h2 className="text-[16px] my-[20px] text-white text-center font-medium">
-        Type your email to send verification letter
-      </h2>
+    <FormWrapperComponent exitDestination={"/"}>
+      <div className="w-[450px] p-[50px]">
+        <h2 className="text-[40px] text-white text-center font-semibold">
+          Reset password
+        </h2>
+        <h2 className="text-[16px] my-[20px] text-white text-center font-medium">
+          Type your email to send verification letter
+        </h2>
 
-      {useReset.state.error && (
-        <ErrorBox title="Email Sending Error" message={useReset.state.error} />
-      )}
+        {useReset.state.error && (
+          <ErrorBox
+            title="Email Sending Error"
+            message={useReset.state.error}
+          />
+        )}
 
-      <div>
-        <EmailInputField
-          onChangeAction={useCallback((e) => setEmail(e.target.value), [])}
-        />
-        <div className="w-fit m-auto">
-          <SubmitButton actionName={"Send"} onClickAction={handleSubmit} />
+        <div>
+          <EmailInputField
+            onChangeAction={useCallback((e) => setEmail(e.target.value), [])}
+          />
+          <div className="w-fit m-auto">
+            <SubmitButton actionName={"Send"} onClickAction={handleSubmit} />
+          </div>
+
+          <div className="text-[1em] text-white font-medium mt-[45px] mb-[15px] flex justify-between">
+            <Link to="/register" className="cursor-pointer hover:underline">
+              <span>Create an account?</span>
+            </Link>
+            <Link to="/login" className="hover:underline">
+              <span>Login</span>
+            </Link>
+          </div>
         </div>
-
-        <div className="text-[1em] text-white font-medium mt-[45px] mb-[15px] flex justify-between">
-          <Link to="/register" className="cursor-pointer hover:underline">
-            <span>Create an account?</span>
-          </Link>
-          <Link to="/login" className="hover:underline">
-            <span>Login</span>
-          </Link>
-        </div>
+        {useReset.state.pending && <LoadingScreen />}
       </div>
-      {useReset.state.pending && <LoadingScreen />}
-    </div>
+    </FormWrapperComponent>
   );
 };
 
