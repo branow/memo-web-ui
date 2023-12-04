@@ -8,7 +8,9 @@ import ResetForm from "./constant/Forms/ResetForm";
 import ConfirmForm from "./constant/Forms/ConfirmForm";
 import ModulePage from "./ModulePage/ModulePage";
 import CollectionPage from "./CollectionPage/CollectionPage";
+import LearningPage from "./LearningPage/LearningPage";
 import PublicUserInfo from "./UserPage/PublicUser/PublicUserInfo";
+import SettingsWindow from "./LearningPage/SettingsWindow";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "../input.css";
 import { useGetUserPrivateShortDetails } from "../hooks/request/user";
@@ -33,39 +35,27 @@ function App() {
               </Route>
               <Route path="/login">
                 <HomePage />
-                <FormComponentWrapper>
-                  <LoginForm />
-                </FormComponentWrapper>
+                <LoginForm />
               </Route>
               <Route path="/register">
                 <HomePage />
-                <FormComponentWrapper>
-                  <RegistrationForm />
-                </FormComponentWrapper>
+                <RegistrationForm />
               </Route>
               <Route path="/reset">
                 <HomePage />
-                <FormComponentWrapper>
-                  <ResetForm />
-                </FormComponentWrapper>
+                <ResetForm />
               </Route>
               <Route path="/confirm">
                 <HomePage />
-                <FormComponentWrapper>
-                  <ConfirmForm />
-                </FormComponentWrapper>
+                <ConfirmForm />
               </Route>
               <Route path="/verificate">
                 <HomePage />
-                <FormComponentWrapper>
-                  <VerificationEmailForm />
-                </FormComponentWrapper>
+                <VerificationEmailForm />
               </Route>
               <Route path="/logout">
                 <HomePage />
-                <FormComponentWrapper>
-                  <LogoutForm />
-                </FormComponentWrapper>
+                <LogoutForm />
               </Route>
               <Route path="/profile/info">
                 <PrivateUserPage activeTab={"info"} />
@@ -82,8 +72,15 @@ function App() {
               <Route path="/module/:id">
                 <ModulePage />
               </Route>
-              <Route path="/collection/:collectionId">
-                <CollectionPage/>
+              <Route path="/collections/:id">
+                <CollectionPage />
+              </Route>
+              <Route path="/learning/settings">
+                <LearningPage />
+                <SettingsWindow />
+              </Route>
+              <Route path="/learning">
+                <LearningPage />
               </Route>
             </Switch>
           </div>
