@@ -10,13 +10,13 @@ import { MultiValidator } from "../../utils/validator/validator";
 
 export { useGetCollectionDetails, useSaveCollection, useDeleteCollection };
 
-function useGetCollectionDetails() {
-  const request = ({ data, callback, signal }) => {
-    new CollectionRequester().getCollectionDetails(data, callback, signal);
+function useGetCollectionDetails(collectionId) {
+  const request = ({ callback, signal }) => {
+    new CollectionRequester().getCollectionDetails(collectionId, callback, signal);
   };
   const { dataState, state } = useGetRequest(request, new Callback());
   return {
-    userState: { collection: dataState.data, setCollection: dataState.setData },
+    collectionState: { collection: dataState.data, setCollection: dataState.setData },
     state: state,
   };
 }
