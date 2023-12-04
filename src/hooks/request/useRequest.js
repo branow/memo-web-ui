@@ -4,6 +4,7 @@ import { useState } from "react";
 function useRequest(request, callback) {
   const [error, setError] = useState(null);
   const [pending, setPending] = useState(false);
+  const cleanError = () => setError(null); 
 
   callback.success.addAtBeginning(() => setError(null));
   callback.fail.addAtBeginning((response) => setError(response));
@@ -22,7 +23,7 @@ function useRequest(request, callback) {
     }
   };
 
-  return { error, pending, run };
+  return { error, cleanError, pending, run };
 }
 
 export default useRequest;

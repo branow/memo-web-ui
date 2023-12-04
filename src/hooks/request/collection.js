@@ -33,7 +33,7 @@ function useSaveCollection(setCollection) {
   };
   const buildValidator = (data) =>
     new MultiValidator([
-      getCollectionNameValidator(data.collection.moduleName),
+      getCollectionNameValidator(data.collection.collectionName),
     ]);
   return usePostRequest(setCollection, request, new Callback(), buildValidator);
 }

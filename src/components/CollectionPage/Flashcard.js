@@ -9,17 +9,22 @@ import {
 } from "../../hooks/request/flashcard";
 import ErrorBox from "../constant/ErrorBox";
 import LoadingAnimation from "../constant/LoadingAnimation";
+import { useContext } from "react";
+import { CollectionContext } from "./CollectionPage";
 
-const Flashcard = ({ flashcardId, collectionId, thisUser, onDelete }) => {
+const Flashcard = ({ flashcardId }) => {
+  const { collectionState, isOwner, isAuthenticated } =
+    useContext(CollectionContext);
   const [isEdit, setIsEdit] = useState(false);
   const { flashcardState, state } = useGetFlashcardDetails(flashcardId);
-  const useDelete = useDeleteFlashcard(() => onDelete(flashcardId));
-
+  const useDelete = useDeleteFlashcard(() => {
+    collectionState.setCollection((pr) => {
+      pr.flashcardIds = pr.flashcardIds.filter((id) => id !== flashcardId);
+      return Object.assign({}, pr);
+    });
+  });
   const flashcard = flashcardState.flashcard;
-
-  const close = () => {
-    setIsEdit(false);
-  };
+  const collectionId = collectionState.collection.collectionId;
 
   const handleOnDelete = () => {
     useDelete.state.run(flashcardId);
@@ -28,12 +33,12 @@ const Flashcard = ({ flashcardId, collectionId, thisUser, onDelete }) => {
   return (
     <>
       {isEdit && (
-        <WindowWrapper close={close}>
+        <WindowWrapper close={() => setIsEdit(false)}>
           <FlashcardEditor
             flashcard={flashcard}
             setFlashcard={flashcardState.setFlashcard}
             collectionId={collectionId}
-            close={close}
+            close={() => setIsEdit(false)}
           />
         </WindowWrapper>
       )}
@@ -65,7 +70,6 @@ const Flashcard = ({ flashcardId, collectionId, thisUser, onDelete }) => {
                 <div>
                   <FlashcardSideBar
                     scores={flashcard.scores}
-                    thisUser={thisUser}
                     onEdit={() => setIsEdit(true)}
                     onDelete={handleOnDelete}
                   />

@@ -1,81 +1,104 @@
-import DownloadCircleButton from "../constant/Buttons/DownloadCircleButton";
-import StudyTypeDescription from "../UserPage/PublicUser/Module/StudyTypeDescription";
-import SearchBar from "../constant/SearchBar";
 import ChangeCircleButton from "../constant/Buttons/ChangeCircleButton";
 import ScoreWrapper from "../UserPage/PublicUser/ScoreWrapper";
 import Avatar from "../constant/Icons/Avatar";
-import flashcardDto from "../FlashcardEditor/flash-card-dto";
-import CardList from "./CardList";
+import DownloadCircleButton from "../constant/Buttons/DownloadCircleButton";
+import { useSaveCollection } from "../../hooks/request/collection";
+import { useContext, useState } from "react";
+import WindowWrapper from "../constant/WindowWrapper";
+import EditForm from "../constant/Forms/EditForm";
+import ErrorBox from "../constant/ErrorBox";
+import LoadingAnimation from "../constant/LoadingAnimation";
+import { CollectionContext } from "./CollectionPage";
 
+const CollectionInfo = () => {
+  const { collectionState, isOwner, isAuthenticated } = useContext(CollectionContext);
+  const defaultCollection = collectionState.collection;
 
+  const useSave = useSaveCollection((savedCollection) => {
+    collectionState.setCollection((pr) => {
+      pr.collectionName = savedCollection.collectionName;
+      return Object.assign({}, pr);
+    });
+  });
+  const [isEditName, setIsEditName] = useState(false);
 
-const CollectionInfo = ({ collection, thisUser }) => {
-    thisUser = true;
-    return (
-      <div
-        className="relative h-fit w-[80vw] pb-[10vh] bg-tealish-blue mx-auto border-[2px] 
-        border-tealish-blue hover:border-solid 
-        hover:border-regent-grey"
-      >
-        <div className="flex flex-row mt-[4vh] mb-[4vh] mx-[4vw] z-10">
-          <div className="w-[45vw] flex flex-col">
-            <div>
-              <span className="text-2xl text-main-green">Module Name</span>
-              {thisUser && (
-                <span className="ml-[0.5vw]">
-                  <ChangeCircleButton size={"20px"} />
-                </span>
-              )}
-            </div>
+  const onSaveNewName = (newName) => {
+    if (defaultCollection.collectionName !== newName) {
+      const collection = {
+        collectionId: defaultCollection.collectionId,
+        collectionName: newName,
+      };
+      const moduleId = defaultCollection.module.moduleId;
+      useSave.state.run({ moduleId, collection });
+    }
+  };
 
-            <div className="text-4xl mt-[3vh]">
-              <span className="font-normal">{collection.collectionName}</span>
-              {thisUser && (
-                <span className="ml-[0.5vw]">
-                  <ChangeCircleButton size={"25px"} />
-                </span>
-              )}
-              <span className="pr-[1vw] font-semibold text-main-green float-right border-r-[4px] border-solid border-white">
-                {collection.size}
-              </span>
-            </div>
+  return (
+    <>
+      {isEditName && (
+        <WindowWrapper close={() => setIsEditName(false)}>
+          <EditForm
+            title="Collection Name"
+            defaultValue={defaultCollection.collectionName}
+            actionName="Save"
+            close={() => setIsEditName(false)}
+            onSubmit={onSaveNewName}
+          />
+        </WindowWrapper>
+      )}
+
+      <div className="flex flex-row mt-[4vh] mb-[4vh] mx-[4vw] z-10">
+        <div className="w-[45vw] flex flex-col">
+          <div>
+            <span className="text-2xl text-main-green">
+              {defaultCollection.module.moduleName}
+            </span>
           </div>
-          <div className="h-[5vh] mt-[2vh] ml-[5vw] z-10">
-            <ScoreWrapper scores={collection.scores} />
-          </div>
-          <div className="absolute top-0 right-0 mt-[2vh] mr-[2vw]">
-            <Avatar size={"75px"} />
-            <div className="w-fit m-auto text-lg">Author</div>
-            {!thisUser && (
-              <div className="w-fit m-auto">
-                <DownloadCircleButton size={"40px"} />
-              </div>
+          <div className="text-4xl mt-[3vh]">
+            {useSave.state.pending && (
+              <LoadingAnimation message="Renaming..." />
             )}
+            {useSave.state.error && (
+              <ErrorBox
+                title="Collection Rename Error"
+                message={useSave.state.error}
+                close={useSave.state.cleanError}
+              />
+            )}
+            <span className="font-normal">
+              {defaultCollection.collectionName}
+            </span>
+            {isOwner && (
+              <span className="ml-[0.5vw]">
+                <ChangeCircleButton
+                  size={"25px"}
+                  onClickAction={() => setIsEditName(true)}
+                />
+              </span>
+            )}
+
+            <span className="pr-[1vw] font-semibold text-main-green float-right border-r-[4px] border-solid border-white">
+              {defaultCollection.flashcardIds.length}
+            </span>
           </div>
         </div>
-        <div
-          className={
-            thisUser
-              ? "relative z-10 border-solid border-white border-y-[3px]"
-              : "relative z-10 border-solid border-white border-b-[3px]"
-          }
-        >
-          {thisUser && (
-            <StudyTypeDescription
-              memoDestination={"#"}
-              writingDestination={"#"}
-            />
+        <div className="h-[5vh] mt-[2vh] ml-[5vw] z-10">
+          <ScoreWrapper scores={defaultCollection.scores} />
+        </div>
+        <div className="absolute top-0 right-0 mt-[2vh] mr-[2vw]">
+          <Avatar size={"75px"} />
+          <div className="w-fit m-auto text-lg">
+            {defaultCollection.owner.username}
+          </div>
+          {isAuthenticated && !isOwner && (
+            <div className="w-fit m-auto">
+              <DownloadCircleButton size={"40px"} />
+            </div>
           )}
         </div>
-        <div className="w-[30vw] h-[5vh] mt-[5vh] ml-[6.2vw]">
-          <SearchBar borderColor={"charcoal"} />
-        </div>
-
-        <div className="relative">
-          <CardList flashcards={[flashcardDto]} thisUser={thisUser} />
-        </div>
       </div>
-    );
-}
- 
+    </>
+  );
+};
+
 export default CollectionInfo;

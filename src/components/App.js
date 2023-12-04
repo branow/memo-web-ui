@@ -82,7 +82,7 @@ function App() {
               <Route path="/module/:id">
                 <ModulePage />
               </Route>
-              <Route path="/collection/:id">
+              <Route path="/collection/:collectionId">
                 <CollectionPage/>
               </Route>
             </Switch>
