@@ -30,7 +30,7 @@ function useSaveFlashcard(setFlashcard, close) {
     );
   };
   const callback = new Callback();
-  callback.success.addAtEnd(() => close());
+  callback.success.addAtEnd(() => {if (close) close() });
   const buildValidator = () => new MultiValidator([]);
   return usePostRequest(setFlashcard, request, callback, buildValidator);
 }
