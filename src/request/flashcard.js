@@ -11,7 +11,7 @@ class FlashcardRequester {
       signal: signal,
     });
   };
-  save(jwt, collectionId, flashcard, doFinally, signal) {
+  save(jwt, flashcard, collectionId, doFinally, signal) {
     this.requester.post({
       url: '' + collectionId,
       jwt: jwt,

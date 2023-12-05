@@ -3,8 +3,9 @@ import WritingStudyButton from "../Module/WritingStudyButton";
 import { Link } from "react-router-dom";
 
 const CollectionStudy = ({ memoDestination, writingDestination }) => {
-    return (
-      <div className="mt-[2vh] mx-[2vw] z-20 hidden peer-hover:flex hover:flex justify-between">
+  return (
+
+      <div className="flex mt-[2vh] mx-[2vw] z-20  justify-between">
         <div className="z-20">
           <Link to={memoDestination}>
             <MemoStudyButton />
@@ -16,7 +17,7 @@ const CollectionStudy = ({ memoDestination, writingDestination }) => {
           </Link>
         </div>
       </div>
-    );
-}
- 
+  );
+};
+
 export default CollectionStudy;

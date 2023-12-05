@@ -3,6 +3,7 @@ import { TbWriting } from "react-icons/tb";
 import { BsPersonWorkspace } from "react-icons/bs";
 
 const Score = ({ score }) => {
+  if (!score) return "";
     let modeIcon;
     modeIcon = score.studyType.studyName === "memorization" ? modeIcon = <BsPersonWorkspace className="absolute inset-0 m-auto" size={"4vh"}/> 
     : <TbWriting className="absolute inset-0 m-auto" size={"4vh"}/>;

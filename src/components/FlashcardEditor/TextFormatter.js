@@ -48,26 +48,22 @@ const TextFormatter = ({ formatter, setFormatter, caret, back }) => {
     updateEditor(index, update);
   };
 
-  const onInputAction = (e) => {
-    const ne = e.nativeEvent;
-    if (ne.inputType === "insertText") {
-      insertText(ne.data, position);
-    } else if (ne.inputType === "deleteContentBackward") {
-      deleteText(position);
-    }
-  };
-
   const onKey = (e) => {
+    e.preventDefault();
+    const serviceKeys = ["Shift", "ShiftLeft", "ShiftRight", "Control", "ControlLeft", "ControlRight", "Alt", "AltLeft", "AltRight"];
     position = new Caret(container.current).getPosition();
     if (e.ctrlKey && e.key === "z") {
-      e.preventDefault();
       back();
     } else if (e.code === "Enter") {
-      e.preventDefault();
       insertText("\n", position);
-    } else if (e.code === "Backspace" || e.code === "Delete" || (e.ctrlKey && e.key == "x")) {
-      e.preventDefault();
+    } else if (e.key === "Tab") { 
+      insertText("\t", position);
+    }else if (e.code === "Backspace" || e.code === "Delete" || (e.ctrlKey && e.key === "x")) {
       deleteText(position);
+    } else if (serviceKeys.includes(e.key)){
+      
+    } else {
+      insertText(e.key, position);
     }
   };
 
@@ -108,7 +104,6 @@ const TextFormatter = ({ formatter, setFormatter, caret, back }) => {
             whitespace-break-spaces"
         suppressContentEditableWarning={true}
         contentEditable="true"
-        onInput={onInputAction}
         onKeyDown={onKey}
         ref={container}
         onPaste={onPaste}

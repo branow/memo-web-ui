@@ -14,6 +14,7 @@ const FlashcardSideEditView = memo(({ query, title, side, setSide }) => {
     setSide((pr) => {
       pr.audio = {
         mediaUrl: audio,
+        format: "MP3",
       };
       return { ...pr };
     });
@@ -23,6 +24,7 @@ const FlashcardSideEditView = memo(({ query, title, side, setSide }) => {
     setSide((pr) => {
       pr.image = {
         mediaUrl: image,
+        format: "JPG",
       };
       return { ...pr };
     });

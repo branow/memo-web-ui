@@ -28,7 +28,8 @@ function useGetModuleGeneralDetails(moduleId) {
 
 function useGetModuleDetails(moduleId) {
   const request = ({ callback, signal }) => {
-    new ModuleRequester().getModuleDetails(moduleId, callback, signal);
+    const jwt = new UserCookies().authorizationJwt.get();
+    new ModuleRequester().getModuleDetails(jwt, moduleId, callback, signal);
   };
   const { dataState, state } = useGetRequest(request, new Callback());
   return {

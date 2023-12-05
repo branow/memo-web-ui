@@ -8,29 +8,31 @@ import { MultiValidator } from "../../utils/validator/validator";
 
 export { useGetFlashcardDetails, useSaveFlashcard, useDeleteFlashcard };
 
-function useGetFlashcardDetails() {
-  const request = ({ data, callback, signal }) => {
-    new FlashcardRequester().getFlashcardDetails(data, callback, signal);
+function useGetFlashcardDetails(flashcardId) {
+  const request = ({ callback, signal }) => {
+    new FlashcardRequester().getFlashcardDetails(flashcardId, callback, signal);
   };
   const { dataState, state } = useGetRequest(request, new Callback());
   return {
-    userState: { flashcard: dataState.data, setFlashcard: dataState.setData },
+    flashcardState: { flashcard: dataState.data, setFlashcard: dataState.setData },
     state: state,
   };
 }
 
-function useSaveFlashcard(setFlashcard) {
+function useSaveFlashcard(setFlashcard, close) {
   const request = ({ data, callback }) => {
     const jwt = new UserCookies().authorizationJwt.get();
     new FlashcardRequester().save(
       jwt,
-      data.collectionId,
       data.flashcard,
+      data.collectionId,
       callback
     );
   };
+  const callback = new Callback();
+  callback.success.addAtEnd(() => {if (close) close() });
   const buildValidator = () => new MultiValidator([]);
-  return usePostRequest(setFlashcard, request, new Callback(), buildValidator);
+  return usePostRequest(setFlashcard, request, callback, buildValidator);
 }
 
 function useDeleteFlashcard(setFlashcard) {

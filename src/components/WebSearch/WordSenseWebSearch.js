@@ -1,5 +1,5 @@
 import SubmitButton from "../constant/Buttons/SubmitButton";
-import FlashcardSide from "../constant/FlashcardSide";
+import FlashcardTextSide from "../constant/FlashcardTextSide";
 import CleanCircleButton from "../constant/Buttons/CleanCircleButton";
 import { useState } from "react";
 import {
@@ -67,7 +67,7 @@ const WordSenseWebSearch = ({ query, text, format, setText, setFormat, close }) 
                   onClickAction={handleOnClean}
                 />
               </div>
-              <FlashcardSide formatter={formatter} />
+              <FlashcardTextSide formatter={formatter} />
             </div>
           </div>
         </div>

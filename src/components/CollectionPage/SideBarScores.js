@@ -1,6 +1,9 @@
 import Score from "../UserPage/PublicUser/Score";
 
 const SideBarScores = ({ scores }) => {
+  if (!scores) {
+    return "";
+  }
     return (
       <div className="h-fit flex flex-col bg-charcoal p-[10px] rounded-[30px] opacity-[0.8]">
         <div className="h-fit">
