@@ -6,7 +6,7 @@ const ScoreBar = ({ score }) => {
         let a = percent / 100,
           b = (end - start) * a,
           c = b + start;
-        return 'hsl(' + c + ', 100%, 50%)';
+        return 'hsl(' + c + ', 80%, 50%)';
       };
     return (
       <CircularProgressbar
@@ -16,7 +16,7 @@ const ScoreBar = ({ score }) => {
             stroke: calcColor(score, 0, 120),
           },
         }}
-        strokeWidth={6}
+        strokeWidth={8}
       />
     );
 }
