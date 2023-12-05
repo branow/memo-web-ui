@@ -1,13 +1,16 @@
 import CollectionStudy from "./CollectionStudy";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { PublicUserContext } from "../PublicUserInfo";
 
-const Collection = ({ collection, thisUser }) => {
+const Collection = ({ collection }) => {
+  const { userState, isAuthenticated, isOwner } = useContext(PublicUserContext);
   return (
     <div
       className="relative w-[20vw] h-fit px-[2vw] py-[2vh] mx-[3vw] my-[2vh] bg-charcoal mt-[2vh] rounded-xl border-b-[4px] 
-    border-charcoal hover:border-solid hover:border-regent-grey cursor-pointer "
+    border-charcoal hover:border-solid hover:border-regent-grey cursor-pointer [&:hover>div.hidden]:block"
     >
-      <Link className="peer" to={"/profile/collections/" + collection.collectionId}>
+      <Link className="peer" to={"/collection/" + collection.collectionId}>
         <div className="absolute top-0 left-0 w-full h-full z-10"></div>
       </Link>
       <div>
@@ -16,8 +19,10 @@ const Collection = ({ collection, thisUser }) => {
           {collection.size}
         </span>
       </div>
-      {thisUser && (
-        <CollectionStudy memoDestination={"#"} writingDestination={"#"} />
+      {isOwner && (
+        <div className="hidden absolute bg-charcoal top-15">
+          <CollectionStudy memoDestination={"#"} writingDestination={"#"} />
+        </div>
       )}
     </div>
   );

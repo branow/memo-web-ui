@@ -1,29 +1,26 @@
 import { useState } from "react";
-import DeleteCircleButton from "../constant/Buttons/DeleteCircleButton";
-import SubmitButton from "../constant/Buttons/SubmitButton";
-import { useSaveModule } from "../../hooks/request/module";
-import LoadingAnimation from "../constant/LoadingAnimation";
-import ErrorBox from "../constant/ErrorBox";
+import { useHistory } from "react-router-dom";
+import { useSaveModule } from "../../../../hooks/request/module";
+import SubmitButton from "../../../constant/Buttons/SubmitButton";
+import LoadingAnimation from "../../../constant/LoadingAnimation";
+import ErrorBox from "../../../constant/ErrorBox";
+import DeleteCircleButton from "../../../constant/Buttons/DeleteCircleButton";
 
-const ModuleEditForm = ({ moduleState, close }) => {
-  const [moduleName, setModuleName] = useState(moduleState.module.moduleName);
-  const [access, setAccess] = useState(moduleState.module.access);
-  const [description, setDescription] = useState(
-    moduleState.module.description
-  );
-  const useSave = useSaveModule(() => {
-    moduleState.setModule((pr) => {
-      pr.moduleName = moduleName;
-      pr.access = access;
-      pr.description = description;
+const ModuleAddForm = ({ userState, close }) => {
+  const history = useHistory();
+  const [moduleName, setModuleName] = useState("My New Module");
+  const [access, setAccess] = useState("PUBLIC");
+  const [description, setDescription] = useState("");
+  const useSave = useSaveModule((savedModule) => {
+    userState.setUser((pr) => {
+      pr.moduleIds.push(savedModule.moduleId);
       return Object.assign({}, pr);
-    });
-    close();
+    })
+    history.push("/module/" + savedModule.moduleId);
   });
 
-  const handleOnSave = () => {
+  const handleOnAdd = () => {
     const module = {
-      moduleId: moduleState.module.moduleId,
       moduleName: moduleName,
       access: access,
       description: description
@@ -33,10 +30,10 @@ const ModuleEditForm = ({ moduleState, close }) => {
 
   return (
     <div className="relative flex flex-col justify-center bg-tealish-blue p-[20px]">
-      {useSave.state.pending && <LoadingAnimation message="Saving..." />}
+      {useSave.state.pending && <LoadingAnimation message="Adding..." />}
       {useSave.state.error && (
         <ErrorBox
-          title="Module Save Error"
+          title="Module Adding Error"
           message={useSave.state.error}
           close={useSave.state.cleanError}
         />
@@ -73,11 +70,11 @@ const ModuleEditForm = ({ moduleState, close }) => {
           />
         </div>
         <div>
-          <SubmitButton actionName="Save" onClickAction={handleOnSave} />
+          <SubmitButton actionName="Add" onClickAction={handleOnAdd} />
         </div>
       </div>
     </div>
   );
 };
 
-export default ModuleEditForm;
+export default ModuleAddForm;

@@ -1,15 +1,15 @@
 import Collection from "./Collection";
 
-const CollectionList = ({ collections, thisUser }) => {
-    return (
-      <>
-        {collections.map((curCollection) => (
-          <div key={curCollection.collectionId}>
-              <Collection thisUser={thisUser} collection={curCollection} />
-          </div>
-        ))}
-      </>
-    );
+const CollectionList = ({ collections, }) => {
+  return (
+    <>
+      {collections.map((collection) => (
+        <div key={collection.collectionId}>
+            <Collection collection={collection} />
+        </div>
+      ))}
+    </>
+  );
 }
  
 export default CollectionList;

@@ -4,8 +4,12 @@ import { FiSettings } from "react-icons/fi";
 import { BsCollection } from "react-icons/bs";
 import { BiExit } from "react-icons/bi";
 import SideButton from "./SideButton";
+import { useContext } from "react";
+import { UserContext } from "../../App";
 
 const Sidebar = ({ tab }) => {
+  const { userState } = useContext(UserContext);
+  const user = userState.user;
   return (
     <div className="relative w-[30vw] h-screen px-3 py-4 overflow-y-auto bg-dark-grey text-white">
       <div className="flex m-5">
@@ -31,7 +35,7 @@ const Sidebar = ({ tab }) => {
 
         <SideButton
           linkName={"View modules"}
-          linkDestination={"/profile/public/modules"}
+          linkDestination={"/profile/" + user.userId}
           linkImage={<BsCollection color="white" size="20px" />}
           active={tab === "modules" && true}
         />

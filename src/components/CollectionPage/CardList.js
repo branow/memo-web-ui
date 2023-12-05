@@ -5,6 +5,7 @@ import LoadingAnimation from "../constant/LoadingAnimation";
 import ErrorBox from "../constant/ErrorBox";
 import { useContext } from "react";
 import { CollectionContext } from "./CollectionPage";
+import FixedAddButton from "../constant/Buttons/FixedAddButton";
 
 const CardList = () => {
   const { collectionState, isOwner, isAuthenticated } =
@@ -43,10 +44,7 @@ const CardList = () => {
             </div>
           )}
 
-          <div className="fixed bottom-[5vh] right-[5vw] w-fit h-fit z-20">
-            {useSave.state.pending && <LoadingAnimation message="Adding..." />}
-            <AddButton onClickAction={hadnleOnAdd} />
-          </div>
+          <FixedAddButton onClickAction={hadnleOnAdd} />
         </>
       )}
     </>

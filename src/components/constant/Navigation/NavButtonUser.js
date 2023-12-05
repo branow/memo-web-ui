@@ -9,7 +9,7 @@ const NavButtonUser = ({ username }) => {
     <div>
       <li>
         <Link
-          to={"/profile/" + userState.user.userId +"/modules"}
+          to={"/profile/" + userState.user.userId }
           className={
             "block py-2 pl-3 pr-4 text-gray-100 rounded hover:bg-orangy-yellow md:p-2 active:bg-yellow-700 border-2"
           }

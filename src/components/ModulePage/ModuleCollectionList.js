@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { ModuleContext } from "./ModulePage";
 import WindowWrapper from "../constant/WindowWrapper";
 import CollectionAddForm from "./CollectionAddForm";
+import FixedAddButton from "../constant/Buttons/FixedAddButton";
 
 const ModuleCollectionList = () => {
   const { moduleState, isAuthenticated, isOwner } = useContext(ModuleContext);
@@ -25,9 +26,7 @@ const ModuleCollectionList = () => {
       ))}
       
       {isOwner && (
-        <div className="fixed bottom-[5vh] right-[5vw] w-fit h-fit z-20">
-          <AddButton onClickAction={() => setIsAdding(true)} />
-        </div>
+        <FixedAddButton onClickAction={() => setIsAdding(true)} />
       )}
     </>
   );

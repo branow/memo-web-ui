@@ -24,16 +24,6 @@ const CollectionPage = () => {
     appUserContext.userState.user.userId ===
       collectionState.collection.owner.userId;
 
-  console.log("isOnwer " + isOwner);
-  console.log("isAuthenticated " + isAuthenticated);
-
-  const setFlashcardIds = (update) => {
-    collectionState.setCollection((pr) => {
-      pr.flashcardIds = update(pr.flashcardIds);
-      return Object.assign({}, pr);
-    });
-  };
-
   if (collection && collection.module.access === "PRIVATE" && !isOwner) {
     return (
       <>
@@ -76,14 +66,17 @@ const CollectionPage = () => {
                 </div>
               )}
 
-              <div className="w-[30vw] h-[5vh] mt-[5vh] ml-[6.2vw]">
-                <SearchBar borderColor={"charcoal"} />
-              </div>
-
               {collection && (
-                <div className="relative">
-                  <CardList />
-                </div>
+                <>
+                  {collection.flashcardIds.length !== 0 && (
+                    <div className="w-[30vw] h-[5vh] mt-[5vh] ml-[6.2vw]">
+                      <SearchBar borderColor={"charcoal"} />
+                    </div>
+                  )}
+                  <div className="relative">
+                    <CardList />
+                  </div>
+                </>
               )}
             </div>
           </div>

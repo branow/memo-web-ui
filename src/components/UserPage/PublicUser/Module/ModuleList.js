@@ -1,27 +1,36 @@
 import { Link } from "react-router-dom";
 import Module from "./Module";
 import AddButton from "../../../constant/Buttons/AddButton";
+import { useContext, useState } from "react";
+import { PublicUserContext } from "../PublicUserInfo";
+import FixedAddButton from "../../../constant/Buttons/FixedAddButton";
+import EmptyModules from "./EmptyModules";
+import { useSaveModule } from "../../../../hooks/request/module";
+import WindowWrapper from "../../../constant/WindowWrapper";
+import ModuleAddForm from "./ModuleAddFrom";
 
-const ModuleList = ({ moduleIds, thisUser, setModuleIds }) => {
+const ModuleList = () => {
+  const { userState, isAuthenticated, isOwner} = useContext(PublicUserContext)
+  const [isAdding, setIsAdding] = useState(false);
 
-  const onDelete = (moduleId) => {
-    setModuleIds((moduleIds) => moduleIds.filter(id => id !== moduleId));
-  }
-
+  const moduleIds = userState.user.moduleIds;
   return (
-    <>
+    <> 
+      {isAdding && (
+        <WindowWrapper close={() => setIsAdding(false)}>
+          <ModuleAddForm userState={userState} close={() => setIsAdding(false)}/>
+        </WindowWrapper>
+      )}
+
+      {moduleIds.length === 0 && <EmptyModules />}
       {moduleIds.map((moduleId) => (
         <div key={moduleId}>
-          <Module thisUser={thisUser} moduleId={moduleId} onDelete={onDelete}/>
+          <Module moduleId={moduleId}/>
         </div>
       ))}
-      {thisUser && (
+      {isOwner && (
         <div className="mt-[-3vh]">
-          <div className="relative w-fit h-fit m-auto mr-[5vw] pb-[4vh] z-10">
-            <Link to={"#"}>
-              <AddButton />
-            </Link>
-          </div>
+          <FixedAddButton onClickAction={() => setIsAdding(true)}/>
         </div>
       )}
     </>

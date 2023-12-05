@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { module } from "./ModuleDto";
 import ModuleInfo from "./ModuleInfo";
 import StudyTypeDescription from "../UserPage/PublicUser/Module/StudyTypeDescription";
 import SearchBar from "../constant/SearchBar";
@@ -7,6 +6,8 @@ import ModuleCollectionList from "./ModuleCollectionList";
 import { useGetModuleDetails } from "../../hooks/request/module";
 import { createContext, useContext } from "react";
 import { UserContext } from "../App";
+import LoadingAnimation from "../constant/LoadingAnimation";
+import ErrorBox from "../constant/ErrorBox";
 
 export const ModuleContext = createContext();
 
@@ -21,15 +22,12 @@ const ModulePage = ({ currentModule }) => {
     moduleState.module &&
     appUserContext.userState.user.userId === moduleState.module.owner.userId;
 
-  const thisUser = true;
-
-  console.log(moduleState.module);
-
-  console.log("isAuthenticated " + isAuthenticated);
-  console.log("isOwner " + isOwner);
 
   return (
     <>
+      {state.pending && <LoadingAnimation />}
+      {state.error && <ErrorBox title="Module Loading Error" message={state.error}/>}
+
       <ModuleContext.Provider value={{ moduleState, isAuthenticated, isOwner }}>
         <div className="relative w-screen h-fit bg-dark-grey text-white">
           <div
@@ -39,9 +37,9 @@ const ModulePage = ({ currentModule }) => {
           >
             {moduleState.module && (
               <>
-                <ModuleInfo module={currentModule} thisUser={thisUser} />
+                <ModuleInfo />
                 <div className="relative z-10 border-solid border-white border-b-[3px]">
-                  {thisUser && (
+                  {isOwner && (
                     <StudyTypeDescription
                       memoDestination={"#"}
                       writingDestination={"#"}

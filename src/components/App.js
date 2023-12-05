@@ -63,11 +63,8 @@ function App() {
               <Route path="/profile/settings">
                 <PrivateUserPage activeTab={"settings"} />
               </Route>
-              <Route path="/profile/:userId/modules">
-                <PublicUserInfo tab={"modules"} />
-              </Route>
-              <Route path="/profile/:userId/achievements">
-                <PublicUserInfo tab={"achievements"} />
+              <Route path="/profile/:userId">
+                <PublicUserInfo />
               </Route>
               <Route path="/module/:moduleId">
                 <ModulePage />

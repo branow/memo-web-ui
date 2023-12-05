@@ -6,9 +6,11 @@ import { useContext, useState } from "react";
 import WindowWrapper from "../constant/WindowWrapper";
 import { CollectionContext } from "./CollectionPage";
 import CollectionEditForm from "./CollectionEditForm";
+import { Link } from "react-router-dom";
 
 const CollectionInfo = () => {
-  const { collectionState, isOwner, isAuthenticated } = useContext(CollectionContext);
+  const { collectionState, isOwner, isAuthenticated } =
+    useContext(CollectionContext);
   const [isEdit, setIsEdit] = useState(false);
   const collection = collectionState.collection;
 
@@ -16,21 +18,24 @@ const CollectionInfo = () => {
     <>
       {isEdit && (
         <WindowWrapper close={() => setIsEdit(false)}>
-          <CollectionEditForm collectionState={collectionState} close={() => setIsEdit(false)} />
+          <CollectionEditForm
+            collectionState={collectionState}
+            close={() => setIsEdit(false)}
+          />
         </WindowWrapper>
       )}
 
       <div className="flex flex-row mt-[4vh] mb-[4vh] mx-[4vw] z-10">
         <div className="w-[45vw] flex flex-col">
           <div>
-            <span className="text-2xl text-main-green">
-              {collection.module.moduleName}
-            </span>
+            <Link to={"/module/" + collection.module.moduleId}>
+              <span className="text-2xl text-main-green cursor-pointer">
+                {collection.module.moduleName}
+              </span>
+            </Link>
           </div>
           <div className="text-4xl mt-[3vh]">
-            <span className="font-normal">
-              {collection.collectionName}
-            </span>
+            <span className="font-normal">{collection.collectionName}</span>
             {isOwner && (
               <span className="ml-[0.5vw]">
                 <ChangeCircleButton

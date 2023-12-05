@@ -13,50 +13,57 @@ const ModuleInfo = ({}) => {
   const { moduleState, isAuthenticated, isOwner } = useContext(ModuleContext);
   const [isEdit, setIsEdit] = useState(false);
 
+  const module = moduleState.module;
   return (
     <>
       {isEdit && (
         <WindowWrapper close={() => setIsEdit(false)}>
-          <ModuleEditForm moduleState={moduleState} close={() => setIsEdit(false)}/>
+          <ModuleEditForm
+            moduleState={moduleState}
+            close={() => setIsEdit(false)}
+          />
         </WindowWrapper>
       )}
 
       <div className="flex flex-row mt-[6vh] mb-[4vh] mx-[4vw] z-10">
         <div className="w-[45vw] flex flex-col">
-          <div className="flex flex-col">
-            <div className="text-4xl">
-              <span className="font-normal">{moduleState.module.moduleName}</span>
-              {isOwner && (
-                <span className="ml-[0.5vw]">
-                  <ChangeCircleButton
-                    size={"25px"}
-                    onClickAction={() => setIsEdit(true)}
-                  />
+            <div className="flex flex-col">
+              <div className="text-4xl">
+                
+                <span className="font-normal">{module.moduleName}</span>
+                
+
+                {isOwner && (
+                  <span className="ml-[0.5vw]">
+                    <ChangeCircleButton
+                      size={"25px"}
+                      onClickAction={() => setIsEdit(true)}
+                    />
+                  </span>
+                )}
+                <span className="pr-[1vw] font-semibold text-main-green float-right border-r-[4px] border-solid border-white">
+                  {module.collections.length}
                 </span>
-              )}
-              <span className="pr-[1vw] font-semibold text-main-green float-right border-r-[4px] border-solid border-white">
-                {moduleState.module.collections.length}
-              </span>
+              </div>
+              <div className="flex flex-row mt-[1vh]">
+                <ModuleAccess access={module.access} size="25px" />
+              </div>
             </div>
-            <div className="flex flex-row mt-[1vh]">
-              <ModuleAccess access={moduleState.module.access} size="25px" />
+            <div className="mt-[5vh]"></div>
+            <div className="w-[70vw]">
+              <div className="text-xl text-gray-300 mr-[1vw] w-full">
+                {module.description}
+              </div>
             </div>
-          </div>
-          <div className="mt-[5vh]"></div>
-          <div className="w-[70vw]">
-            <div className="text-xl text-gray-300 mr-[1vw] w-full">
-              {moduleState.module.description}
-            </div>
-          </div>
         </div>
 
         <div className="mt-[-2vh] ml-[5vw] z-10">
-          <ScoreWrapper scores={moduleState.module.scores} />
+          <ScoreWrapper scores={module.scores} />
         </div>
         <div className="absolute top-0 right-0 mt-[2vh] mr-[2vw]">
-          <Link to={"/profile/" + moduleState.module.owner.userId}>
+          <Link to={"/profile/" + module.owner.userId}>
             <Avatar size={"75px"} />
-            <div className="w-fit m-auto text-lg">{moduleState.module.owner.username}</div>
+            <div className="w-fit m-auto text-lg">{module.owner.username}</div>
           </Link>
 
           <div className="w-fit m-auto">

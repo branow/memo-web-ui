@@ -1,15 +1,14 @@
-import { Link } from "react-router-dom";
 
-const TabButton = ({ destination, name, active }) => {
+const TabButton = ({ name, active, onClickAction }) => {
   return (
     <div
       className={
         "w-[50%] p-[4px] border-b-2 border-solid hover:border-tealish-blue pointer-events-none" +
         (active ? " border-tealish-blue" : "")
       }
+      onClick={onClickAction}
     >
-      <Link to={destination}>
-        <div
+      <div
           className={
             "m-auto w-fit pointer-events-auto hover:text-main-green" +
             (active ? " text-main-green" : "")
@@ -17,7 +16,6 @@ const TabButton = ({ destination, name, active }) => {
         >
           <span>{name}</span>
         </div>
-      </Link>
     </div>
   );
 };
