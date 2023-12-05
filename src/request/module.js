@@ -11,9 +11,10 @@ class ModuleRequester {
       signal: signal,
     });
   };
-  getModuleDetails(modueId, doFinally, signal) {
+  getModuleDetails(jwt, modueId, doFinally, signal) {
     this.requester.get({
       url: 'details/' + modueId,
+      jwt: jwt,
       doFinally: doFinally,
       signal: signal,
     });

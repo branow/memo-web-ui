@@ -69,10 +69,10 @@ function App() {
               <Route path="/profile/:userId/achievements">
                 <PublicUserInfo tab={"achievements"} />
               </Route>
-              <Route path="/module/:id">
+              <Route path="/module/:moduleId">
                 <ModulePage />
               </Route>
-              <Route path="/collections/:id">
+              <Route path="/collection/:collectionId">
                 <CollectionPage />
               </Route>
               <Route path="/learning/settings">

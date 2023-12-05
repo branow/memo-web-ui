@@ -40,10 +40,8 @@ function useSaveCollection(setCollection) {
 
 function useDeleteCollection(setCollection) {
   const callback = new Callback();
-  const history = useHistory();
-  callback.success.addAtEnd(() => history.push("/profile/public/modules"));
   const request = ({ data, callback }) => {
-    const jwt = new UserCookies().authorizationJwt.get;
+    const jwt = new UserCookies().authorizationJwt.get();
     new CollectionRequester().delete(jwt, data, callback);
   };
   return useDeleteRequest(setCollection, request, callback);
