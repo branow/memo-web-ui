@@ -82,7 +82,7 @@ function joinUrl(base, relative, spec, param) {
     url += '/' + spec;
   }
   if (param) {
-    url += '?' + param;
+    url += '?' + param.join('&');
   }
   return url;
 }

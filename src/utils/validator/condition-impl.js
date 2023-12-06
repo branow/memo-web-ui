@@ -8,8 +8,14 @@ export {
   getStringMustContainsCondition,
   getAllArrayElementsEqualCondition,
   getStringLengthLongerEqualsThanCondition,
+  getNumberInScopeCondition,
 };
 
+function getNumberInScopeCondition(min, max) {
+  return new Condition((value) => {
+    return value >= min && value <= max;
+  }, `value must be between [${min}, ${max}]`);
+}
 
 function getStringLengthLongerEqualsThanCondition(minLength) {
   return new Condition((value) => {

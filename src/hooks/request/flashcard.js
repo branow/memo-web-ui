@@ -6,7 +6,12 @@ import useDeleteRequest from "./useDeleteRequest";
 import { UserCookies } from "../../utils/user-cookie";
 import { MultiValidator } from "../../utils/validator/validator";
 
-export { useGetFlashcardDetails, useSaveFlashcard, useDeleteFlashcard };
+export {
+  useGetFlashcardDetails,
+  useSaveFlashcard,
+  useDeleteFlashcard,
+  useGetFlashcardLearnContext,
+};
 
 function useGetFlashcardDetails(flashcardId) {
   const request = ({ callback, signal }) => {
@@ -14,7 +19,31 @@ function useGetFlashcardDetails(flashcardId) {
   };
   const { dataState, state } = useGetRequest(request, new Callback());
   return {
-    flashcardState: { flashcard: dataState.data, setFlashcard: dataState.setData },
+    flashcardState: {
+      flashcard: dataState.data,
+      setFlashcard: dataState.setData,
+    },
+    state: state,
+  };
+}
+
+function useGetFlashcardLearnContext(flashcardId, studyTypeId) {
+  const request = ({ callback, signal }) => {
+    const jwt = new UserCookies().authorizationJwt.get();
+    new FlashcardRequester().getFlashcardLearnContext(
+      jwt,
+      flashcardId,
+      studyTypeId,
+      callback,
+      signal
+    );
+  };
+  const { dataState, state } = useGetRequest(request, new Callback(), [flashcardId]);
+  return {
+    flashcardState: {
+      flashcard: dataState.data,
+      setFlashcard: dataState.setData,
+    },
     state: state,
   };
 }
@@ -30,7 +59,9 @@ function useSaveFlashcard(setFlashcard, close) {
     );
   };
   const callback = new Callback();
-  callback.success.addAtEnd(() => {if (close) close() });
+  callback.success.addAtEnd(() => {
+    if (close) close();
+  });
   const buildValidator = () => new MultiValidator([]);
   return usePostRequest(setFlashcard, request, callback, buildValidator);
 }

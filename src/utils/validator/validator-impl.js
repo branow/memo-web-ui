@@ -1,5 +1,5 @@
 import { Validator } from "./validator";
-import { getAllArrayElementsEqualCondition, getNotBlankStringCondition, getNotEmptyStringCondition, getStringLengthLessEqualsThanCondition, getStringLengthLongerEqualsThanCondition, getStringMustContainsCondition } from "./condition-impl";
+import { getAllArrayElementsEqualCondition, getNotBlankStringCondition, getNotEmptyStringCondition, getNumberInScopeCondition, getStringLengthLessEqualsThanCondition, getStringLengthLongerEqualsThanCondition, getStringMustContainsCondition } from "./condition-impl";
 
 export {
   getUsernameValidator,
@@ -8,7 +8,14 @@ export {
   getPasswordValidator,
   getModuleNameValidator,
   getCollectionNameValidator,
+  getScoreValidator,
 };
+
+function getScoreValidator(value) {
+  return new Validator('Score', value, [
+    getNumberInScopeCondition(0, 100)
+  ]);
+}
 
 function getPasswordValidator(value) {
   return new Validator('Password', value, [
