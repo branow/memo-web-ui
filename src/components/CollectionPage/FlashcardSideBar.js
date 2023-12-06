@@ -1,9 +1,9 @@
-import SideBarScores from "./SideBarScores";
 import ChangeCircleButton from "../constant/Buttons/ChangeCircleButton";
 import DeleteCircleButton from "../constant/Buttons/DeleteCircleButton";
 import DownloadCircleButton from "../constant/Buttons/DownloadCircleButton";
 import { useContext } from "react";
 import { CollectionContext } from "./CollectionPage";
+import ScoreWrapper from "../UserPage/PublicUser/ScoreWrapper";
 
 const FlashcardSideBar = ({ scores, onEdit, onDelete }) => {
   const { collectionState, isOwner, isAuthenticated } =
@@ -20,7 +20,7 @@ const FlashcardSideBar = ({ scores, onEdit, onDelete }) => {
         )}
         {!isOwner && isAuthenticated && <DownloadCircleButton size={"40px"} />}
       </div>
-      <SideBarScores scores={scores} />
+      <ScoreWrapper scores={scores} direction="column"/>
     </div>
   );
 };

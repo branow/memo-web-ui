@@ -1,30 +1,43 @@
 import Score from "./Score";
 
-const ScoreWrapper = ({ scores }) => {
-  
-  if (scores.length === 0) {
-    return <></>
+const ScoreWrapper = ({ scores, direction }) => {
+
+  if (!scores || scores.length === 0) {
+    return <></>;
   }
 
-  let mainScore;
-  let otherScore;
-  if (scores[0].score > scores[1].score) {
-    mainScore = scores[0];
-    otherScore = scores[1];
-  } else {
-    mainScore = scores[1];
-    otherScore = scores[0];
-  }
+  direction = direction ? direction : "row";
+
+  const max = scores.reduce((acc, cur) => (acc.score > cur.score ? acc : cur));
+  const others = scores.filter((e) => e.studyType !== max.studyType);
+
   return (
-    <div className="h-fit flex flex-row bg-charcoal p-[10px] rounded-[30px] opacity-[0.8]">
-      <div className="peer z-10">
-        <Score score={mainScore} />
-      </div>
-      <div className="pl-[1vw] hidden peer-hover:block hover:block">
-        {" "}
-        <Score score={otherScore}></Score>
-      </div>
-    </div>
+    <>
+      {direction === "row" && (
+        <div className="group h-fit w-fit flex flex-row p-[5px] rounded-full opacity-[0.8] bg-charcoal">
+          <div className="m-[10px]">
+            <Score score={max} />
+          </div>
+          {others.map((score) => (
+            <div className="hidden m-[10px] group-hover:block hover:block">
+              <Score score={score} />
+            </div>
+          ))}
+        </div>
+      )}
+      {direction === "column" && (
+        <div className="group h-fit w-fit flex flex-col p-[5px] rounded-full opacity-[0.8] bg-charcoal">
+          <div className="m-[10px]">
+            <Score score={max} />
+          </div>
+          {others.map((score) => (
+            <div className="hidden m-[10px] group-hover:block hover:block" key={score.studyType.studyId}>
+              <Score score={score} />
+            </div>
+          ))}
+        </div>
+      )}
+    </>
   );
 };
 
