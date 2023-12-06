@@ -23,7 +23,7 @@ const LearningPage = ({ learnModeMemo }) => {
         </div>
         <div className="flex flex-col">
           <div className="relative flex flex-row w-fit h-fit mt-[15vh] ml-[22vw]">
-            <Flashcard flashcardSideState={flashcardSide} turnover={turnover} learnModeMemo={false}/>
+            <Flashcard flashcardSideState={flashcardSide} turnover={turnover} learnModeMemo={learnModeMemo}/>
             <div className="absolute h-fit right-0 top-0 bottom-0 mr-[-8vw] mt-[20vh] text-main-green ">
               <NextCircleButton size="60px" />
             </div>

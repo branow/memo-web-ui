@@ -1,9 +1,9 @@
 import ChangeCircleButton from "../constant/Buttons/ChangeCircleButton";
 import DeleteCircleButton from "../constant/Buttons/DeleteCircleButton";
 import Score from "../UserPage/PublicUser/Score";
-import flashcardDto from "../FlashcardEditor/flash-card-dto";
 import FlashcardSide from "./FlashcardSide";
 import { useState } from "react";
+import flashcardDto from "./flash-card-dto";
 
 const Flashcard = ({ flashcardSideState, turnover, learnModeMemo }) => {
   const [checked, setChecked] = useState(false);
