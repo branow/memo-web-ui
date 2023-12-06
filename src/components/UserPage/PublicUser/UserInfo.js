@@ -10,7 +10,7 @@ const UserInfo = () => {
   return (
     <>
       <div className="flex h-[vh] w-screen">
-        <div className="text-3xl font-medium ml-[12vw] pt-[5vh] w-fit h-fit flex">
+        <div className="text-3xl font-medium ml-[20vw] pt-[5vh] w-fit h-fit flex">
           {isOwner && (
             <div className="cursor-pointer">
               <Link to={"/profile/info"}>

@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
-import MemoStudyButton from "./MemoStudyButton";
-import WritingStudyButton from "./WritingStudyButton";
+import { MdOutlineTypeSpecimen } from "react-icons/md";
+import { RiDraftLine } from "react-icons/ri";
 
 const StudyTypeDescription = ({ memoDestination, writingDestination, buttonsClassname }) => {
     return (
-      <div className="w-full flex flex-row p-[10px]">
-        <div className={"peer/memo ml-[4vw] " + buttonsClassname}>
+      <div className="w-full h-[8vh] flex flex-row p-[10px]">
+        <div className={"peer/memo ml-[4vw] h-fit p-[5px] rounded-xl hover:bg-soft-green hover:text-main-green " + buttonsClassname}>
           <Link to={memoDestination}>
-            <MemoStudyButton />
+            <MdOutlineTypeSpecimen size="45px" />
           </Link>
         </div>
-        <div className={"peer/write mx-[3vw] " + buttonsClassname}>
+        <div className={"peer/write mx-[3vw] h-fit p-[5px] rounded-xl hover:bg-soft-green hover:text-main-green " + buttonsClassname}>
           <Link to={writingDestination}>
-            <WritingStudyButton />
+            <RiDraftLine size="45px" />
           </Link>
         </div>
 

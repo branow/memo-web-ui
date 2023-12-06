@@ -7,8 +7,7 @@ const Collection = ({ collection }) => {
   const { userState, isAuthenticated, isOwner } = useContext(PublicUserContext);
   return (
     <div
-      className="relative w-[20vw] h-fit px-[2vw] py-[2vh] mx-[3vw] my-[2vh] bg-charcoal mt-[2vh] rounded-xl border-b-[4px] 
-    border-charcoal hover:border-solid hover:border-regent-grey cursor-pointer [&:hover>div.hidden]:block"
+      className="relative w-[20vw] h-fit px-[2vw] py-[2vh] mx-[3vw] my-[2vh] bg-charcoal mt-[2vh] rounded-t-xl  cursor-pointer [&:hover>div.hidden]:block"
     >
       <Link className="peer" to={"/collection/" + collection.collectionId}>
         <div className="absolute top-0 left-0 w-full h-full z-10"></div>
@@ -20,7 +19,8 @@ const Collection = ({ collection }) => {
         </span>
       </div>
       {isOwner && (
-        <div className="hidden absolute bg-charcoal top-15">
+        <div className="hidden w-full absolute bg-charcoal left-0 top-[85%] p-[10px] rounded-xl border-b-[4px] 
+        border-charcoal hover:border-solid hover:border-regent-grey">
           <CollectionStudy memoDestination={"#"} writingDestination={"#"} />
         </div>
       )}

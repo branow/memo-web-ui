@@ -36,7 +36,7 @@ const PublicUserInfo = () => {
         {userState.user && (
           <div className="relative w-screen h-fit pb-[50px] bg-dark-grey text-white">
             <UserInfo />
-            <div className="w-screen h-fit flex flex-row text-xl font-normal pt-[5vh]">
+            <div className="w-[65vw] m-auto h-fit flex flex-row text-xl font-normal pt-[5vh]">
               <TabButton
                 name={"Modules"}
                 active={tab === "modules"}

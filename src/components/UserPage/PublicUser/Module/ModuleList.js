@@ -29,7 +29,7 @@ const ModuleList = () => {
         </div>
       ))}
       {isOwner && (
-        <div className="mt-[-3vh]">
+        <div className="mr-[2vw]">
           <FixedAddButton onClickAction={() => setIsAdding(true)}/>
         </div>
       )}

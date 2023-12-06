@@ -9,7 +9,7 @@ const PublicUserModules = () => {
   return (
     <>
       {moduleIds.length !== 0 && (
-        <div className="w-[40%] min-w-[500px]">
+        <div className="w-[30%] min-w-[300px] ml-[20vw] mt-[2vh]">
           <SearchBar />
         </div>
       )}
