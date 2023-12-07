@@ -11,7 +11,8 @@ export { useGetFlashcardIdsToLearn, useSetScoreToFlashcard };
 
 function useGetFlashcardIdsToLearn(studyTypeId, levels, sort) {
   const location = useLocation();
-  const collections = location.state ? location.state.collections : [4, 5];
+  console.log(location.state);
+  const collections = location.state.collections;
   const request = ({ callback, signal }) => {
     const jwt = new UserCookies().authorizationJwt.get();
     new LearningRequester().getFlashcardIdsToLearn(

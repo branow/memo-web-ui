@@ -1,8 +1,16 @@
-import { Link } from "react-router-dom";
-import { MdOutlineTypeSpecimen } from "react-icons/md";
-import { RiDraftLine } from "react-icons/ri";
+import { useHistory } from "react-router-dom";
+import StudyButton from "./StudyButton";
 
 const StudyTypeDescription = ({ collections, buttonsClassname }) => {
+  const history = useHistory();
+
+  const push = (link) => {
+    console.log(collections);
+    history.push(link, {
+      collections: collections,
+    });
+  };
+
   return (
     <div className="w-full h-[8vh] flex flex-row p-[10px]">
       <div
@@ -11,9 +19,10 @@ const StudyTypeDescription = ({ collections, buttonsClassname }) => {
           buttonsClassname
         }
       >
-        <Link to="/learning/memorize" state={collections}>
-          <MdOutlineTypeSpecimen size="45px" />
-        </Link>
+        <StudyButton
+          studyTypeName="ORALLY"
+          onClickAction={() => push("/learning/memorize")}
+        />
       </div>
       <div
         className={
@@ -21,9 +30,10 @@ const StudyTypeDescription = ({ collections, buttonsClassname }) => {
           buttonsClassname
         }
       >
-        <Link to="/learning/writing" state={collections}>
-          <RiDraftLine size="45px" />
-        </Link>
+        <StudyButton
+          studyTypeName="WRITING"
+          onClickAction={() => push("/learning/writing")}
+        />
       </div>
 
       <div className="border-r-[3px] border-solid border-main-green"></div>

@@ -1,18 +1,29 @@
 import StudyButton from "../Module/StudyButton";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const CollectionStudy = ({ collections }) => {
+  const history = useHistory();
+
+  const push = (link) => {
+    console.log(collections);
+    history.push(link, {
+      collections: collections,
+    });
+  };
+
   return (
     <div className="flex w-fit m-auto z-20 gap-16">
       <div className="z-20">
-        <Link to="/learnings/memorize" state={{ collections }}>
-          <StudyButton studyTypeName="ORALLY" />
-        </Link>
+        <StudyButton
+          studyTypeName="ORALLY"
+          onClickAction={() => push("/learning/memorize")}
+        />
       </div>
       <div className="z-20">
-        <Link to="/learnings/writing" state={{ collections }}>
-          <StudyButton studyTypeName="WRITING" />
-        </Link>
+        <StudyButton
+          studyTypeName="WRITING"
+          onClickAction={() => push("/learning/writing")}
+        />
       </div>
     </div>
   );
