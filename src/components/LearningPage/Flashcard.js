@@ -2,12 +2,12 @@ import ChangeCircleButton from "../constant/Buttons/ChangeCircleButton";
 import DeleteCircleButton from "../constant/Buttons/DeleteCircleButton";
 import FlashcardSide from "./FlashcardSide";
 import { useContext, useState } from "react";
-import { LearningContext } from "./LearningPage";
 import ScoreWrapper from "../UserPage/PublicUser/ScoreWrapper";
 import WindowWrapper from "../constant/WindowWrapper";
 import FlashcardEditor from "../FlashcardEditor/FlashcardEditor";
 import { useDeleteFlashcard } from "../../hooks/request/flashcard";
 import { FlashcardLearnContext } from "./FlashcardContent";
+import { LearningContext } from "./LearningPage";
 
 const Flashcard = () => {
   const { toLearnState } = useContext(LearningContext);

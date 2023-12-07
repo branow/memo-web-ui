@@ -42,8 +42,8 @@ const Module = ({ moduleId }) => {
         </div>
       )}
       {module && (
-        <div className="relative w-[80vw] h-fit bg-tealish-blue mx-auto mt-[5vh] rounded-sm  border-[2px] border-tealish-blue hover:border-solid hover:border-regent-grey">
-          <div className="absolute top-0 right-0">
+        <div className="[&:hover>div.hidden]:block relative w-[60vw] h-fit bg-tealish-blue mx-auto mt-[5vh] mb-[7vh] py-[2vh] rounded-sm  border-[2px] border-tealish-blue hover:border-solid hover:border-regent-grey">
+          <div className="hidden absolute top-0 right-0">
             {isOwner && (
               <DeleteCircleButton
                 color="white"
@@ -56,7 +56,7 @@ const Module = ({ moduleId }) => {
             )}
           </div>
           <div className="flex flex-row my-[2vh] mx-[4vw] z-10">
-            <div className="w-[40vw] flex flex-col">
+            <div className="w-[33vw] flex flex-col pr-[1vw] border-r-[4px] border-solid border-white">
               <div className="flex flex-row">
                 <ModuleAccess access={module.access} size="25px" />
               </div>
@@ -68,14 +68,13 @@ const Module = ({ moduleId }) => {
                     </span>
                   </Link>
 
-                  <span className="pr-[1vw] font-semibold text-main-green float-right border-r-[3px] border-solid border-white">
+                  <div className="w-[] font-semibold text-main-green float-right">
                     {module.collections.length}
-                  </span>
+                  </div>
                 </div>
-
-                <span className="mt-[1vh] text-lg text-gray-300">
-                  {module.shortDescription}
-                </span>
+              </div>
+              <div className="w-[30vw] mt-[1vh] text-lg text-gray-300 pr-[1vw]">
+                {module.shortDescription}
               </div>
             </div>
 

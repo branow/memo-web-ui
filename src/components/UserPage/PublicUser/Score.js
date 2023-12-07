@@ -56,3 +56,4 @@ const ScoreIcon = ({ studyTypeName, color, size }) => {
 };
 
 export default Score;
+

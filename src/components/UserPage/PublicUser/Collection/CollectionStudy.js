@@ -1,22 +1,20 @@
-import MemoStudyButton from "../Module/MemoStudyButton";
-import WritingStudyButton from "../Module/WritingStudyButton";
+import StudyButton from "../Module/StudyButton";
 import { Link } from "react-router-dom";
 
 const CollectionStudy = ({ collections }) => {
   return (
-
-      <div className="flex mt-[2vh] mx-[2vw] z-20  justify-between">
-        <div className="z-20">
-          <Link to="/learnings/memorize" state={{collections}}>
-            <MemoStudyButton />
-          </Link>
-        </div>
-        <div className="z-20">
-          <Link to="/learnings/writing" state={{collections}}>
-            <WritingStudyButton />
-          </Link>
-        </div>
+    <div className="flex w-fit m-auto z-20 gap-16">
+      <div className="z-20">
+        <Link to="/learnings/memorize" state={{ collections }}>
+          <StudyButton studyTypeName="ORALLY" />
+        </Link>
       </div>
+      <div className="z-20">
+        <Link to="/learnings/writing" state={{ collections }}>
+          <StudyButton studyTypeName="WRITING" />
+        </Link>
+      </div>
+    </div>
   );
 };
 

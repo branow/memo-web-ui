@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import SubmitButton from "../Buttons/SubmitButton";
 import EmailInputField from "../FormInput/EmailInputField";
 import LoadingScreen from "../LoadingScreen";
@@ -21,9 +21,9 @@ const ConfirmForm = () => {
     enable.state.run();
   }, []);
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = () => {
     regenerate.state.run(email);
-  },[]);
+  };
 
   return (
     <FormWrapperComponent exitDestination={"/"}>
@@ -48,7 +48,7 @@ const ConfirmForm = () => {
         )}
         <div>
           <EmailInputField
-            onChangeAction={useCallback((e) => setEmail(e.target.value), [])}
+            onChangeAction={(e) => setEmail(e.target.value)}
           />
           <div className="flex flex-col items-center">
             <SubmitButton actionName={"Send"} onClickAction={handleSubmit} />
