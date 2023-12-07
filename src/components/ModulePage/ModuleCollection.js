@@ -70,7 +70,6 @@ const ModuleCollection = ({ collection }) => {
           <StudyTypeDescription
             memoDestination={"#"}
             writingDestination={"#"}
-            buttonsClassname={"text-dim-grey"}
           />
         </div>
       )}

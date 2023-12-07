@@ -7,12 +7,12 @@ const CollectionStudy = ({ memoDestination, writingDestination }) => {
       <div className="flex w-fit m-auto z-20 gap-16">
         <div className="z-20">
           <Link to={memoDestination}>
-            <StudyButton studyTypeName="ORALLY" />
+            <StudyButton studyTypeName="ORALLY" size="45px" />
           </Link>
         </div>
         <div className="z-20">
           <Link to={writingDestination}>
-            <StudyButton studyTypeName="WRITING" />
+            <StudyButton studyTypeName="WRITING" size="45px" />
           </Link>
         </div>
       </div>
