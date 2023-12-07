@@ -27,7 +27,7 @@ const PublicUserInfo = () => {
     <>
       {(appUserContext.state.pending || state.pending) && <LoadingScreen />}
       {state.error && (
-        <ErrorBox title="User Laoding Error" message={state.error} />
+        <ErrorBox title="User Loading Error" message={state.error} />
       )}
 
       <PublicUserContext.Provider

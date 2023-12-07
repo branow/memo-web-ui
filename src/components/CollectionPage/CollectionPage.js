@@ -50,9 +50,9 @@ const CollectionPage = () => {
       >
         {collection && (
           <div>
-            <div className="relative w-screen h-fit bg-dark-grey text-white">
+            <div className="relative w-screen min-h-[95vh] bg-dark-grey text-white">
               <div
-                className="relative h-fit w-[80vw] pb-[10vh] bg-tealish-blue mx-auto border-[2px] 
+                className="relative h-fit w-[72vw] pb-[10vh] bg-tealish-blue mx-auto border-[2px] 
         border-tealish-blue hover:border-solid 
         hover:border-regent-grey"
               >

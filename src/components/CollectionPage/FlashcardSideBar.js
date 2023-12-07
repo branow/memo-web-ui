@@ -10,7 +10,7 @@ const FlashcardSideBar = ({ scores, onEdit, onDelete }) => {
     useContext(CollectionContext);
 
   return (
-    <div className="min-w-[8vw] min-h-[30vh] mt-[-2vh]">
+    <div className="min-w-[5vw] min-h-[30vh] mt-[-2vh]">
       <div className="flex flex-row m-auto my-[1vh]">
         {isOwner && (
           <div className="w-fit m-auto">

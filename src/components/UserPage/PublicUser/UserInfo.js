@@ -12,7 +12,7 @@ const UserInfo = () => {
       <div className="flex h-[vh] w-screen">
         <div className="text-3xl font-medium ml-[20vw] pt-[5vh] w-fit h-fit flex">
           {isOwner && (
-            <div className="cursor-pointer">
+            <div className="cursor-pointer p-[5px] rounded-full hover:bg-soft-green">
               <Link to={"/profile/info"}>
                 <Avatar className="mx-auto" color="white" size="100px" />
               </Link>

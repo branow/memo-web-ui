@@ -58,10 +58,16 @@ const ModuleInfo = ({}) => {
           <ScoreWrapper scores={module.scores} />
         </div>
         <div className="absolute top-0 right-0 mt-[2vh] mr-[2vw]">
-          <Link to={"/profile/" + module.owner.userId}>
-            <Avatar size={"75px"} />
-            <div className="w-fit m-auto text-lg">{module.owner.username}</div>
-          </Link>
+          <div className="p-[8px] rounded-xl hover:bg-soft-green">
+            <Link to={"/profile/" + module.owner.userId}>
+              <div className="w-fit m-auto">
+                <Avatar size={"75px"} />
+              </div>
+              <div className="w-fit m-auto text-lg">
+                {module.owner.username}
+              </div>
+            </Link>
+          </div>
 
           <div className="w-fit m-auto">
             {!isOwner && <DownloadCircleButton size={"50px"} />}
