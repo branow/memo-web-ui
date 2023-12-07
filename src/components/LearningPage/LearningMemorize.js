@@ -3,15 +3,20 @@ import { useContext, useState } from "react";
 import { LearningContext } from "./LearningPage";
 import NextCircleButton from "../constant/Buttons/NextCircleButton";
 import { useSetScoreToFlashcard } from "../../hooks/request/learning";
+import { useEffect } from "react";
 
 const LearningMemorize = () => {
   const { typeId, toLearnState, circleState } = useContext(LearningContext);
-  const [position, setPosition] = useState(0);
+  const [position, setPosition] = useState(null);
   const flashcardId = toLearnState.toLearn[position];
   const [isChecked, setIsChecked] = useState(false);
   const isCheckedState = { isChecked, setIsChecked };
   const [curScore, setCurScore] = useState(null);
   const curScoreState = { curScore, setCurScore };
+
+  useEffect(() => {
+    setPosition(0);
+  }, [toLearnState.toLearn])
 
   const useSetScore = useSetScoreToFlashcard((argScore) => {});
   const setScore = (score) => {

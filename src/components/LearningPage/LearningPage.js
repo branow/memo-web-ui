@@ -9,17 +9,20 @@ import LearningMemorize from "./LearningMemorize";
 import LearnCicleAlert from "./LearnCircleAlert";
 import Settings from "./Setting/Settings";
 import { readSettings } from "../../utils/learning-settings";
+import LearningWriting from "./LearningWriting";
 
 export const LearningContext = createContext();
 
 const LearningPage = ({ typeId }) => {
   const [setting, setSetting] = useState(readSettings());
+  const [isCircle, setIsCircle] = useState(false);
+  const [circles, setCircles] = useState(0);
   const { toLearnState, state } = useGetFlashcardIdsToLearn(
     typeId,
     setting.levels,
-    setting.sort
+    setting.sort,
+    circles,
   );
-  const [isCircle, setIsCircle] = useState(false);
   const [isSetting, setIsSetting] = useState(false);
 
   const closeSetting = () => {
@@ -36,6 +39,7 @@ const LearningPage = ({ typeId }) => {
 
   const settingState = { setting, setSetting };
   const circleState = { isCircle, setIsCircle };
+  const circlesState = { circles, setCircles };
   return (
     <>
       {isSetting && (
@@ -49,7 +53,7 @@ const LearningPage = ({ typeId }) => {
       )}
       {state.pending && <LoadingAnimation message="Loading flashcards..." />}
       <LearningContext.Provider
-        value={{ typeId, settingState, toLearnState, circleState }}
+        value={{ typeId, settingState, toLearnState, circleState, circlesState }}
       >
         <div className="fixed w-full h-full bg-dark-grey text-white  overflow-hidden">
           <div className="absolute right-[5vw] top-[5vh]">
@@ -71,8 +75,10 @@ const LearningPage = ({ typeId }) => {
                     <LearnCicleAlert />
                   </WindowWrapper>
                 )}
-
-                {toLearnState.toLearn.length > 0 && <LearningMemorize />}
+                {toLearnState.toLearn.length > 0 && (<>
+                  {typeId === '1' && <LearningMemorize />}
+                  {typeId === '2' && <LearningWriting />}
+                </>)}
               </>
             )}
           </div>

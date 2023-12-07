@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { LearningContext } from "./LearningPage";
 import { createContext } from "react";
 import { useGetFlashcardLearnContext } from "../../hooks/request/flashcard";
@@ -16,7 +16,12 @@ const FlashcardContent = ({ flashcardId, isCheckedState, useSetScore, setScore, 
     flashcardId,
     typeId
   );
-  const [isFrontSide, setIsFrontSide] = useState(true);
+  const [isFrontSide, setIsFrontSide] = useState(null);
+  
+  useEffect(() => {
+    setIsFrontSide(true);
+  }, [flashcardId])
+
   const frontSideState = { isFrontSide, setIsFrontSide };
 
   return (

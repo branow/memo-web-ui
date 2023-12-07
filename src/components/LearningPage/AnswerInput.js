@@ -48,7 +48,7 @@ const AnswerInput = ({ setIsScoreEdit }) => {
       {isChecked && (
         <div className="relative flex flex-row group">
           <div>
-            <AnswerScore size="70px" score={curScoreState.curScore + '%'} />
+            <AnswerScore size="70px" score={curScoreState.curScore} />
           </div>
           <div className="hidden absolute top-[-7px] right-[-7px] z-[10] group-hover:block">
             <ChangeCircleButton

@@ -15,19 +15,25 @@ const LearningWriting = () => {
 
   useEffect(() => {
     setPosition(0);
-  }, [toLearnState.toLearn])
+  }, [toLearnState.toLearn]);
+
+  useEffect(() => {
+    setIsChecked(false);
+  }, [toLearnState.toLearn]);
+
+  let isSetScore = false;
 
   const useSetScore = useSetScoreToFlashcard((argScore) => {});
   const setScore = (score) => {
+    isSetScore = true;
     const studyTypeId = typeId;
     useSetScore.state.run({ flashcardId, studyTypeId, score });
     next();
   };
 
   const next = () => {
-    if (curScore != null) {
+    if (!isSetScore) {
       setScore(curScore);
-      setCurScore(null);
     } else {
       const toLearn = toLearnState.toLearn;
       if (position < toLearn.length - 1) {
@@ -41,15 +47,17 @@ const LearningWriting = () => {
 
   return (
     <>
-      <FlashcardContent
-        flashcardId={flashcardId}
-        isCheckedState={isCheckedState}
-        useSetScore={useSetScore}
-        setScore={setScore}
-        curScoreState={curScoreState}
-      />
-      <div className="absolute h-fit right-0 top-0 bottom-0 mr-[-8vw] mt-[20vh] text-main-green ">
-        <NextCircleButton size="60px" onClickAction={next} />
+      <div className="relative">
+        <FlashcardContent
+          flashcardId={flashcardId}
+          isCheckedState={isCheckedState}
+          useSetScore={useSetScore}
+          setScore={setScore}
+          curScoreState={curScoreState}
+        />
+        <div className="absolute h-full right-[-90px] top-0  flex flex-col justify-center text-main-green ">
+          <NextCircleButton size="60px" onClickAction={next} />
+        </div>
       </div>
     </>
   );

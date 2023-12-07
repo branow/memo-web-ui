@@ -24,7 +24,7 @@ const FlashcardSide = () => {
   return (
     <div className="flex flex-row p-[10px] items-center justify-center">
       <div className="flex flex-col m-[10px]">
-        <div className="relative min-w-[500px] max-w-[1000px] w-[40vw] min-h-[300px] max-h-[600px] h-[30vh] p-[20px] bg-charcoal rounded-xl">
+        <div className="relative min-w-[500px] max-w-[1000px] w-[40vw] min-h-[300px] max-h-[400px] h-[20vh] p-[20px] bg-charcoal rounded-xl">
           {side.audio && (
             <div className="absolute top-0 right-0 z-10">
               <AudioPlayer
