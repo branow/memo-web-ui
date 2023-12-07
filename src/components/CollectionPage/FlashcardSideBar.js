@@ -20,7 +20,7 @@ const FlashcardSideBar = ({ scores, onEdit, onDelete }) => {
         )}
         {!isOwner && isAuthenticated && <DownloadCircleButton size={"40px"} />}
       </div>
-      <div className="w-fit m-auto"><ScoreWrapper scores={scores} direction="column"/></div>
+      <div className="w-fit m-auto"><ScoreWrapper scores={scores} direction="column" size="SMALLER" /></div>
       
     </div>
   );

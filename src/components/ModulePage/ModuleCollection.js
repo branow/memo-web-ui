@@ -44,7 +44,7 @@ const ModuleCollection = ({ collection }) => {
           close={useDelete.state.cleanError}
         />
       )}
-      <div className="hidden relative float-right p-[0.5vh] z-10">
+      <div className="hidden relative float-right p-[0.5vh]">
         {isOwner && (
           <DeleteCircleButton size={"25px"} onClickAction={handleOnDelete} />
         )}
@@ -61,8 +61,8 @@ const ModuleCollection = ({ collection }) => {
             {collection.size}
           </span>
         </div>
-        <div className="h-[9vh] mt-[-2vh] ml-[5vw] z-10">
-          <ScoreWrapper scores={collection.scores} />
+        <div className="w-[12vw] h-[9vh] mt-[-2vh] ml-[6vw]">
+          <ScoreWrapper scores={collection.scores} size="SMALLER" />
         </div>
       </div>
       {isOwner && (

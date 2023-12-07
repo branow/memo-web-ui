@@ -3,7 +3,7 @@ import ScoreBar from "../../constant/ScoreBar";
 import { MdOutlineTypeSpecimen } from "react-icons/md";
 import { RiDraftLine } from "react-icons/ri";
 
-const Score = ({ score }) => {
+const Score = ({ score, size }) => {
 
   const reset = new Date(score.resetTime);
   const time = reset > new Date() ? periodToShortString(reset, new Date()) : "";
@@ -20,7 +20,7 @@ const Score = ({ score }) => {
 
       <div className="relative opacity-[0.9] hover:opacity-[0.3] transition duration-300">
         <div>
-          <ScoreBar score={score.score} />
+          <ScoreBar score={score.score} size={size} />
         </div>
         <div className="absolute top-0 w-full h-full flex flex-col justify-center items-center">
           <div className=" w-fit">

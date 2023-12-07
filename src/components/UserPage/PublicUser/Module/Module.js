@@ -78,8 +78,8 @@ const Module = ({ moduleId }) => {
               </div>
             </div>
 
-            <div className="ml-[7vw] mt-[3vh] z-10">
-              <ScoreWrapper scores={module.scores} />
+            <div className="my-auto ml-[6vw]">
+              <ScoreWrapper scores={module.scores} size="SMALLER" />
             </div>
           </div>
           {isOwner && (

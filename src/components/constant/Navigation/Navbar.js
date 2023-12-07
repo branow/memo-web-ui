@@ -9,7 +9,7 @@ const Navbar = () => {
   const { userState } = useContext(UserContext);
   
   return (
-    <div className="bg-main-green fixed z-10 w-full">
+    <div className="bg-main-green fixed z-20 w-full">
       <div className="flex flex-wrap items-center justify-between mx-auto py-2 px-4">
         <Link to="/" className="flex ">
           <TbCardsFilled color="#333" size="60px"/>
