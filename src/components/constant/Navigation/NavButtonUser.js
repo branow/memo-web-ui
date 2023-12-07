@@ -8,15 +8,12 @@ const NavButtonUser = ({ username }) => {
   return (
     <div>
       <li>
-        <Link
-          to={"/profile/" + userState.user.userId }
-          className={
-            "block py-2 pl-3 pr-4 text-gray-100 rounded hover:bg-orangy-yellow md:p-2 active:bg-yellow-700 border-2"
-          }
-        >
-          <div className="flex px-[10px]">
-            <Avatar className="mr-[5px]" color="white" size="30px" />
-            {username}
+        <Link to={"/profile/" + userState.user.userId}>
+          <div className="block text-gray-100 rounded hover:bg-orangy-yellow md:p-2 active:bg-yellow-700 border-2">
+            <div className="flex flex-row gap-2">
+              <Avatar className="" color="white" size="30px" />
+              {username}
+            </div>
           </div>
         </Link>
       </li>
