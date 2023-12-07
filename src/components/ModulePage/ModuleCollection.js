@@ -33,7 +33,7 @@ const ModuleCollection = ({ collection }) => {
 
   return (
     <div
-      className="relative w-[62vw] h-fit  mx-auto my-[2vh] bg-charcoal mt-[2vh] rounded-t-lg border-b-[4px] 
+      className="[&:hover>div.hidden]:block relative w-[50vw] h-fit  mx-auto my-[2vh] bg-charcoal mt-[2vh] rounded-t-lg border-b-[4px] 
     border-charcoal hover:border-solid hover:border-regent-grey "
     >
       {useDelete.state.pending && <LoadingAnimation message="Deleting..." />}
@@ -44,24 +44,24 @@ const ModuleCollection = ({ collection }) => {
           close={useDelete.state.cleanError}
         />
       )}
-      <div className="relative float-right p-[0.5vh] z-10">
+      <div className="hidden relative float-right p-[0.5vh] z-10">
         {isOwner && (
           <DeleteCircleButton size={"25px"} onClickAction={handleOnDelete} />
         )}
         {isAuthenticated && !isOwner && <DownloadCircleButton size={"25px"} />}
       </div>
       <div className="flex flex-row px-[3vw] py-[3vh]">
-        <div className="w-[30vw]">
+        <div className="w-[22vw]">
           <Link to={"/collection/" + collection.collectionId}>
-            <span className="text-3xl font-light cursor-pointer">
+            <span className="text-2xl font-light cursor-pointer">
               {collection.collectionName}
             </span>
           </Link>
-          <span className="float-right text-2xl text-main-green font-semibold">
+          <span className="float-right text-3xl text-main-green font-semibold">
             {collection.size}
           </span>
         </div>
-        <div className="h-[8vh] mt-[-2vh] ml-[5vw] z-10">
+        <div className="h-[9vh] mt-[-2vh] ml-[5vw] z-10">
           <ScoreWrapper scores={collection.scores} />
         </div>
       </div>

@@ -7,7 +7,7 @@ import { useGetModuleDetails } from "../../hooks/request/module";
 import { createContext, useContext } from "react";
 import { UserContext } from "../App";
 import LoadingAnimation from "../constant/LoadingAnimation";
-import ErrorBox from "../constant/ErrorBox";
+import ErrorPage from "../constant/ErrorPage";
 
 export const ModuleContext = createContext();
 
@@ -26,26 +26,31 @@ const ModulePage = ({ currentModule }) => {
   return (
     <>
       {state.pending && <LoadingAnimation />}
-      {state.error && <ErrorBox title="Module Loading Error" message={state.error}/>}
+      {state.error && (
+        <ErrorPage title="Module Loading Error" message={state.error} />
+      )}
 
       <ModuleContext.Provider value={{ moduleState, isAuthenticated, isOwner }}>
-        <div className="relative w-screen h-fit bg-dark-grey text-white">
+        <div className="relative w-screen h-[95vh] bg-dark-grey text-white">
           <div
-            className="relative h-fit w-[80vw] pb-[15vh] bg-tealish-blue mx-auto border-[2px] 
+            className="relative h-fit w-[70vw] pb-[10vh] bg-tealish-blue mx-auto border-[2px] 
       border-tealish-blue hover:border-solid 
       hover:border-regent-grey"
           >
             {moduleState.module && (
               <>
                 <ModuleInfo />
-                <div className="relative z-10 border-solid border-white border-b-[3px]">
-                  {isOwner && (
+                {isOwner && (
+                  <div className="relative z-10 border-solid border-white border-y-[3px]">
                     <StudyTypeDescription
                       memoDestination={"#"}
                       writingDestination={"#"}
                     />
-                  )}
-                </div>
+                  </div>
+                )}
+                {!isOwner &&
+                  <div className="border-solid border-white border-b-[3px]"></div>
+                }
                 <div className="w-[30vw] h-[5vh] mt-[5vh] ml-[6.2vw]">
                   <SearchBar borderColor={"charcoal"} />
                 </div>

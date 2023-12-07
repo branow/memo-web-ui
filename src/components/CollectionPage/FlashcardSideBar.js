@@ -10,17 +10,18 @@ const FlashcardSideBar = ({ scores, onEdit, onDelete }) => {
     useContext(CollectionContext);
 
   return (
-    <div>
-      <div className="flex flex-row w-fit m-auto my-[1vh]">
+    <div className="min-w-[8vw] min-h-[30vh] mt-[-2vh]">
+      <div className="flex flex-row m-auto my-[1vh]">
         {isOwner && (
-          <div>
+          <div className="w-fit m-auto">
             <ChangeCircleButton size={"22px"} onClickAction={onEdit} />
             <DeleteCircleButton size={"22px"} onClickAction={onDelete} />
           </div>
         )}
         {!isOwner && isAuthenticated && <DownloadCircleButton size={"40px"} />}
       </div>
-      <ScoreWrapper scores={scores} direction="column"/>
+      <div className="w-fit m-auto"><ScoreWrapper scores={scores} direction="column"/></div>
+      
     </div>
   );
 };

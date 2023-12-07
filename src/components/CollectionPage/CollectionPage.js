@@ -8,6 +8,7 @@ import StudyTypeDescription from "../UserPage/PublicUser/Module/StudyTypeDescrip
 import CollectionInfo from "./CollectionInfo";
 import LoadingAnimation from "../constant/LoadingAnimation";
 import ErrorBox from "../constant/ErrorBox";
+import ErrorPage from "../constant/ErrorPage";
 
 export const CollectionContext = createContext();
 
@@ -27,7 +28,7 @@ const CollectionPage = () => {
   if (collection && collection.module.access === "PRIVATE" && !isOwner) {
     return (
       <>
-        <ErrorBox
+        <ErrorPage
           title="Illegal Access"
           message="You cannot see this collection"
         />
@@ -39,37 +40,35 @@ const CollectionPage = () => {
     <>
       {state.pending && <LoadingAnimation />}
       {state.error && (
-        <ErrorBox
+        <ErrorPage
           title="Collection Loading Error"
           message={state.error}
-          close={state.cleanError}
         />
       )}
       <CollectionContext.Provider
         value={{ collectionState, isOwner, isAuthenticated }}
       >
-        <div>
-          <div className="relative w-screen h-fit bg-dark-grey text-white">
-            <div
-              className="relative h-fit w-[80vw] pb-[10vh] bg-tealish-blue mx-auto border-[2px] 
+        {collection && (
+          <div>
+            <div className="relative w-screen h-fit bg-dark-grey text-white">
+              <div
+                className="relative h-fit w-[80vw] pb-[10vh] bg-tealish-blue mx-auto border-[2px] 
         border-tealish-blue hover:border-solid 
         hover:border-regent-grey"
-            >
-              {collection && <CollectionInfo />}
+              >
+                {collection && <CollectionInfo />}
 
-              {isOwner && (
-                <div className="relative z-10 border-solid border-white border-y-[3px]">
-                  <StudyTypeDescription
-                    memoDestination={"#"}
-                    writingDestination={"#"}
-                  />
-                </div>
-              )}
-
-              {collection && (
+                {isOwner && (
+                  <div className="relative z-10 border-solid border-white border-y-[3px]">
+                    <StudyTypeDescription
+                      memoDestination={"#"}
+                      writingDestination={"#"}
+                    />
+                  </div>
+                )}
                 <>
                   {collection.flashcardIds.length !== 0 && (
-                    <div className="w-[30vw] h-[5vh] mt-[5vh] ml-[6.2vw]">
+                    <div className="w-[30vw] h-[5vh] my-[5vh] ml-[6.2vw]">
                       <SearchBar borderColor={"charcoal"} />
                     </div>
                   )}
@@ -77,10 +76,10 @@ const CollectionPage = () => {
                     <CardList />
                   </div>
                 </>
-              )}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </CollectionContext.Provider>
     </>
   );

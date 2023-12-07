@@ -2,7 +2,7 @@ import AddButton from "./AddButton";
 
 const FixedAddButton = ({ onClickAction }) => {
   return (
-    <div className="fixed bottom-[5vh] right-[5vw] w-fit h-fit z-20">
+    <div className="fixed bottom-[5vh] right-[5vw] w-fit h-fit z-20 cursor-pointer">
       <AddButton onClickAction={onClickAction} />
     </div>
   );

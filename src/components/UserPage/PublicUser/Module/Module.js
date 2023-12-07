@@ -82,15 +82,14 @@ const Module = ({ moduleId }) => {
               <ScoreWrapper scores={module.scores} />
             </div>
           </div>
-          <div className="relative z-10 border-y-[3px] border-solid border-white">
-            {isOwner && (
+          {isOwner && (
+            <div className="relative z-10 border-y-[3px] border-solid border-white">
               <StudyTypeDescription
                 memoDestination={"#"}
                 writingDestination={"#"}
               />
-            )}
-          </div>
-
+            </div>
+          )}
           <div className="flex flex-row flex-wrap justify-between mt-[2vh] z-10">
             <CollectionList collections={module.collections} />
           </div>

@@ -26,35 +26,32 @@ const ModuleInfo = ({}) => {
       )}
 
       <div className="flex flex-row mt-[6vh] mb-[4vh] mx-[4vw] z-10">
-        <div className="w-[45vw] flex flex-col">
-            <div className="flex flex-col">
-              <div className="text-4xl">
-                
-                <span className="font-normal">{module.moduleName}</span>
-                
-
-                {isOwner && (
-                  <span className="ml-[0.5vw]">
-                    <ChangeCircleButton
-                      size={"25px"}
-                      onClickAction={() => setIsEdit(true)}
-                    />
-                  </span>
-                )}
-                <span className="pr-[1vw] font-semibold text-main-green float-right border-r-[4px] border-solid border-white">
-                  {module.collections.length}
+        <div className="w-[35vw] flex flex-col border-r-[4px] border-solid border-white">
+          <div className="flex flex-col">
+            <div className="text-4xl">
+              <span className="font-normal">{module.moduleName}</span>
+              {isOwner && (
+                <span className="ml-[0.5vw]">
+                  <ChangeCircleButton
+                    size={"25px"}
+                    onClickAction={() => setIsEdit(true)}
+                  />
                 </span>
-              </div>
-              <div className="flex flex-row mt-[1vh]">
-                <ModuleAccess access={module.access} size="25px" />
-              </div>
+              )}
+              <span className="pr-[1vw] font-semibold text-main-green float-right">
+                {module.collections.length}
+              </span>
             </div>
-            <div className="mt-[5vh]"></div>
-            <div className="w-[70vw]">
-              <div className="text-xl text-gray-300 mr-[1vw] w-full">
-                {module.description}
-              </div>
+            <div className="flex flex-row mt-[1vh]">
+              <ModuleAccess access={module.access} size="25px" />
             </div>
+          </div>
+          <div className="mt-[5vh]"></div>
+          <div className="w-[70vw]">
+            <div className="text-xl text-gray-300 mr-[1vw] w-full">
+              {module.description}
+            </div>
+          </div>
         </div>
 
         <div className="mt-[-2vh] ml-[5vw] z-10">
