@@ -3,6 +3,7 @@ import { Cookies } from "react-cookie";
 class UserCookies {
   constructor() {
     this.authorizationJwt = new UserCookie("AuthorizationJwt");
+    this.learningSettings = new UserCookie("LearningSettings");
   }
 }
 

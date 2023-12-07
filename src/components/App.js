@@ -1,7 +1,6 @@
 import Navbar from "./constant/Navigation/Navbar";
 import HomePage from "./MainPage/HomePage";
 import PrivateUserPage from "./UserPage/PrivateUser/PrivateUserPage";
-import FormComponentWrapper from "./constant/Forms/FormComponentWrapper";
 import LoginForm from "./constant/Forms/LoginForm";
 import RegistrationForm from "./constant/Forms/RegistrationForm";
 import ResetForm from "./constant/Forms/ResetForm";
@@ -10,8 +9,12 @@ import ModulePage from "./ModulePage/ModulePage";
 import CollectionPage from "./CollectionPage/CollectionPage";
 import LearningPage from "./LearningPage/LearningPage";
 import PublicUserInfo from "./UserPage/PublicUser/PublicUserInfo";
-import SettingsWindow from "./LearningPage/SettingsWindow";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import SettingsWindow from "./LearningPage/Setting/SettingsWindow";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from "react-router-dom";
 import "../input.css";
 import { useGetUserPrivateShortDetails } from "../hooks/request/user";
 import LogoutForm from "./constant/Forms/LogoutForm";
@@ -26,7 +29,7 @@ function App() {
   return (
     <UserContext.Provider value={appUserContext}>
       <Router>
-        <div className="bg-tealish-blue overflow-hidden w-full">
+        <div className="w-full h-[100vh] bg-tealish-blue overflow-y-auto overflow-x-hidden">
           <Navbar></Navbar>
           <div>
             <Switch>
@@ -73,11 +76,13 @@ function App() {
                 <CollectionPage />
               </Route>
               <Route path="/learning/settings">
-                <LearningPage />
                 <SettingsWindow />
               </Route>
-              <Route path="/learning">
-                <LearningPage />
+              <Route path="/learning/memorize">
+                <LearningPage typeId="1" />
+              </Route>
+              <Route path="/learning/writting">
+                <LearningPage typeId="2" />
               </Route>
             </Switch>
           </div>

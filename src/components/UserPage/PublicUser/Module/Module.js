@@ -85,8 +85,7 @@ const Module = ({ moduleId }) => {
           {isOwner && (
             <div className="relative z-10 border-y-[3px] border-solid border-white">
               <StudyTypeDescription
-                memoDestination={"#"}
-                writingDestination={"#"}
+                collections={module.collections.map((c) => c.collectionId)}
               />
             </div>
           )}

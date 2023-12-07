@@ -1,19 +1,19 @@
 import UserScoreButton from "./UserScoreButton";
 
-const UserScoreList = () => {
-    return (
-      <div className="flex flex-col w-fit h-fit items-center ml-[40vw] mt-[3vh]">
-        <div className="text-xl">
-          <span>How well did you know this card?</span>
-        </div>
-        <div className="flex flex-row mt-[2vh] gap-10">
-          <UserScoreButton color="red" label="not at all" />
-          <UserScoreButton color="orange" label="badly" />
-          <UserScoreButton color="yellow" label="normally" />
-          <UserScoreButton color="green" label="perfectly" />
-        </div>
+const UserScoreList = ({ setScore }) => {  
+  return (
+    <div className="flex flex-col w-fit h-fit items-center">
+      <div className="text-xl">
+        <span>How well did you know this card?</span>
       </div>
-    );
-}
- 
+      <div className="flex flex-row mt-[20px] gap-10">
+        <UserScoreButton color="red" label="not at all" onClickAction={() => setScore(0)}/>
+        <UserScoreButton color="orange" label="badly" onClickAction={() => setScore(50)}/>
+        <UserScoreButton color="yellow" label="normally" onClickAction={() => setScore(85)}/>
+        <UserScoreButton color="green" label="perfectly" onClickAction={() => setScore(100)}/>
+      </div>
+    </div>
+  );
+};
+
 export default UserScoreList;

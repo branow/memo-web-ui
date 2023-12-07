@@ -50,17 +50,35 @@ const TextFormatter = ({ formatter, setFormatter, caret, back }) => {
 
   const onKey = (e) => {
     e.preventDefault();
-    const serviceKeys = ["Shift", "ShiftLeft", "ShiftRight", "Control", "ControlLeft", "ControlRight", "Alt", "AltLeft", "AltRight"];
+    const serviceKeys = ["Shift", "ShiftLeft", "ShiftRight", "Control", "ControlLeft", 
+    "ControlRight", "Alt", "AltLeft", "AltRight", "CapsLock", "Insert", "Escape"];
     position = new Caret(container.current).getPosition();
+    const start = Math.min(position.anshor, position.focus); 
+    const end = Math.max(position.anshor, position.focus); 
+    const selected = formatter.text.substring(start, end);
     if (e.ctrlKey && e.key === "z") {
       back();
     } else if (e.code === "Enter") {
       insertText("\n", position);
     } else if (e.key === "Tab") { 
       insertText("\t", position);
-    }else if (e.code === "Backspace" || e.code === "Delete" || (e.ctrlKey && e.key === "x")) {
+    } else if (e.code === "Backspace" || e.code === "Delete") {
       deleteText(position);
-    } else if (serviceKeys.includes(e.key)){
+    } else if (e.ctrlKey && e.key === "x") {
+      // navigator.clipboard.writeText(selected);
+      // deleteText(position);
+    } else if (e.ctrlKey && e.key === "v") {
+      // const text = navigator.clipboard.readText();
+      // insertText(text, position);
+    } else if (e.ctrlKey && e.key === "c") {
+      // navigator.clipboard.writeText(selected);
+    } else if (serviceKeys.includes(e.key)) {
+      
+    } else if (e.key === "ArrowRight") {
+      new Caret(container.current).setPosition(position.anchor + 1);
+    } else if (e.key === "ArrowLeft") {
+      new Caret(container.current).setPosition(position.anchor - 1);
+    } else if (e.key === "ArrowDown" || e.key === "ArrowUp") {
       
     } else {
       insertText(e.key, position);
@@ -137,7 +155,9 @@ class Caret {
     };
   }
   setPosition(pos) {
-    setCaretRecursion(this.target, { value: pos, isSet: false });
+    if (pos >= 0) {
+      setCaretRecursion(this.target, { value: pos, isSet: false });
+    }
   }
 }
 

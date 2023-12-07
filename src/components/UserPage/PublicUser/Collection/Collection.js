@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { PublicUserContext } from "../PublicUserInfo";
 
 const Collection = ({ collection }) => {
-  const { userState, isAuthenticated, isOwner } = useContext(PublicUserContext);
+  const { isOwner } = useContext(PublicUserContext);
   return (
     <div
       className="relative w-[20vw] h-fit px-[2vw] py-[2vh] mx-[3vw] my-[2vh] bg-charcoal mt-[2vh] rounded-t-xl  cursor-pointer [&:hover>div.hidden]:block"
@@ -23,7 +23,7 @@ const Collection = ({ collection }) => {
       {isOwner && (
         <div className="hidden w-full absolute bg-charcoal left-0 top-[85%] p-[10px] rounded-xl border-b-[4px] 
         border-charcoal hover:border-solid hover:border-regent-grey">
-          <CollectionStudy memoDestination={"#"} writingDestination={"#"} />
+          <CollectionStudy collections={[collection.collectionId]} />
         </div>
       )}
     </div>

@@ -11,6 +11,14 @@ class FlashcardRequester {
       signal: signal,
     });
   };
+  getFlashcardLearnContext(jwt, flashcardId, studyTypeId, doFinally, signal) {
+    this.requester.get({
+      url: 'learn-context/' + flashcardId + '/' + studyTypeId,
+      jwt: jwt,
+      doFinally: doFinally,
+      signal: signal,
+    });
+  };
   save(jwt, flashcard, collectionId, doFinally, signal) {
     this.requester.post({
       url: '' + collectionId,

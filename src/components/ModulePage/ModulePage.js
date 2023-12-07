@@ -22,7 +22,6 @@ const ModulePage = ({ currentModule }) => {
     moduleState.module &&
     appUserContext.userState.user.userId === moduleState.module.owner.userId;
 
-
   return (
     <>
       {state.pending && <LoadingAnimation />}
@@ -43,8 +42,9 @@ const ModulePage = ({ currentModule }) => {
                 {isOwner && (
                   <div className="relative z-10 border-solid border-white border-y-[3px]">
                     <StudyTypeDescription
-                      memoDestination={"#"}
-                      writingDestination={"#"}
+                      collections={moduleState.module.collections.map(
+                        (c) => c.collectionId
+                      )}
                     />
                   </div>
                 )}
