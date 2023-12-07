@@ -60,8 +60,7 @@ const CollectionPage = () => {
               {isOwner && (
                 <div className="relative z-10 border-solid border-white border-y-[3px]">
                   <StudyTypeDescription
-                    memoDestination={"#"}
-                    writingDestination={"#"}
+                    collections={[collection.collectionId]}
                   />
                 </div>
               )}

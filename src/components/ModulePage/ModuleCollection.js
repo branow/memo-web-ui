@@ -68,8 +68,7 @@ const ModuleCollection = ({ collection }) => {
       {isOwner && (
         <div className="border-t-[4px] border-solid border-tealish-blue">
           <StudyTypeDescription
-            memoDestination={"#"}
-            writingDestination={"#"}
+            collections={[collection.collectionId]}
             buttonsClassname={"text-dim-grey"}
           />
         </div>

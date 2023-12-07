@@ -63,7 +63,9 @@ const Module = ({ moduleId }) => {
               <div className="flex flex-col">
                 <div className="text-3xl ">
                   <Link to={"/module/" + module.moduleId}>
-                    <span className="font-normal cursor-pointer">{module.moduleName}</span>
+                    <span className="font-normal cursor-pointer">
+                      {module.moduleName}
+                    </span>
                   </Link>
 
                   <span className="pr-[1vw] font-semibold text-main-green float-right border-r-[3px] border-solid border-white">
@@ -84,8 +86,7 @@ const Module = ({ moduleId }) => {
           <div className="relative z-10 border-y-[3px] border-solid border-white">
             {isOwner && (
               <StudyTypeDescription
-                memoDestination={"#"}
-                writingDestination={"#"}
+                collections={module.collections.map((c) => c.collectionId)}
               />
             )}
           </div>

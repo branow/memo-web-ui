@@ -29,7 +29,7 @@ function App() {
   return (
     <UserContext.Provider value={appUserContext}>
       <Router>
-        <div className="bg-tealish-blue overflow-hidden w-full h-[100vh]">
+        <div className="w-full h-[100vh] bg-tealish-blue overflow-y-auto overflow-x-hidden">
           <Navbar></Navbar>
           <div>
             <Switch>

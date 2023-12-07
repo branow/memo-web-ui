@@ -22,11 +22,12 @@ const ModulePage = ({ currentModule }) => {
     moduleState.module &&
     appUserContext.userState.user.userId === moduleState.module.owner.userId;
 
-
   return (
     <>
       {state.pending && <LoadingAnimation />}
-      {state.error && <ErrorBox title="Module Loading Error" message={state.error}/>}
+      {state.error && (
+        <ErrorBox title="Module Loading Error" message={state.error} />
+      )}
 
       <ModuleContext.Provider value={{ moduleState, isAuthenticated, isOwner }}>
         <div className="relative w-screen h-fit bg-dark-grey text-white">
@@ -41,8 +42,9 @@ const ModulePage = ({ currentModule }) => {
                 <div className="relative z-10 border-solid border-white border-b-[3px]">
                   {isOwner && (
                     <StudyTypeDescription
-                      memoDestination={"#"}
-                      writingDestination={"#"}
+                      collections={moduleState.module.collections.map(
+                        (c) => c.collectionId
+                      )}
                     />
                   )}
                 </div>
