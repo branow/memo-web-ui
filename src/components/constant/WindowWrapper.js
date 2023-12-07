@@ -4,7 +4,7 @@ const WindowWrapper = ({ children, close }) => {
   const background = useRef();
 
   const handleOnClick = (e) => {
-    if (e.target === background.current) {
+    if (e.target === background.current && close) {
       close()
     }
   }
@@ -16,7 +16,7 @@ const WindowWrapper = ({ children, close }) => {
         onClick={handleOnClick}
         ref={background}
       >
-        <div className="mt-[10vh] mb-[10vh] h-fit w-fit m-auto z-40 flex flex-col">{children}</div>
+        <div className="h-full w-full z-40 flex flex-col justify-center items-center">{children}</div>
       </div>
     </>
   );
