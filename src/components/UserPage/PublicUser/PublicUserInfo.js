@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from "react";
 import { UserContext } from "../../App";
 import LoadingScreen from "../../constant/LoadingScreen";
 import { useGetUserGeneralDetails } from "../../../hooks/request/user";
-import ErrorBox from "../../constant/ErrorBox";
+import ErrorPage from "../../constant/ErrorPage";
 import UserInfo from "./UserInfo";
 import PublicUserModules from "./PublicUserModules";
 import PublicUserAchievements from "./PublicUserAchievements";
@@ -27,7 +27,7 @@ const PublicUserInfo = () => {
     <>
       {(appUserContext.state.pending || state.pending) && <LoadingScreen />}
       {state.error && (
-        <ErrorBox title="User Loading Error" message={state.error} />
+        <ErrorPage title="User Loading Error" message={state.error} />
       )}
 
       <PublicUserContext.Provider

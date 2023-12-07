@@ -32,7 +32,7 @@ const ModuleEditForm = ({ moduleState, close }) => {
   };
 
   return (
-    <div className="relative flex flex-col justify-center bg-tealish-blue p-[20px]">
+    <div className="relative w-[20vw] min-h-[55vh] flex flex-col items-center bg-tealish-blue p-[20px] rounded-xl">
       {useSave.state.pending && <LoadingAnimation message="Saving..." />}
       {useSave.state.error && (
         <ErrorBox
@@ -45,19 +45,25 @@ const ModuleEditForm = ({ moduleState, close }) => {
       <div className="absolute top-0 right-0">
         <DeleteCircleButton size="25px" onClickAction={close} />
       </div>
-      <div>Edit module</div>
-      <div className="flex flex-col justify-center text-black">
-        <div>
-          <div>Module Name</div>
+      <div className="my-[2vh] text-3xl font-semibold">Edit module</div>
+      <div className="flex flex-col items-center text-black">
+        <div className="mt-[2vh] flex flex-col items-center">
+          <label className="block mb-2 text-xl font-medium text-gray-200">
+            Module Name
+          </label>
           <input
             type="text"
+            className="w-[12vw] bg-gray-100 text-gray-900 text-base rounded-lg outline-none border-solid border-[3px] focus:border-main-green p-1"
             defaultValue={moduleName}
             onChange={(e) => setModuleName(e.target.value)}
           />
         </div>
-        <div>
-          <div>Access</div>
+        <div className="mt-[2vh] flex flex-col items-center">
+          <label className="block mb-2 text-xl font-medium text-gray-200">
+            Access
+          </label>
           <select
+            className="w-[12vw] bg-gray-100 text-gray-900 text-base rounded-lg outline-none border-solid border-[3px] focus:border-main-green p-1"
             defaultValue={access}
             onChange={(e) => setAccess(e.target.value)}
           >
@@ -65,14 +71,17 @@ const ModuleEditForm = ({ moduleState, close }) => {
             <option value="PRIVATE">PRIVATE</option>
           </select>
         </div>
-        <div>
-          <div>Description</div>
+        <div className="mt-[2vh] flex flex-col items-center">
+          <label className="block mb-2 text-xl font-medium text-gray-200">
+            Description
+          </label>
           <textarea
+            className="w-[12vw] h-[10vh] bg-gray-100 text-gray-900 text-base rounded-lg outline-none border-solid border-[3px] focus:border-main-green p-1.5"
             defaultValue={description}
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
-        <div>
+        <div className="my-[3vh]">
           <SubmitButton actionName="Save" onClickAction={handleOnSave} />
         </div>
       </div>
