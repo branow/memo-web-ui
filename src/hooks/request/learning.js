@@ -24,7 +24,7 @@ function useGetFlashcardIdsToLearn(studyTypeId, levels, sort) {
       signal
     );
   };
-  const { dataState, state } = useGetRequest(request, new Callback());
+  const { dataState, state } = useGetRequest(request, new Callback(), [studyTypeId, levels, sort]);
   return {
     toLearnState: { toLearn: dataState.data, setToLearn: dataState.setData },
     state: state,

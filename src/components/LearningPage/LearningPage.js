@@ -1,37 +1,85 @@
-import { Link } from "react-router-dom";
 import SettingsCircleButton from "../constant/Buttons/SettingsCircleButton";
-import Flashcard from "./Flashcard";
-import NextCircleButton from "../constant/Buttons/NextCircleButton";
-import { useState } from "react";
-import UserScoreList from "./UserScoreList";
+import { createContext, useState } from "react";
+import { useGetFlashcardIdsToLearn } from "../../hooks/request/learning";
+import LoadingAnimation from "../constant/LoadingAnimation";
+import ErrorBox from "../constant/ErrorBox";
+import WindowWrapper from "../constant/WindowWrapper";
+import NoneToLearnAlert from "./NoneToLearnAlert";
+import LearningMemorize from "./LearningMemorize";
+import LearnCicleAlert from "./LearnCircleAlert";
+import Settings from "./Setting/Settings";
+import { readSettings } from "../../utils/learning-settings";
 
-const LearningPage = ({ learnModeMemo }) => {
-  learnModeMemo = true;
-  const [flashcardSide, setFlashcardSide] = useState(true);
-  const [turnedOver, setTurnedOver] = useState(false);
-  const turnover = () => {
-    if(!turnedOver) setTurnedOver(true);
-    if (flashcardSide) setFlashcardSide(false);
-    else setFlashcardSide(true);
-  }
-    return (
-      <div className="absolute w-[100vw] h-[95vh] bg-dark-grey text-white">
-        <div className="float-right mx-[5vw] my-[5vh]">
-          <Link to={"learning/settings"}>
-            <SettingsCircleButton size={"40px"} />
-          </Link>
-        </div>
-        <div className="flex flex-col">
-          <div className="relative flex flex-row w-fit h-fit mt-[15vh] ml-[22vw]">
-            <Flashcard flashcardSideState={flashcardSide} turnover={turnover} learnModeMemo={false}/>
-            <div className="absolute h-fit right-0 top-0 bottom-0 mr-[-8vw] mt-[20vh] text-main-green ">
-              <NextCircleButton size="60px" />
-            </div>
+export const LearningContext = createContext();
+
+const LearningPage = ({ typeId }) => {
+  const [setting, setSetting] = useState(readSettings());
+  const { toLearnState, state } = useGetFlashcardIdsToLearn(
+    typeId,
+    setting.levels,
+    setting.sort
+  );
+  const [isCircle, setIsCircle] = useState(false);
+  const [isSetting, setIsSetting] = useState(false);
+
+  const closeSetting = () => {
+    setIsSetting(false);
+    const curSetting = readSettings();
+    if (
+      curSetting.audio !== setting.audio ||
+      curSetting.sort !== setting.sort ||
+      curSetting.levels !== setting.levels
+    ) {
+      setSetting(curSetting);
+    }
+  };
+
+  const settingState = { setting, setSetting };
+  const circleState = { isCircle, setIsCircle };
+  return (
+    <>
+      {isSetting && (
+        <WindowWrapper close={closeSetting}>
+          <Settings close={closeSetting} />
+        </WindowWrapper>
+      )}
+
+      {state.error && (
+        <ErrorBox title="Loading Flashcards Error" message={state.error} />
+      )}
+      {state.pending && <LoadingAnimation message="Loading flashcards..." />}
+      <LearningContext.Provider
+        value={{ typeId, settingState, toLearnState, circleState }}
+      >
+        <div className="fixed w-full h-full bg-dark-grey text-white  overflow-hidden">
+          <div className="absolute right-[5vw] top-[5vh]">
+            <SettingsCircleButton
+              size={"40px"}
+              onClickAction={() => setIsSetting(true)}
+            />
           </div>
-          {learnModeMemo && turnedOver && <UserScoreList />}
+          <div className="w-full h-full flex flex-col justify-center items-center">
+            {toLearnState.toLearn && (
+              <>
+                {toLearnState.toLearn.length === 0 && (
+                  <WindowWrapper>
+                    <NoneToLearnAlert />
+                  </WindowWrapper>
+                )}
+                {circleState.isCircle && (
+                  <WindowWrapper>
+                    <LearnCicleAlert />
+                  </WindowWrapper>
+                )}
+
+                {toLearnState.toLearn.length > 0 && <LearningMemorize />}
+              </>
+            )}
+          </div>
         </div>
-      </div>
-    );
-}
- 
+      </LearningContext.Provider>
+    </>
+  );
+};
+
 export default LearningPage;
