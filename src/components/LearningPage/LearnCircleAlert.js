@@ -1,22 +1,19 @@
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import SubmitButton from "../constant/Buttons/SubmitButton";
 import { useContext } from "react";
 import { LearningContext } from "./LearningPage";
 
 const LearnCicleAlert = () => {
-  const { typeId } = useContext(LearningContext);
-  const location = useLocation();
+  const { typeId, circleState, circlesState } = useContext(LearningContext);
   const history = useHistory();
 
   const onRepeat = () => {
-    const type = typeId == 1 ? "memorize" : "writing";
-    history.push(`/learning/${type}`, {
-      collections: location.state.collections,
-    });
+    circlesState.setCircles(pr => pr + 1);
+    circleState.setIsCircle(false);
   };
 
   const onEnd = () => {
-    history.push("/");
+    history.goBack();
   };
 
   return (

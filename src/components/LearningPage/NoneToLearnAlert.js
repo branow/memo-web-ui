@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 const NoneToLearnAlert = () => {
   const history = useHistory();
   const onClick = () => {
-    history.push("/");
+    history.goBack();
   };
 
   return (

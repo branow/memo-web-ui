@@ -51,10 +51,10 @@ const TextFormatter = ({ formatter, setFormatter, caret, back }) => {
   const onKey = (e) => {
     e.preventDefault();
     const serviceKeys = ["Shift", "ShiftLeft", "ShiftRight", "Control", "ControlLeft", 
-    "ControlRight", "Alt", "AltLeft", "AltRight", "CapsLock", "Insert", "Escape"];
+    "ControlRight", "Alt", "AltLeft", "AltRight", "CapsLock", "Insert", "Escape", "NumLock"];
     position = new Caret(container.current).getPosition();
-    const start = Math.min(position.anshor, position.focus); 
-    const end = Math.max(position.anshor, position.focus); 
+    const start = Math.min(position.anchor, position.focus); 
+    const end = Math.max(position.anchor, position.focus); 
     const selected = formatter.text.substring(start, end);
     if (e.ctrlKey && e.key === "z") {
       back();
@@ -64,14 +64,17 @@ const TextFormatter = ({ formatter, setFormatter, caret, back }) => {
       insertText("\t", position);
     } else if (e.code === "Backspace" || e.code === "Delete") {
       deleteText(position);
+    } else if (e.shiftKey || e.altKey || e.metaKey) {
+
     } else if (e.ctrlKey && e.key === "x") {
-      // navigator.clipboard.writeText(selected);
-      // deleteText(position);
+      navigator.clipboard.writeText(selected);
+      deleteText(position);
     } else if (e.ctrlKey && e.key === "v") {
-      // const text = navigator.clipboard.readText();
-      // insertText(text, position);
+      navigator.clipboard.readText().then((text) => {
+        insertText(text, position);
+      }).catch((error) => {});
     } else if (e.ctrlKey && e.key === "c") {
-      // navigator.clipboard.writeText(selected);
+      navigator.clipboard.writeText(selected);
     } else if (serviceKeys.includes(e.key)) {
       
     } else if (e.key === "ArrowRight") {

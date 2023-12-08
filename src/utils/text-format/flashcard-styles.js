@@ -27,9 +27,6 @@ function formatWordQuestion(word) {
   const formatter = new TextFormatter("");
   let large = [], bold = [], under = [], italic = [];
   
-  if (word.transcription) {
-    const {start, end} = append(formatter, "[" + word.transcription + "]\n");
-  }
   for (let sense of word.partWordList) {
     if (sense.languageLevel) {
       const {start, end} = append(formatter, sense.languageLevel + " ");

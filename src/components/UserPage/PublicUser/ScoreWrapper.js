@@ -1,7 +1,6 @@
 import Score from "./Score";
 
 const ScoreWrapper = ({ scores, direction, size }) => {
-
   if (!scores || scores.length === 0) {
     return <></>;
   }
@@ -15,11 +14,14 @@ const ScoreWrapper = ({ scores, direction, size }) => {
     <>
       {direction === "row" && (
         <div className="group h-fit w-fit flex flex-row p-[5px] rounded-full opacity-[0.8] bg-charcoal">
-          <div className="m-[10px]">
+          <div className="m-[10px]" key={max.studyType.studyId}>
             <Score score={max} size={size} />
           </div>
           {others.map((score) => (
-            <div className="hidden m-[10px] group-hover:block hover:block">
+            <div
+              className="hidden m-[10px] group-hover:block hover:block"
+              key={score.studyType.studyId}
+            >
               <Score score={score} size={size} />
             </div>
           ))}
@@ -27,11 +29,14 @@ const ScoreWrapper = ({ scores, direction, size }) => {
       )}
       {direction === "column" && (
         <div className="group h-fit w-fit flex flex-col p-[5px] rounded-full opacity-[0.8] bg-charcoal">
-          <div className="m-[10px]">
+          <div className="m-[10px]" key={max.studyType.studyId}>
             <Score score={max} size={size} />
           </div>
           {others.map((score) => (
-            <div className="hidden m-[10px] group-hover:block hover:block" key={score.studyType.studyId}>
+            <div
+              className="hidden m-[10px] group-hover:block hover:block"
+              key={score.studyType.studyId}
+            >
               <Score score={score} size={size} />
             </div>
           ))}

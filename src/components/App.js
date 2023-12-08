@@ -81,7 +81,7 @@ function App() {
               <Route path="/learning/memorize">
                 <LearningPage typeId="1" />
               </Route>
-              <Route path="/learning/writting">
+              <Route path="/learning/writing">
                 <LearningPage typeId="2" />
               </Route>
             </Switch>

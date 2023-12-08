@@ -67,7 +67,7 @@ const FlashcardSideEditView = memo(({ query, title, side, setSide }) => {
         <div className="text-soft-green text-center text-2xl font-sans font-bold">
           {title}
         </div>
-        <div className="flex content-around p-[20px] max-h-[40vh] min-h-[25vh]">
+        <div className="flex content-around p-[20px] max-h-[35vh] min-h-[25vh]">
           <div className="relative w-[70%] min-h-full [&:hover>div.hidden]:block">
             {isFrontSide && (
               <div className="hidden absolute right-0">

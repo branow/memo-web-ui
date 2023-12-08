@@ -9,9 +9,8 @@ import { useLocation } from "react-router-dom";
 
 export { useGetFlashcardIdsToLearn, useSetScoreToFlashcard };
 
-function useGetFlashcardIdsToLearn(studyTypeId, levels, sort) {
+function useGetFlashcardIdsToLearn(studyTypeId, levels, sort, circleCount) {
   const location = useLocation();
-  console.log(location.state);
   const collections = location.state.collections;
   const request = ({ callback, signal }) => {
     const jwt = new UserCookies().authorizationJwt.get();
@@ -25,7 +24,7 @@ function useGetFlashcardIdsToLearn(studyTypeId, levels, sort) {
       signal
     );
   };
-  const { dataState, state } = useGetRequest(request, new Callback(), [studyTypeId, levels, sort]);
+  const { dataState, state } = useGetRequest(request, new Callback(), [studyTypeId, levels, sort, circleCount]);
   return {
     toLearnState: { toLearn: dataState.data, setToLearn: dataState.setData },
     state: state,

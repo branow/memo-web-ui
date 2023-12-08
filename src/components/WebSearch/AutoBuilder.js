@@ -5,62 +5,102 @@ import { useSearchEnglishWord } from "../../hooks/request/search";
 import ErrorBox from "../constant/ErrorBox";
 import LoadingScreen from "../constant/LoadingScreen";
 import DeleteCircleButton from "../constant/Buttons/DeleteCircleButton";
-import { formatWordAnswer, formatWordQuestion } from "../../utils/text-format/flashcard-styles";
+import {
+  formatWordAnswer,
+  formatWordQuestion,
+} from "../../utils/text-format/flashcard-styles";
+import FlashcardSide from "../CollectionPage/FlashcardSide";
 
 const AutoBuilder = ({ defaultQuery, setFront, setBack, close }) => {
   const [query, setQuery] = useState(defaultQuery);
   const { wordState, state } = useSearchEnglishWord(query);
 
-  const handleOnBuild = () => {
+  const toFront = () => {
     const word = wordState.word;
-    
+    const { text, format } = formatWordQuestion(word);
+    return {
+      text: text,
+      format: format,
+      image: {
+        mediaUrl: word.image,
+        format: "JPG",
+      },
+      audio: null,
+    };
+  };
+
+  const toBack = () => {
+    const word = wordState.word;
+    const { text, format } = formatWordAnswer(word);
+    return {
+      text: text,
+      format: format,
+      image: {
+        mediaUrl: word.image,
+        format: "JPG",
+      },
+      audio: {
+        mediaUrl: word.audio,
+        format: "MP3",
+      },
+    };
+  };
+
+  const handleOnBuild = () => {
+    if (!wordState.word) {
+      return;
+    }
+
     setFront((pr) => { //question
-      const {text, format} = formatWordQuestion(word);
+      const front = toFront();
       return {
         textId: pr.textId,
-        text: text,
-        format: format,
-        image: {
-          mediaUrl: word.image,
-        },
-        audio: null,
-      }
+        text: front.text,
+        format: front.format,
+        image: front.image,
+        audio: front.audio,
+      };
     });
     setBack((pr) => { //answer
-      const {text, format}  = formatWordAnswer(word);
+      const back = toBack();
       return {
         textId: pr.textId,
-        text: text,
-        format: format,
-        image: {
-          mediaUrl: word.image,
-        },
-        audio: {
-          mediaUrl: word.audio,
-        }
-      }
+        text: back.text,
+        format: back.format,
+        image: back.image,
+        audio: back.audio,
+      };
     });
-  }
+    close();
+  };
 
   return (
     <div className="relative flex flex-col justify-center bg-tealish-blue p-[20px]">
       <div className="absolute right-0 top-0">
-        <DeleteCircleButton size="25px" color="white" onClickAction={close}/>
+        <DeleteCircleButton size="25px" color="white" onClickAction={close} />
       </div>
       <div className="p-[10px]">
-        <div className="w-[80%] m-auto p-[5px] border-[3px] border-charcoal rounded-xl">
+        <div className="w-[80%] m-auto p-[5px]">
           <SearchBar query={query} search={setQuery} />
         </div>
       </div>
       <div className="p-[10px]">
-        {state.error && <ErrorBox title="Builder error" message={state.error}/>}
+        {state.error && (
+          <ErrorBox title="Builder error" message={state.error} />
+        )}
         {state.pending && <LoadingScreen />}
-        {wordState.word && "is"}
+        {wordState.word && (
+          <div className="flex">
+            <FlashcardSide side={toFront()} />
+            <FlashcardSide side={toBack()} />
+          </div>
+        )}
       </div>
       <div className=" flex flex-col justify-center items-center p-[10px] [&:hover>div]:visible">
-        <SubmitButton actionName="Build" onClickAction={handleOnBuild}/>
+        <SubmitButton actionName="Apply" onClickAction={handleOnBuild} />
         <div className="invisible w-[70%] p-[5px] text-white text-sm text-thin text-center">
-          If you pushed 'Build', all you previous data in the flashcard will be lost
+          If you pushed 'Build', all you previous data in the flashcard will be
+          lost
         </div>
       </div>
     </div>

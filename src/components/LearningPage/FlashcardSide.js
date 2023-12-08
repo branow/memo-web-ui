@@ -14,6 +14,9 @@ const FlashcardSide = () => {
     ? flashcardState.flashcard.frontSide
     : flashcardState.flashcard.backSide;
 
+  const answer = flashcardState.flashcard.backSide.text;
+  const text = frontSideState.isFrontSide && !isCheckedState.isChecked ? prepareText(side.text, answer) : side.text;
+
   const turnover = () => {
     if (typeId === '1') {
       isCheckedState.setIsChecked(true);
@@ -24,7 +27,7 @@ const FlashcardSide = () => {
   return (
     <div className="flex flex-row p-[10px] items-center justify-center">
       <div className="flex flex-col m-[10px]">
-        <div className="relative min-w-[500px] max-w-[1000px] w-[40vw] min-h-[300px] max-h-[600px] h-[30vh] p-[20px] bg-charcoal rounded-xl">
+        <div className="relative min-w-[500px] max-w-[1000px] w-[40vw] min-h-[300px] max-h-[400px] h-[20vh] p-[20px] bg-charcoal rounded-xl">
           {side.audio && (
             <div className="absolute top-0 right-0 z-10">
               <AudioPlayer
@@ -34,7 +37,7 @@ const FlashcardSide = () => {
               />
             </div>
           )}
-          <FlashcardTextSide text={side.text} format={side.format} />
+          <FlashcardTextSide text={text} format={side.format} />
           {typeId === "2" && isCheckedState.isChecked && (
             <div className="absolute bottom-0 right-0 z-10">
               <TurnoverCircleButton size="25px" onClickAction={turnover} />
@@ -53,5 +56,9 @@ const FlashcardSide = () => {
     </div>
   );
 };
+
+function prepareText(text, answer) {
+  return text.replaceAll(answer, "_".repeat(answer.length))
+}
 
 export default FlashcardSide;

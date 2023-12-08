@@ -48,10 +48,10 @@ const Flashcard = () => {
         </WindowWrapper>
       )}
       <div className="text-2xl font-thin">
-        {toLearnState.toLearn.length}/
-        {toLearnState.toLearn.indexOf(flashcard.flashcardId) + 1}
+        {toLearnState.toLearn.indexOf(flashcard.flashcardId) + 1}/
+        {toLearnState.toLearn.length}
       </div>
-      <div className=" min-w-[45vw] w-fit min-h-[40vh] h-fit p-[20px] bg-tealish-blue rounded-3xl">
+      <div className=" min-w-[45vw] w-fit min-h-[40vh] h-fit p-[10px] bg-tealish-blue rounded-3xl">
         <div className="relative">
           <div className="flex flex-row absolute top-0 right-0 mr-[1vw] gap-3">
             <ChangeCircleButton
