@@ -47,10 +47,9 @@ const ModuleInfo = ({}) => {
             </div>
           </div>
           <div className="mt-[5vh]"></div>
-          <div className="w-[70vw]">
-            <div className="text-xl text-gray-300 mr-[1vw] w-full">
-              {module.description}
-            </div>
+
+          <div className="w-[30vw] text-xl text-gray-300 mr-[1vw] break-words">
+            {module.description}
           </div>
         </div>
 

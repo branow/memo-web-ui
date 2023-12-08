@@ -9,10 +9,10 @@ const UserInfo = () => {
   const user = userState.user;
   return (
     <>
-      <div className="flex h-[vh] w-screen">
+      <div className="flex w-screen">
         <div className="text-3xl font-medium ml-[20vw] pt-[5vh] w-fit h-fit flex">
           {isOwner && (
-            <div className="cursor-pointer p-[5px] rounded-full hover:bg-soft-green">
+            <div className="cursor-pointer p-[5px] h-fit rounded-full hover:bg-soft-green">
               <Link to={"/profile/info"}>
                 <Avatar className="mx-auto" color="white" size="100px" />
               </Link>
@@ -24,10 +24,10 @@ const UserInfo = () => {
 
           {user && (
             <div className="flex flex-col ml-[2vw] my-auto">
-              <span>{user.username}</span>
-              <span className="mt-[1vh] text-lg w-full">
+              <div>{user.username}</div>
+              <div className="mt-[1vh] text-lg w-[50vw] break-words">
                 {user.description}
-              </span>
+              </div>
             </div>
           )}
         </div>

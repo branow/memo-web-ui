@@ -73,7 +73,7 @@ const Module = ({ moduleId }) => {
                   </div>
                 </div>
               </div>
-              <div className="w-[30vw] mt-[1vh] text-lg text-gray-300 pr-[1vw]">
+              <div className="w-[30vw] mt-[1vh] text-lg text-gray-300 pr-[1vw] break-words">
                 {module.shortDescription}
               </div>
             </div>
