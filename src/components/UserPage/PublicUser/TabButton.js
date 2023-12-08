@@ -10,7 +10,7 @@ const TabButton = ({ name, active, onClickAction }) => {
     >
       <div
           className={
-            "m-auto w-fit pointer-events-auto hover:text-main-green" +
+            "text-center pointer-events-auto hover:text-main-green" +
             (active ? " text-main-green" : "")
           }
         >
