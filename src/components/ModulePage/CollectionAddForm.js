@@ -36,11 +36,11 @@ const CollectionAddForm = ({ moduleState, close }) => {
       <div className="absolute top-0 right-0">
         <DeleteCircleButton size="25px" onClickAction={close} />
       </div>
-      <div className="my-[4vh] text-3xl font-semibold">Add a new collection</div>
+      <div className="my-[2vh] text-3xl font-semibold">Add a new collection</div>
 
       <div className="flex flex-col items-center text-black">
-        <div className="w-[16vw] flex flex-col items-center">
-          <label className="block text-xl font-medium text-gray-200">
+        <div className="w-[16vw] mt-[2vh] flex flex-col items-center">
+          <label className="block mb-[-2vh] text-xl font-medium text-gray-200">
             Collection Name
           </label>
           <GeneralInputField 
@@ -48,7 +48,7 @@ const CollectionAddForm = ({ moduleState, close }) => {
           onClickAction={(e) => setCollectionName(e.target.value)}
           />
         </div>
-        <div className="my-[2vh]">
+        <div className="my-[1vh]">
           <SubmitButton actionName="Save" onClickAction={handleOnSave} />
         </div>
       </div>

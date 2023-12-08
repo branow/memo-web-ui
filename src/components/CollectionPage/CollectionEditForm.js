@@ -42,8 +42,8 @@ const CollectionEditForm = ({ collectionState, close }) => {
         <DeleteCircleButton size="25px" onClickAction={close} />
       </div>
       <div className="my-[2vh] text-3xl font-semibold">Edit Collection</div>
-      <div className="w-[16vw] flex flex-col items-center">
-        <label className="block text-xl font-medium text-gray-200">
+      <div className="w-[16vw] mt-[2vh] flex flex-col items-center">
+        <label className="block mb-[-2vh] text-xl font-medium text-gray-200">
           Collection Name
         </label>
         <GeneralInputField
@@ -52,7 +52,7 @@ const CollectionEditForm = ({ collectionState, close }) => {
         />
       </div>
 
-      <div className="my-[3vh]">
+      <div className="my-[1vh]">
         <SubmitButton actionName="Save" onClickAction={handleOnSave} />
       </div>
     </div>
