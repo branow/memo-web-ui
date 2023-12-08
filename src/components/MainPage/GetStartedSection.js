@@ -4,7 +4,7 @@ import { UserContext } from "../App";
 import { memo } from "react";
 
 const GetStartedSection = memo(() => {
-  const userState = useContext(UserContext);
+  const { userState } = useContext(UserContext);
 
   return (
     <section className="relative h-[60vh] w-full bg-get-started-background bg-cover">
@@ -15,17 +15,30 @@ const GetStartedSection = memo(() => {
           </span>
         </div>
         <div>
-          {!userState.user && (
+          { userState.user && (
+            <Link to={"/profile/" + userState.user.userId}>
+              <GetStartedButton />
+            </Link>
+          )}
+          { !userState.user && (
             <Link to="/login">
-              <button className="bg-main-green text-2xl font-medium px-[25px] py-[10px] mt-[60px] border-[none] cursor-pointer duration-500 
-              hover:bg-green-700 active:bg-green-900">
-                Get started
-              </button>
+              <GetStartedButton />
             </Link>
           )}
         </div>
       </div>
     </section>
+  );
+});
+
+const GetStartedButton = memo(() => {
+  return (
+    <button
+      className="bg-main-green text-2xl font-medium px-[25px] py-[10px] mt-[60px] border-[none] cursor-pointer duration-500 
+    hover:bg-green-700 active:bg-green-900"
+    >
+      Get started
+    </button>
   );
 });
 

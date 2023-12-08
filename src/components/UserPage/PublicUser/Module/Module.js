@@ -63,7 +63,7 @@ const Module = ({ moduleId }) => {
               <div className="flex flex-col">
                 <div className="text-3xl ">
                   <Link to={"/module/" + module.moduleId}>
-                    <span className="font-normal cursor-pointer">
+                    <span className="font-normal cursor-pointer hover:underline hover:decoration-2">
                       {module.moduleName}
                     </span>
                   </Link>
@@ -73,13 +73,13 @@ const Module = ({ moduleId }) => {
                   </div>
                 </div>
               </div>
-              <div className="w-[30vw] mt-[1vh] text-lg text-gray-300 pr-[1vw]">
+              <div className="w-[30vw] mt-[1vh] text-lg text-gray-300 pr-[1vw] break-words">
                 {module.shortDescription}
               </div>
             </div>
 
-            <div className="ml-[7vw] mt-[3vh] z-10">
-              <ScoreWrapper scores={module.scores} />
+            <div className="my-auto ml-[6vw]">
+              <ScoreWrapper scores={module.scores} size="SMALLER" />
             </div>
           </div>
           {isOwner && (

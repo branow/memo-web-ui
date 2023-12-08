@@ -1,7 +1,7 @@
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const ScoreBar = ({ score }) => {
+const ScoreBar = ({ score, size }) => {
     const calcColor = (percent, start, end) => {
         let a = percent / 100,
           b = (end - start) * a,
@@ -9,15 +9,30 @@ const ScoreBar = ({ score }) => {
         return 'hsl(' + c + ', 80%, 50%)';
       };
     return (
-      <CircularProgressbar
-        className="w-[110px] h-[80px]"
-        styles={{
-          path: {
-            stroke: calcColor(score, 0, 120),
-          },
-        }}
-        strokeWidth={8}
-      />
+      <>
+        {size === "BIGGER" && (
+          <CircularProgressbar
+            className="h-[80px]"
+            styles={{
+              path: {
+                stroke: calcColor(score, 0, 120),
+              },
+            }}
+            strokeWidth={8}
+          />
+        )}
+        {size === "SMALLER" && (
+          <CircularProgressbar
+            className="h-[70px]"
+            styles={{
+              path: {
+                stroke: calcColor(score, 0, 120),
+              },
+            }}
+            strokeWidth={8}
+          />
+        )}
+      </>
     );
 }
  

@@ -44,7 +44,7 @@ const ModuleCollection = ({ collection }) => {
           close={useDelete.state.cleanError}
         />
       )}
-      <div className="hidden relative float-right p-[0.5vh] z-10">
+      <div className="hidden relative float-right p-[0.5vh]">
         {isOwner && (
           <DeleteCircleButton size={"25px"} onClickAction={handleOnDelete} />
         )}
@@ -53,7 +53,7 @@ const ModuleCollection = ({ collection }) => {
       <div className="flex flex-row px-[3vw] py-[3vh]">
         <div className="w-[22vw]">
           <Link to={"/collection/" + collection.collectionId}>
-            <span className="text-2xl font-light cursor-pointer">
+            <span className="text-2xl font-light cursor-pointer hover:underline hover:decoration-2">
               {collection.collectionName}
             </span>
           </Link>
@@ -61,8 +61,8 @@ const ModuleCollection = ({ collection }) => {
             {collection.size}
           </span>
         </div>
-        <div className="h-[9vh] mt-[-2vh] ml-[5vw] z-10">
-          <ScoreWrapper scores={collection.scores} />
+        <div className="w-[12vw] h-[9vh] mt-[-2vh] ml-[6vw]">
+          <ScoreWrapper scores={collection.scores} size="SMALLER" />
         </div>
       </div>
       {isOwner && (
@@ -70,6 +70,7 @@ const ModuleCollection = ({ collection }) => {
           <StudyTypeDescription
             collections={[collection.collectionId]}
             buttonsClassname={"text-dim-grey"}
+            collectionDescription={true}
           />
         </div>
       )}

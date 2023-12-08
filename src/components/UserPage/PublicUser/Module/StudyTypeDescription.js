@@ -1,7 +1,7 @@
 import { useHistory } from "react-router-dom";
 import StudyButton from "./StudyButton";
 
-const StudyTypeDescription = ({ collections, buttonsClassname }) => {
+const StudyTypeDescription = ({ collections, collectionDescription }) => {
   const history = useHistory();
 
   const push = (link) => {
@@ -12,27 +12,21 @@ const StudyTypeDescription = ({ collections, buttonsClassname }) => {
   };
 
   return (
-    <div className="w-full h-[8vh] flex flex-row p-[10px]">
-      <div
-        className={
-          "peer/memo ml-[4vw] h-fit p-[5px] rounded-xl " +
-          buttonsClassname
-        }
-      >
+    <div className="w-full flex flex-row p-[10px]">
+      <div className="peer/memo ml-[4vw] h-fit p-[5px] rounded-xl my-auto">
         <StudyButton
           studyTypeName="ORALLY"
           onClickAction={() => push("/learning/memorize")}
+          size="45px"
+          collectionDescription={collectionDescription}
         />
       </div>
-      <div
-        className={
-          "peer/write mx-[3vw] h-fit p-[5px] rounded-xl" +
-          buttonsClassname
-        }
-      >
+      <div className="peer/write mx-[3vw] h-fit  rounded-xl my-auto">
         <StudyButton
           studyTypeName="WRITING"
           onClickAction={() => push("/learning/writing")}
+          size="45px"
+          collectionDescription={collectionDescription}
         />
       </div>
 

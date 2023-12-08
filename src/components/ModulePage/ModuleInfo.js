@@ -25,7 +25,7 @@ const ModuleInfo = ({}) => {
         </WindowWrapper>
       )}
 
-      <div className="flex flex-row mt-[6vh] mb-[4vh] mx-[4vw] z-10">
+      <div className="flex flex-row mt-[6vh] mb-[4vh] mx-[4vw]">
         <div className="w-[35vw] flex flex-col border-r-[4px] border-solid border-white">
           <div className="flex flex-col">
             <div className="text-4xl">
@@ -47,17 +47,16 @@ const ModuleInfo = ({}) => {
             </div>
           </div>
           <div className="mt-[5vh]"></div>
-          <div className="w-[70vw]">
-            <div className="text-xl text-gray-300 mr-[1vw] w-full">
-              {module.description}
-            </div>
+
+          <div className="w-[30vw] text-xl text-gray-300 mr-[1vw] break-words">
+            {module.description}
           </div>
         </div>
 
-        <div className="mt-[-2vh] ml-[5vw] z-10">
-          <ScoreWrapper scores={module.scores} />
+        <div className="my-auto ml-[6vw] w-[20vw]">
+          <ScoreWrapper scores={module.scores} size="BIGGER" />
         </div>
-        <div className="absolute top-0 right-0 mt-[2vh] mr-[2vw]">
+        <div className="mt-[-4vh] mr-[-3vw]">
           <div className="p-[8px] rounded-xl hover:bg-soft-green">
             <Link to={"/profile/" + module.owner.userId}>
               <div className="w-fit m-auto">

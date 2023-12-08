@@ -30,9 +30,9 @@ const ModulePage = ({ currentModule }) => {
       )}
 
       <ModuleContext.Provider value={{ moduleState, isAuthenticated, isOwner }}>
-        <div className="relative w-screen h-[100vh] bg-dark-grey text-white">
+        <div className="relative w-full h-screen bg-dark-grey text-white">
           <div
-            className="relative h-fit w-[70vw] pb-[10vh] bg-tealish-blue mx-auto border-[2px] 
+            className="relative h-fit w-[70vw] pb-[5vh] bg-tealish-blue mx-auto border-[2px] 
       border-tealish-blue hover:border-solid 
       hover:border-regent-grey"
           >
@@ -48,12 +48,14 @@ const ModulePage = ({ currentModule }) => {
                     />
                   </div>
                 )}
-                {!isOwner &&
+                {!isOwner && (
                   <div className="border-solid border-white border-b-[3px]"></div>
-                }
-                <div className="w-[30vw] h-[5vh] mt-[5vh] ml-[6.2vw]">
-                  <SearchBar borderColor={"charcoal"} />
-                </div>
+                )}
+                {moduleState.module.collections.length !== 0 && (
+                  <div className="w-[30vw] h-[5vh] mt-[5vh] ml-[6.2vw]">
+                    <SearchBar borderColor={"charcoal"} />
+                  </div>
+                )}
 
                 <div className="flex-wrap justify-between mt-[7vh] z-10">
                   <ModuleCollectionList />
