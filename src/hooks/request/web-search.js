@@ -1,7 +1,7 @@
 import Callback from "../../utils/callback";
 import useGetRequest from "./useGetRequest";
 import { UserCookies } from "../../utils/user-cookie";
-import SearchRequester from "../../request/search";
+import WebSearchRequester from "../../request/web-search";
 
 export {
   useSearchAudios,
@@ -14,7 +14,7 @@ function useSearchImages(input) {
   const { dataState, state } = useSearch(
     input,
     (jwt, phrase, callback, signal) =>
-      new SearchRequester().searchImages(jwt, phrase, callback, signal)
+      new WebSearchRequester().searchImages(jwt, phrase, callback, signal)
   );
   return {
     imagesState: { images: dataState.data, setImages: dataState.setData },
@@ -26,7 +26,7 @@ function useSearchAudios(input) {
   const { dataState, state } = useSearch(
     input,
     (jwt, phrase, callback, signal) =>
-      new SearchRequester().searchAudios(jwt, phrase, callback, signal)
+      new WebSearchRequester().searchAudios(jwt, phrase, callback, signal)
   );
   return {
     audiosState: { audios: dataState.data, setAudios: dataState.setData },
@@ -38,7 +38,7 @@ function useSearchEnglishWordSenses(input) {
   const { dataState, state } = useSearch(
     input,
     (jwt, phrase, callback, signal) =>
-      new SearchRequester().searchEnglishWordSenses(jwt, phrase, callback, signal)
+      new WebSearchRequester().searchEnglishWordSenses(jwt, phrase, callback, signal)
   );
   return {
     sensesState: { senses: dataState.data, setSenses: dataState.setData },
@@ -50,7 +50,7 @@ function useSearchEnglishWord(input) {
   const { dataState, state } = useSearch(
     input,
     (jwt, phrase, callback, signal) =>
-      new SearchRequester().searchEnglishWord(jwt, phrase, callback, signal)
+      new WebSearchRequester().searchEnglishWord(jwt, phrase, callback, signal)
   );
   return {
     wordState: { word: dataState.data, setWord: dataState.setData },

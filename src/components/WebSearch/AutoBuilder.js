@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SubmitButton from "../constant/Buttons/SubmitButton";
 import SearchBar from "../constant/SearchBar";
-import { useSearchEnglishWord } from "../../hooks/request/search";
+import { useSearchEnglishWord } from "../../hooks/request/web-search";
 import ErrorBox from "../constant/ErrorBox";
 import LoadingScreen from "../constant/LoadingScreen";
 import DeleteCircleButton from "../constant/Buttons/DeleteCircleButton";

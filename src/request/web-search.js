@@ -1,8 +1,8 @@
 import { Requester } from "./request";
 
-export default class SearchRequester {
+export default class WebSearchRequester {
   constructor() {
-    this.requester = new Requester('search');
+    this.requester = new Requester('web-search');
   }
   searchImages(jwt, phrase, doFinally, signal) {
     this.requester.get({

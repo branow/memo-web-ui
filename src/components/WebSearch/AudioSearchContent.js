@@ -3,7 +3,7 @@ import SearchedAudio from "./SearchedAudio";
 import LoadingScreen from "../constant/LoadingScreen";
 import ErrorBox from "../constant/ErrorBox";
 import SubmitButton from "../constant/Buttons/SubmitButton";
-import { useSearchAudios } from "../../hooks/request/search";
+import { useSearchAudios } from "../../hooks/request/web-search";
 
 const PAGE_SIZE = 12;
 

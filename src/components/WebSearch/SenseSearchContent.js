@@ -1,7 +1,7 @@
 import SearchedSense from "./SearchedSense";
 import ErrorBox from "../constant/ErrorBox";
 import LoadingScreen from "../constant/LoadingScreen";
-import { useSearchEnglishWordSenses } from "../../hooks/request/search";
+import { useSearchEnglishWordSenses } from "../../hooks/request/web-search";
 
 const SenseSearchConentet = ({ query }) => {
   const { sensesState, state } = useSearchEnglishWordSenses(query);
