@@ -38,7 +38,7 @@ function useGetFlashcardLearnContext(flashcardId, studyTypeId) {
       signal
     );
   };
-  const { dataState, state } = useGetRequest(request, new Callback(), [flashcardId]);
+  const { dataState, state } = useGetRequest(request, new Callback(), [flashcardId, studyTypeId]);
   return {
     flashcardState: {
       flashcard: dataState.data,

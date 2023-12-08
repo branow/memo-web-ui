@@ -36,6 +36,7 @@ const AnswerInput = ({ setIsScoreEdit }) => {
             placeholder={!isChecked && "Answer"}
             onChange={(e) => setAnswer(e.target.value)}
             onKeyUp={onEnterUp}
+            autoFocus={true}
           />
         )}
         {isChecked && (

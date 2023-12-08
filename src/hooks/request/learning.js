@@ -10,7 +10,6 @@ import { useLocation } from "react-router-dom";
 export { useGetFlashcardIdsToLearn, useSetScoreToFlashcard };
 
 function useGetFlashcardIdsToLearn(studyTypeId, levels, sort, circleCount) {
-  console.log(circleCount);
   const location = useLocation();
   const collections = location.state.collections;
   const request = ({ callback, signal }) => {

@@ -1,15 +1,19 @@
 import LoadingAnimation from "../constant/LoadingAnimation";
 import ErrorBox from "../constant/ErrorBox";
 import UserScoreList from "./UserScoreList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useContext } from "react";
 import Flashcard from "./Flashcard";
 import AnswerInput from "./AnswerInput";
 import { FlashcardLearnContext } from "./FlashcardContent";
 
 const WritingPanel = () => {
-  const { useSetScore, setScore } = useContext(FlashcardLearnContext);
-  const [isScoreEdit, setIsScoreEdit] = useState(false); 
+  const { flashcardState, useSetScore, setScore } = useContext(FlashcardLearnContext);
+  const [isScoreEdit, setIsScoreEdit] = useState(false);
+  
+  useEffect(() => {
+    setIsScoreEdit(false);
+  }, [flashcardState.flashcard]);
 
   return (
     <>

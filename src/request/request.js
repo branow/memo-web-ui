@@ -9,6 +9,7 @@ function request(config) {
     data: config.body,
     signal: config.signal,
   }).then(response => {
+    console.log(response);
     if (response.status > 199 && response.status < 300) {
       config.doFinally.success.do(response);
     } else {
