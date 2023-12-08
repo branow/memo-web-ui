@@ -8,7 +8,7 @@ const SenseSearch = ({ defaultQuery }) => {
   return (
     <>
       <div className="p-[20px]">
-        <div className="w-[80%] m-auto p-[5px] border-[3px] border-charcoal rounded-xl text-base">
+        <div className="w-[80%] m-auto p-[5px] text-base">
           <SearchBar query={query} search={setQuery} />
         </div>
       </div>

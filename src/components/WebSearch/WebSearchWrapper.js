@@ -11,7 +11,7 @@ const WebSearchWrapper = ({ Content, defaultQuery, choose, close }) => {
         <DeleteCircleButton size="30px" color="white" onClickAction={close} />
       </div>
       <div className="p-[20px] flex flex-col justify-center border-b-[3px] border-charcoal">
-        <div className="w-[80%] m-auto p-[5px] border-[3px] border-charcoal rounded-xl">
+        <div className="w-[80%] m-auto p-[5px]">
           <SearchBar query={query} search={setQuery} />
         </div>
         <div className="h-[10px]"></div>
