@@ -48,12 +48,14 @@ const ModulePage = ({ currentModule }) => {
                     />
                   </div>
                 )}
-                {!isOwner &&
+                {!isOwner && (
                   <div className="border-solid border-white border-b-[3px]"></div>
-                }
-                <div className="w-[30vw] h-[5vh] mt-[5vh] ml-[6.2vw]">
-                  <SearchBar borderColor={"charcoal"} />
-                </div>
+                )}
+                {moduleState.module.collections.length !== 0 && (
+                  <div className="w-[30vw] h-[5vh] mt-[5vh] ml-[6.2vw]">
+                    <SearchBar borderColor={"charcoal"} />
+                  </div>
+                )}
 
                 <div className="flex-wrap justify-between mt-[7vh] z-10">
                   <ModuleCollectionList />

@@ -70,6 +70,7 @@ const ModuleCollection = ({ collection }) => {
           <StudyTypeDescription
             collections={[collection.collectionId]}
             buttonsClassname={"text-dim-grey"}
+            collectionDescription={true}
           />
         </div>
       )}
