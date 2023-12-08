@@ -1,5 +1,5 @@
 import SearchedImage from "./SearchedImage";
-import { useSearchImages } from "../../hooks/request/search";
+import { useSearchImages } from "../../hooks/request/web-search";
 import LoadingScreen from "../constant/LoadingScreen";
 import ErrorBox from "../constant/ErrorBox";
 import SubmitButton from "../constant/Buttons/SubmitButton";
