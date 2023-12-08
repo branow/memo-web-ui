@@ -4,6 +4,7 @@ import LoadingAnimation from "../constant/LoadingAnimation";
 import ErrorBox from "../constant/ErrorBox";
 import DeleteCircleButton from "../constant/Buttons/DeleteCircleButton";
 import SubmitButton from "../constant/Buttons/SubmitButton";
+import GeneralInputField from "../constant/FormInput/GeneralInputField";
 
 const CollectionEditForm = ({ collectionState, close }) => {
   const [collectionName, setCollectionName] = useState(
@@ -28,7 +29,7 @@ const CollectionEditForm = ({ collectionState, close }) => {
   };
 
   return (
-    <div className="relative w-[20vw] min-h-[30vh] flex flex-col items-center bg-tealish-blue p-[20px] rounded-xl">
+    <div className="relative min-w-[25vw] min-h-[35vh] flex flex-col items-center p-[20px] rounded-xl bg-dark-grey">
       {useSave.state.pending && <LoadingAnimation message="Renaming..." />}
       {useSave.state.error && (
         <ErrorBox
@@ -41,15 +42,13 @@ const CollectionEditForm = ({ collectionState, close }) => {
         <DeleteCircleButton size="25px" onClickAction={close} />
       </div>
       <div className="my-[2vh] text-3xl font-semibold">Edit Collection</div>
-      <div className=" flex flex-col items-center">
-        <label className="block mb-2 text-xl font-medium text-gray-200">
+      <div className="w-[16vw] flex flex-col items-center">
+        <label className="block text-xl font-medium text-gray-200">
           Collection Name
         </label>
-        <input
-          type="text"
-          className="w-[12vw] bg-gray-100 text-gray-900 text-base rounded-lg outline-none border-solid border-[3px] focus:border-main-green p-1"
-          defaultValue={collectionName}
-          onChange={(e) => setCollectionName(e.target.value)}
+        <GeneralInputField
+          value={collectionName}
+          onClickAction={(e) => setCollectionName(e.target.value)}
         />
       </div>
 

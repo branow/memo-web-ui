@@ -5,6 +5,10 @@ import SubmitButton from "../../../constant/Buttons/SubmitButton";
 import LoadingAnimation from "../../../constant/LoadingAnimation";
 import ErrorBox from "../../../constant/ErrorBox";
 import DeleteCircleButton from "../../../constant/Buttons/DeleteCircleButton";
+import GeneralInputField from "../../../constant/FormInput/GeneralInputField";
+import AccessSelect from "../../../constant/FormInput/AccessSelect";
+import TextArea from "../../../constant/FormInput/TextArea";
+
 
 const ModuleAddForm = ({ userState, close }) => {
   const history = useHistory();
@@ -29,7 +33,7 @@ const ModuleAddForm = ({ userState, close }) => {
   };
 
   return (
-    <div className="relative w-[20vw] min-h-[55vh] flex flex-col items-center bg-tealish-blue p-[20px] rounded-xl">
+    <div className="relative min-w-[25vw] min-h-[55vh] flex flex-col items-center p-[20px] rounded-xl bg-dark-grey">
       {useSave.state.pending && <LoadingAnimation message="Adding..." />}
       {useSave.state.error && (
         <ErrorBox
@@ -42,40 +46,33 @@ const ModuleAddForm = ({ userState, close }) => {
       <div className="absolute top-0 right-0">
         <DeleteCircleButton size="25px" onClickAction={close} />
       </div>
-      <div className="my-[2vh] text-3xl font-semibold">Add module</div>
+      <div className="my-[4vh] text-4xl font-semibold">Add module</div>
       <div className="flex flex-col items-center text-black">
-        <div className="mt-[2vh] flex flex-col items-center">
-          <label className="block mb-2 text-xl font-medium text-gray-200">
+        <div className="w-[15vw] flex flex-col items-center">
+          <label className="block text-xl mb-[-2vh] font-medium text-gray-200">
             Module Name
           </label>
-          <input
-            type="text"
-            className="w-[12vw] bg-gray-100 text-gray-900 text-base rounded-lg outline-none border-solid border-[3px] focus:border-main-green p-1"
-            defaultValue={moduleName}
-            onChange={(e) => setModuleName(e.target.value)}
+          <GeneralInputField
+            onChangeAction={(e) => setModuleName(e.target.value)}
+            value={moduleName}
           />
         </div>
-        <div className="mt-[2vh] flex flex-col items-center">
+        <div className="w-[15vw] mt-[1vh] flex flex-col items-center">
           <label className="block mb-2 text-xl font-medium text-gray-200">
             Access
           </label>
-          <select
-            className="w-[12vw] bg-gray-100 text-gray-900 text-base rounded-lg outline-none border-solid border-[3px] focus:border-main-green p-1"
-            defaultValue={access}
-            onChange={(e) => setAccess(e.target.value)}
-          >
-            <option value="PUBLIC">PUBLIC</option>
-            <option value="PRIVATE">PRIVATE</option>
-          </select>
+          <AccessSelect
+            value={access}
+            onChangeAction={(e) => setAccess(e.target.value)}
+          />
         </div>
-        <div className="mt-[2vh] flex flex-col items-center">
-          <label className="block mb-2 text-xl font-medium text-gray-200">
+        <div className="w-[15vw] min-h-[20vh] mt-[2vh] flex flex-col items-center">
+          <label className="block mb-3 text-xl font-medium text-gray-200">
             Description
           </label>
-          <textarea
-            className="w-[12vw] h-[10vh] bg-gray-100 text-gray-900 text-base rounded-lg outline-none border-solid border-[3px] focus:border-main-green p-1.5"
-            defaultValue={description}
-            onChange={(e) => setDescription(e.target.value)}
+          <TextArea 
+           value={description}
+           onChangeAction={(e) => setDescription(e.target.value)}
           />
         </div>
         <div className="my-[3vh]">
