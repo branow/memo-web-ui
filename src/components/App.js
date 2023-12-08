@@ -10,6 +10,7 @@ import CollectionPage from "./CollectionPage/CollectionPage";
 import LearningPage from "./LearningPage/LearningPage";
 import PublicUserInfo from "./UserPage/PublicUser/PublicUserInfo";
 import SettingsWindow from "./LearningPage/Setting/SettingsWindow";
+import SearchPage from "./SearchPage/SearchPage";
 import {
   BrowserRouter as Router,
   Route,
@@ -83,6 +84,12 @@ function App() {
               </Route>
               <Route path="/learning/writing">
                 <LearningPage typeId="2" />
+              </Route>
+              <Route exact path="/search/user">
+                <SearchPage searchType="USER" />
+              </Route>
+              <Route exact path="/search/module">
+              <SearchPage searchType="MODULE" />
               </Route>
             </Switch>
           </div>
