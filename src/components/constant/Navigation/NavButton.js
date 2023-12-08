@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const NavButton = ({ linkName, linkDestination, logLink }) => {
   return (
-    <div>
+    <div className="h-fit my-auto">
       <li>
         <Link
           to={linkDestination}

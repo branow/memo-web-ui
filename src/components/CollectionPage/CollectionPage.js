@@ -49,7 +49,7 @@ const CollectionPage = () => {
         value={{ collectionState, isOwner, isAuthenticated }}
       >
 
-          <div className="relative w-screen min-h-[100vh] bg-dark-grey text-white">
+          <div className="relative w-full min-h-[100vh] bg-dark-grey text-white">
             <div
               className="relative h-fit w-[80vw] pb-[5vh] bg-tealish-blue mx-auto border-[2px] 
         border-tealish-blue hover:border-solid 
