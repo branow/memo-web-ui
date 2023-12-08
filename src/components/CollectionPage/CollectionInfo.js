@@ -30,7 +30,7 @@ const CollectionInfo = () => {
         <div className="w-[40vw] flex flex-col border-r-[4px] border-solid border-white">
           <div>
             <Link to={"/module/" + collection.module.moduleId}>
-              <span className="text-2xl text-main-green cursor-pointer">
+              <span className="text-2xl text-main-green cursor-pointer hover:underline hover:decoration-2">
                 {collection.module.moduleName}
               </span>
             </Link>

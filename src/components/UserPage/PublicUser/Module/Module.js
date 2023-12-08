@@ -63,7 +63,7 @@ const Module = ({ moduleId }) => {
               <div className="flex flex-col">
                 <div className="text-3xl ">
                   <Link to={"/module/" + module.moduleId}>
-                    <span className="font-normal cursor-pointer">
+                    <span className="font-normal cursor-pointer hover:underline hover:decoration-2">
                       {module.moduleName}
                     </span>
                   </Link>

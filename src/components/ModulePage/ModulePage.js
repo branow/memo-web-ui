@@ -30,9 +30,9 @@ const ModulePage = ({ currentModule }) => {
       )}
 
       <ModuleContext.Provider value={{ moduleState, isAuthenticated, isOwner }}>
-        <div className="w-screen h-full bg-dark-grey text-white">
+        <div className="relative w-screen h-screen bg-dark-grey text-white">
           <div
-            className="relative h-fit w-[70vw] pb-[10vh] bg-tealish-blue mx-auto border-[2px] 
+            className="relative h-fit w-[70vw] pb-[5vh] bg-tealish-blue mx-auto border-[2px] 
       border-tealish-blue hover:border-solid 
       hover:border-regent-grey"
           >

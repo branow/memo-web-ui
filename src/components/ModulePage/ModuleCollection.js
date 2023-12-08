@@ -53,7 +53,7 @@ const ModuleCollection = ({ collection }) => {
       <div className="flex flex-row px-[3vw] py-[3vh]">
         <div className="w-[22vw]">
           <Link to={"/collection/" + collection.collectionId}>
-            <span className="text-2xl font-light cursor-pointer">
+            <span className="text-2xl font-light cursor-pointer hover:underline hover:decoration-2">
               {collection.collectionName}
             </span>
           </Link>

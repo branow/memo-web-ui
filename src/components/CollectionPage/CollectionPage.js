@@ -48,17 +48,17 @@ const CollectionPage = () => {
       <CollectionContext.Provider
         value={{ collectionState, isOwner, isAuthenticated }}
       >
-        <div>
+
           <div className="relative w-screen h-full bg-dark-grey text-white">
             <div
-              className="relative h-fit w-[80vw] pb-[10vh] bg-tealish-blue mx-auto border-[2px] 
+              className="relative h-fit w-[80vw] pb-[5vh] bg-tealish-blue mx-auto border-[2px] 
         border-tealish-blue hover:border-solid 
         hover:border-regent-grey"
             >
               {collection && <CollectionInfo />}
 
               {isOwner && (
-                <div className="relative z-10 border-solid border-white border-y-[3px]">
+                <div className="relative border-solid border-white border-y-[3px]">
                   <StudyTypeDescription
                     collections={[collection.collectionId]}
                   />
@@ -72,14 +72,14 @@ const CollectionPage = () => {
                       <SearchBar borderColor={"charcoal"} />
                     </div>
                   )}
-                  <div className="relative">
+                  <div className="mt-[5vh]">
                     <CardList />
                   </div>
                 </>
               )}
             </div>
           </div>
-        </div>
+
       </CollectionContext.Provider>
     </>
   );
