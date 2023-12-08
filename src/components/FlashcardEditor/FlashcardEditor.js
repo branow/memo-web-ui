@@ -6,6 +6,7 @@ import DeleteCircleButton from "../constant/Buttons/DeleteCircleButton";
 import { useSaveFlashcard } from "../../hooks/request/flashcard";
 import ErrorBox from "../constant/ErrorBox";
 import LoadingScreen from "../constant/LoadingScreen";
+import WindowWrapper from "../constant/WindowWrapper";
 
 const FlashcardEditor = ({ flashcard, collectionId, setFlashcard, close }) => {
   const [frontSide, setFrontSide] = useState(flashcard.frontSide);
@@ -26,7 +27,11 @@ const FlashcardEditor = ({ flashcard, collectionId, setFlashcard, close }) => {
     <>
       <div className="relative w-[1000px] bg-tealish-blue">
         {state.pending && <LoadingScreen />}
-        {state.error && <ErrorBox title="Flashcard saving error" message={state.error}/>}
+        {state.error && (
+          <WindowWrapper close={() => state.cleanError()}>
+            <ErrorBox title="Flashcard saving error" message={state.error} close={() => state.cleanError()}/>
+          </WindowWrapper>
+        )}
 
         <div className="absolute right-0">
           <DeleteCircleButton color="white" size="25px" onClickAction={close} />
