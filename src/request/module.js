@@ -4,6 +4,14 @@ class ModuleRequester {
   constructor() {
     this.requester = new Requester('module');
   }
+  getModuleShortDetailsAll(jwt, doFinally, signal) {
+    this.requester.get({
+      url: 'short-details',
+      jwt: jwt,
+      doFinally: doFinally,
+      signal: signal,
+    });
+  };
   getModuleCollectionAll(jwt, doFinally, signal) {
     this.requester.get({
       url: 'collection',
