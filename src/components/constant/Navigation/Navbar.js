@@ -7,13 +7,13 @@ import { TbCardsFilled } from "react-icons/tb";
 
 const Navbar = () => {
   const { userState } = useContext(UserContext);
-  
+
   return (
-    <div className="bg-main-green absolute z-20 w-full">
+    <div className="bg-main-green absolute z-20 w-full bg-opacity-95">
       <div className="flex flex-wrap items-center justify-between mx-auto py-2 px-4">
-        <Link to="/" className="flex ">
-          <TbCardsFilled color="#333" size="60px"/>
-          <span className="self-center mx-[15px] text-5xl font-bold font-mono whitespace-nowrap text-dark-grey">
+        <Link to="/" className="flex fill-dark-grey text-dark-grey">
+          <TbCardsFilled size="60px" />
+          <span className="self-center mx-[15px] text-5xl font-bold font-mono whitespace-nowrap">
             Memo
           </span>
         </Link>
