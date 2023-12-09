@@ -19,7 +19,7 @@ const Navbar = () => {
         </Link>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
           <ul className="text-lg font-medium flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
-            <NavButton linkName={"Find Flashcards"} linkDestination={"#"} />
+            <NavButton linkName={"Search"} linkDestination={"/search/user"} />
             <NavButton linkName={"About us"} linkDestination={"/about"} />
             {userState.user ? (
               <NavButtonUser username={userState.user.username} />
