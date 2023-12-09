@@ -2,12 +2,11 @@ import { useContext } from "react";
 import { ImportFlashcardContext } from "./ImportFlashcard";
 
 const Collection = ({ collection }) => {
-  const { flashcardId, useImport, close } = useContext(ImportFlashcardContext);
+  const { flashcardId, useImport } = useContext(ImportFlashcardContext);
 
   const onImport = () => {
     const targetCollectionId = collection.collectionId;
     useImport.state.run({ flashcardId, targetCollectionId });
-    close();
   };
 
   return (

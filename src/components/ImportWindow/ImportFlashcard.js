@@ -15,9 +15,10 @@ export const ImportFlashcardContext = createContext();
 const ImportFlashcard = ({ flashcardId, close }) => {
   const { modulesState, state } = useGetModuleCollectionAll();
   const group = useSelectedGroup();
-  const useImport = useImportFlashcard(() => {});
+  const useImport = useImportFlashcard(() => {
+    close();
+  });
   const [isAddCollection, setIsAddColllection] = useState(false);
-
 
   useEffect(() => {
     setIsAddColllection(false);
@@ -61,9 +62,7 @@ const ImportFlashcard = ({ flashcardId, close }) => {
       )}
 
       {modules && (
-        <ImportFlashcardContext.Provider
-          value={{ useImport, flashcardId, close }}
-        >
+        <ImportFlashcardContext.Provider value={{ useImport, flashcardId }}>
           <div className="relative min-w-[400px] max-w-[800px] w-[25vw] p-[20px] bg-tealish-blue">
             <div className="absolute top-1 right-1">
               <DeleteCircleButton
@@ -104,7 +103,10 @@ const ImportFlashcard = ({ flashcardId, close }) => {
               </div>
               <div className="p-[10px]">
                 {group.selected && (
-                  <SubmitButton actionName="New Collection" onClickAction={() => setIsAddColllection(true)}/>
+                  <SubmitButton
+                    actionName="New Collection"
+                    onClickAction={() => setIsAddColllection(true)}
+                  />
                 )}
               </div>
             </div>
