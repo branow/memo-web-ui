@@ -75,7 +75,7 @@ const AutoBuilder = ({ defaultQuery, setFront, setBack, close }) => {
   };
 
   return (
-    <div className="relative flex flex-col justify-center bg-tealish-blue p-[20px]">
+    <div className="relative flex flex-col gap-[20px] justify-center bg-tealish-blue p-[20px]">
       <div className="absolute right-0 top-0">
         <DeleteCircleButton size="25px" color="white" onClickAction={close} />
       </div>
@@ -90,7 +90,7 @@ const AutoBuilder = ({ defaultQuery, setFront, setBack, close }) => {
         )}
         {state.pending && <LoadingScreen />}
         {wordState.word && (
-          <div className="flex">
+          <div className="flex h-[30vh]">
             <FlashcardSide side={toFront()} />
             <FlashcardSide side={toBack()} />
           </div>

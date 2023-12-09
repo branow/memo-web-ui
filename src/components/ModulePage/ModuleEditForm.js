@@ -36,7 +36,7 @@ const ModuleEditForm = ({ moduleState, close }) => {
   };
 
   return (
-    <div className="relative min-w-[25vw] min-h-[55vh] flex flex-col items-center p-[20px] rounded-xl bg-dark-grey">
+    <div className="relative min-w-[500px] w-[35vw] flex flex-col items-center p-[20px] rounded-xl bg-dark-grey">
       {useSave.state.pending && <LoadingAnimation message="Saving..." />}
       {useSave.state.error && (
         <ErrorBox
@@ -51,7 +51,7 @@ const ModuleEditForm = ({ moduleState, close }) => {
       </div>
       <div className="my-[4vh] text-4xl font-semibold">Edit module</div>
       <div className="flex flex-col items-center text-black">
-        <div className="w-[15vw] flex flex-col items-center">
+        <div className="w-[20vw] flex flex-col items-center">
           <label className="block mb-[-2vh] text-xl font-medium text-gray-200">
             Module Name
           </label>
@@ -60,7 +60,7 @@ const ModuleEditForm = ({ moduleState, close }) => {
           onClickAction={(e) => setModuleName(e.target.value)}
           />
         </div>
-        <div className="w-[15vw] mt-[1vh] flex flex-col items-center">
+        <div className="w-[20vw] mt-[1vh] flex flex-col items-center">
           <label className="block mb-2 text-xl font-medium text-gray-200">
             Access
           </label>
@@ -69,7 +69,7 @@ const ModuleEditForm = ({ moduleState, close }) => {
           onChangeAction={(e) => setAccess(e.target.value)}
           />
         </div>
-        <div className="w-[15vw] min-h-[20vh] mt-[2vh] flex flex-col items-center">
+        <div className="w-[20vw] min-h-[20vh] mt-[2vh] flex flex-col items-center">
           <label className="block mb-3 text-xl font-medium text-gray-200">
             Description
           </label>
