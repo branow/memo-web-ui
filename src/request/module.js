@@ -4,6 +4,14 @@ class ModuleRequester {
   constructor() {
     this.requester = new Requester('module');
   }
+  getModuleCollectionAll(jwt, doFinally, signal) {
+    this.requester.get({
+      url: 'collection',
+      jwt: jwt,
+      doFinally: doFinally,
+      signal: signal,
+    });
+  };
   getModuleGeneralDetails(moduleId, doFinally, signal) {
     this.requester.get({
       url: 'general-details/' + moduleId,
