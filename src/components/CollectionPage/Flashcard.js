@@ -11,11 +11,13 @@ import ErrorBox from "../constant/ErrorBox";
 import LoadingAnimation from "../constant/LoadingAnimation";
 import { useContext } from "react";
 import { CollectionContext } from "./CollectionPage";
+import ImportFlashcard from "../ImportWindow/ImportFlashcard";
 
 const Flashcard = ({ flashcardId }) => {
   const { collectionState, isOwner, isAuthenticated } =
     useContext(CollectionContext);
   const [isEdit, setIsEdit] = useState(false);
+  const [isImport, setIsImport] = useState(false);
   const { flashcardState, state } = useGetFlashcardDetails(flashcardId);
   const useDelete = useDeleteFlashcard(() => {
     collectionState.setCollection((pr) => {
@@ -43,6 +45,12 @@ const Flashcard = ({ flashcardId }) => {
         </WindowWrapper>
       )}
 
+      {isImport && (
+        <WindowWrapper close={() => setIsImport(false)}>
+          <ImportFlashcard flashcardId={flashcardId} close={() => setIsImport(false)} />
+        </WindowWrapper>
+      )}
+
       <div className="p-[20px] relative">
         {state.pending && <LoadingAnimation />}
         {useDelete.state.pending && <LoadingAnimation message="deleting" />}
@@ -59,7 +67,7 @@ const Flashcard = ({ flashcardId }) => {
           )}
         </div>
 
-        <div className="w-fit m-auto flex flex-row">
+        <div className="w-fit m-auto flex flex-row group/fc">
           {flashcard && (
             <>
               <div className="">
@@ -72,6 +80,7 @@ const Flashcard = ({ flashcardId }) => {
                     scores={flashcard.scores}
                     onEdit={() => setIsEdit(true)}
                     onDelete={handleOnDelete}
+                    onImport={() => setIsImport(true)}
                   />
                 </div>
               </div>
