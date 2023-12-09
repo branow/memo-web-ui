@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { useSaveModule } from "../../../../hooks/request/module";
 import SubmitButton from "../../../constant/Buttons/SubmitButton";
 import LoadingAnimation from "../../../constant/LoadingAnimation";
@@ -10,18 +9,11 @@ import AccessSelect from "../../../constant/FormInput/AccessSelect";
 import TextArea from "../../../constant/FormInput/TextArea";
 
 
-const ModuleAddForm = ({ userState, close }) => {
-  const history = useHistory();
+const ModuleAddForm = ({ setModule, close }) => {
   const [moduleName, setModuleName] = useState("My New Module");
   const [access, setAccess] = useState("PUBLIC");
   const [description, setDescription] = useState("");
-  const useSave = useSaveModule((savedModule) => {
-    userState.setUser((pr) => {
-      pr.moduleIds.push(savedModule.moduleId);
-      return Object.assign({}, pr);
-    })
-    history.push("/module/" + savedModule.moduleId);
-  });
+  const useSave = useSaveModule(setModule);
 
   const handleOnAdd = () => {
     const module = {
