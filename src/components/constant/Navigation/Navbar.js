@@ -4,6 +4,7 @@ import NavButtonUser from "./NavButtonUser";
 import { useContext } from "react";
 import { UserContext } from "../../App";
 import { TbCardsFilled } from "react-icons/tb";
+import SettingsIcon from "../Icons/SettingsIcon";
 
 const Navbar = () => {
   const { userState } = useContext(UserContext);
@@ -18,11 +19,12 @@ const Navbar = () => {
           </span>
         </Link>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
-          <ul className="text-lg font-medium flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 md:mt-0 md:border-0 ">
-            <NavButton linkName={"Search"} linkDestination={"/search/user"} />
-            <NavButton linkName={"About us"} linkDestination={"/about"} />
+          <div className="flex text-lg gap-1 font-medium">
+            <NavButton linkDestination={"/"}>Home</NavButton>
+            <NavButton linkDestination={"/search/user"}>Search</NavButton>
+            <NavButton linkDestination={"/about"}>About us</NavButton>
             {userState.user ? (
-              <NavButtonUser username={userState.user.username} />
+              <NavButtonUser />
             ) : (
               <NavButton
                 linkName={"Log in"}
@@ -30,7 +32,10 @@ const Navbar = () => {
                 logLink={true}
               />
             )}
-          </ul>
+            <NavButton linkDestination={"/learning/settings"}>
+              <SettingsIcon className="" color="white" size="35px" />
+            </NavButton>
+          </div>
         </div>
       </div>
     </div>

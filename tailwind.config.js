@@ -23,6 +23,8 @@ module.exports = {
         'glassy-green': 'rgba(48, 255, 116, 0.1)',
         'soft-green': 'rgba(48, 255, 116, 0.2)',
         'bold-green': 'rgba(48, 255, 116, 0.5)',
+        'soft-yellow': 'rgb(255, 190, 1, 0.6)',
+        'bold-yellow': 'rgb(255, 190, 1, 0.8)',
       }
     },
   },

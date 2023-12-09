@@ -1,20 +1,13 @@
 import { Link } from "react-router-dom";
 
-const NavButton = ({ linkName, linkDestination, logLink }) => {
+const NavButton = ({ children, linkDestination }) => {
   return (
-    <div className="h-fit my-auto">
-      <li>
-        <Link
-          to={linkDestination}
-          className={
-            "block py-2 pl-3 pr-4 text-gray-100 rounded hover:bg-orangy-yellow p-3 active:bg-yellow-700" +
-            (logLink ? " border-2" : "")
-          }
-        >
-          {linkName}
-        </Link>
-      </li>
-    </div>
+    <Link to={linkDestination}>
+      <div className="flex flex-col justify-center items-center h-full px-[30px] 
+      text-gray-100 hover:bg-soft-yellow active:bg-bold-yellow">
+        {children}
+      </div>
+    </Link>
   );
 };
 
