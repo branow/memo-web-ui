@@ -7,13 +7,13 @@ const ModuleAccess = ({ access, size }) => {
       {access === "PUBLIC" && (
         <div className="flex text-main-green text-lg">
           <MdOutlinePeopleAlt className="" size={size} />
-          <span className="pl-[7px] ">PUBLIC</span>
+          <span className="pl-[7px]">PUBLIC</span>
         </div>
       )}
       {access === "PRIVATE" && (
         <div className="flex text-red-400 text-lg">
           <RiGitRepositoryPrivateLine size={size} />
-          <span className="pl-[7px] text-lg text-red-400">PRIVATE</span>
+          <span className="pl-[7px]">PRIVATE</span>
         </div>
       )}
     </>

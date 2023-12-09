@@ -1,21 +1,26 @@
-import Avatar from "../constant/Icons/Avatar";
+import ModuleAccess from "../constant/Flashcard/ModuleAccess";
+import UserSidebar from "./UserSidebar";
 
-const UserBlock = () => {
+const UserBlock = ({ user }) => {
     return (
-      <div className="relative w-[50vw] h-[30vh] bg-tealish-blue m-auto rounded-sm">
-        <div className="absolute w-[15vw] h-full bg-charcoal ">
-          <div className="w-fit h-fit m-auto mt-[5vh] flex flex-col items-center p-[5px] hover:bg-soft-green rounded-xl">
-            <Avatar size="100px" />
-            <div className="mt-[1vh] text-2xl max-w-[8vw] max-h-[10vh] overflow-y-auto break-words">User name</div>
+      <div className="relative flex flex-row w-[50vw] h-[30vh] my-[4vh] bg-tealish-blue m-auto rounded-md">
+        <UserSidebar user={user} />
+        <div className="w-full h-full p-[15px]">
+          <div className="flex flex-col items-center px-[2vw] float-right">
+            <div className="flex flex-row text-lg text-main-green">
+              <ModuleAccess access="PUBLIC" size="25px" />
+              <span className="pl-[5px]">- {user.publicModulesCount}</span>
+            </div>
+            <div className="flex flex-row text-lg text-red-400">
+              <ModuleAccess access="PRIVATE" size="25px" />
+              <span className="pl-[5px]">- {user.privateModulesCount}</span>
+            </div>
+          </div>
+          <div className="w-full px-[3vw] max-h-[15vh] overflow-y-auto mt-[10vh] text-xl break-words ">
+            {user.shortDescription}
           </div>
         </div>
-        <div className="absolute p-[5px]">
-            <div>
-                <div></div>
-                <div></div>
-            </div>
-        </div>
-        <div></div>
+
       </div>
     );
 }
