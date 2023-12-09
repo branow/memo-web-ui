@@ -36,8 +36,8 @@ const CollectionInfo = () => {
         </WindowWrapper>
       )}
 
-      <div className="flex flex-row mt-[4vh] mb-[4vh] mx-[4vw] px-[1vw]">
-        <div className="w-[40vw] flex flex-col border-r-[4px] border-solid border-white">
+      <div className="group/info flex flex-row items-center my-[4vh] mx-[2vw]">
+        <div className="w-[60%] flex flex-col border-r-[4px] border-solid border-white">
           <div>
             <Link to={"/module/" + collection.module.moduleId}>
               <span className="text-2xl text-main-green cursor-pointer hover:underline hover:decoration-2">
@@ -45,26 +45,29 @@ const CollectionInfo = () => {
               </span>
             </Link>
           </div>
-          <div className="text-4xl mt-[3vh]">
-            <span className="font-normal">{collection.collectionName}</span>
-            {isOwner && (
-              <span className="ml-[0.5vw]">
-                <ChangeCircleButton
-                  size={"25px"}
-                  onClickAction={() => setIsEdit(true)}
-                />
-              </span>
-            )}
+          <div className="text-4xl mt-[3vh] flex justify-between">
+            <span className="relative">
+              <span className="font-normal">{collection.collectionName}</span>
+              {isOwner && (
+                <span className="hidden absolute right-[-50px] top-0 group-hover/info:block">
+                  <ChangeCircleButton
+                    size={"35px"}
+                    onClickAction={() => setIsEdit(true)}
+                  />
+                </span>
+              )}
+            </span>
 
             <span className="pr-[1vw] font-semibold text-main-green float-right">
               {collection.flashcardIds.length}
             </span>
           </div>
         </div>
-        <div className="my-auto ml-[8vw] w-[18vw]">
+        <div className="w-[2vw]" />
+        <div className="">
           <ScoreWrapper scores={collection.scores} size="BIGGER" />
         </div>
-        <div className="mt-[-2vh] mr-[-5vw]">
+        <div className="absolute top-1 right-1">
           <div className="p-[8px] rounded-xl hover:bg-soft-green">
             <Link to={"/profile/" + userId}>
               <div className="w-fit m-auto">

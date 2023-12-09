@@ -14,8 +14,7 @@ import { CollectionContext } from "./CollectionPage";
 import ImportFlashcard from "../ImportWindow/ImportFlashcard";
 
 const Flashcard = ({ flashcardId }) => {
-  const { collectionState, isOwner, isAuthenticated } =
-    useContext(CollectionContext);
+  const { collectionState } = useContext(CollectionContext);
   const [isEdit, setIsEdit] = useState(false);
   const [isImport, setIsImport] = useState(false);
   const { flashcardState, state } = useGetFlashcardDetails(flashcardId);
@@ -47,7 +46,10 @@ const Flashcard = ({ flashcardId }) => {
 
       {isImport && (
         <WindowWrapper close={() => setIsImport(false)}>
-          <ImportFlashcard flashcardId={flashcardId} close={() => setIsImport(false)} />
+          <ImportFlashcard
+            flashcardId={flashcardId}
+            close={() => setIsImport(false)}
+          />
         </WindowWrapper>
       )}
 
@@ -67,22 +69,22 @@ const Flashcard = ({ flashcardId }) => {
           )}
         </div>
 
-        <div className="w-fit m-auto flex flex-row group/fc">
+        <div className="w-fit m-auto h-[25vh] flex flex-row group/fc">
           {flashcard && (
             <>
-              <div className="">
+              <div className="relative h-full">
                 <FlashcardSide side={flashcard.frontSide} />
               </div>
-              <div className="relative h-fit flex flex-row">
+              <div className="relative h-full">
                 <FlashcardSide side={flashcard.backSide} />
-                <div>
-                  <FlashcardSideBar
-                    scores={flashcard.scores}
-                    onEdit={() => setIsEdit(true)}
-                    onDelete={handleOnDelete}
-                    onImport={() => setIsImport(true)}
-                  />
-                </div>
+              </div>
+              <div className="relative w-[100px]">
+                <FlashcardSideBar
+                  scores={flashcard.scores}
+                  onEdit={() => setIsEdit(true)}
+                  onDelete={handleOnDelete}
+                  onImport={() => setIsImport(true)}
+                />
               </div>
             </>
           )}

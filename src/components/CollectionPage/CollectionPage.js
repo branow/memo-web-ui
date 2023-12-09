@@ -51,7 +51,7 @@ const CollectionPage = () => {
 
           <div className="relative w-full min-h-[100vh] bg-dark-grey text-white">
             <div
-              className="relative h-fit w-[80vw] pb-[5vh] bg-tealish-blue mx-auto border-[2px] 
+              className="relative h-fit w-[70vw] pb-[5vh] bg-tealish-blue mx-auto border-[2px] 
         border-tealish-blue hover:border-solid 
         hover:border-regent-grey"
             >
@@ -72,7 +72,7 @@ const CollectionPage = () => {
                       <SearchBar borderColor={"charcoal"} />
                     </div>
                   )}
-                  <div className="mt-[5vh]">
+                  <div className="my-[5vh]">
                     <CardList />
                   </div>
                 </>

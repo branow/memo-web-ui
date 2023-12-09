@@ -9,7 +9,7 @@ const FlashcardSide = ({ side }) => {
 
   return (
     <div
-      className="relative w-[25vw] min-h-[25vh] h-fit mx-[3vw] bg-charcoal rounded-xl border-b-[4px] 
+      className="relative w-[23vw] min-w-[350px] h-full mx-[2vw] bg-charcoal rounded-xl border-b-[4px] 
         border-charcoal hover:border-solid hover:border-regent-grey cursor-pointer "
     >
       {audio && audio.mediaUrl && (
@@ -17,12 +17,12 @@ const FlashcardSide = ({ side }) => {
           <AudioPlayer src={audio.mediaUrl} size="25px" color="white" />
         </div>
       )}
-      <div className="relative h-fit p-[10px] pr-[40px]">
+      <div className="relative h-full overflow-y-auto p-[10px] pr-[20px]">
         <FlashcardTextSide text={text} format={format} />
       </div>
-      <div className="w-[12vw] rounded-xl  ">
+      <div className="w-[12vw] rounded-xl">
         {image && (
-          <div className="absolute h-[100px] w-[100px] z-10 right-[-40px] bottom-[-20px] overflow-hidden rounded-lg duration-300 hover:scale-[3]">
+          <div className="absolute h-[100px] w-[100px] z-10 right-[-50px] bottom-[-20px] overflow-hidden rounded-lg duration-300 hover:scale-[3]">
             <img
               className="z-[1] h-full w-fit object-cover"
               src={image.mediaUrl}
