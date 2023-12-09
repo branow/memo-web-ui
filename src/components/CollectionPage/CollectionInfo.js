@@ -7,13 +7,15 @@ import WindowWrapper from "../constant/WindowWrapper";
 import { CollectionContext } from "./CollectionPage";
 import CollectionEditForm from "./CollectionEditForm";
 import { Link } from "react-router-dom";
+import ImportCollection from "../ImportWindow/ImportCollection";
 
 const CollectionInfo = () => {
   const { collectionState, isOwner, isAuthenticated } =
     useContext(CollectionContext);
   const [isEdit, setIsEdit] = useState(false);
   const collection = collectionState.collection;
-  const userId = collectionState.collection.owner.userId
+  const userId = collectionState.collection.owner.userId;
+  const [isImport, setIsImport] = useState(false);
 
   return (
     <>
@@ -22,6 +24,14 @@ const CollectionInfo = () => {
           <CollectionEditForm
             collectionState={collectionState}
             close={() => setIsEdit(false)}
+          />
+        </WindowWrapper>
+      )}
+      {isImport && (
+        <WindowWrapper close={() => setIsImport(false)}>
+          <ImportCollection
+            collectionId={collection.collectionId}
+            close={() => setIsImport(false)}
           />
         </WindowWrapper>
       )}
@@ -65,9 +75,12 @@ const CollectionInfo = () => {
               </div>
             </Link>
           </div>
-          {collection && !isOwner && (
+          {isAuthenticated && !isOwner && (
             <div className="w-fit m-auto">
-              <DownloadCircleButton size={"40px"} />
+              <DownloadCircleButton
+                size={"40px"}
+                onClickAction={() => setIsImport(true)}
+              />
             </div>
           )}
         </div>

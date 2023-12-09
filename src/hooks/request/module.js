@@ -13,7 +13,33 @@ export {
   useGetModuleDetails,
   useSaveModule,
   useDeleteModule,
+  useGetModuleCollectionAll,
+  useGetModuleShortDetailsAll,
 };
+
+function useGetModuleShortDetailsAll() {
+  const request = ({ callback, signal }) => {
+    const jwt = new UserCookies().authorizationJwt.get();
+    new ModuleRequester().getModuleShortDetailsAll(jwt, callback, signal);
+  };
+  const { dataState, state } = useGetRequest(request, new Callback());
+  return {
+    modulesState: { modules: dataState.data, setModules: dataState.setData },
+    state: state,
+  };
+}
+
+function useGetModuleCollectionAll() {
+  const request = ({ callback, signal }) => {
+    const jwt = new UserCookies().authorizationJwt.get();
+    new ModuleRequester().getModuleCollectionAll(jwt, callback, signal);
+  };
+  const { dataState, state } = useGetRequest(request, new Callback());
+  return {
+    modulesState: { modules: dataState.data, setModules: dataState.setData },
+    state: state,
+  };
+}
 
 function useGetModuleGeneralDetails(moduleId) {
   const request = ({ callback, signal }) => {

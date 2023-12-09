@@ -8,10 +8,12 @@ import { ModuleContext } from "./ModulePage";
 import { Link } from "react-router-dom";
 import WindowWrapper from "../constant/WindowWrapper";
 import ModuleEditForm from "./ModuleEditForm";
+import ImportModule from "../ImportWindow/ImportModule";
 
 const ModuleInfo = ({}) => {
   const { moduleState, isAuthenticated, isOwner } = useContext(ModuleContext);
   const [isEdit, setIsEdit] = useState(false);
+  const [isImport, setIsImport] = useState(false);
 
   const module = moduleState.module;
   return (
@@ -21,6 +23,14 @@ const ModuleInfo = ({}) => {
           <ModuleEditForm
             moduleState={moduleState}
             close={() => setIsEdit(false)}
+          />
+        </WindowWrapper>
+      )}
+      {isImport && (
+        <WindowWrapper close={() => setIsImport(false)}>
+          <ImportModule
+            moduleId={module.moduleId}
+            close={() => setIsImport(false)}
           />
         </WindowWrapper>
       )}
@@ -69,7 +79,12 @@ const ModuleInfo = ({}) => {
           </div>
 
           <div className="w-fit m-auto">
-            {!isOwner && <DownloadCircleButton size={"50px"} />}
+            {isAuthenticated && !isOwner && (
+              <DownloadCircleButton
+                size={"50px"}
+                onClickAction={() => setIsImport(true)}
+              />
+            )}
           </div>
         </div>
       </div>

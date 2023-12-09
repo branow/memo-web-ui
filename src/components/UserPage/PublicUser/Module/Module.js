@@ -9,9 +9,11 @@ import {
 import LoadingAnimation from "../../../constant/LoadingAnimation";
 import ModuleAccess from "../../../constant/Flashcard/ModuleAccess";
 import DownloadCircleButton from "../../../constant/Buttons/DownloadCircleButton";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { PublicUserContext } from "../PublicUserInfo";
 import { Link } from "react-router-dom";
+import WindowWrapper from "../../../constant/WindowWrapper";
+import ImportModule from "../../../ImportWindow/ImportModule";
 
 const Module = ({ moduleId }) => {
   const { userState, isAuthenticated, isOwner } = useContext(PublicUserContext);
@@ -22,6 +24,7 @@ const Module = ({ moduleId }) => {
       return Object.assign({}, pr);
     });
   });
+  const [isImport, setIsImport] = useState(false);
 
   const handleOnDelete = () => {
     if (
@@ -36,6 +39,14 @@ const Module = ({ moduleId }) => {
   const module = moduleState.module;
   return (
     <>
+      {isImport && (
+        <WindowWrapper close={() => setIsImport(false)}>
+          <ImportModule
+            moduleId={module.moduleId}
+            close={() => setIsImport(false)}
+          />
+        </WindowWrapper>
+      )}
       {state.pending && (
         <div className="w-full h-full">
           <LoadingAnimation />
@@ -52,7 +63,11 @@ const Module = ({ moduleId }) => {
               />
             )}
             {isAuthenticated && !isOwner && (
-              <DownloadCircleButton color="white" size="25px" />
+              <DownloadCircleButton
+                color="white"
+                size="25px"
+                onClickAction={() => setIsImport(true)}
+              />
             )}
           </div>
           <div className="flex flex-row my-[2vh] mx-[4vw] z-10">

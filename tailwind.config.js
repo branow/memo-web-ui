@@ -20,6 +20,7 @@ module.exports = {
 
         'soft-red': 'rgba(245, 42, 0, 0.3)',
         'bold-red': 'rgba(245, 42, 0, 0.7)',
+        'glassy-green': 'rgba(48, 255, 116, 0.1)',
         'soft-green': 'rgba(48, 255, 116, 0.2)',
         'bold-green': 'rgba(48, 255, 116, 0.5)',
       }

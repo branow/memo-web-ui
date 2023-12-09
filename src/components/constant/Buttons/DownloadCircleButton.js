@@ -1,14 +1,14 @@
-import { IoDownloadOutline } from "react-icons/io5";
 import { memo } from "react";
+import { MdDownloading } from "react-icons/md";
 
 const DownloadCircleButton = memo(({ size, color, onClickAction }) => {
     return (
       <>
         <button
-          className="p-[3px] hover:bg-soft-green w-fit rounded-full cursor-pointer active:bg-bold-green"
+          className="p-[5px] hover:bg-soft-green w-fit rounded-full cursor-pointer active:bg-bold-green"
           onClick={onClickAction}
         >
-          <IoDownloadOutline size={size} color={color} />
+          <MdDownloading size={size} color={color} />
         </button>
       </>
     );

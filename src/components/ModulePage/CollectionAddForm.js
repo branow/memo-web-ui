@@ -7,18 +7,14 @@ import { useSaveCollection } from "../../hooks/request/collection";
 import { useHistory } from "react-router-dom";
 import GeneralInputField from "../constant/FormInput/GeneralInputField";
 
-const CollectionAddForm = ({ moduleState, close }) => {
+const CollectionAddForm = ({ moduleId, setCollection, close }) => {
   const [collectionName, setCollectionName] = useState("My New Collection");
-  const history = useHistory();
-  const useSave = useSaveCollection((collection) => {
-    history.push("/collection/" + collection.collectionId);
-  });
+  const useSave = useSaveCollection(setCollection);
 
   const handleOnSave = () => {
     const collection = {
       collectionName: collectionName,
-    }
-    const moduleId = moduleState.module.moduleId; 
+    };
     useSave.state.run({ collection, moduleId });
   };
 
@@ -36,16 +32,18 @@ const CollectionAddForm = ({ moduleState, close }) => {
       <div className="absolute top-0 right-0">
         <DeleteCircleButton size="25px" onClickAction={close} />
       </div>
-      <div className="my-[2vh] text-3xl font-semibold">Add a new collection</div>
+      <div className="my-[2vh] text-3xl font-semibold">
+        Add a new collection
+      </div>
 
       <div className="flex flex-col items-center text-black">
         <div className="w-[16vw] mt-[2vh] flex flex-col items-center">
           <label className="block mb-[-2vh] text-xl font-medium text-gray-200">
             Collection Name
           </label>
-          <GeneralInputField 
-          value={collectionName}
-          onClickAction={(e) => setCollectionName(e.target.value)}
+          <GeneralInputField
+            value={collectionName}
+            onChangeAction={(e) => setCollectionName(e.target.value)}
           />
         </div>
         <div className="my-[1vh]">

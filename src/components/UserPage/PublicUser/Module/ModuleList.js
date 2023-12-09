@@ -7,18 +7,24 @@ import FixedAddButton from "../../../constant/Buttons/FixedAddButton";
 import EmptyModules from "./EmptyModules";
 import { useSaveModule } from "../../../../hooks/request/module";
 import WindowWrapper from "../../../constant/WindowWrapper";
-import ModuleAddForm from "./ModuleAddFrom";
+import ModuleAddForm from "./ModuleAddForm";
+import { useHistory } from "react-router-dom";
 
 const ModuleList = () => {
   const { userState, isAuthenticated, isOwner} = useContext(PublicUserContext)
   const [isAdding, setIsAdding] = useState(false);
+  const history = useHistory();
+
+  const setModule = (savedModule) => {
+    history.push("/module/" + savedModule.moduleId);
+  };
 
   const moduleIds = userState.user.moduleIds;
   return (
     <> 
       {isAdding && (
         <WindowWrapper close={() => setIsAdding(false)}>
-          <ModuleAddForm userState={userState} close={() => setIsAdding(false)}/>
+          <ModuleAddForm setModule={setModule} close={() => setIsAdding(false)}/>
         </WindowWrapper>
       )}
 

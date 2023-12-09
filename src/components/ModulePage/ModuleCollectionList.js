@@ -5,10 +5,16 @@ import { ModuleContext } from "./ModulePage";
 import WindowWrapper from "../constant/WindowWrapper";
 import CollectionAddForm from "./CollectionAddForm";
 import FixedAddButton from "../constant/Buttons/FixedAddButton";
+import { useHistory } from "react-router-dom";
 
 const ModuleCollectionList = () => {
   const { moduleState, isAuthenticated, isOwner } = useContext(ModuleContext);
   const [isAdding, setIsAdding] = useState(false);
+  const history = useHistory();
+
+  const setCollection = (collection) => {
+    history.push("/collection/" + collection.collectionId);
+  };
 
   const collections = moduleState.module.collections;
   return (
@@ -16,12 +22,12 @@ const ModuleCollectionList = () => {
       {isAdding && (
         <WindowWrapper close={() => setIsAdding(false)}>
           <CollectionAddForm
-            moduleState={moduleState}
+            moduleId={moduleState.module.moduleId}
+            setCollection={setCollection}
             close={() => setIsAdding(false)}
           />
         </WindowWrapper>
       )}
-      
 
       {collections.map((collection) => (
         <div key={collection.collectionId}>

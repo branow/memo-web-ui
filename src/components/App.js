@@ -30,8 +30,8 @@ function App() {
   return (
     <UserContext.Provider value={appUserContext}>
       <Router>
-        <div className="w-full h-screen bg-tealish-blue overflow-y-auto overflow-x-hidden">
-          <Navbar></Navbar>
+        <div className="w-full h-screen bg-dark-grey overflow-y-auto overflow-x-hidden">
+          <Navbar />
           <div className="mt-[76px]">
             <Switch>
               <Route exact path="/">
