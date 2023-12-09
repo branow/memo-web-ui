@@ -28,6 +28,7 @@ const ModuleList = () => {
         </WindowWrapper>
       )}
 
+      <div className="flex flex-col gap-[5vh]">
       {moduleIds.length === 0 && <EmptyModules />}
       {moduleIds.map((moduleId) => (
         <div key={moduleId}>
@@ -39,6 +40,8 @@ const ModuleList = () => {
           <FixedAddButton onClickAction={() => setIsAdding(true)}/>
         </div>
       )}
+      </div>
+
     </>
   );
 };

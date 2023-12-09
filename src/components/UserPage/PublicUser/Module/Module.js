@@ -53,7 +53,10 @@ const Module = ({ moduleId }) => {
         </div>
       )}
       {module && (
-        <div className="[&:hover>div.hidden]:block relative w-[60vw] h-fit bg-tealish-blue mx-auto mt-[5vh] mb-[7vh] py-[2vh] rounded-sm  border-[2px] border-tealish-blue hover:border-solid hover:border-regent-grey">
+        <div
+          className="[&:hover>div.hidden]:block relative w-[60vw] min-w-[400px] h-fit py-[10px] px-[30px] bg-tealish-blue mx-auto
+        rounded-sm border-[2px] border-tealish-blue hover:border-solid hover:border-regent-grey"
+        >
           <div className="hidden absolute top-0 right-0">
             {isOwner && (
               <DeleteCircleButton
@@ -65,37 +68,36 @@ const Module = ({ moduleId }) => {
             {isAuthenticated && !isOwner && (
               <DownloadCircleButton
                 color="white"
-                size="25px"
+                size="40px"
                 onClickAction={() => setIsImport(true)}
               />
             )}
           </div>
-          <div className="flex flex-row my-[2vh] mx-[4vw] z-10">
-            <div className="w-[33vw] flex flex-col pr-[1vw] border-r-[4px] border-solid border-white">
-              <div className="flex flex-row">
-                <ModuleAccess access={module.access} size="25px" />
-              </div>
-              <div className="flex flex-col">
-                <div className="text-3xl ">
-                  <Link to={"/module/" + module.moduleId}>
-                    <span className="font-normal cursor-pointer hover:underline hover:decoration-2">
-                      {module.moduleName}
-                    </span>
-                  </Link>
-
-                  <div className="w-[] font-semibold text-main-green float-right">
-                    {module.collections.length}
-                  </div>
+          <div className="flex flex-row z-10 items-center p-[10px]">
+            <div className="flex flex-col w-[60%]">
+              <div className="border-r-[4px] p-[10px] border-solid border-white">
+                <div className="flex flex-row">
+                  <ModuleAccess access={module.access} size="25px" />
                 </div>
-              </div>
-              <div className="w-[30vw] mt-[1vh] text-lg text-gray-300 pr-[1vw] break-words">
-                {module.shortDescription}
+                <div className="flex justify-between text-3xl gap-[20px]">
+                    <Link to={"/module/" + module.moduleId}>
+                      <span className="font-normal cursor-pointer hover:underline hover:decoration-2">
+                        {module.moduleName}
+                      </span>
+                    </Link>
+                    <div className="font-semibold text-main-green">
+                      {module.collections.length}
+                    </div>
+                  </div>
               </div>
             </div>
 
-            <div className="my-auto ml-[6vw]">
+            <div className="px-[20px]">
               <ScoreWrapper scores={module.scores} size="SMALLER" />
             </div>
+          </div>
+          <div className="p-[10px] text-lg text-gray-300 break-words font-light">
+            {module.shortDescription}...
           </div>
           {isOwner && (
             <div className="relative z-10 border-y-[3px] border-solid border-white">
@@ -104,7 +106,7 @@ const Module = ({ moduleId }) => {
               />
             </div>
           )}
-          <div className="flex flex-row flex-wrap justify-between mt-[2vh] z-10">
+          <div className="p-[20px] grid grid-cols-3 justify-evenly gap-[30px] z-10">
             <CollectionList collections={module.collections} />
           </div>
         </div>

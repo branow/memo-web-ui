@@ -7,13 +7,13 @@ const Collection = ({ collection }) => {
   const { isOwner } = useContext(PublicUserContext);
   return (
     <div
-      className="relative w-[20vw] h-fit px-[2vw] py-[2vh] mx-[3vw] my-[2vh] bg-charcoal mt-[2vh] rounded-t-xl  cursor-pointer [&:hover>div.hidden]:block"
+      className="relative w-full h-full p-[20px] bg-charcoal rounded-md cursor-pointer [&:hover>div.hidden]:block hover:rounded-b-none"
     >
       <Link className="peer" to={"/collection/" + collection.collectionId}>
         <div className="absolute top-0 left-0 w-full h-full z-10"></div>
       </Link>
       <div className="flex flex-row">
-        <div className="text-xl w-[15vw]">
+        <div className="text-lg w-[15vw]">
           <span>{collection.collectionName}</span>
           </div>
         <div className="float-right text-2xl text-main-green font-semibold">
@@ -22,7 +22,7 @@ const Collection = ({ collection }) => {
       </div>
       {isOwner && (
         <div className="hidden w-full absolute bg-charcoal left-0 top-[85%] p-[10px] rounded-xl border-b-[4px] 
-        border-charcoal hover:border-solid hover:border-regent-grey">
+        border-tealish-blue border-solid hover:border-solid z-10">
           <CollectionStudy collections={[collection.collectionId]} />
         </div>
       )}

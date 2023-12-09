@@ -12,8 +12,8 @@ const StudyTypeDescription = ({ collections, collectionDescription }) => {
   };
 
   return (
-    <div className="w-full flex flex-row p-[10px]">
-      <div className="peer/memo ml-[4vw] h-fit p-[5px] rounded-xl my-auto">
+    <div className="w-full flex flex-row gap-[20px] p-[5px]">
+      <div className="peer/memo h-fit">
         <StudyButton
           studyTypeName="ORALLY"
           onClickAction={() => push("/learning/memorize")}
@@ -21,7 +21,7 @@ const StudyTypeDescription = ({ collections, collectionDescription }) => {
           collectionDescription={collectionDescription}
         />
       </div>
-      <div className="peer/write mx-[3vw] h-fit  rounded-xl my-auto">
+      <div className="peer/write h-fit">
         <StudyButton
           studyTypeName="WRITING"
           onClickAction={() => push("/learning/writing")}

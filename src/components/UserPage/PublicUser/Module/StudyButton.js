@@ -4,7 +4,7 @@ import { RiDraftLine } from "react-icons/ri";
 const StudyButton = ({ studyTypeName, onClickAction, size, collectionDescription }) => {
     return (
           <div
-            className="hover:text-main-green hover:bg-soft-green p-[5px] rounded-xl cursor-pointer"
+            className="hover:bg-soft-green p-[10px] rounded-full cursor-pointer"
             onClick={onClickAction}
           >
             {studyTypeName === "ORALLY" && (

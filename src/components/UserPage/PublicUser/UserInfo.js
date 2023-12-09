@@ -25,7 +25,7 @@ const UserInfo = () => {
           {user && (
             <div className="flex flex-col ml-[2vw] my-auto">
               <div>{user.username}</div>
-              <div className="mt-[1vh] text-lg w-[50vw] break-words">
+              <div className="mt-[1vh] text-lg w-[50vw] break-words font-light text-gray-300">
                 {user.description}
               </div>
             </div>

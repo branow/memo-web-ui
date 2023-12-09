@@ -13,7 +13,7 @@ const PublicUserModules = () => {
           <SearchBar />
         </div>
       )}
-
+      <div className="h-[7vh]" />
       <ModuleList />
     </>
   );

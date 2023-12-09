@@ -17,14 +17,14 @@ const CollectionStudy = ({ collections }) => {
         <StudyButton
           studyTypeName="ORALLY"
           onClickAction={() => push("/learning/memorize")}
-          size="45px"
+          size="30px"
         />
       </div>
       <div className="z-20">
         <StudyButton
           studyTypeName="WRITING"
           onClickAction={() => push("/learning/writing")}
-          size="45px"
+          size="30px"
         />
       </div>
     </div>
