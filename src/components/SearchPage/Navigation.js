@@ -1,19 +1,42 @@
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
+import { useContext } from "react";
+import { SearchContext } from "./SearchPage";
+import ButtonWrapper from "../constant/Buttons/ButtonWrapper";
 
-const Navigation = ({ pageCount }) => {
-    return (
-      <div className="w-[10vw] flex flex-row gap-4">
-        <button className="p-[5px] hover:bg-soft-green w-fit rounded-full cursor-pointer active:bg-bold-green">
-          <FaArrowLeft size="30px" />
-        </button>
+const Navigation = () => {
+  const { pageNumberState, totalPagesState } = useContext(SearchContext);
+  const { pageNumber, setPageNumber } = pageNumberState;
+  const { totalPages } = totalPagesState;
 
-        <div className="h-fit m-auto text-2xl font-medium">5/10</div>
-        <button className="p-[5px] hover:bg-soft-green w-fit rounded-full cursor-pointer active:bg-bold-green">
-          <FaArrowRight size="30px" />
-        </button>
+  const hasBack = () => pageNumber > 0;
+  const hasNext = () => pageNumber < totalPages - 1;
+
+  const next = () => {
+    if (hasNext()) {
+      setPageNumber(pageNumber + 1);
+    }
+  };
+
+  const back = () => {
+    if (hasBack()) {
+      setPageNumber(pageNumber - 1);
+    }
+  };
+
+  return (
+    <div className="w-[10vw] flex flex-row gap-4">
+      <ButtonWrapper onClickAction={back} disabled={!hasBack()}>
+        <FaArrowLeft size="30px" />
+      </ButtonWrapper>
+      <div className="h-fit m-auto text-2xl font-medium">
+        {totalPages > 0 ? pageNumber + 1 : pageNumber}/{totalPages}
       </div>
-    );
-}
- 
+      <ButtonWrapper onClickAction={next} disabled={!hasNext()}>
+        <FaArrowRight size="30px" />
+      </ButtonWrapper>
+    </div>
+  );
+};
+
 export default Navigation;

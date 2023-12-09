@@ -9,11 +9,11 @@ const UserBlock = ({ user }) => {
           <div className="flex flex-col items-center px-[2vw] float-right">
             <div className="flex flex-row text-lg text-main-green">
               <ModuleAccess access="PUBLIC" size="25px" />
-              <span className="pl-[5px]">- {user.publicModulesCount}</span>
+              <span className="pl-[5px]">- {user.publicModuleNumber}</span>
             </div>
             <div className="flex flex-row text-lg text-red-400">
               <ModuleAccess access="PRIVATE" size="25px" />
-              <span className="pl-[5px]">- {user.privateModulesCount}</span>
+              <span className="pl-[5px]">- {user.privateModuleNumber}</span>
             </div>
           </div>
           <div className="w-full px-[3vw] max-h-[15vh] overflow-y-auto mt-[10vh] text-xl break-words ">

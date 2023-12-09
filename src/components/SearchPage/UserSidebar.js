@@ -9,7 +9,7 @@ const UserSidebar = ({ user, onClickAction }) => {
         >
           <Avatar size="100px" />
           <div className="mt-[1vh] text-2xl text-center max-w-[8vw] max-h-[10vh] overflow-y-auto break-words">
-           {user.userName}
+           {user.username}
           </div>
         </button>
       </div>
