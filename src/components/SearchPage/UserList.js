@@ -6,11 +6,8 @@ import UserBlock from "./UserBlock";
 import { SearchContext } from "./SearchPage";
 
 const UserList = () => {
-  const { query, pageNumberState, totalPagesState } = useContext(SearchContext);
-  const { usersPageState, state } = useSearchUsers(
-    query,
-    pageNumberState.pageNumber
-  );
+  const { search, pageNumber, totalPagesState } = useContext(SearchContext);
+  const { usersPageState, state } = useSearchUsers(search, pageNumber);
   const usersPage = usersPageState.usersPage;
 
   useEffect(() => {
@@ -23,7 +20,9 @@ const UserList = () => {
     <>
       {usersPage && (
         <div className="relative flex flex-col">
-          {state.pending && <LoadingAnimation message={"Searching..."} transparent={true}/>}
+          {state.pending && (
+            <LoadingAnimation message={"Searching..."} transparent={true} />
+          )}
           {state.error && (
             <ErrorPage mesage="Users Searhing Error" message={state.error} />
           )}

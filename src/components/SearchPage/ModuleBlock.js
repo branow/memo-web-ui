@@ -2,16 +2,19 @@ import UserSidebar from "./UserSidebar";
 
 const ModuleBlock = ({ module }) => {
   return (
-    <div className="relative flex flex-row w-[50vw] h-[30vh] my-[4vh] bg-tealish-blue m-auto rounded-md">
+    <div
+      className="relative flex flex-row w-[40vw] min-w-[500px] max-w-[1200px] h-[20vh] min-h-[200px] max-h-[400px] my-[2vh]
+       bg-tealish-blue m-auto rounded-md"
+    >
       <UserSidebar user={module} />
-      <div className="w-full h-full p-[15px]">
-        <div className="flex flex-col items-center px-[3vw]">
-          <div className="w-full flex flex-row my-[5vh] text-3xl justify-between">
-            <div className=" text-main-green">{module.moduleName}</div>
-            <div className="text-2xl ">{module.collectionsCount}</div>
+      <div className="w-full max-w-full h-full p-[15px] text-ellipsis overflow-hidden">
+        <div className="h-full flex flex-col justify-between items-center">
+          <div className="w-full flex flex-row text-3xl justify-between text-main-green">
+            <div>{module.moduleName}</div>
+            <div>{module.collectionNumber}</div>
           </div>
-          <div className="w-full max-h-[10vh] overflow-y-auto text-xl break-words ">
-            {module.shortDescription}
+          <div className="w-full text-ellipsis text-xl font-light break-words ">
+            {module.shortDescription ? module.shortDescription + "..." : ""}
           </div>
         </div>
       </div>

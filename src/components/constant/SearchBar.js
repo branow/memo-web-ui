@@ -15,7 +15,7 @@ const SearchBar = ({ query, search }) => {
     }
 
     return (
-      <div className="flex h-full w-full  px-[1vw] items-center text-main-green border-[2.5px] border-solid rounded-md shadow-xl border-charcoal">
+      <div className="py-[5px] px-[10px] flex w-full items-center text-main-green border-[2.5px] border-solid rounded-md shadow-xl border-charcoal">
         <input
           className="bg-transparent border-none h-full w-full mr-[1vw] text-lg focus:outline-none placeholder:text-main-green"
           type="text"

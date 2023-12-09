@@ -6,11 +6,8 @@ import ModuleBlock from "./ModuleBlock";
 import { SearchContext } from "./SearchPage";
 
 const ModuleList = () => {
-  const { query, pageNumberState, totalPagesState } = useContext(SearchContext);
-  const { modulesPageState, state } = useSearchModules(
-    query,
-    pageNumberState.pageNumber
-  );
+  const { search, pageNumber, totalPagesState } = useContext(SearchContext);
+  const { modulesPageState, state } = useSearchModules(search, pageNumber);
   const modulesPage = modulesPageState.modulesPage;
 
   useEffect(() => {
@@ -23,7 +20,9 @@ const ModuleList = () => {
     <>
       {modulesPage && (
         <div className="relative flex flex-col">
-          {state.pending && <LoadingAnimation message={"Searching..."} transparent={true}/>}
+          {state.pending && (
+            <LoadingAnimation message={"Searching..."} transparent={true} />
+          )}
           {state.error && (
             <ErrorPage mesage="Modules Searhing Error" message={state.error} />
           )}

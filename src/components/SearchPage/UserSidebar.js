@@ -1,19 +1,19 @@
 import Avatar from "../constant/Icons/Avatar";
+import { Link } from "react-router-dom";
 
-const UserSidebar = ({ user, onClickAction }) => {
-    return (
-      <div className="w-[40%] h-full bg-charcoal rounded-l-md">
-        <button
-          className="w-fit h-fit m-auto mt-[5vh] flex flex-col items-center p-[5px] hover:bg-soft-green rounded-xl"
-          onClick={onClickAction}
-        >
-          <Avatar size="100px" />
-          <div className="mt-[1vh] text-2xl text-center max-w-[8vw] max-h-[10vh] overflow-y-auto break-words">
-           {user.username}
+const UserSidebar = ({ user }) => {
+  return (
+    <div className="p-[10px] h-full bg-charcoal rounded-l-md">
+      <Link to={"/profile/" + user.userId}>
+        <div className="w-fit h-full m-auto flex flex-col items-center justify-center gap-[10px] p-[5px] rounded-xl hover:bg-glassy-green">
+          <Avatar size="80px" />
+          <div className="text-xl text-center w-[150px] overflow-y-auto break-words">
+            {user.username}
           </div>
-        </button>
-      </div>
-    );
-}
- 
+        </div>
+      </Link>
+    </div>
+  );
+};
+
 export default UserSidebar;

@@ -11,11 +11,7 @@ import LearningPage from "./LearningPage/LearningPage";
 import PublicUserInfo from "./UserPage/PublicUser/PublicUserInfo";
 import SettingsWindow from "./LearningPage/Setting/SettingsWindow";
 import SearchPage from "./SearchPage/SearchPage";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "../input.css";
 import { useGetUserPrivateShortDetails } from "../hooks/request/user";
 import LogoutForm from "./constant/Forms/LogoutForm";
@@ -86,10 +82,10 @@ function App() {
                 <LearningPage typeId="2" />
               </Route>
               <Route exact path="/search/user">
-                <SearchPage searchType="USER" />
+                <SearchPage searchType="user" />
               </Route>
               <Route exact path="/search/module">
-              <SearchPage searchType="MODULE" />
+                <SearchPage searchType="module" />
               </Route>
             </Switch>
           </div>
