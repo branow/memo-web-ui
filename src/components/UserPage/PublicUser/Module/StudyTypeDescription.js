@@ -12,7 +12,7 @@ const StudyTypeDescription = ({ collections, collectionDescription }) => {
   };
 
   return (
-    <div className="w-full flex flex-row gap-[20px] p-[5px]">
+    <div className="w-full flex flex-row gap-[30px] p-[5px] px-[20px]">
       <div className="peer/memo h-fit">
         <StudyButton
           studyTypeName="ORALLY"

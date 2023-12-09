@@ -53,21 +53,21 @@ const ModuleCollection = ({ collection }) => {
             close={useDelete.state.cleanError}
           />
         )}
-        <div className="hidden relative float-right p-[0.5vh]">
+        <div className="hidden absolute top-0 right-0">
           {isOwner && (
             <DeleteCircleButton size={"25px"} onClickAction={handleOnDelete} />
           )}
           {isAuthenticated && !isOwner && (
             <DownloadCircleButton
-              size={"25px"}
+              size={"35px"}
               onClickAction={() => setIsImport(true)}
             />
           )}
         </div>
-        <div className="flex flex-row px-[3vw] py-[3vh]">
-          <div className="w-[22vw]">
+        <div className="flex flex-row items-center px-[2vw] py-[0.5vh]">
+          <div className="flex flex-row justify-between w-[60%] py-[10px]">
             <Link to={"/collection/" + collection.collectionId}>
-              <span className="text-2xl font-light cursor-pointer hover:underline hover:decoration-2">
+              <span className="text-xl font-light cursor-pointer hover:underline hover:decoration-2">
                 {collection.collectionName}
               </span>
             </Link>
@@ -75,7 +75,8 @@ const ModuleCollection = ({ collection }) => {
               {collection.size}
             </span>
           </div>
-          <div className="w-[12vw] h-[9vh] mt-[-2vh] ml-[6vw]">
+          <div className="w-[2vw]" />
+          <div className="">
             <ScoreWrapper scores={collection.scores} size="SMALLER" />
           </div>
         </div>
