@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { UserContext } from "../../App";
 import { TbCardsFilled } from "react-icons/tb";
 import SettingsIcon from "../Icons/SettingsIcon";
+import Logo from "../Icons/Logo";
 
 const Navbar = () => {
   const { userState } = useContext(UserContext);
@@ -12,11 +13,12 @@ const Navbar = () => {
   return (
     <div className="bg-main-green absolute z-20 w-full bg-opacity-95">
       <div className="flex flex-wrap items-center justify-between mx-auto py-2 px-4">
-        <Link to="/" className="flex fill-dark-grey text-dark-grey">
-          <TbCardsFilled size="60px" />
-          <span className="self-center mx-[15px] text-5xl font-bold font-mono whitespace-nowrap">
-            Memo
-          </span>
+        <Link to="/">
+          <Logo 
+          iconSize="60px"
+          textSize="text-5xl"
+          color="dark-grey"
+          />
         </Link>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
           <div className="flex text-lg gap-1 font-medium">
