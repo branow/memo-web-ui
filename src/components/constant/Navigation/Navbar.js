@@ -26,11 +26,7 @@ const Navbar = () => {
             {userState.user ? (
               <NavButtonUser />
             ) : (
-              <NavButton
-                linkName={"Log in"}
-                linkDestination={"/login"}
-                logLink={true}
-              />
+              <NavButton linkDestination={"/login"}>Log in</NavButton>
             )}
             <NavButton linkDestination={"/learning/settings"}>
               <SettingsIcon className="" color="white" size="35px" />
