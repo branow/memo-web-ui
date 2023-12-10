@@ -3,7 +3,6 @@ import NavButton from "./NavButton";
 import NavButtonUser from "./NavButtonUser";
 import { useContext } from "react";
 import { UserContext } from "../../App";
-import { TbCardsFilled } from "react-icons/tb";
 import SettingsIcon from "../Icons/SettingsIcon";
 import Logo from "../Icons/Logo";
 
