@@ -14,17 +14,13 @@ const Navbar = () => {
     <div className="bg-main-green absolute z-20 w-full bg-opacity-95">
       <div className="flex flex-wrap items-center justify-between mx-auto py-2 px-4">
         <Link to="/">
-          <Logo 
-          iconSize="60px"
-          textSize="text-5xl"
-          color="dark-grey"
-          />
+          <Logo headerLogo={true} />
         </Link>
         <div className="hidden w-full md:block md:w-auto" id="navbar-default">
           <div className="flex text-lg gap-1 font-medium">
             <NavButton linkDestination={"/"}>Home</NavButton>
             <NavButton linkDestination={"/search/user"}>Search</NavButton>
-            <NavButton linkDestination={"/about"}>About us</NavButton>
+            <NavButton linkDestination={"/about"}>About</NavButton>
             {userState.user ? (
               <NavButtonUser />
             ) : (

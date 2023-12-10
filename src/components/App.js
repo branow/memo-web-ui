@@ -11,6 +11,7 @@ import LearningPage from "./LearningPage/LearningPage";
 import PublicUserInfo from "./UserPage/PublicUser/PublicUserInfo";
 import SettingsWindow from "./LearningPage/Setting/SettingsWindow";
 import SearchPage from "./SearchPage/SearchPage";
+import AboutPage from "./AboutPage/AboutPage";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "../input.css";
 import { useGetUserPrivateShortDetails } from "../hooks/request/user";
@@ -32,6 +33,9 @@ function App() {
             <Switch>
               <Route exact path="/">
                 <HomePage />
+              </Route>
+              <Route exact path="/about">
+                <AboutPage />
               </Route>
               <Route path="/login">
                 <HomePage />
