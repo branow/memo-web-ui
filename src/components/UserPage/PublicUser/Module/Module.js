@@ -14,8 +14,10 @@ import { PublicUserContext } from "../PublicUserInfo";
 import { Link } from "react-router-dom";
 import WindowWrapper from "../../../constant/WindowWrapper";
 import ImportModule from "../../../ImportWindow/ImportModule";
+import ConfirmBox from "../../../constant/ConfirmBox";
 
 const Module = ({ moduleId }) => {
+  const [toDelete, setToDelete] = useState(false);
   const { userState, isAuthenticated, isOwner } = useContext(PublicUserContext);
   const { moduleState, state } = useGetModuleGeneralDetails(moduleId);
   const useDelete = useDeleteModule(() => {
@@ -26,19 +28,32 @@ const Module = ({ moduleId }) => {
   });
   const [isImport, setIsImport] = useState(false);
 
-  const handleOnDelete = () => {
-    if (
-      window.confirm(
-        `Do you really want to delete module: ${module.moduleName}?`
-      )
-    ) {
-      useDelete.state.run(moduleId);
-    }
+  // const handleOnDelete = () => {
+  //   if (
+  //     window.confirm(
+  //       `Do you really want to delete module: ${module.moduleName}?`
+  //     )
+  //   ) {
+  //     useDelete.state.run(moduleId);
+  //   }
+  // };
+  const handleOnDelete = (isToDelete) => {
+    if(isToDelete) useDelete.state.run(moduleId);
+    else setToDelete(false);
+      
   };
 
   const module = moduleState.module;
   return (
     <>
+      {toDelete && (
+        <WindowWrapper close={() => handleOnDelete(false)}>
+          <ConfirmBox
+            text={`Do you really want to delete module: ${module.moduleName}?`}
+            handleOnDelete={handleOnDelete}
+          />
+        </WindowWrapper>
+      )}
       {isImport && (
         <WindowWrapper close={() => setIsImport(false)}>
           <ImportModule
@@ -62,7 +77,7 @@ const Module = ({ moduleId }) => {
               <DeleteCircleButton
                 color="white"
                 size="25px"
-                onClickAction={handleOnDelete}
+                onClickAction={() => setToDelete(true)}
               />
             )}
             {isAuthenticated && !isOwner && (
@@ -80,15 +95,15 @@ const Module = ({ moduleId }) => {
                   <ModuleAccess access={module.access} size="25px" />
                 </div>
                 <div className="flex justify-between text-3xl gap-[20px]">
-                    <Link to={"/module/" + module.moduleId}>
-                      <span className="font-normal cursor-pointer hover:underline hover:decoration-2">
-                        {module.moduleName}
-                      </span>
-                    </Link>
-                    <div className="font-semibold text-main-green">
-                      {module.collections.length}
-                    </div>
+                  <Link to={"/module/" + module.moduleId}>
+                    <span className="font-normal cursor-pointer hover:underline hover:decoration-2">
+                      {module.moduleName}
+                    </span>
+                  </Link>
+                  <div className="font-semibold text-main-green">
+                    {module.collections.length}
                   </div>
+                </div>
               </div>
             </div>
 
