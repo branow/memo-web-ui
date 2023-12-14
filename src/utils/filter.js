@@ -1,4 +1,16 @@
-export { isSatisfactoryModule };
+export { isSatisfactoryModule, isSatisfactoryCollection };
+
+function isSatisfactoryCollection(collection, query) {
+  if (query) {
+    query = query.toLowerCase();
+    return (
+      collection.collectionName.toLowerCase().includes(query) ||
+      collection.size.toString().toLowerCase().includes(query)
+    );
+  } else {
+    return true;
+  }
+}
 
 function isSatisfactoryModule(module, query) {
   if (query) {

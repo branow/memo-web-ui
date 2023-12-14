@@ -4,18 +4,20 @@ import StudyTypeDescription from "../UserPage/PublicUser/Module/StudyTypeDescrip
 import SearchBar from "../constant/SearchBar";
 import ModuleCollectionList from "./ModuleCollectionList";
 import { useGetModuleDetails } from "../../hooks/request/module";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 import { UserContext } from "../App";
 import LoadingAnimation from "../constant/LoadingAnimation";
 import ErrorPage from "../constant/ErrorPage";
 
 export const ModuleContext = createContext();
+export const SearchingContext = createContext();
 
 const ModulePage = ({ currentModule }) => {
   currentModule = module;
   const appUserContext = useContext(UserContext);
   const { moduleId } = useParams();
   const { moduleState, state } = useGetModuleDetails(moduleId);
+  const [query, setQuery] = useState();
   const isAuthenticated = appUserContext.userState.user ? true : false;
   const isOwner =
     isAuthenticated &&
@@ -51,15 +53,22 @@ const ModulePage = ({ currentModule }) => {
                 {!isOwner && (
                   <div className="border-solid border-white border-b-[3px]"></div>
                 )}
-                {moduleState.module.collections.length !== 0 && (
-                  <div className="w-[30vw] h-[5vh] mt-[5vh] ml-[6.2vw]">
-                    <SearchBar borderColor={"charcoal"} />
-                  </div>
-                )}
 
-                <div className="flex-wrap justify-between mt-[7vh] z-10">
-                  <ModuleCollectionList />
-                </div>
+                <SearchingContext.Provider value={{ query }}>
+                  {moduleState.module.collections.length !== 0 && (
+                    <div className="w-[30vw] h-[5vh] mt-[5vh] ml-[6.2vw]">
+                      <SearchBar
+                        query={query}
+                        search={setQuery}
+                        borderColor={"charcoal"}
+                      />
+                    </div>
+                  )}
+
+                  <div className="flex-wrap justify-between mt-[7vh] z-10">
+                    <ModuleCollectionList />
+                  </div>
+                </SearchingContext.Provider>
               </>
             )}
           </div>
