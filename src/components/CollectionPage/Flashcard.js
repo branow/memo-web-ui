@@ -10,11 +10,13 @@ import {
 import ErrorBox from "../constant/ErrorBox";
 import LoadingAnimation from "../constant/LoadingAnimation";
 import { useContext } from "react";
-import { CollectionContext } from "./CollectionPage";
+import { CollectionContext, SearchingContext } from "./CollectionPage";
 import ImportFlashcard from "../ImportWindow/ImportFlashcard";
+import { isSatisfactoryFlashcard } from "../../utils/filter";
 
 const Flashcard = ({ flashcardId }) => {
   const { collectionState } = useContext(CollectionContext);
+  const { query } = useContext(SearchingContext);
   const [isEdit, setIsEdit] = useState(false);
   const [isImport, setIsImport] = useState(false);
   const { flashcardState, state } = useGetFlashcardDetails(flashcardId);
@@ -69,26 +71,24 @@ const Flashcard = ({ flashcardId }) => {
           )}
         </div>
 
-        <div className="w-fit m-auto h-[25vh] flex flex-row group/fc">
-          {flashcard && (
-            <>
-              <div className="relative h-full">
-                <FlashcardSide side={flashcard.frontSide} />
-              </div>
-              <div className="relative h-full">
-                <FlashcardSide side={flashcard.backSide} />
-              </div>
-              <div className="relative w-[100px]">
-                <FlashcardSideBar
-                  scores={flashcard.scores}
-                  onEdit={() => setIsEdit(true)}
-                  onDelete={handleOnDelete}
-                  onImport={() => setIsImport(true)}
-                />
-              </div>
-            </>
-          )}
-        </div>
+        {flashcard && isSatisfactoryFlashcard(flashcard, query) && (
+          <div className="w-fit m-auto h-[25vh] flex flex-row group/fc">
+            <div className="relative h-full">
+              <FlashcardSide side={flashcard.frontSide} />
+            </div>
+            <div className="relative h-full">
+              <FlashcardSide side={flashcard.backSide} />
+            </div>
+            <div className="relative w-[100px]">
+              <FlashcardSideBar
+                scores={flashcard.scores}
+                onEdit={() => setIsEdit(true)}
+                onDelete={handleOnDelete}
+                onImport={() => setIsImport(true)}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </>
   );

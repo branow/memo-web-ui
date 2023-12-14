@@ -1,4 +1,20 @@
-export { isSatisfactoryModule, isSatisfactoryCollection };
+export {
+  isSatisfactoryModule,
+  isSatisfactoryCollection,
+  isSatisfactoryFlashcard,
+};
+
+function isSatisfactoryFlashcard(flashcard, query) {
+  if (query) {
+    query = query.toLowerCase();
+    return (
+      flashcard.frontSide.text.toLowerCase().includes(query) ||
+      flashcard.backSide.text.toLowerCase().includes(query)
+    );
+  } else {
+    return true;
+  }
+}
 
 function isSatisfactoryCollection(collection, query) {
   if (query) {
