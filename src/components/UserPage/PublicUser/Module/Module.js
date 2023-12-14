@@ -15,10 +15,13 @@ import { Link } from "react-router-dom";
 import WindowWrapper from "../../../constant/WindowWrapper";
 import ImportModule from "../../../ImportWindow/ImportModule";
 import ConfirmBox from "../../../constant/ConfirmBox";
+import { SearchingContext } from "../PublicUserModules";
+import { isSatisfactoryModule } from "../../../../utils/filter";
 
 const Module = ({ moduleId }) => {
   const [toDelete, setToDelete] = useState(false);
   const { userState, isAuthenticated, isOwner } = useContext(PublicUserContext);
+  const { query } = useContext(SearchingContext);
   const { moduleState, state } = useGetModuleGeneralDetails(moduleId);
   const useDelete = useDeleteModule(() => {
     userState.setUser((pr) => {
@@ -28,19 +31,9 @@ const Module = ({ moduleId }) => {
   });
   const [isImport, setIsImport] = useState(false);
 
-  // const handleOnDelete = () => {
-  //   if (
-  //     window.confirm(
-  //       `Do you really want to delete module: ${module.moduleName}?`
-  //     )
-  //   ) {
-  //     useDelete.state.run(moduleId);
-  //   }
-  // };
   const handleOnDelete = (isToDelete) => {
-    if(isToDelete) useDelete.state.run(moduleId);
+    if (isToDelete) useDelete.state.run(moduleId);
     else setToDelete(false);
-      
   };
 
   const module = moduleState.module;
@@ -67,7 +60,7 @@ const Module = ({ moduleId }) => {
           <LoadingAnimation />
         </div>
       )}
-      {module && (
+      {module && isSatisfactoryModule(module, query) && (
         <div
           className="[&:hover>div.hidden]:block relative w-[60vw] min-w-[400px] h-fit py-[10px] px-[30px] bg-tealish-blue mx-auto
         rounded-sm border-[2px] border-tealish-blue hover:border-solid hover:border-regent-grey"
