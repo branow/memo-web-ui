@@ -10,7 +10,7 @@ const Navbar = () => {
   const { userState } = useContext(UserContext);
 
   return (
-    <div className="bg-main-green absolute z-20 w-full bg-opacity-95">
+    <div className="bg-main-green absolute z-30 w-full bg-opacity-95">
       <div className="flex flex-wrap items-center justify-between mx-auto py-2 px-4">
         <Link to="/">
           <Logo headerLogo={true} />

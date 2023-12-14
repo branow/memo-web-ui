@@ -61,7 +61,7 @@ const Flashcard = () => {
             <DeleteCircleButton size="25px" onClickAction={onDelete} />
           </div>
           <div className="relative flex flex-row my-[1vh] mx-[2vw] w-fit h-[10vh]">
-            <ScoreWrapper scores={[flashcard.score]} />
+            <ScoreWrapper scores={[flashcard.score]} size={"SMALLER"} />
             <div className="w-fit h-fit m-auto ml-[2vw]">
               <div className="text-3xl text-main-green font-semibold">
                 <span>{flashcard.module.moduleName}</span>
