@@ -57,7 +57,7 @@ const ModuleEditForm = ({ moduleState, close }) => {
           </label>
           <GeneralInputField 
           value={moduleName}
-          onClickAction={(e) => setModuleName(e.target.value)}
+          onChangeAction={(e) => setModuleName(e.target.value)}
           />
         </div>
         <div className="w-[20vw] mt-[1vh] flex flex-col items-center">
