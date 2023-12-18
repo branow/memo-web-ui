@@ -114,8 +114,8 @@ function useEnable(setUser) {
     new UserCookies().authorizationJwt.set(jwt);
     const user = response.data.user;
     setUser(user);
+    history.push("profile/" + user.userId);
   });
-  callback.success.addAtEnd(() => history.push("/"));
 
   const request = ({ callback }) => {
     if (token) {
