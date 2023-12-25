@@ -48,7 +48,7 @@ const CollectionEditForm = ({ collectionState, close }) => {
         </label>
         <GeneralInputField
           value={collectionName}
-          onClickAction={(e) => setCollectionName(e.target.value)}
+          onChangeAction={(e) => setCollectionName(e.target.value)}
         />
       </div>
 
