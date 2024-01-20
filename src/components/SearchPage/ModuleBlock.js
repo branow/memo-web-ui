@@ -1,4 +1,5 @@
 import UserSidebar from "./UserSidebar";
+import { Link } from "react-router-dom";
 
 const ModuleBlock = ({ module }) => {
   return (
@@ -10,7 +11,9 @@ const ModuleBlock = ({ module }) => {
       <div className="w-full max-w-full h-full p-[15px] text-ellipsis overflow-hidden">
         <div className="h-full flex flex-col justify-between items-center">
           <div className="w-full flex flex-row text-3xl justify-between text-main-green">
-            <div>{module.moduleName}</div>
+            <Link to={"/module/" + module.moduleId}>
+              <div>{module.moduleName}</div>
+            </Link>
             <div>{module.collectionNumber}</div>
           </div>
           <div className="w-full text-ellipsis text-xl font-light break-words ">

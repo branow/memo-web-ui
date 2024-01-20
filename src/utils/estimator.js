@@ -1,48 +1,40 @@
-export { estimate }; 
+import stringSimilarity from "string-similarity-js";
+import DiffMatchPatch from 'diff-match-patch';
+
+export { estimate, html }; 
 
 function estimate(expected, actual) {
-  return Math.ceil(similarity(expected, actual) * 100);
+  [expected, actual] = toLowerCaseAndTrimArray(expected, actual);
+  return Math.ceil(stringSimilarity(expected, actual) * 100);
 }
 
-
-function similarity(s1, s2) {
-  var longer = s1;
-  var shorter = s2;
-  if (s1.length < s2.length) {
-    longer = s2;
-    shorter = s1;
-  }
-  var longerLength = longer.length;
-  if (longerLength == 0) {
-    return 1.0;
-  }
-  return (longerLength - editDistance(longer, shorter)) / parseFloat(longerLength);
-}
-
-
-function editDistance(s1, s2) {
-  s1 = s1.toLowerCase();
-  s2 = s2.toLowerCase();
-
-  var costs = new Array();
-  for (var i = 0; i <= s1.length; i++) {
-    var lastValue = i;
-    for (var j = 0; j <= s2.length; j++) {
-      if (i == 0)
-        costs[j] = j;
-      else {
-        if (j > 0) {
-          var newValue = costs[j - 1];
-          if (s1.charAt(i - 1) != s2.charAt(j - 1))
-            newValue = Math.min(Math.min(newValue, lastValue),
-              costs[j]) + 1;
-          costs[j - 1] = lastValue;
-          lastValue = newValue;
-        }
-      }
+function html(expected, actual) {
+  [expected, actual] = toLowerCaseAndTrimArray(expected, actual);
+  const dmp = new DiffMatchPatch();
+  const diffs = dmp.diff_main(actual, expected);
+  let html = '';
+  for (let diff of diffs) {
+    const [code, str] = diff;
+    switch (code) {
+      case 0: 
+        html += str;
+        break;
+      case -1: 
+        html += `<span style="background:rgba(245, 42, 0, 0.3)">${str}</span>`
+        break;
+      case 1: 
+        html += `<span style="background:rgba(48, 255, 116, 0.2)">${str}</span>`
+        break;
+      default: throw Error("Illegal number value during transforming difference into html: " + diff[0]);
     }
-    if (i > 0)
-      costs[s2.length] = lastValue;
   }
-  return costs[s2.length];
+  return `<span id="answer">${html}</span>`
+}
+
+function toLowerCaseAndTrimArray(...str) {
+  return str.map(toLowerCaseAndTrim);
+}
+
+function toLowerCaseAndTrim(str) {
+  return str.toLowerCase().trim();
 }

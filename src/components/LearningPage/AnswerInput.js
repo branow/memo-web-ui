@@ -3,15 +3,16 @@ import AnswerScore from "./AnswerScore";
 import ChangeCircleButton from "../constant/Buttons/ChangeCircleButton";
 import { useContext, useState } from "react";
 import { FlashcardLearnContext } from "./FlashcardContent";
-import { estimate } from "../../utils/estimator";
+import { estimate, html } from "../../utils/estimator";
+import parse from 'html-react-parser';
 
 const AnswerInput = ({ setIsScoreEdit }) => {
   const { flashcardState, frontSideState, isCheckedState, curScoreState } =
     useContext(FlashcardLearnContext);
   const [answer, setAnswer] = useState("");
+  const correct = flashcardState.flashcard.backSide.text;
 
   const check = () => {
-    const correct = flashcardState.flashcard.backSide.text;
     const score = estimate(correct, answer);
     curScoreState.setCurScore(score);
     isCheckedState.setIsChecked(true);
@@ -41,7 +42,7 @@ const AnswerInput = ({ setIsScoreEdit }) => {
         )}
         {isChecked && (
           <div className="w-full h-full bg-transparent text-xl text-gray-300 pl-[5px] pr-[35px] border-solid border-b-4 border-charcoal outline-none">
-            {answer}
+            {parse(html(correct, answer))}
           </div>
         )}
       </div>
