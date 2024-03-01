@@ -18,13 +18,14 @@ const AutoBuilder = ({ defaultQuery, setFront, setBack, close }) => {
   const toFront = () => {
     const word = wordState.word;
     const { text, format } = formatWordQuestion(word);
+
     return {
       text: text,
       format: format,
-      image: {
+      image: word.image ? {
         mediaUrl: word.image,
         format: "JPG",
-      },
+      } : null,
       audio: null,
     };
   };
@@ -32,13 +33,14 @@ const AutoBuilder = ({ defaultQuery, setFront, setBack, close }) => {
   const toBack = () => {
     const word = wordState.word;
     const { text, format } = formatWordAnswer(word);
+    
     return {
       text: text,
       format: format,
-      image: {
+      image: word.image ? {
         mediaUrl: word.image,
         format: "JPG",
-      },
+      } : null,
       audio: {
         mediaUrl: word.audio,
         format: "MP3",
