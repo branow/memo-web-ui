@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'get-started-background': "url('http://localhost:3000/img/get_started_section_img.png')"
+        'get-started-background': "url('http://localhost/img/get_started_section_img.png')"
       },
       colors: {
         'main-green': '#63B175',

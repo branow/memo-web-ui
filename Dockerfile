@@ -8,6 +8,10 @@ RUN npm ci
 
 COPY . .
 
+ARG REACT_APP_BACKEND_URL
+
+RUN sh create-env-file.sh REACT_APP_BACKEND_URL=$REACT_APP_BACKEND_URL
+
 RUN npm run build
 
 FROM nginx:1.22-bullseye
